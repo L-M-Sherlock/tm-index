@@ -22,17 +22,7 @@ Thoughts Memo 汉化组译文的摘要、关键词和原作者索引。站点支
 
 页面当前收录 2,119 篇译文，原作者均已确认。摘要和初始关键词由 `gpt-6-luna`（max）逐篇生成，后续经过范围、作者和标签复核。
 
-## 更新站点
-
-从导出的 `thoughts-memo-translations` 目录同步：
-
-```bash
-python3 scripts/sync_export.py /path/to/thoughts-memo-translations
-```
-
-脚本只复制公开文件，并拒绝包含本机绝对路径、`localhost` 或 `file://` 的输出。提交到 `main` 后，GitHub Actions 会部署 GitHub Pages。
-
 ## 权利说明
 
-仓库中的摘要、索引和构建脚本按 [CC0 1.0](LICENSE) 提供。链接所指原文、第三方内容、商标及署名不因此改变其权利归属。
+仓库中的摘要、索引和站点代码按 [CC0 1.0](LICENSE) 提供。链接所指原文、第三方内容、商标及署名不因此改变其权利归属。
 
