@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "confirmation_date": "2026-10-26",
+  "authority": "user_confirmation",
+  "scope_overrides": [
+    {
+      "id": "2065118472854565223",
+      "title": "X「百合定义」论战：两周时间线与证据归档",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "2056344770390373406",
+      "title": "《理性：从人工智能到僵尸》导读与目录",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "2052102072846358112",
+      "title": "彼得·格雷（Peter Gray）文集",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "549671589",
+      "title": "背语法无用！不硬背单词！自学二十门语言的加拿大老爷爷解答你外语学习中的所有问题",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "548158972",
+      "title": "掌握了二十门语言的加拿大老爷爷告诉你怎么让外语听力变得有趣",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "313684185",
+      "title": "渐进阅读基本概念与操作介绍",
+      "decision": "excluded",
+      "reason": "用户明确确认本篇不是译文，移出译文目录。"
+    },
+    {
+      "id": "279553703",
+      "title": "在 Anki 制作 2.9 万张卡片，复习 33 万次之后，我转用了 SuperMemo",
+      "decision": "excluded",
+      "reason": "用户确认本篇不是译文，是 Jarrett Ye 的原创文章，移出译文目录。"
+    }
+  ],
+  "author_overrides": [
+    {
+      "id": "420309917",
+      "title": "(2/5) 高效学习的间隔重复——文献综述之测试效应",
+      "original_authors": [
+        "Gwern Branwen"
+      ],
+      "credited_author_names": [
+        "Gwern"
+      ],
+      "entity_type": "pseudonym",
+      "reason": "用户明确确认本篇原作者为 Gwern（规范署名 Gwern Branwen）。"
+    },
+    {
+      "id": "245530782",
+      "original_authors": [
+        "RemNote"
+      ],
+      "entity_type": "organization",
+      "aliases": [],
+      "reason": "用户明确确认本篇作者为 RemNote，按机构作者记录。"
+    },
+    {
+      "id": "239734539",
+      "original_authors": [
+        "RemNote"
+      ],
+      "entity_type": "organization",
+      "aliases": [],
+      "reason": "用户明确确认本篇作者为 RemNote，按机构作者记录。"
+    },
+    {
+      "id": "238333440",
+      "original_authors": [
+        "RemNote"
+      ],
+      "entity_type": "organization",
+      "aliases": [],
+      "reason": "用户明确确认本篇作者为 RemNote，按机构作者记录。"
+    },
+    {
+      "id": "238211772",
+      "original_authors": [
+        "RemNote"
+      ],
+      "entity_type": "organization",
+      "aliases": [],
+      "reason": "用户明确确认本篇作者为 RemNote，按机构作者记录。"
+    },
+    {
+      "id": "235834139",
+      "original_authors": [
+        "RemNote"
+      ],
+      "entity_type": "organization",
+      "aliases": [],
+      "reason": "用户明确确认本篇作者为 RemNote，按机构作者记录。"
+    },
+    {
+      "id": "279553703",
+      "original_authors": [
+        "Jarrett Ye"
+      ],
+      "entity_type": "person",
+      "aliases": [
+        "JarrettYe"
+      ],
+      "record_outside_translations": true,
+      "reason": "用户确认本篇是 Jarrett Ye 的原创文章，不是译文；作者记录随文章保留在范围外，不计入译文作者统计。"
+    },
+    {
+      "id": "574145059",
+      "original_authors": [
+        "Andy Matuschak"
+      ],
+      "entity_type": "person",
+      "aliases": [
+        "Andy"
+      ],
+      "reason": "用户明确确认本访谈内容的作者可设为 Andy Matuschak 本人。"
+    },
+    {
+      "id": "1944442771533432041",
+      "original_authors": [
+        "Vipul"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [],
+      "reason": "用户明确确认《纠错练习》的作者为 Vipul。"
+    },
+    {
+      "id": "786110435",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Daniel"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "775652801",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "768834389",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "753184193",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "749128464",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "742838190",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "742654901",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    },
+    {
+      "id": "738408059",
+      "original_authors": [
+        "Sable"
+      ],
+      "entity_type": "pseudonym",
+      "aliases": [
+        "Daniel"
+      ],
+      "credited_author_names": [
+        "Sable"
+      ],
+      "reason": "用户确认“砸烂旧学校，创建新学校”系列为同一作者。统一沿用系列其他篇目的署名 Sable；原页面出现的 Daniel 署名保留作原始署名和检索别名。"
+    }
+  ],
+  "supermemo_author_confirmation": {
+    "ids": [
+      "179057473",
+      "251148900",
+      "252300144",
+      "256212819",
+      "258435094",
+      "264327134",
+      "264989664",
+      "265081034",
+      "266856783",
+      "266922623",
+      "268258730",
+      "269974053",
+      "269997143",
+      "272801606",
+      "274352214",
+      "277483881",
+      "281085595",
+      "295032009",
+      "295053968",
+      "303204832",
+      "304193622",
+      "304800091",
+      "305651556",
+      "306014650",
+      "307602868",
+      "310377557",
+      "311666201",
+      "313020639",
+      "315758950",
+      "319611234",
+      "347501064",
+      "349290940",
+      "351869026",
+      "351872034",
+      "352083787",
+      "352086974",
+      "353065982",
+      "353404375",
+      "357893386",
+      "359921139",
+      "360120302",
+      "360416156",
+      "360820529",
+      "361350076",
+      "362420803",
+      "369291348",
+      "369568521",
+      "372072085",
+      "379665183",
+      "386372396",
+      "386603182",
+      "401155017",
+      "417595864",
+      "715287744",
+      "2068268922776839997"
+    ],
+    "source_domains": [
+      "supermemo.guru",
+      "supermemopedia.com",
+      "super-memory.com",
+      "supermemo.com",
+      "supermemo.org",
+      "supermemohelp.com"
+    ],
+    "pending_statuses": [
+      "partial",
+      "unresolved"
+    ],
+    "original_authors": [
+      "Piotr Wozniak"
+    ],
+    "entity_type": "person",
+    "reason": "用户明确确认：作者归属待确认的文章里，发布在 SuperMemo 相关网站上的作者都是 Piotr Wozniak。"
+  },
+  "mechanical_name_cleanup": {
+    "remove_publication_tokens": true,
+    "split_comma_separated_full_names": true,
+    "reason": "避免把署名段落的发表日期或刊载说明列作作者；将误并成单字符串的完整合著者姓名拆开。"
+  }
+}

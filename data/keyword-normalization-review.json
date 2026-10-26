@@ -1,0 +1,3112 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "scope": {
+    "articles": 2119,
+    "tags_before": 4372
+  },
+  "review_sources": [
+    "review-education-language.json",
+    "review-memory.json",
+    "review-names-technology.json",
+    "review-philosophy-society.json",
+    "review-sleep-health.json",
+    "per-article-audit.json"
+  ],
+  "accepted_global_aliases": [
+    {
+      "alias": "AGI",
+      "canonical": "通用人工智能",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "AGI 是 artificial general intelligence 的缩写，人工通用智能与通用人工智能在这些文章中均指同一概念。",
+          "article_ids": [
+            "701724468",
+            "2085870331089139192",
+            "2082158716124665181"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "AI 对齐",
+      "canonical": "AI对齐",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "AI 对齐与人工智能对齐是同一领域的全称、缩写和空格变体；保留它们与 AI 安全、AI 风险等相邻主题的边界。",
+          "article_ids": [
+            "2084243627816100719",
+            "2085795301030478053",
+            "2092215701784286345"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "AI 导师",
+      "canonical": "AI导师",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "仅有空格差异，文章都指向 AI 辅助个性化辅导。",
+          "article_ids": [
+            "16801176311",
+            "1893975631710102445"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "AI安全",
+      "canonical": "人工智能安全",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "两种写法都指人工智能安全议题，且现有文章语境一致。",
+          "article_ids": [
+            "2085795301030478053",
+            "2085320376930800013"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "AI风险",
+      "canonical": "人工智能风险",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "AI风险与人工智能风险是完全对应的缩写和全称变体；生存风险作为更具体议题另行保留。",
+          "article_ids": [
+            "2082158716124665181",
+            "2058221554144637051"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Bloom两个标准差问题",
+      "canonical": "两个标准差问题",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者均指 Bloom 的 Two-Sigma Problem；相关条目分别以简称和带 Bloom 姓名的写法讨论同一问题。",
+          "article_ids": [
+            "720099642",
+            "16343054758"
+          ]
+        },
+        {
+          "review": "review-names-technology.json",
+          "reason": "两种标签都指 Bloom 的 two-sigma problem，现有文章均明确以 Bloom 两个标准差问题为主题。",
+          "article_ids": [
+            "16343054758",
+            "720099642"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Diamond Age",
+      "canonical": "The Diamond Age",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "三种标签均指 Neal Stephenson 的同一部小说，中文文章称其为《钻石时代》；The Diamond Age 保留完整英文书名。",
+          "article_ids": [
+            "480140597",
+            "695554301",
+            "694984639"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Dolby Laboratories",
+      "canonical": "杜比实验室",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "Dolby Laboratories 与杜比实验室是同一公司的英文名和中文译名。",
+          "article_ids": [
+            "1996642328971081633",
+            "654015032"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "IQ",
+      "canonical": "智商",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "当前 IQ 标签用于 intelligence quotient，和智商是同一概念。",
+          "article_ids": [
+            "590762250",
+            "935573696"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Ivan Illich",
+      "canonical": "伊万·伊利奇",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "两种写法指同一位教育思想家；英文来源和中文条目互相印证。",
+          "article_ids": [
+            "2081817774511473162",
+            "696496012"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "PTSD",
+      "canonical": "创伤后应激障碍",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两个标签在对应文章中都指 post-traumatic stress disorder：一篇直接用 PTSD，另一篇正文明确写出创伤后应激障碍（PTSD）。规范为完整中文病名，避免将一般创伤反应并入。",
+          "article_ids": [
+            "2019751528664154812",
+            "707363693"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Peter Wozniak",
+      "canonical": "Piotr Wozniak",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "当前语料中 Peter Wozniak 条目引用的原作者资料指向 Piotr Wozniak 的公开页面，人物条目也给出其 Piotr Wozniak 原文链接；使用原作者公开名，不推测私人实名。",
+          "article_ids": [
+            "633210529",
+            "303204832"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Pixar",
+      "canonical": "皮克斯",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "Pixar 与皮克斯是同一动画公司的英文名和中文译名。",
+          "article_ids": [
+            "1998095610671297880",
+            "1996639927711057312"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "Quantum Country",
+      "canonical": "量子国度",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "英文作品名 Quantum Country 与其中文译名量子国度指同一互动作品。",
+          "article_ids": [
+            "692941328",
+            "690758920"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "RPD模型",
+      "canonical": "识别启动决策模型",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "RPD 是 recognition-primed decision model 的缩写；两个标签在文章中指同一决策模型。",
+          "article_ids": [
+            "1890422862998926509",
+            "1926635154627105265"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "SLA",
+      "canonical": "二语习得",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "该缩写在当前文章中明确表示 second language acquisition，属于二语习得理论，而非其他常见的 SLA 缩写义。",
+          "article_ids": [
+            "2002678189403705791"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "SM-2算法",
+      "canonical": "SM-2",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "算法后缀只是补足标签说明，版本号相同，因此归并到 SM-2；不与其他 SuperMemo 版本合并。",
+          "article_ids": [
+            "97887756",
+            "213170503"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "SM-5算法",
+      "canonical": "SM-5",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "算法后缀只是补足标签说明，版本号相同，因此归并到 SM-5；不与其他 SuperMemo 版本合并。",
+          "article_ids": [
+            "207094393",
+            "213170503"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "XP评分",
+      "canonical": "XP",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "Zettelkasten",
+      "canonical": "卡片盒笔记法",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "文章直接把Zettelkasten称为卡片盒笔记系统，属于同一系统名称的英文与中文写法。",
+          "article_ids": [
+            "655457523"
+          ]
+        },
+        {
+          "review": "review-names-technology.json",
+          "reason": "Zettelkasten 是卡片盒笔记系统的德语名称；对应文章标题直接并列了中文名称与 Zettelkasten。",
+          "article_ids": [
+            "655457523"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "《启蒙琼林》",
+      "canonical": "启蒙琼林",
+      "evidence": [],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "《自由的体制》",
+      "canonical": "自由的体制",
+      "evidence": [],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "《钻石时代》",
+      "canonical": "The Diamond Age",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "三种标签均指 Neal Stephenson 的同一部小说，中文文章称其为《钻石时代》；The Diamond Age 保留完整英文书名。",
+          "article_ids": [
+            "480140597",
+            "695554301",
+            "694984639"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "个别辅导",
+      "canonical": "一对一辅导",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "样例中的个别辅导均是导师与单个学习者长期直接交流的 tutoring，与一对一辅导指向同一种辅导形式。",
+          "article_ids": [
+            "1898310783265386924",
+            "692746161",
+            "720099642"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "主动回忆",
+      "canonical": "检索练习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章均把这些写法用于有意从记忆中提取答案的练习；“提取练习”沿用既有安全alias。测试效应是练习可能带来的结果，单独保留。",
+          "article_ids": [
+            "1928747840647168044",
+            "297790034",
+            "2000259693428351079",
+            "2045079004407928553"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "主动提取",
+      "canonical": "检索练习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章均把这些写法用于有意从记忆中提取答案的练习；“提取练习”沿用既有安全alias。测试效应是练习可能带来的结果，单独保留。",
+          "article_ids": [
+            "1928747840647168044",
+            "297790034",
+            "2000259693428351079",
+            "2045079004407928553"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "产权",
+      "canonical": "财产权",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "这些政治经济文本都以两种写法指对财产的控制、归属及相应权利；不据此合并“私有财产”或“私有产权”等更具体制度与权利类别。",
+          "article_ids": [
+            "1939057590567965095",
+            "705593522",
+            "1929291765111820700"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "人工智能对齐",
+      "canonical": "AI对齐",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "AI 对齐与人工智能对齐是同一领域的全称、缩写和空格变体；保留它们与 AI 安全、AI 风险等相邻主题的边界。",
+          "article_ids": [
+            "2084243627816100719",
+            "2085795301030478053",
+            "2092215701784286345"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "人工通用智能",
+      "canonical": "通用人工智能",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "AGI 是 artificial general intelligence 的缩写，人工通用智能与通用人工智能在这些文章中均指同一概念。",
+          "article_ids": [
+            "701724468",
+            "2085870331089139192",
+            "2082158716124665181"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "从做中学",
+      "canonical": "做中学",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两种语序都对应learning by doing；相关Holt文章表达的是同一通过实际行动学习的主张。",
+          "article_ids": [
+            "2080621319687771079",
+            "2080961104264673242",
+            "587668416"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "公共产品",
+      "canonical": "公共物品",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "政治经济文章都对应 public goods；采用词表中更常见的“公共物品”作规范名称。",
+          "article_ids": [
+            "1947075686767494393",
+            "1941631339012028322"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "共同核心标准",
+      "canonical": "共同核心课程标准",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者均指美国 Common Core 课程标准；完整写法更清楚地表达标准对象。",
+          "article_ids": [
+            "2021675041142646381",
+            "1911761015403704628"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "内疚感",
+      "canonical": "内疚",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两组文章都讨论同一种 guilt 情绪及其作为行动信号或负担的作用；“感”在这些语境中没有形成另一构念。",
+          "article_ids": [
+            "1929508324510003381",
+            "1934180803157395345"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "创伤后应激",
+      "canonical": "创伤后应激障碍",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两个标签在对应文章中都指 post-traumatic stress disorder：一篇直接用 PTSD，另一篇正文明确写出创伤后应激障碍（PTSD）。规范为完整中文病名，避免将一般创伤反应并入。",
+          "article_ids": [
+            "2019751528664154812",
+            "707363693"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "创造性思考",
+      "canonical": "创造性思维",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "这些文章把两种写法都用于creative thinking；不与创造力或原创思维合并。",
+          "article_ids": [
+            "622642769",
+            "677540148",
+            "655457523"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "助记技巧",
+      "canonical": "助记法",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关文章都在指帮助记忆的mnemonic technique/device；助记媒介是另一种媒介设计概念。",
+          "article_ids": [
+            "1910004004194350682",
+            "719174183",
+            "1929184438018875845"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "卡片写作",
+      "canonical": "卡片编写",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章都指撰写间隔重复卡片提示与答案的工作；不是自动卡片生成。",
+          "article_ids": [
+            "716414281",
+            "399738674",
+            "398045447"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "原子笔记",
+      "canonical": "原子化笔记",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关笔记系统文章都在说atomic notes，即围绕一个主题写成可独立链接和复用的原子笔记。",
+          "article_ids": [
+            "655457523",
+            "421908250",
+            "448897897"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "双相情绪障碍",
+      "canonical": "双相情感障碍",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两种中文名称都指 bipolar disorder；所附文章讨论同一诊断类别。",
+          "article_ids": [
+            "2042721607366469495",
+            "559156870"
+          ]
+        },
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两词都是 bipolar disorder 的中文译名变体，文章讨论的是同一精神障碍类别。",
+          "article_ids": [
+            "559156870",
+            "2042721607366469495"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "反馈回路",
+      "canonical": "反馈循环",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两种写法都是feedback loop的常用译名，文章均描述行动、结果和后续调整之间的循环。",
+          "article_ids": [
+            "545549661",
+            "534556743",
+            "450488015"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "发表偏误",
+      "canonical": "发表偏倚",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇文章均明确讨论 publication bias，包括审稿与发表选择使文献偏向显著或合意结果。",
+          "article_ids": [
+            "1982109644060112752",
+            "797254796"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "可理解性输入",
+      "canonical": "可理解输入",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "沿用现有安全 alias；两种写法均指 Krashen 输入假说中的 comprehensible input。",
+          "article_ids": [
+            "597275400",
+            "653627979"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "同侪学习",
+      "canonical": "同伴学习",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "“同侪学习”和“同伴学习”均指 peer learning；样例都讨论学习者之间的互学。",
+          "article_ids": [
+            "645474754",
+            "585249833"
+          ]
+        },
+        {
+          "review": "review-memory.json",
+          "reason": "相关教育文章都指同伴之间互相学习，即peer learning的常见译名。",
+          "article_ids": [
+            "585249833",
+            "645474754",
+            "550075365"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两种写法在儿童互教、同伴协作等实际语境中都指 peer learning。",
+          "article_ids": [
+            "585249833",
+            "645474754"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "同辈压力",
+      "canonical": "同伴压力",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇文章都指同龄同伴施加的 peer pressure；一篇谈校园欺凌，一篇谈学校压力与成瘾。保留更广的群体压力标签。",
+          "article_ids": [
+            "639266845",
+            "488362923"
+          ]
+        },
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两标签都指 peer pressure，即同龄同伴施加或形成的行为压力，是同一概念的常用译法。",
+          "article_ids": [
+            "488362923",
+            "639266845"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "后见之明",
+      "canonical": "后见之明偏差",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇语境都指事后把结果看成可预见、从而误判先前路径的 hindsight bias；长短写法指同一偏差。",
+          "article_ids": [
+            "66683201",
+            "6590373197"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "回忆概率",
+      "canonical": "可提取性",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "在 FSRS、SuperMemo 等记忆模型语境中，可提取性就是给定复习间隔下成功回忆的概率；加上“记忆”或直接写概率，指向同一模型量。",
+          "article_ids": [
+            "559819340",
+            "579476637",
+            "672908338",
+            "649701172"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "回忆练习",
+      "canonical": "检索练习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章均把这些写法用于有意从记忆中提取答案的练习；“提取练习”沿用既有安全alias。测试效应是练习可能带来的结果，单独保留。",
+          "article_ids": [
+            "1928747840647168044",
+            "297790034",
+            "2000259693428351079",
+            "2045079004407928553"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "外部动机",
+      "canonical": "外在动机",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两个标签在所附文章里都指由外部要求、奖励或刺激驱动、与内在动机相对的动机；是同一外在动机概念的译名变体。",
+          "article_ids": [
+            "583003405",
+            "2068294347100051362"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "大语言模型",
+      "canonical": "大型语言模型",
+      "evidence": [],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "奥威尔",
+      "canonical": "乔治·奥威尔",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "两篇文章分别讨论奥威尔的《政治与英语》和《1984》，标签均指同一位作家；完整姓名作为规范名。",
+          "article_ids": [
+            "7209002242",
+            "7772409181"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "媒介素养",
+      "canonical": "媒体素养",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "学习的乐趣",
+      "canonical": "学习乐趣",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两种词形都指学习带来的乐趣；不与学习动机或学习内驱力合并。",
+          "article_ids": [
+            "273225977",
+            "685942526",
+            "269997143"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "学券",
+      "canonical": "教育券",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "定义型文章将两者都用于 school/education voucher 这种教育凭证；本组只统一凭证名称，不合并学券制度这一政策安排。",
+          "article_ids": [
+            "521559872",
+            "1932728171536556105"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "学券制度",
+      "canonical": "学券制",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两种写法都指 school voucher system；现有文章讨论同一种学券政策制度。",
+          "article_ids": [
+            "633497815",
+            "711285929"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "学生罢学",
+      "canonical": "学生罢课",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "家长支持",
+      "canonical": "父母支持",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都指父母对孩子的支持；文章语境涉及家庭沟通、指导与尊重孩子自主，不是学校或制度支持。",
+          "article_ids": [
+            "722088265",
+            "2017571209244582554",
+            "578691342"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "家长焦虑",
+      "canonical": "父母焦虑",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都指父母对孩子发展、学校进度和风险的焦虑；只是“家长/父母”的常用写法不同。",
+          "article_ids": [
+            "686848778",
+            "586520031",
+            "565441715"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "小睡",
+      "canonical": "午睡",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "这些文章中两种写法都指白天的短时补眠，主题是其时机、时长及醒后影响；此处不将夜间分段睡眠归入。",
+          "article_ids": [
+            "606888160",
+            "3054777168"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "常绿笔记",
+      "canonical": "常青笔记",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "沿用既有安全alias；两种写法均指可持续修订、引用和发展的evergreen notes。",
+          "article_ids": [
+            "416319260",
+            "436335609"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "强迫学习",
+      "canonical": "强制学习",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "心理模型",
+      "canonical": "心智模型",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉原文分别讨论用户的mental model，以及解读经验所需的mental models；这些中文词形在文章中指同一类心智模型。认知模型和心理表征不是此标签的变体。",
+          "article_ids": [
+            "472770296",
+            "1934549390023983402",
+            "2019791563983700307"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "界面设计文章中的“心理模型”对应用户的 mental model；其他文章用“心智模型”指同一心理表征性模型，属于译名变体。",
+          "article_ids": [
+            "472770296",
+            "2074931779975255127"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "快速眼动睡眠",
+      "canonical": "REM睡眠",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "快速眼动睡眠是 REM 睡眠的全称译名，文章用两种写法指同一睡眠阶段。",
+          "article_ids": [
+            "679222062",
+            "2014412442348828304"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "思维模型",
+      "canonical": "心智模型",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉原文分别讨论用户的mental model，以及解读经验所需的mental models；这些中文词形在文章中指同一类心智模型。认知模型和心理表征不是此标签的变体。",
+          "article_ids": [
+            "472770296",
+            "1934549390023983402",
+            "2019791563983700307"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "情境体验",
+      "canonical": "情景体验",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "情感过滤器",
+      "canonical": "情感过滤",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "语言习得文章都明确指 Krashen 的 affective filter 概念；带“器”与不带“器”是同一术语的写法差异。",
+          "article_ids": [
+            "1912173090928034295",
+            "653975316"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "抽认卡",
+      "canonical": "记忆卡片",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉 Anki、SuperMemo 和记忆系统文章都把抽认卡用于flashcard；这与问答卡、填空卡等具体卡片类型分开。",
+          "article_ids": [
+            "2033320783427129789",
+            "3953703611",
+            "239734539"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "挖空卡",
+      "canonical": "填空卡",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "在卡片语境中，填空卡和挖空卡都是cloze-deletion card。",
+          "article_ids": [
+            "404396584",
+            "245530782",
+            "399548149"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "挖空练习",
+      "canonical": "填空练习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关Anki文章均指cloze exercise；练习类别与填空卡这一卡片类型分开。",
+          "article_ids": [
+            "297790034",
+            "52369009"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "掌握学习",
+      "canonical": "精熟学习",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "三种写法在样例中均指 Bloom/Keller 的 mastery learning：按掌握程度推进课程，并以测验和补习确认掌握。",
+          "article_ids": [
+            "2078418096335991329",
+            "28954028250",
+            "720099642"
+          ]
+        },
+        {
+          "review": "review-memory.json",
+          "reason": "这些 Math Academy 文章都指Bloom/Keller意义上的mastery learning；“掌握学习”和带“法”的词形是同一教学模式的译名或写法。",
+          "article_ids": [
+            "28954028250",
+            "720099642",
+            "2078418096335991329"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "探索学习",
+      "canonical": "探索式学习",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "提取练习",
+      "canonical": "检索练习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章均把这些写法用于有意从记忆中提取答案的练习；“提取练习”沿用既有安全alias。测试效应是练习可能带来的结果，单独保留。",
+          "article_ids": [
+            "1928747840647168044",
+            "297790034",
+            "2000259693428351079",
+            "2045079004407928553"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "收入差距",
+      "canonical": "收入不平等",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "应用研究中两个标签都对应 income inequality/gap 这一收入分布差异；不扩展合并到更宽的经济不平等或教育成绩差距。",
+          "article_ids": [
+            "1935994484769916045",
+            "1930052592714645942"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "教学支架",
+      "canonical": "教学脚手架",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都是 instructional scaffolding 的译名，指教师或教学设计提供的临时学习支持；认知脚手架等更宽或不同层次的术语不纳入。",
+          "article_ids": [
+            "1898672179136165570",
+            "1899037431396804330",
+            "545549661"
+          ]
+        },
+        {
+          "review": "review-memory.json",
+          "reason": "两种写法都指教学设计中为学习者搭建、逐渐撤除的instructional scaffolding。",
+          "article_ids": [
+            "1898672179136165570",
+            "1899037431396804330",
+            "545549661"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "新陈代谢",
+      "canonical": "代谢",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两种写法都指 metabolism；相关条目分别讨论睡眠剥夺中的代谢调节和甲状腺、生长激素相关的新陈代谢。",
+          "article_ids": [
+            "497975420",
+            "697672496"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "最佳间隔",
+      "canonical": "最优间隔",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两者都指依据记忆和遗忘情况优化同一知识点复习时机的最优间隔。",
+          "article_ids": [
+            "305651556",
+            "584041631"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "杏仁体",
+      "canonical": "杏仁核",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两者都是 amygdala 的中文名称，指同一脑结构。",
+          "article_ids": [
+            "564164660",
+            "707363693"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "标准化测试",
+      "canonical": "标准化考试",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "概念关联",
+      "canonical": "概念联系",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉卡片、笔记和助记媒介文章都用这些词表示概念之间的意义联系；显式笔记链接和概念图另行保留。",
+          "article_ids": [
+            "404937659",
+            "464712237",
+            "405151942"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "概念性理解",
+      "canonical": "概念理解",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "概念联结",
+      "canonical": "概念联系",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉卡片、笔记和助记媒介文章都用这些词表示概念之间的意义联系；显式笔记链接和概念图另行保留。",
+          "article_ids": [
+            "404937659",
+            "464712237",
+            "405151942"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "沉浸学习",
+      "canonical": "沉浸式学习",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "沿用现有安全 alias；两种写法在语言学习路线中都指通过目标语材料沉浸接触来学习。",
+          "article_ids": [
+            "565389270",
+            "563595807"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "深刻理解",
+      "canonical": "深度理解",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "演化",
+      "canonical": "进化",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "理性思考",
+      "canonical": "理性思维",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关文章都指rational thought/reasoning这一认知活动；不与理性主义合并。",
+          "article_ids": [
+            "2014673035655925994",
+            "827867654",
+            "1943099933998690430"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两类文章都用标签描述依证据检验、修正信念的 rational thinking；这是思维过程的译名差异，不涉及“理性”或“理性主义”本身。",
+          "article_ids": [
+            "2014673035655925994",
+            "2054864033602393512"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "直升机父母",
+      "canonical": "直升机式养育",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都指 helicopter parenting，即父母过度介入和保护孩子；原文在同一篇文章中交替使用“直升机型教育”和“直升机型父母”。",
+          "article_ids": [
+            "565441715",
+            "15194624579"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "睡眠惰性",
+      "canonical": "睡眠惯性",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两词都指从睡眠醒来后暂时出现的昏沉状态，是 sleep inertia 的译名变体。",
+          "article_ids": [
+            "1925596544150804041",
+            "606888160"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "睡眠时相",
+      "canonical": "睡眠相位",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两种写法都指睡眠在昼夜节律中的时相位置；相关文章均用它描述睡眠时机或相位错位。",
+          "article_ids": [
+            "786275878",
+            "1951939573891438395"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "知识保留",
+      "canonical": "知识保持",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章都指已学知识在一段时间后仍可保有或调用；与一般记忆保持分开。",
+          "article_ids": [
+            "2059936154183587504",
+            "519549411"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "知识分享",
+      "canonical": "知识共享",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关文章都指知识在个人或群体间分享；与知识传播、知识传递等其他过程标签分开。",
+          "article_ids": [
+            "465933090",
+            "2080961104264673242"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "知识联系",
+      "canonical": "知识连接",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "这些文章均指知识点之间建立联系以支持理解和推理；显式笔记链接仍是不同概念。",
+          "article_ids": [
+            "550695797",
+            "403208725",
+            "401463758"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "确认偏差",
+      "canonical": "确认偏误",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "三种词形在所涉文章中都指confirmation bias，即选择性搜集或解释支持既有信念的证据。",
+          "article_ids": [
+            "8246788669",
+            "1913274184290793262",
+            "1943099933998690430"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "这些标签在实际文章中都对应 confirmation bias；它是认知偏差的一个具体类型，因此单独归一，不并入宽泛的认知偏差。",
+          "article_ids": [
+            "2015489803068651120",
+            "1913274184290793262",
+            "1961358134401564985"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "确认偏见",
+      "canonical": "确认偏误",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "三种词形在所涉文章中都指confirmation bias，即选择性搜集或解释支持既有信念的证据。",
+          "article_ids": [
+            "8246788669",
+            "1913274184290793262",
+            "1943099933998690430"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "这些标签在实际文章中都对应 confirmation bias；它是认知偏差的一个具体类型，因此单独归一，不并入宽泛的认知偏差。",
+          "article_ids": [
+            "2015489803068651120",
+            "1913274184290793262",
+            "1961358134401564985"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "社交联结",
+      "canonical": "社会联结",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇文章都指人与他人的 social connection/联结感；使用的是同一社会支持关系概念。",
+          "article_ids": [
+            "670118024",
+            "6814255604"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "社会交往",
+      "canonical": "社会互动",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇文章都讨论人与人之间的 interpersonal social interaction；不是社会制度层面的互动。",
+          "article_ids": [
+            "612277299",
+            "1963903161430439820"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "社会流动性",
+      "canonical": "社会流动",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "三篇语境均讨论同一 social mobility 现象，包括向上流动机会；“流动性”只是名词形式变体。",
+          "article_ids": [
+            "1996328710610108547",
+            "713753922",
+            "704924636"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "社会网络",
+      "canonical": "社交网络",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "实际语境都指人际关系、社群节点及其连接构成的 social network；没有把它当作社交媒体产品使用。",
+          "article_ids": [
+            "1993727469031793581",
+            "16411499034"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "程序设计教育",
+      "canonical": "编程教育",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都指教授编程的教育内容；样例涉及同一类交互式编程课程及面向初学者的软件教学。",
+          "article_ids": [
+            "1999149514427213729",
+            "2003900630289379481",
+            "1950572109941155203"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "精熟学习法",
+      "canonical": "精熟学习",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "三种写法在样例中均指 Bloom/Keller 的 mastery learning：按掌握程度推进课程，并以测验和补习确认掌握。",
+          "article_ids": [
+            "2078418096335991329",
+            "28954028250",
+            "720099642"
+          ]
+        },
+        {
+          "review": "review-memory.json",
+          "reason": "这些 Math Academy 文章都指Bloom/Keller意义上的mastery learning；“掌握学习”和带“法”的词形是同一教学模式的译名或写法。",
+          "article_ids": [
+            "28954028250",
+            "720099642",
+            "2078418096335991329"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "精神健康",
+      "canonical": "心理健康",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "所附文章都用这两个中文名称指 mental health/心理健康主题；保留具体障碍或诊断名称，不把它们并入本标签。",
+          "article_ids": [
+            "2042721607366469495",
+            "745315579"
+          ]
+        },
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两标签在这里都是 mental health 这一一般主题的中文名称，不指不同诊断或治疗方式。",
+          "article_ids": [
+            "745315579",
+            "2022389340551086588"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "约翰·泰勒·加托",
+      "canonical": "John Taylor Gatto",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "中文音译名与 John Taylor Gatto 指同一位教育家，演讲条目直接给出其英文全名。",
+          "article_ids": [
+            "706372143",
+            "708518560"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "约翰·霍尔特",
+      "canonical": "John Holt",
+      "evidence": [
+        {
+          "review": "review-names-technology.json",
+          "reason": "中文音译名与 John Holt 指同一位教育家，相关条目及原文正文一致。",
+          "article_ids": [
+            "515605862",
+            "2092324403388347509"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "结果主义",
+      "canonical": "后果主义",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "所附道德哲学文章都以 consequentialism 表示按行为后果评价道德的立场；该词与功利主义的边界仍保留。",
+          "article_ids": [
+            "4642127708",
+            "1941634468231247781"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "育儿方式",
+      "canonical": "养育方式",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "两者都概括父母养育孩子的做法。样例分别讨论一般养育方式的长期影响和婴儿管理中的具体做法；均不是家庭教育作为在家上学的名称。",
+          "article_ids": [
+            "22575386199",
+            "72498488"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "能力偏误",
+      "canonical": "能力偏差",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇教育回报文章都讨论 Ability Bias；其中一篇标签虽写“能力偏误”，正文直接使用“能力偏差（Ability Bias）”，证明是同一术语。",
+          "article_ids": [
+            "709830942",
+            "2042928283772249344"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "脑力劳动",
+      "canonical": "脑力工作",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两篇文章都用这类词指安排在特定警觉窗口的brainwork/mental work；知识工作是更具体的职业概念，不随之合并。",
+          "article_ids": [
+            "786275878",
+            "532216678"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "脑可塑性",
+      "canonical": "神经可塑性",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两词在相关条目中都指经验引起的脑神经系统结构或功能变化，即 neuroplasticity；这里的文章均讨论脑部神经网络。",
+          "article_ids": [
+            "711395188",
+            "674084585"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "自主玩耍",
+      "canonical": "自由玩耍",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "自我导向教育",
+      "canonical": "自主教育",
+      "evidence": [
+        {
+          "review": "review-education-language.json",
+          "reason": "在 Gray 的学校教育讨论中，“自我导向教育”是 self-directed education 的直译，与文中通用的“自主教育”指同一教育理念；仅归并此教育术语，不扩展到自主学习、自由学习、非学校教育或在家上学。",
+          "article_ids": [
+            "525125666",
+            "550075365"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "自我指导学习",
+      "canonical": "自我导向学习",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两种写法均用于self-guided/self-directed learning；它描述由学习者引导方向，不等于更宽泛的自主学习或自由学习。",
+          "article_ids": [
+            "272801606",
+            "353404375"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "自然决策",
+      "canonical": "自然主义决策",
+      "evidence": [],
+      "decision_source": "root_review"
+    },
+    {
+      "alias": "自由运作睡眠",
+      "canonical": "自由运作的睡眠",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "两标签仅相差结构助词“的”，都指没有外部作息约束时呈自由运行的睡眠节律。",
+          "article_ids": [
+            "1935996086130053136",
+            "497982873"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "认知偏见",
+      "canonical": "认知偏差",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章将cognitive bias(es)译作这几种中文词形，均讨论影响判断的系统性认知偏差。",
+          "article_ids": [
+            "18080570922",
+            "2073383390892537693",
+            "827900306"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "三种写法在所附文章中都泛指 cognitive bias；采用词表中使用最多的主写法。具体偏差如确认偏误仍保留为独立标签。",
+          "article_ids": [
+            "1952299097210991920",
+            "2074931779975255127",
+            "2073383390892537693"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "认知偏误",
+      "canonical": "认知偏差",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "所涉文章将cognitive bias(es)译作这几种中文词形，均讨论影响判断的系统性认知偏差。",
+          "article_ids": [
+            "18080570922",
+            "2073383390892537693",
+            "827900306"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "三种写法在所附文章中都泛指 cognitive bias；采用词表中使用最多的主写法。具体偏差如确认偏误仍保留为独立标签。",
+          "article_ids": [
+            "1952299097210991920",
+            "2074931779975255127",
+            "2073383390892537693"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "认识谦逊",
+      "canonical": "认识论谦逊",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇文章讨论的是基于知识局限、证据和纠错行动的 epistemic humility；后一种写法是前者的缩略名称。认知上的善意或宽容另行保留。",
+          "article_ids": [
+            "827867683",
+            "4310181390"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "记忆保留",
+      "canonical": "记忆保持",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "这些文章都讨论记忆随时间仍能保持的状态或时长；不含“记忆保留率”这一具体指标。",
+          "article_ids": [
+            "692941328",
+            "452010838",
+            "375536775"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "记忆可提取性",
+      "canonical": "可提取性",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "在 FSRS、SuperMemo 等记忆模型语境中，可提取性就是给定复习间隔下成功回忆的概率；加上“记忆”或直接写概率，指向同一模型量。",
+          "article_ids": [
+            "559819340",
+            "579476637",
+            "672908338",
+            "649701172"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "记忆复杂度",
+      "canonical": "记忆复杂性",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "这些 SuperMemo 记忆模型文章用两种词形描述记忆项目结构的复杂程度；该变量不同于记忆稳定性或提取概率。",
+          "article_ids": [
+            "608600880",
+            "304800091",
+            "580945538"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "记忆术",
+      "canonical": "助记法",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "相关文章都在指帮助记忆的mnemonic technique/device；助记媒介是另一种媒介设计概念。",
+          "article_ids": [
+            "1910004004194350682",
+            "719174183",
+            "1929184438018875845"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "记忆留存",
+      "canonical": "记忆保持",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "这些文章都讨论记忆随时间仍能保持的状态或时长；不含“记忆保留率”这一具体指标。",
+          "article_ids": [
+            "692941328",
+            "452010838",
+            "375536775"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "适应性专业技能",
+      "canonical": "适应性专长",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两篇认知灵活性理论文章都讨论adaptive expertise；“适应性专长”是更简洁、通行的中文术语。",
+          "article_ids": [
+            "1897589864154789010",
+            "1906644198037365763"
+          ]
+        },
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "两篇认知灵活性理论文章均讨论 adaptive expertise；不同写法都命名同一种专家能力构念。",
+          "article_ids": [
+            "1906644198037365763",
+            "1897589864154789010"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "错误共识效应",
+      "canonical": "虚假共识效应",
+      "evidence": [
+        {
+          "review": "review-philosophy-society.json",
+          "reason": "原文均明确标注 False Consensus Effect，指人们高估他人和自己有相同偏好的程度。",
+          "article_ids": [
+            "1996322078509520791",
+            "3432042124"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "长期压力",
+      "canonical": "慢性压力",
+      "evidence": [
+        {
+          "review": "review-sleep-health.json",
+          "reason": "这里的长期压力明确指持续数月或数年的压力，与慢性压力文章中的持续、难以摆脱的压力状态相同；急性压力和良性压力仍分别保留。",
+          "article_ids": [
+            "670118024",
+            "426177682"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "闪卡设计",
+      "canonical": "抽认卡设计",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两项文章都讨论设计spaced-repetition flashcards，使用抽认卡这一更清晰的卡片类型名称。",
+          "article_ids": [
+            "245530782",
+            "718778050"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    },
+    {
+      "alias": "问答卡片",
+      "canonical": "问答卡",
+      "evidence": [
+        {
+          "review": "review-memory.json",
+          "reason": "两种写法都指question-answer card；它是记忆卡片的一种具体形式。",
+          "article_ids": [
+            "708500804",
+            "630862056",
+            "615872471"
+          ]
+        }
+      ],
+      "decision_source": "domain_review"
+    }
+  ],
+  "accepted_per_article": [
+    {
+      "id": "1942735669291126946",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "解题示例向新题迁移，属于教育学 transfer of learning。"
+    },
+    {
+      "id": "1939372515479749757",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "比较提取练习与解题示例对新题迁移的效果。"
+    },
+    {
+      "id": "1938891290516390556",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "锚定教学中的课堂知识向现实问题迁移。"
+    },
+    {
+      "id": "1936721806074545452",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "情境学习理论中的知识迁移。"
+    },
+    {
+      "id": "1934556782363144738",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "从示例继续学习并迁移到远端问题。"
+    },
+    {
+      "id": "1916570545358627430",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "图式与教学设计支持知识迁移。"
+    },
+    {
+      "id": "715147276",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "游戏洞察是否能迁移到重玩任务。"
+    },
+    {
+      "id": "697335410",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "认知学徒制帮助学习者把专家知识迁移到实践。"
+    },
+    {
+      "id": "688186934",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "练习系统对知识应用和内化的支持。"
+    },
+    {
+      "id": "678612702",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "复杂任务用于检验高层知识迁移。"
+    },
+    {
+      "id": "657707605",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "基础知识与真实经验、个人目标之间的应用迁移。"
+    },
+    {
+      "id": "641835082",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "研究学习能否迁移到开放任务。"
+    },
+    {
+      "id": "604132912",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "重复测试对同主题和跨主题推论迁移的实验。"
+    },
+    {
+      "id": "597272861",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "应用卡支持把知识用于新情境。"
+    },
+    {
+      "id": "552951806",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "改变提取题干对内容迁移的影响。"
+    },
+    {
+      "id": "536670074",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "提取练习向未练问题迁移。"
+    },
+    {
+      "id": "491870061",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "教育学 Transfer learning 主题索引，内容为知识和技能迁移。"
+    },
+    {
+      "id": "482358178",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "助记媒介用应用卡支持近迁移。"
+    },
+    {
+      "id": "464129684",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "助记媒介支持应用和复杂理解迁移。"
+    },
+    {
+      "id": "401463758",
+      "from": "迁移学习",
+      "to": "学习迁移",
+      "reason": "多角度编码形成可应用的概念理解。"
+    },
+    {
+      "id": "563438547",
+      "from": "记忆召回",
+      "to": "记忆保留率",
+      "reason": "该SuperMemo术语页把Recall定义为记住项目所占比例；只在此条目按保留率规范，不建立全局别名。"
+    },
+    {
+      "id": "1952068158191036110",
+      "from": "家长式管制",
+      "to": "家长式管教",
+      "reason": "该书章与同书其他章节讨论同一paternalism概念；只对本书条目统一，不全局改写未来语境。"
+    }
+  ],
+  "kept_separate": [
+    {
+      "terms": [
+        "家庭教育",
+        "在家上学"
+      ],
+      "reason": "家庭教育在相关样例中指育儿或家庭参与教育；在家上学指教育安排/就学方式，二者不能全局合并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "在家上学",
+        "非学校教育",
+        "自主教育"
+      ],
+      "reason": "在家上学是地点或就学安排，非学校教育强调离开学校体制的做法，自主教育强调学习者主导的教育理念；个别家庭会同时采用，但概念不同。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "自主教育",
+        "自主学习",
+        "自由学习"
+      ],
+      "reason": "教育理念、学习者能动性及自由学习是相关但不同的概念；不能因同属学习者自主而合并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "自由教育",
+        "教育自由"
+      ],
+      "reason": "自由教育指一种教育取向或实践，教育自由指选择教育方式、内容或是否受教育的自由/权利。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "学习迁移",
+        "迁移学习"
+      ],
+      "reason": "学习迁移通常指教育心理学中的 transfer of learning；迁移学习也用于机器学习中的 transfer learning，不能跨语境全局归并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "儿童权利",
+        "儿童自主权",
+        "儿童自主性",
+        "儿童自由"
+      ],
+      "reason": "儿童权利是权利总类；自主权涉及决策权利，自主性涉及能力或倾向，儿童自由也不等同于这两者。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "情境学习",
+        "情景学习"
+      ],
+      "reason": "情境学习在样例中指 situated learning 理论；情景学习用于情景体验/场景化教学，不能仅按近似字面归并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "语境化学习",
+        "语境学习",
+        "情境学习"
+      ],
+      "reason": "语境化语言学习、在语境中学习和 situated learning 理论存在关联，但所指层次不同；语言材料在语境中习得不等于情境学习理论。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "二语习得",
+        "语言习得",
+        "外语学习",
+        "语言学习"
+      ],
+      "reason": "二语习得是语言习得的特定研究对象；外语学习和语言学习还涵盖显性学习、练习及其他语言活动，不能合成一项。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "早期教育",
+        "早期儿童教育",
+        "学前教育",
+        "幼儿教育"
+      ],
+      "reason": "这些词的年龄范围和机构/项目边界并不稳定相同；样例分别涉及早期干预、幼儿园和学前项目，保留原标签更准确。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "教育评价",
+        "教育评估",
+        "考试评价",
+        "考试评估"
+      ],
+      "reason": "教育评价、项目评估、对考试本身的评价及考试测量评估在样例中承担不同含义，不能按“评价/评估”字面互换。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "教育科技",
+        "教育技术"
+      ],
+      "reason": "教育科技样例多指 EdTech 行业与创业，教育技术样例也指教学工具和技术方案；相关但不保证同一概念。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "个性化教育",
+        "个别化教育"
+      ],
+      "reason": "个性化教育可能包括学习者选择、目标和路径；个别化教育常指按个人差异调整教学，教育研究中两者可有不同定义。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "程序教学",
+        "编程教育"
+      ],
+      "reason": "程序教学指 programmed instruction 教学法；编程教育（含程序设计教育这一同义写法）指教授计算机编程，名称相近但概念不同。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "强制教育",
+        "强制学校教育",
+        "学校教育"
+      ],
+      "reason": "强制教育涉及 compulsory education/learning 的制度要求；强制学校教育聚焦强制入学的学校制度，学校教育则不必然强制。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "家长监控",
+        "家长监管",
+        "父母监护"
+      ],
+      "reason": "监控、监管和法律/照护意义上的监护各有边界，不能按父母角色相同而归并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "自我导向学习",
+        "自我指导学习",
+        "自主学习",
+        "自由学习"
+      ],
+      "reason": "自我导向/指导学习可表示不同程度的学习者计划与控制；自主学习和自由学习又各有范围。唯一的自我指导学习样例讨论自定进度的自由学习，证据不足以把这些术语全局并为一个标签。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "信任型养育",
+        "自主支持型育儿"
+      ],
+      "reason": "两者都可能支持孩子自主，但信任型养育是特定育儿理念，自主支持型育儿是支持自主需要的做法，样例不足以证明为同一术语。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "填鸭式学习",
+        "填鸭式教育"
+      ],
+      "reason": "前者描述为应试而临时记忆的学习体验，后者批评把知识单向灌输给学生的教育模式；相关但层次不同。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "学生中心教学",
+        "儿童中心教育"
+      ],
+      "reason": "学生中心教学描述教学组织原则；儿童中心教育涉及更广的教育观和儿童地位，不能只因都强调学习者而合并。",
+      "review": "review-education-language.json"
+    },
+    {
+      "terms": [
+        "检索练习",
+        "测试效应"
+      ],
+      "reason": "检索练习是学习活动/方法，测试效应是可能产生的记忆或学习结果。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "间隔重复",
+        "间隔效应"
+      ],
+      "reason": "前者是复习方法或系统，后者是分散复习相较集中练习的效应。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "长期记忆",
+        "记忆巩固"
+      ],
+      "reason": "长期记忆是记忆系统/存储时程概念，记忆巩固是随时间发生的过程。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "记忆保持",
+        "记忆保留率"
+      ],
+      "reason": "记忆保持描述能否持续记住；保留率是对保持情况的量化比例。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "可提取性",
+        "记忆保留率"
+      ],
+      "reason": "记忆模型中的可提取性是特定时点成功回忆的模型量；整体保留率是跨项目的结果指标。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "记忆提取",
+        "可提取性"
+      ],
+      "reason": "记忆提取是取出信息的过程，可提取性则描述某时点成功取出的概率或模型状态。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "记忆巩固",
+        "记忆稳定化"
+      ],
+      "reason": "记忆巩固是较广的巩固过程；记忆稳定化条目使用的是SuperMemo中提取后稳定性增长（SInc）的专门定义。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "学习迁移",
+        "迁移学习"
+      ],
+      "reason": "学习迁移指已学知识或技能向新任务迁移；迁移学习还可能指机器学习中的transfer learning，不能全局映射。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "深度学习",
+        "机器学习"
+      ],
+      "reason": "深度学习是机器学习中的特定方法/领域，不是机器学习的同义词；本词表中的深度学习文章也在类比AI发展。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "刻意练习",
+        "有目的的练习"
+      ],
+      "reason": "有目的的练习是更宽的练习原则；刻意练习有特定的目标、反馈、难度和教练条件。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "自主学习",
+        "自我导向学习"
+      ],
+      "reason": "自主学习涉及学习者的自主性；自我导向学习具体强调由学习者选择材料和学习方向。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "自主教育",
+        "自主学习",
+        "自由学习",
+        "非学校教育"
+      ],
+      "reason": "这些词分别指教育模式、学习者行为/能动性、自由学习理念和非学校教育安排；相关但不能互相替代。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "家庭教育",
+        "在家上学"
+      ],
+      "reason": "家庭教育/育儿是家庭中的教养实践；在家上学是homeschooling教育安排。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "理性",
+        "理性主义"
+      ],
+      "reason": "理性是思维能力或规范，理性主义是思想立场或社群传统。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "心智模型",
+        "心理表征"
+      ],
+      "reason": "心智模型是用于解释或预测的结构；心理表征指概念在心智中的多种表征形式。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "认知表征",
+        "心理表征"
+      ],
+      "reason": "词表中认知表征用于工具/环境中的表述形式，心理表征则指数学或专家思维中的mental representation；文章语境不同。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "认知模型",
+        "心智模型"
+      ],
+      "reason": "认知模型可指正式的认知过程模型，心智模型指个体用来理解和行动的内部模型。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "知识表述",
+        "知识表达",
+        "知识表征"
+      ],
+      "reason": "知识表述在SuperMemo文章中是特定的knowledge formulation规则；表达是表达内容，表征是结构/representation，不能作为一组同义词。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "常青笔记",
+        "卡片盒笔记法"
+      ],
+      "reason": "两种笔记系统有共同原则，但作者专门比较了用途和流程差异；常青笔记受卡片盒启发，不等于卡片盒笔记法。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "助记媒介",
+        "助记法"
+      ],
+      "reason": "助记媒介是嵌入文本、安排长期复习的媒介设计；助记法是帮助记忆的具体技术。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "知识工作",
+        "脑力工作"
+      ],
+      "reason": "脑力工作是一般认知劳动；知识工作指以处理、创造和运用知识为核心的特定工作类型。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "知识管理",
+        "个人知识管理"
+      ],
+      "reason": "个人知识管理是知识管理的个人场景，属于范围更窄的实践而非同义词。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "知识链接",
+        "概念链接",
+        "概念联系"
+      ],
+      "reason": "知识/概念链接在卡片盒和常青笔记中多指显式的笔记连接机制；概念联系也可指认知或语义关系，不能一概并类。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "概念图",
+        "概念映射"
+      ],
+      "reason": "概念图是图示产物，概念映射可指建立概念关系的过程或方法。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "卡片设计",
+        "卡片生成"
+      ],
+      "reason": "卡片设计是人工确定问题、答案和结构；卡片生成在相关文章中指自动生成任务，尤其是LLM流程。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "记忆卡片",
+        "问答卡",
+        "填空卡"
+      ],
+      "reason": "记忆卡片是flashcard总类，问答卡和填空卡是不同的具体卡片格式，不能把类型并成总类或互相并类。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "学习乐趣",
+        "内在动机"
+      ],
+      "reason": "学习乐趣是情感体验，内在动机是驱动行为的动机结构；文章会讨论二者关系，但它们不是同一概念。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "主动学习",
+        "自主学习"
+      ],
+      "reason": "主动学习强调学习者实际参与认知活动；自主学习强调学习者的决定权和控制程度。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "前置知识",
+        "先备知识",
+        "先修知识"
+      ],
+      "reason": "先备知识是学习者已有知识，先修知识是课程或主题的必要前提，前置知识在文章中既可能泛指已有知识，也可能指先修主题。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "学习方法",
+        "学习策略"
+      ],
+      "reason": "学习策略是学习者为达成目标采用的计划或操作；学习方法标签涵盖更宽的做法，不应仅凭相近用语合并。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "认知脚手架",
+        "教学脚手架",
+        "学习支架"
+      ],
+      "reason": "认知脚手架、教学脚手架和学习支架分别强调认知支持、教学安排和学习环境中的支持，存在交集但范围不同。",
+      "review": "review-memory.json"
+    },
+    {
+      "terms": [
+        "机器学习",
+        "学习迁移"
+      ],
+      "reason": "机器学习中的 transfer learning 是技术方法，与教育学的 transfer of learning 不同；当前 20 个迁移学习标签均逐篇映射到学习迁移，没有设置全局别名。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "AI 教育",
+        "AI与教育"
+      ],
+      "reason": "前者在当前语境指 AI 支持的个性化课程，后者指 AI 对学校教育的影响，主题范围不同。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "AI生存风险",
+        "AI风险"
+      ],
+      "reason": "生存风险是 AI 风险讨论中的特定子类，不能当作所有 AI 风险的同义词。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "AI安全",
+        "AI风险"
+      ],
+      "reason": "安全研究和对风险的讨论相关但不相同；不要把风险标签直接归并为安全。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "人工神经网络",
+        "神经网络"
+      ],
+      "reason": "人工神经网络是特定计算模型，神经网络标签也用于生物、认知或一般概念网络语境。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "SM-0",
+        "SM-2",
+        "SM-4",
+        "SM-5",
+        "SM-6算法",
+        "SM-8",
+        "SM-17"
+      ],
+      "reason": "这些编号代表不同的 SuperMemo 调度算法版本；SM-2算法和SM-5算法只分别归入同号版本，版本之间必须保留。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "FSRS",
+        "FIRe",
+        "SM-2"
+      ],
+      "reason": "FSRS、Math Academy 的 FIRe 和 SuperMemo 的 SM-2 是不同的调度算法，不是版本名变体。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "SuperMemo",
+        "SM-2"
+      ],
+      "reason": "SuperMemo 是软件产品名，SM-2 是该软件历史中的特定调度算法版本。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "Anki",
+        "AnkiDroid",
+        "CrowdAnki"
+      ],
+      "reason": "Anki 是主程序，AnkiDroid 是 Android 客户端，CrowdAnki 是协作牌组工具，不能只因共享 Anki 名称就归并。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "SRS",
+        "间隔重复"
+      ],
+      "reason": "SRS 指间隔重复系统或软件，间隔重复指学习与复习方法，系统和方法不应合并。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "MOOC",
+        "在线教育"
+      ],
+      "reason": "MOOC 是一种在线课程形式，在线教育范围更广。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "STEM",
+        "STEM教育"
+      ],
+      "reason": "STEM 指学科领域，STEM教育指围绕这些领域开展的教育。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "超级智能",
+        "通用人工智能"
+      ],
+      "reason": "通用人工智能强调跨领域能力，超级智能强调能力超过人类，概念不能互换。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "Sal Khan",
+        "可汗学院"
+      ],
+      "reason": "Sal Khan 是人物，可汗学院是机构，两者关联但不是同一实体。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "Richard Feynman",
+        "费曼学习法"
+      ],
+      "reason": "Richard Feynman 是人物，费曼学习法是以其名字命名的学习方法标签，不能与人物实体合并。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "Google",
+        "谷歌学术"
+      ],
+      "reason": "Google 是公司名，谷歌学术是其学术搜索服务，属于公司与产品的区别。",
+      "review": "review-names-technology.json"
+    },
+    {
+      "terms": [
+        "理性",
+        "理性主义"
+      ],
+      "reason": "理性是推理品质或能力；理性主义是认识论立场/思想传统。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "经验事实",
+        "经验主义"
+      ],
+      "reason": "经验事实是关于观察结果的陈述；经验主义是关于知识来源的哲学立场。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "命题",
+        "命题态度"
+      ],
+      "reason": "命题是可判断真假的内容；命题态度是主体对命题的相信、愿望等关系。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "认知偏差",
+        "确认偏误"
+      ],
+      "reason": "认知偏差是上位总类；确认偏误是其中一种特定偏差。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "后果主义",
+        "功利主义"
+      ],
+      "reason": "功利主义是后果主义的一种具体伦理理论，二者不等同。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "自由主义",
+        "自由意志主义"
+      ],
+      "reason": "政治自由主义和 libertarianism 是不同政治传统，不能按字面相似合并。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "基本收入",
+        "全民基本收入"
+      ],
+      "reason": "全民基本收入要求普遍覆盖；基本收入在其他文章中是较宽泛的收入保障提议。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "有效利他",
+        "有效利他主义"
+      ],
+      "reason": "前者所在文章谈有效救助与生命价值，未明确指向 EA 运动；后者多指有效利他主义这一运动/思想框架。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "经济不平等",
+        "收入不平等"
+      ],
+      "reason": "收入不平等是经济不平等的一种具体维度，前者范围更广。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "贫富差距",
+        "收入差距"
+      ],
+      "reason": "“贫富差距”文章标签指贫富学生学业差距，不能据此等同收入差距。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "教育券",
+        "学券制"
+      ],
+      "reason": "教育券是凭证/资助工具；学券制是围绕凭证建立的政策制度。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "同理心",
+        "同情心"
+      ],
+      "reason": "empathy 与 sympathy 相关但不是同一心理能力。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "社会心理",
+        "社会心理学"
+      ],
+      "reason": "社会心理可以指社会心理现象；社会心理学是研究领域。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "社会学习",
+        "社会性学习"
+      ],
+      "reason": "所附文章对社会参与和社会化学习的侧重点不同，不能只按词形相似合并。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "社交网络",
+        "社交媒体"
+      ],
+      "reason": "人际关系网络与用于社交的媒体/平台是不同概念。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "社会联结",
+        "社会网络"
+      ],
+      "reason": "社会联结指人与人之间的连接；社会网络指由节点及关系构成的结构。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "群体极化",
+        "政治极化"
+      ],
+      "reason": "群体极化描述群体讨论后立场趋于极端的机制；政治极化是政治阵营或观点的两极化现象。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "认知谦逊",
+        "认识论谦逊"
+      ],
+      "reason": "前者文章侧重对异议和他人立场的善意；后者强调知识限度、证据与纠错，概念相邻但不完全相同。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "心智模型",
+        "心理表征"
+      ],
+      "reason": "心智模型是对系统如何运作的模型；心理表征是更广的认知表征类别。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "自我控制",
+        "自我调节"
+      ],
+      "reason": "自我控制是抑制或管理冲动的能力；自我调节还包括监控、调整目标和行动。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "倦怠",
+        "工作倦怠"
+      ],
+      "reason": "工作倦怠是发生在工作情境的特定倦怠；通用倦怠标签范围更广。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "抑郁",
+        "抑郁症"
+      ],
+      "reason": "抑郁可指情绪或症状；抑郁症指临床诊断类别。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "情景学习",
+        "情境学习"
+      ],
+      "reason": "所附文章中，情景学习讨论虚构/互动情景；情境学习讨论 situated learning 及真实实践情境，语义不完全相同。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "产权",
+        "私有产权"
+      ],
+      "reason": "产权是一般财产权利类别；私有产权限定了权利归属制度。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "资源分配",
+        "资源配置"
+      ],
+      "reason": "前者文章讨论时间、精力等资源的实际分配；后者语境是经济制度中的资源配置，不能仅按近义词形强合。",
+      "review": "review-philosophy-society.json"
+    },
+    {
+      "terms": [
+        "睡眠剥夺",
+        "睡眠不足"
+      ],
+      "reason": "睡眠剥夺常指实验或情境中的睡眠被阻断，睡眠不足指睡眠量未满足；不能仅因结果相关就合并。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "NREM睡眠",
+        "慢波睡眠"
+      ],
+      "reason": "NREM 包含多个睡眠阶段，慢波睡眠只是其中的特定深睡阶段。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "睡眠呼吸暂停",
+        "阻塞性睡眠呼吸暂停"
+      ],
+      "reason": "前者是上位疾病名称，后者是其阻塞性亚型；具体文章虽聚焦后者，也不应全局把两者视为同义词。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "睡眠相位延迟",
+        "睡眠相位后移综合征",
+        "睡眠相位提前",
+        "睡眠相位前移综合征"
+      ],
+      "reason": "相位延迟或提前描述方向性变化，综合征标签指相应的临床问题；延迟与提前也分别是相反方向。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "双相睡眠",
+        "多相睡眠"
+      ],
+      "reason": "双相睡眠是每日两段睡眠的模式，多相睡眠涵盖多个睡眠段；两者有包含关系而非同义关系。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "生物钟",
+        "昼夜节律"
+      ],
+      "reason": "生物钟是调节机制，昼夜节律是约每日循环的节律表现。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "睡眠惯性",
+        "自稳态睡意",
+        "稳态睡眠压力"
+      ],
+      "reason": "睡眠惯性是醒后昏沉；自稳态睡意和睡眠压力描述随清醒时间累积的睡眠驱动，相关但不是同一现象。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "自由睡眠",
+        "自由运作的睡眠"
+      ],
+      "reason": "自由睡眠指不受固定安排限制的睡眠观察或安排；自由运作睡眠强调内源节律自由运行，可能出现周期漂移。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "急性压力",
+        "慢性压力",
+        "良性压力"
+      ],
+      "reason": "急性与慢性区分持续时间，良性压力描述可应对挑战的性质；分类依据不同，不能互相替代。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "压力管理",
+        "压力调节"
+      ],
+      "reason": "压力管理指应对策略，压力调节指改变压力反应或其过程；文章语境涉及的干预层次不同。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "压力韧性",
+        "心理韧性"
+      ],
+      "reason": "压力韧性强调在压力下的适应能力，心理韧性是范围更广的心理能力主题。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "身体活动",
+        "运动"
+      ],
+      "reason": "身体活动可包括日常非训练活动，运动通常指有目的的锻炼；运动是更具体的活动类型。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "脑科学",
+        "神经科学"
+      ],
+      "reason": "脑科学聚焦脑，神经科学还涵盖脑以外的神经系统；两者相关但范围不同。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "神经可塑性",
+        "突触可塑性"
+      ],
+      "reason": "神经可塑性是更广的神经系统变化能力，突触可塑性指突触效能或连接的特定变化机制。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "多巴胺",
+        "奖赏机制",
+        "奖励机制"
+      ],
+      "reason": "多巴胺是神经递质，奖赏机制或奖励机制是行为与神经过程；递质不能与相关功能系统合并。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "奖赏机制",
+        "奖励机制",
+        "奖赏回路",
+        "奖励循环"
+      ],
+      "reason": "奖励机制标签覆盖学习激励和一般奖励，奖赏机制及奖赏回路聚焦神经奖赏；奖励循环描述行为反馈过程，层次不同。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "双相II型",
+        "双相情感障碍"
+      ],
+      "reason": "双相II型是双相障碍的亚型，不能与上位诊断类别合并。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "抑郁",
+        "抑郁症"
+      ],
+      "reason": "抑郁可指情绪或症状，抑郁症指临床诊断类别；相关但不等同。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "心理健康",
+        "儿童心理健康",
+        "青少年心理健康"
+      ],
+      "reason": "后两者按年龄人群限定主题，是心理健康的子领域，不能全局映射到一般心理健康标签。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "免疫力",
+        "免疫功能"
+      ],
+      "reason": "免疫力通常指抵抗疾病的能力，免疫功能指免疫系统执行的生理功能；当前文章讨论层面不同。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "创伤",
+        "创伤后应激障碍"
+      ],
+      "reason": "创伤是可能的经历或事件，创伤后应激障碍是特定的临床障碍；前者不意味着后者。",
+      "review": "review-sleep-health.json"
+    },
+    {
+      "terms": [
+        "知识转移",
+        "知识迁移"
+      ],
+      "reason": "知识转移在隐性知识文章中指人与人之间传递专长；知识迁移通常指已学知识在新任务中的应用。"
+    },
+    {
+      "terms": [
+        "试错法",
+        "试错"
+      ],
+      "reason": "试错法是明确的方法框架；试错也可只是尝试与失败的过程。"
+    },
+    {
+      "terms": [
+        "游戏式学习",
+        "游戏化学习",
+        "游戏学习"
+      ],
+      "reason": "game-based learning、gamification与一般通过游戏学习不是同一概念。"
+    },
+    {
+      "terms": [
+        "学生自主",
+        "学生自主性",
+        "学生自主权"
+      ],
+      "reason": "分别可指实践状态、个体属性和规范性权利。"
+    },
+    {
+      "terms": [
+        "学习者自主性",
+        "学习者自主权",
+        "学习自主权"
+      ],
+      "reason": "自主性与权利层级不同，主体范围也不同。"
+    },
+    {
+      "terms": [
+        "师徒制",
+        "学徒制"
+      ],
+      "reason": "师徒关系与正式/制度化学徒制不能一概互换。"
+    },
+    {
+      "terms": [
+        "政治讨论",
+        "政治辩论"
+      ],
+      "reason": "讨论不必具有辩论结构。"
+    },
+    {
+      "terms": [
+        "学习评价",
+        "学习评估"
+      ],
+      "reason": "课程评价与学习assessment在语料中使用层级不同。"
+    },
+    {
+      "terms": [
+        "因果推理",
+        "因果推断"
+      ],
+      "reason": "一般因果推理与研究设计/统计意义的因果推断不同。"
+    }
+  ],
+  "root_decisions": {
+    "canonical_direction_changes": [
+      {
+        "from": "XP评分",
+        "to": "XP",
+        "reason": "独立逐篇审计确认XP是Math Academy官方短名。"
+      },
+      {
+        "from": "自然决策",
+        "to": "自然主义决策",
+        "reason": "自然主义决策更准确对应naturalistic decision making。"
+      }
+    ],
+    "context_only_not_global": [
+      "记忆召回→记忆保留率",
+      "家长式管制→家长式管教"
+    ],
+    "rejected_candidates": [
+      "知识转移→知识迁移",
+      "试错法→试错"
+    ]
+  },
+  "before": {
+    "keyword_aliases": {
+      "提取练习": "检索练习",
+      "沉浸学习": "沉浸式学习",
+      "大语言模型": "大型语言模型",
+      "常绿笔记": "常青笔记",
+      "可理解性输入": "可理解输入",
+      "《启蒙琼林》": "启蒙琼林",
+      "《自由的体制》": "自由的体制"
+    },
+    "catalog_sha256": "19f720aa1dfe036a759d5a89dd3772caecf496478f219563277827e5e0da17bf"
+  }
+}
