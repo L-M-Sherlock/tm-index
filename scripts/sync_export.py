@@ -20,8 +20,8 @@ FILES = (
     "user-corrections.json",
 )
 FORBIDDEN = ("/Users/", "file://", "127.0.0.1", "localhost")
-CANONICAL_URL = "https://l-m-sherlock.github.io/thoughts-memo-translations/"
-REPOSITORY_URL = "https://github.com/L-M-Sherlock/thoughts-memo-translations"
+CANONICAL_URL = "https://l-m-sherlock.github.io/tm-index/"
+REPOSITORY_URL = "https://github.com/L-M-Sherlock/tm-index"
 
 
 def assert_public(path: Path, text: str) -> None:

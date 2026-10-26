@@ -1,8 +1,8 @@
-# Thoughts Memo 译文索引
+# TM Index
 
 Thoughts Memo 汉化组译文的摘要、关键词和原作者索引。站点支持全文检索，并可按关键词、原作者和发布账号筛选。
 
-- 网站：https://l-m-sherlock.github.io/thoughts-memo-translations/
+- 网站：https://l-m-sherlock.github.io/tm-index/
 - 知乎存档：https://l-m-sherlock.github.io/ZhiHuArchive/
 - 翻译合集：https://l-m-sherlock.github.io/thoughts-memo-translation/
 
