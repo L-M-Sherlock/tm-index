@@ -160,7 +160,8 @@
     "scope_evidence_present_in_body": true,
     "full_text_character_counts_match": true,
     "requested_model_provenance_present": true,
-    "original_author_metadata_complete_and_valid": true
+    "original_author_metadata_complete_and_valid": true,
+    "reference_graph_valid": true
   },
   "limitations": [
     "摘要及范围判定依据本地存档的完整可见文字正文；图片中的文字不自动视为已读。",
@@ -187,5 +188,39 @@
       "translated_article",
       "original_webpage"
     ]
+  },
+  "references": {
+    "schema_version": 1,
+    "nodes": 2119,
+    "edges": 10584,
+    "link_occurrences": 14520,
+    "link_records_examined": 48143,
+    "self_links_ignored": 2399,
+    "nodes_with_outgoing": 1838,
+    "nodes_with_incoming": 1779,
+    "method_edge_counts": {
+      "original": 7269,
+      "zhihu": 4078
+    },
+    "method_occurrence_counts": {
+      "original": 10388,
+      "zhihu": 4132
+    },
+    "source_url_exact_keys": 1895,
+    "source_url_collision_keys": 21,
+    "ambiguous_original_links": 688,
+    "direct_links_to_nontranslations": 456,
+    "methodology": [
+      "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
+      "Match external links to the explicit original URL of a translated article after conservative URL normalization.",
+      "Keep PDF page fragments and Archive.org page paths; skip shared or otherwise ambiguous original URLs.",
+      "Remove self-links, deduplicate article pairs, and derive incoming links from the directed edge set."
+    ],
+    "checks": {
+      "targets_exist": true,
+      "no_self_links": true,
+      "unique_article_edges": true,
+      "bidirectional_symmetry": true
+    }
   }
 }

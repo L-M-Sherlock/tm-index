@@ -1,6 +1,6 @@
 # TM Index
 
-Thoughts Memo 汉化组译文的摘要、关键词和原作者索引。站点支持全文检索，并可按关键词、原作者和发布账号筛选。
+Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索引。站点支持全文检索，并可按关键词、原作者和发布账号筛选。
 
 - 网站：https://l-m-sherlock.github.io/tm-index/
 - 知乎存档：https://l-m-sherlock.github.io/ZhiHuArchive/
@@ -17,6 +17,7 @@ Thoughts Memo 汉化组译文的摘要、关键词和原作者索引。站点支
 - `keyword-aliases.json`：全局同义标签映射
 - `keyword-per-article.json`：只适用于特定文章语境的标签更正
 - `keyword-normalization-review.json`：标签合并理由与保留边界
+- `references.json`：译文之间的引用边、匹配方式与歧义记录
 - `validation.json`：最终覆盖与完整性检查
 - `user-corrections.json`：人工确认的范围和作者更正
 
