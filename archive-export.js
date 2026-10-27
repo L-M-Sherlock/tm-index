@@ -2,6 +2,7 @@ import { gfm } from './vendor/turndown-plugin-gfm.js';
 
 const input = document.getElementById('archive-input');
 const includeAnswers = document.getElementById('archive-include-answers');
+const answerLimit = document.getElementById('archive-answer-limit');
 const button = document.getElementById('archive-export-button');
 const status = document.getElementById('archive-export-status');
 const errors = document.getElementById('archive-export-errors');
@@ -33,7 +34,17 @@ function identify(text) {
   return result;
 }
 
+function selectedAnswerLimit() {
+  if (!includeAnswers.checked) return null;
+  if (!answerLimit.validity.valid) throw new Error('回答数量上限必须是大于零的整数，或留空表示不限。');
+  if (answerLimit.value === '') return null;
+  const n = answerLimit.valueAsNumber;
+  if (!Number.isSafeInteger(n) || n < 1) throw new Error('回答数量上限必须是大于零的整数，或留空表示不限。');
+  return n;
+}
+
 function exportPlan() {
+  const limit = selectedAnswerLimit();
   const result = [...pages];
   const seen = new Set(result.map(page => page.id));
   let addedAnswers = 0;
@@ -45,8 +56,17 @@ function exportPlan() {
         if (!answerIndex[page.id]) outsideCatalog++;
         continue;
       }
-      for (const id of article.cited_by_answer_ids || []) {
+      const candidates = [...(article.cited_by_answer_ids || [])];
+      for (const id of candidates) {
         if (!answerIndex[id]) throw new Error(`缺少回答 ${id} 的索引数据`);
+      }
+      candidates.sort((a, b) => {
+        const x = answerIndex[a], y = answerIndex[b];
+        return (y.voteup_count ?? -1) - (x.voteup_count ?? -1)
+          || (y.created_time ?? 0) - (x.created_time ?? 0)
+          || b.length - a.length || (a === b ? 0 : a < b ? 1 : -1);
+      });
+      for (const id of limit === null ? candidates : candidates.slice(0, limit)) {
         if (seen.has(id)) continue;
         seen.add(id);
         addedAnswers++;
@@ -59,6 +79,7 @@ function exportPlan() {
 
 function refreshSelection() {
   if (running) return;
+  answerLimit.disabled = !includeAnswers.checked;
   errors.replaceChildren();
   errors.hidden = true;
   links.replaceChildren();
@@ -86,7 +107,7 @@ function refreshSelection() {
     status.textContent = `识别到 ${pages.length} 个不同的备份链接。${extra}${outside}`;
   } catch (error) {
     button.disabled = true;
-    status.textContent = '引用数据不完整。';
+    status.textContent = '无法生成导出计划。';
     errors.textContent = error.message;
     errors.hidden = false;
   }
@@ -304,7 +325,7 @@ async function exportPages() {
   }
   const selectedPages = plan.items;
   running = true;
-  input.disabled = includeAnswers.disabled = button.disabled = true;
+  input.disabled = includeAnswers.disabled = answerLimit.disabled = button.disabled = true;
   errors.hidden = true;
   errors.replaceChildren();
   const failures = [];
@@ -362,10 +383,12 @@ async function exportPages() {
   } finally {
     running = false;
     input.disabled = includeAnswers.disabled = false;
+    answerLimit.disabled = !includeAnswers.checked;
     button.disabled = pages.length === 0;
   }
 }
 
 input.addEventListener('input', refreshInput);
 includeAnswers.addEventListener('change', refreshSelection);
+answerLimit.addEventListener('input', refreshSelection);
 button.addEventListener('click', exportPages);
