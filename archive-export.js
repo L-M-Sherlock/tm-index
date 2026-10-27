@@ -1,6 +1,7 @@
 import { gfm } from './vendor/turndown-plugin-gfm.js';
 
 const input = document.getElementById('archive-input');
+const includeAnswers = document.getElementById('archive-include-answers');
 const button = document.getElementById('archive-export-button');
 const status = document.getElementById('archive-export-status');
 const errors = document.getElementById('archive-export-errors');
@@ -8,8 +9,12 @@ const linkList = document.getElementById('archive-link-list');
 const links = document.getElementById('archive-links');
 const origin = 'https://l-m-sherlock.github.io';
 const pattern = /https?:\/\/l-m-sherlock\.github\.io\/ZhiHuArchive\/(\d+)\.html/gi;
-const catalog = JSON.parse(document.getElementById('catalog-data').textContent).records;
-const originalLinks = new Map(catalog.map(record => [record.id, record.url]));
+const { records: catalog, answerIndex } = JSON.parse(document.getElementById('catalog-data').textContent);
+const catalogById = new Map(catalog.map(record => [record.id, record]));
+const originalLinks = new Map([
+  ...catalog.map(record => [record.id, record.url]),
+  ...Object.values(answerIndex).map(answer => [answer.id, answer.url]),
+]);
 const pendingLinks = new Map();
 let pages = [];
 let cache = new Map();
@@ -28,10 +33,32 @@ function identify(text) {
   return result;
 }
 
-function refreshInput() {
+function exportPlan() {
+  const result = [...pages];
+  const seen = new Set(result.map(page => page.id));
+  let addedAnswers = 0;
+  let outsideCatalog = 0;
+  if (includeAnswers.checked) {
+    for (const page of pages) {
+      const article = catalogById.get(page.id);
+      if (!article) {
+        if (!answerIndex[page.id]) outsideCatalog++;
+        continue;
+      }
+      for (const id of article.cited_by_answer_ids || []) {
+        if (!answerIndex[id]) throw new Error(`缺少回答 ${id} 的索引数据`);
+        if (seen.has(id)) continue;
+        seen.add(id);
+        addedAnswers++;
+        result.push({ id, url: `${origin}/ZhiHuArchive/${id}.html` });
+      }
+    }
+  }
+  return { items: result, addedAnswers, outsideCatalog };
+}
+
+function refreshSelection() {
   if (running) return;
-  pages = identify(input.value);
-  cache = new Map();
   errors.replaceChildren();
   errors.hidden = true;
   links.replaceChildren();
@@ -48,7 +75,28 @@ function refreshInput() {
   linkList.hidden = pages.length === 0;
   button.disabled = pages.length === 0;
   button.textContent = '导出 Markdown';
-  status.textContent = pages.length ? `识别到 ${pages.length} 个不同的备份链接。` : '未识别到备份链接。';
+  if (!pages.length) {
+    status.textContent = '未识别到备份链接。';
+    return;
+  }
+  try {
+    const plan = exportPlan();
+    const extra = includeAnswers.checked ? `将额外导出 ${plan.addedAnswers} 篇引用回答。` : '';
+    const outside = plan.outsideCatalog ? `其中 ${plan.outsideCatalog} 个链接不在译文目录中，无法为其查找引用回答。` : '';
+    status.textContent = `识别到 ${pages.length} 个不同的备份链接。${extra}${outside}`;
+  } catch (error) {
+    button.disabled = true;
+    status.textContent = '引用数据不完整。';
+    errors.textContent = error.message;
+    errors.hidden = false;
+  }
+}
+
+function refreshInput() {
+  if (running) return;
+  pages = identify(input.value);
+  cache = new Map();
+  refreshSelection();
 }
 
 function absoluteUrl(value, base) {
@@ -112,6 +160,7 @@ async function originalFor(id) {
 
 function replaceArchiveUrl(value, base) {
   const absolute = absoluteUrl(value, base);
+  if (!absolute) return '';
   const id = archiveId(absolute, base);
   if (!id) return absolute;
   const target = originalLinks.get(id);
@@ -247,29 +296,36 @@ async function readPage(page) {
 
 async function exportPages() {
   if (running || pages.length === 0) return;
+  let plan;
+  try { plan = exportPlan(); } catch (error) {
+    errors.textContent = error.message;
+    errors.hidden = false;
+    return;
+  }
+  const selectedPages = plan.items;
   running = true;
-  input.disabled = button.disabled = true;
+  input.disabled = includeAnswers.disabled = button.disabled = true;
   errors.hidden = true;
   errors.replaceChildren();
   const failures = [];
   let next = 0;
   let finished = 0;
-  status.textContent = `正在读取 0 / ${pages.length} 篇……`;
+  status.textContent = `正在读取 0 / ${selectedPages.length} 篇……`;
   async function worker() {
-    while (next < pages.length) {
+    while (next < selectedPages.length) {
       const index = next++;
-      const page = pages[index];
+      const page = selectedPages[index];
       try {
         if (!cache.has(page.id)) cache.set(page.id, await readPage(page));
       } catch (error) {
         failures.push({ index, page, reason: error.name === 'AbortError' ? '请求超时' : (error.message || '读取失败') });
       }
       finished++;
-      status.textContent = `正在读取 ${finished} / ${pages.length} 篇……`;
+      status.textContent = `正在读取 ${finished} / ${selectedPages.length} 篇……`;
     }
   }
   try {
-    await Promise.all(Array.from({ length: Math.min(4, pages.length) }, worker));
+    await Promise.all(Array.from({ length: Math.min(4, selectedPages.length) }, worker));
     if (failures.length) {
       failures.sort((a, b) => a.index - b.index);
       const heading = document.createElement('p');
@@ -283,11 +339,11 @@ async function exportPages() {
       }
       errors.append(list);
       errors.hidden = false;
-      status.textContent = `已读取 ${pages.length - failures.length} / ${pages.length} 篇。`;
+      status.textContent = `已读取 ${selectedPages.length - failures.length} / ${selectedPages.length} 篇。`;
       button.textContent = '重试并导出';
       return;
     }
-    const text = pages.map(page => cache.get(page.id)).join('\n\n---\n\n') + '\n';
+    const text = selectedPages.map(page => cache.get(page.id)).join('\n\n---\n\n') + '\n';
     const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -297,17 +353,19 @@ async function exportPages() {
     link.click();
     link.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
-    status.textContent = `已导出 ${pages.length} 篇。`;
+    const extra = includeAnswers.checked ? `（含自动追加的 ${plan.addedAnswers} 篇引用回答）` : '';
+    status.textContent = `已导出 ${selectedPages.length} 篇${extra}。`;
   } catch (error) {
     errors.textContent = `导出失败：${error.message || '未知错误'}`;
     errors.hidden = false;
     status.textContent = '未生成文件。';
   } finally {
     running = false;
-    input.disabled = false;
+    input.disabled = includeAnswers.disabled = false;
     button.disabled = pages.length === 0;
   }
 }
 
 input.addEventListener('input', refreshInput);
+includeAnswers.addEventListener('change', refreshSelection);
 button.addEventListener('click', exportPages);
