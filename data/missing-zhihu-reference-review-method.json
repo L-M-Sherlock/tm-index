@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-27",
+  "definition": "references.json中via包含original且不包含zhihu的有向边。它表示已通过原文URL识别到本地目标译文，但同一文章对没有知乎链接证据。",
+  "input": {
+    "references": "references.json",
+    "catalog": "catalog.json",
+    "candidate_edges": 6506
+  },
+  "confidence_rules": {
+    "review": [
+      "锚文本为空或为“这里/来源/更多”等泛指词",
+      "目标为作者/人物页",
+      "链接文字属于目录、系列或章节导航"
+    ],
+    "high": "不属于review，且锚文本规范化后与目标标题相同或互相包含（至少4字符）。",
+    "medium": "原文URL唯一匹配且不属于review，但锚文本与目标题名表达不同。"
+  },
+  "category_precedence": [
+    "generic",
+    "directory",
+    "author",
+    "bibliography",
+    "term",
+    "content"
+  ],
+  "category_rules": {
+    "generic": "泛指锚文本或空锚文本。",
+    "directory": "链接文字或目标标题/摘要显示为目录、索引、章节、系列导航。",
+    "author": "目标标题与authors.json中的规范作者名或别名一致。",
+    "bibliography": "目标标题呈论文年份、期刊、Proceedings或DOI等书目形式。",
+    "term": "目标摘要/范围说明将页面表述为词条、术语或定义。",
+    "content": "其他正文内容引用。",
+    "other": "保留枚举值；本次没有无法归入上述类别的记录。"
+  },
+  "counts": {
+    "confidence": {
+      "high": 3742,
+      "medium": 2641,
+      "review": 123
+    },
+    "category": {
+      "term": 2187,
+      "content": 4112,
+      "author": 38,
+      "directory": 35,
+      "generic": 60,
+      "bibliography": 74
+    },
+    "overlapping_signals": {
+      "term": 2220,
+      "exact": 3234,
+      "contained": 3264,
+      "author": 39,
+      "navigation": 25,
+      "generic": 60,
+      "bibliography": 77,
+      "directory": 12
+    }
+  },
+  "validation": {
+    "edge_set_exact_match": true,
+    "unique_pairs": true,
+    "record_count": 6506
+  },
+  "sampling_audit": {
+    "method": "按(source_id,target_id)排序后等距抽取60条人工核验。",
+    "results": {
+      "content": 25,
+      "term": 24,
+      "author": 2,
+      "directory": 3,
+      "bibliography": 1,
+      "unclear_or_misaligned": 5
+    },
+    "conclusion": "49/60为正文或术语引用；结构性关系可留在图谱；泛指或错位锚文本需要人工复核。"
+  },
+  "limitations": [
+    "这是待补知乎链接候选，不证明原文网页当前仍可访问。",
+    "置信等级利用URL唯一匹配和中文锚文本，不替代逐条编辑审阅。",
+    "作者页、术语页和目录页在图谱中是有效引用，但是否回填到知乎正文取决于编辑目的。"
+  ]
+}

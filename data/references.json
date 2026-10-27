@@ -20,6 +20,8 @@
     "source_url_collision_keys": 21,
     "ambiguous_original_links": 688,
     "direct_links_to_nontranslations": 456,
+    "missing_zhihu_reference_candidates": 6506,
+    "articles_with_missing_zhihu_references": 1265,
     "methodology": [
       "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
       "Match external links to the explicit original URL of a translated article after conservative URL normalization.",

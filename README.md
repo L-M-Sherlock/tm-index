@@ -18,6 +18,8 @@ Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索
 - `keyword-per-article.json`：只适用于特定文章语境的标签更正
 - `keyword-normalization-review.json`：标签合并理由与保留边界
 - `references.json`：译文之间的引用边、匹配方式与歧义记录
+- `missing-zhihu-references.json` / `.csv`：原文已经引用、但译文尚未加入对应知乎链接的候选清单
+- `missing-zhihu-reference-review-method.json`：候选的置信分级、类别规则与抽样审计
 - `validation.json`：最终覆盖与完整性检查
 - `user-corrections.json`：人工确认的范围和作者更正
 
