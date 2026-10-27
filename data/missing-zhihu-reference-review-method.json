@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "generated_at": "2026-10-27",
-  "definition": "references.json中via包含original且不包含zhihu的有向边。它表示已通过原文URL识别到本地目标译文，但同一文章对没有知乎链接证据。",
+  "definition": "原文 URL 唯一匹配，但同一文章对没有知乎正文链接或原生引用注释。",
   "input": {
     "references": "references.json",
     "catalog": "catalog.json",
-    "candidate_edges": 6506
+    "candidate_edges": 1694
   },
   "confidence_rules": {
     "review": [
@@ -35,33 +35,25 @@
   },
   "counts": {
     "confidence": {
-      "high": 3742,
-      "medium": 2641,
-      "review": 123
+      "medium": 986,
+      "high": 651,
+      "review": 57
     },
     "category": {
-      "term": 2187,
-      "content": 4112,
-      "author": 38,
-      "directory": 35,
-      "generic": 60,
-      "bibliography": 74
-    },
-    "overlapping_signals": {
-      "term": 2220,
-      "exact": 3234,
-      "contained": 3264,
-      "author": 39,
-      "navigation": 25,
-      "generic": 60,
-      "bibliography": 77,
-      "directory": 12
+      "bibliography": 13,
+      "content": 1023,
+      "term": 600,
+      "generic": 27,
+      "author": 17,
+      "directory": 14
     }
   },
   "validation": {
-    "edge_set_exact_match": true,
     "unique_pairs": true,
-    "record_count": 6506
+    "record_count": 1694,
+    "reused_review_rows": 1694,
+    "unreviewed_candidates": 0,
+    "old_reviews_no_longer_candidates": 4812
   },
   "sampling_audit": {
     "method": "按(source_id,target_id)排序后等距抽取60条人工核验。",
@@ -73,11 +65,22 @@
       "bibliography": 1,
       "unclear_or_misaligned": 5
     },
-    "conclusion": "49/60为正文或术语引用；结构性关系可留在图谱；泛指或错位锚文本需要人工复核。"
+    "conclusion": "49/60为正文或术语引用；结构性关系可留在图谱；泛指或错位锚文本需要人工复核。",
+    "scope": "历史版本的 6506 条候选；不能作为当前候选集的抽样结果。"
   },
   "limitations": [
     "这是待补知乎链接候选，不证明原文网页当前仍可访问。",
     "置信等级利用URL唯一匹配和中文锚文本，不替代逐条编辑审阅。",
     "作者页、术语页和目录页在图谱中是有效引用，但是否回填到知乎正文取决于编辑目的。"
-  ]
+  ],
+  "historical_overlapping_signals": {
+    "term": 2220,
+    "exact": 3234,
+    "contained": 3264,
+    "author": 39,
+    "navigation": 25,
+    "generic": 60,
+    "bibliography": 77,
+    "directory": 12
+  }
 }
