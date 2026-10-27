@@ -4,6 +4,8 @@ Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索
 
 点击「导出 TXT」可下载当前筛选结果，包含所有页的匹配文章，并按发表时间从早到晚排列。
 
+展开「从文本提取备份并导出 Markdown」，粘贴包含备份链接的文本，可按链接首次出现的顺序合并文章正文；重复链接只导出一次，抓取失败可重试。导出结果中的文章备份链接会转换为对应的知乎文章或回答链接，图片保留为网络链接。
+
 - 网站：https://l-m-sherlock.github.io/tm-index/
 - 知乎存档：https://l-m-sherlock.github.io/ZhiHuArchive/
 - 翻译合集：https://l-m-sherlock.github.io/thoughts-memo-translation/

@@ -24,6 +24,8 @@ jobs:
         run: |
           mkdir public
           cp index.html public/index.html
+          cp archive-export.js public/archive-export.js
+          cp -R vendor public/vendor
           cp -R data public/data
           touch public/.nojekyll
       - uses: actions/upload-pages-artifact@v3
