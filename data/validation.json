@@ -161,7 +161,8 @@
     "full_text_character_counts_match": true,
     "requested_model_provenance_present": true,
     "original_author_metadata_complete_and_valid": true,
-    "reference_graph_valid": true
+    "reference_graph_valid": true,
+    "answer_reference_graph_valid": true
   },
   "limitations": [
     "摘要及范围判定依据本地存档的完整可见文字正文；图片中的文字不自动视为已读。",
@@ -239,5 +240,21 @@
         "source": "zhihu_public_api"
       }
     ]
+  },
+  "answer_references": {
+    "schema_version": 1,
+    "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; direct links to included translations only.",
+    "answers_scanned": 2335,
+    "answers_with_citations": 1336,
+    "translations_cited": 1245,
+    "citation_pairs": 9420,
+    "skipped_other_authors": 0,
+    "earliest_answer_date": "2017-03-17",
+    "latest_answer_date": "2026-10-14",
+    "checks": {
+      "unique_pairs": true,
+      "targets_exist": true,
+      "counts_match": true
+    }
   }
 }
