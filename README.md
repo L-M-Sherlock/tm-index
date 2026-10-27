@@ -2,6 +2,8 @@
 
 Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索引。站点支持全文检索，并可按关键词、原作者和发布账号筛选。
 
+点击「导出 TXT」可下载当前筛选结果，包含所有页的匹配文章，并按发表时间从早到晚排列。
+
 - 网站：https://l-m-sherlock.github.io/tm-index/
 - 知乎存档：https://l-m-sherlock.github.io/ZhiHuArchive/
 - 翻译合集：https://l-m-sherlock.github.io/thoughts-memo-translation/
