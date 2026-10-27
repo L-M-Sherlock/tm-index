@@ -193,37 +193,25 @@
   "references": {
     "schema_version": 1,
     "nodes": 2119,
-    "reference_content_override_ids": [
-      "559705516"
-    ],
-    "edges": 13458,
-    "link_occurrences": 26115,
-    "link_records_examined": 60770,
-    "self_links_ignored": 2411,
+    "edges": 13529,
+    "link_occurrences": 28013,
     "nodes_with_outgoing": 1879,
-    "nodes_with_incoming": 1857,
+    "nodes_with_incoming": 1859,
     "method_edge_counts": {
       "archive": 4,
-      "original": 7269,
-      "zhihu": 11762
+      "original": 7609,
+      "zhihu": 13038
     },
-    "method_occurrence_counts": {
-      "archive": 4,
-      "original": 10389,
-      "zhihu": 15722
-    },
-    "source_url_exact_keys": 1895,
-    "source_url_collision_keys": 21,
-    "ambiguous_original_links": 689,
-    "direct_links_to_nontranslations": 695,
-    "missing_zhihu_reference_candidates": 1694,
-    "articles_with_missing_zhihu_references": 647,
+    "missing_zhihu_reference_candidates": 489,
+    "articles_with_missing_zhihu_references": 272,
     "methodology": [
       "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
       "Include Zhihu native reference annotations via sup[data-draft-type=reference][data-url], using data-text as the citation label.",
       "Match external links to the explicit original URL of a translated article after conservative URL normalization.",
       "Keep PDF page fragments and Archive.org page paths; skip shared or otherwise ambiguous original URLs.",
-      "Remove self-links, deduplicate article pairs, and derive incoming links from the directed edge set."
+      "Remove self-links, deduplicate article pairs, and derive incoming links from the directed edge set.",
+      "Verified sources use live public article content; unverified sources retain their previous outgoing edges.",
+      "Zhihu article IDs require an allowed exact host and exact article path."
     ],
     "checks": {
       "targets_exist": true,
@@ -231,15 +219,23 @@
       "unique_article_edges": true,
       "bidirectional_symmetry": true
     },
-    "reference_content_overrides": [
-      {
-        "id": "559705516",
-        "updated": 1793067390,
-        "retrieved_at": "2026-10-27T02:17:18.233185+00:00",
-        "content_sha256": "db2aa75bdd6210ce710b9547dae2b6a5812a8b81e014df82bad5fa76713f1fc7",
-        "source": "zhihu_public_api"
-      }
-    ]
+    "live_public_verification": {
+      "scope_articles": 2119,
+      "verified_articles": 2119,
+      "unverified_articles": 0,
+      "earliest_checked_at": "2026-10-27T10:31:13.387383+00:00",
+      "latest_checked_at": "2026-10-27T10:45:06.701130+00:00",
+      "unverified_behavior": "retain previous edges and candidate counts; mark those articles unverified",
+      "title_identity_reconciliations": [
+        {
+          "id": "401155017",
+          "catalog_title": "JOST'S LAW 约斯特定律",
+          "current_title": "Jost 定律",
+          "captured_at": "2026-10-27T10:45:06.701130+00:00",
+          "basis": "matching ID and author identity across catalog archive, prior published snapshot, and current public snapshot"
+        }
+      ]
+    }
   },
   "answer_references": {
     "schema_version": 1,
