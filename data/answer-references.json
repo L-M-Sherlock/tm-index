@@ -16,12 +16,12 @@
       "all_direct_links_retained": true
     },
     "classification_counts": {
-      "1": 8035,
-      "2": 340,
-      "3": 1346,
-      "unclassified": 75
+      "1": 8096,
+      "2": 351,
+      "3": 1348,
+      "unclassified": 1
     },
-    "classification_method": "gpt-6-luna max; unreviewed direct relationships remain unclassified",
+    "classification_method": "gpt-6-luna max; direct relationships without sufficient evidence remain unclassified",
     "new_nonlink_pairs": 276,
     "reviewed_pairs": 12310,
     "submitted_pairs": 12310,
@@ -22292,7 +22292,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "转载译文的图注中原生注释显示目标标题；预定目标与不快乐的说法不能确认化用目标译文关于忍受不快的具体论述。",
+        "answer_evidence": "学习内驱力和奖励",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2425589576",
@@ -26241,7 +26250,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答将试错、探索描述为大脑适应环境的机制，并指出学校惩罚错误；目标章节以进化形成的探索算法为核心，认为强制学校教育压制探索。回答概括了目标章观点。",
+        "answer_evidence": "人类大脑本质上是一台通过试错来适应环境的探索机器",
+        "article_evidence": "自然界中所有高效的学习过程，都基于探索",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1595115995",
@@ -26783,7 +26801,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答建议逐张修改、重新组织反复遗忘的卡片，并以直接链接推荐目标页；目标译文明确建议通过知识重构修正难点，也讨论依据遗忘次数识别问题，属于具体建议的化用。",
+        "answer_evidence": "我建议你一张一张卡片去改内容，去重新组织知识。不然大概率这张卡片之后还会连续遗忘，最后被暂停。",
+        "article_evidence": "有经验的用户一旦发现它们形成，就能轻易地用 知识重构技巧 来修正。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1391603039",
@@ -26812,7 +26839,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "[2] 显示的注释标题是“毒性记忆”，但回答这句解释的是 Anki leech 卡片，并未复述目标页关于毒性记忆与学校厌恶的论证。该词条链接只构成低级关键词证据。",
+        "answer_evidence": "这些卡片会被打上 leech 的标志，leech 意思是寄生虫，非常形象的描述了这些卡片的特点——像寄生虫一样不断消耗你的复习时间，而你却无能为力",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1578551193",
@@ -32397,7 +32433,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "转载译文中的原生注释显示目标标题；回答所称成年人忘记儿童与成年大脑的差异，不等于目标译文讨论的早期脑部发育干扰记忆留存，故不足以认定化用具体论点。",
+        "answer_evidence": "16 童年失忆症（16.1-16.5）",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2192921182",
@@ -36451,7 +36496,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答以学校改革为主题引出直链，目标题为《教育改革》；没有发现更高程度的引用。",
+        "answer_evidence": "至于学校方面的改革，这里我也翻译了一篇文章",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1779155058",
@@ -37245,7 +37299,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "目标标题出现在被引用译文的原生脚注中，位于“学习可以是快乐的……对教育的未来”这一段。该段只借标题提示相关内容，没有复述《教育改革》的特定主张。",
+        "answer_evidence": "教育改革",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2017533326462828638",
@@ -38548,7 +38611,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注在《老师》的节选内部以完整目标标题“普鲁士教育模式”链接到译文；链接上下文讨论严格纪律教师与叛逆学生的冲突。没有证据显示回答摘录了目标页正文。",
+        "answer_evidence": "普鲁士教育模式",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1970550708731355357",
@@ -43802,7 +43874,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答主体是《考试》的完整译文；文中原生脚注以“遗忘机制”标示目标页。该段只把遗忘作为考试后果之一，没有重述目标文章关于遗忘机制的具体解释。",
+        "answer_evidence": "遗忘机制",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3634213940",
@@ -45636,7 +45717,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "直链前后的“学生解放”与目标《教育解放宣言》构成关键词对应，未发现具体重述或摘录该宣言。",
+        "answer_evidence": "学生作为共产主义的接班人，他们的解放就是未来社会的解放",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1779155058",
@@ -46254,7 +46344,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "被引用译文中的原生脚注显示目标关键词“知识结晶”。脚注位于关于课程、模仿和学习的节选内；上下文没有实质摘录或概括目标页的晶种、结晶比喻。",
+        "answer_evidence": "知识结晶",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2432504004",
@@ -47480,7 +47579,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "《考试》译文在列举考试后果时以原生脚注“干扰”链接到目标页。回答只说考试导致干扰、记忆稳定性和连贯性变差，并未展开目标页关于记忆间干扰及强制教学与自由学习差异的观点。",
+        "answer_evidence": "干扰",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3265798117",
@@ -47813,7 +47921,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答摘录《学习的乐趣》并保留原生注释“干扰”。目标页与该译文出现相近的图注，但不能据此确认回答改写或摘录的是目标页本身。",
+        "answer_evidence": "干扰",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2017887574232937536",
@@ -49744,7 +49861,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "在另一篇译文节选内部，原生脚注以“自由学习”这一完整目标标题链接到该页。相邻段落谈儿童自然学习，但没有独立重述目标页对自由学习的定义和学习安排。",
+        "answer_evidence": "自由学习",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2186957162",
@@ -55417,7 +55543,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答以自己的话说明不理解时做大量作业会迫使死记硬背，与目标页理解先于记忆的核心规则相呼应。",
+        "answer_evidence": "在不理解的情况下做太多作业，会有很大危害，会迫使你去死记硬背，最后导致糟糕的学习",
+        "article_evidence": "永远不要记忆你不理解的东西",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1582343122",
@@ -55998,7 +56133,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注在谈课堂无聊的译文段落中以“语义框架”链接目标页。该句只是说前置知识不足可能造成无聊，未重述目标页关于语义网络结构的特定论点。",
+        "answer_evidence": "语义框架",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3074549055",
@@ -57718,7 +57862,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注的 data-text 是“彼得 · 沃兹尼亚克”，位于译文作者第一人称解释术语的段落；这是作者姓名/身份关键词，没有复述个人介绍页内容。",
+        "answer_evidence": "我选择学校外驱力这一名称",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2846234108",
@@ -57804,7 +57957,16 @@
       ],
       "evidence": [
         "link"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答的节选说明块将“彼得 · 沃兹尼亚克”作为原作者姓名链接到目标个人页；这只是作者署名。",
+        "answer_evidence": "原作者是彼得 · 沃兹尼亚克",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3149693040",
@@ -57909,7 +58071,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "正文在第一人称回忆学校经历处以原生脚注链接“彼得 · 沃兹尼亚克”个人页；虽然谈及个人学历经历，但没有复述目标页具体履历。",
+        "answer_evidence": "当我毕业后整理简历时，我为自己能提到的一长串学校、专业而自豪。",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3402309401",
@@ -57938,7 +58109,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释在署名处以作者姓名指向个人介绍页；没有发现目标页内容的具体复述。",
+        "answer_evidence": "彼得·沃兹尼亚克",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3416195414",
@@ -58024,7 +58204,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "译文节选署名中的作者姓名链接到其个人介绍页；文章自身的学习价值讨论不是目标个人页内容。",
+        "answer_evidence": "这段文字选自《我永远不会送我的孩子上学》，作者是彼得·沃兹尼亚克",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3497729748",
@@ -58167,7 +58356,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释在署名处以作者姓名指向个人介绍页；没有发现目标页内容的具体复述。",
+        "answer_evidence": "彼得·沃兹尼亚克",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "7848446713",
@@ -58367,7 +58565,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答节选的译文署名/作者注以作者姓名作为原生脚注，指向其个人介绍页。仅是作者身份标注，不见对个人介绍页履历或观点的复述。",
+        "answer_evidence": "这段文字是《我永远不会送我的孩子去学校》其中的一部分，作者是彼得·沃兹尼亚克",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2016796179850085860",
@@ -61304,7 +61511,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《学习的乐趣》并保留注释“涌现”，关联段落与目标页有同作者的相似观点，但不足以确认是对目标页的独立化用。",
+        "answer_evidence": "涌现",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2186957162",
@@ -66849,7 +67065,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答的脚注将学校的“强制”链接到《学习中的强迫》；它列举固定时间和统一课程，但未具体重述目标页的独特论证。",
+        "answer_evidence": "学习中的强迫",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2020423436481118542",
@@ -66859,7 +67084,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答不只出现目标标题脚注，还以自己的话指出外部强制不会让孩子真正热爱学习；这对应目标译文关于外部手段不能有效激励孩子的结论。",
+        "answer_evidence": "他们误以为把屏幕砸碎，孩子就会乖乖坐回书桌前热爱“被迫学习”。这种逻辑荒谬至极。",
+        "article_evidence": "强迫是一种无效的策略，因为它不可能从外部有效地激励孩子。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2024783376297596199",
@@ -67364,7 +67598,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释以“自学”指向目标译文，回答未复述目标页对自学、自我导向和自定进度的概念区分。",
+        "answer_evidence": "自学",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2494734252",
@@ -67659,7 +67902,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "多处原生脚注用“自学”标示目标页，回答段落说的是一则个人学习经历；没有重述目标页对三种自学概念的区分。",
+        "answer_evidence": "尽管汤姆已经成功地进行了 20 年的自我导向学习，并广泛涉猎了大量学校从未提及的话题",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2850382253",
@@ -70292,7 +70544,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《学习中的强迫》时保留指向该页的注释；目标页讲批判性轰炸可能导致较弱模型瓦解，无法确认它支持“强迫导致知识模型瓦解”的一般性论断。",
+        "answer_evidence": "大脑算法保护现实的模型",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1779155058",
@@ -72072,7 +72333,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注 data-text 明确显示目标标题《被动的学校教育》，但脚注所在段落仅概述课程滞后对学校适应性的影响；未复述目标译文的定义或独特结论。",
+        "answer_evidence": "被动的学校教育",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2485579863",
@@ -72158,7 +72428,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注 data-text 明确显示目标标题；相邻文字谈学校教育导致 ADHD 处方失效，没有具体化用目标译文关于被动学校教育的观点。",
+        "answer_evidence": "被动的学校教育",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2640607982",
@@ -81865,7 +82144,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "目标标题“无聊”作为原生脚注 data-text 出现在《课程滞后期》相关译文段落；上下文谈课程滞后的心理影响，并没有重述目标页对无聊的定义或神经机制。",
+        "answer_evidence": "无聊",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2489615289",
@@ -85285,7 +85573,16 @@
       ],
       "evidence": [
         "link"
-      ]
+      ],
+      "level": 3,
+      "classification": {
+        "evidence": "回答从定义、问题、应试策略、考试局限到压力与扩展阅读的主体结构，与目标《考试》译文逐段连续对应；上列段落是逐字相同的长段落。目标页不只是文末“原文：考试”链接，而是回答正文的实质性全文转载。",
+        "answer_evidence": "考试的问题是，它通常是强制性的，而且是预先宣布的。强制性的高风险考试涉及压力。预先宣布的考试促进了死记硬背。死记硬背促进了无语义学习，导致专注于低质量的短期记忆。",
+        "article_evidence": "考试的问题是，它通常是强制性的，而且是预先宣布的。强制性的高风险考试涉及压力。预先宣布的考试促进了死记硬背。死记硬背促进了无语义学习，导致专注于低质量的短期记忆。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2364839320",
@@ -95365,7 +95662,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "《考试》译文用原生脚注“创造力”链接到目标页；此处只把创造力作为考试难以测试的一类能力，没有表达目标页关于创造力形成的具体观点。",
+        "answer_evidence": "特定领域的创造力很难测试。",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3260921778",
@@ -95812,7 +96118,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载的译文用原生注释“创造力”指向目标页，该处只提到创造力，未具体复述目标页观点。",
+        "answer_evidence": "创造力",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1998446984764346810",
@@ -98027,7 +98342,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "该原生注释以“课程”指向《课标》，上下文是在另一篇译文中讨论线性、必修课程；没有足够依据认定独立化用目标页。",
+        "answer_evidence": "课程",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2407608810",
@@ -98132,7 +98456,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答的原生注释以“课程”指向《课标》，相关段落以课程滞后为主题，未独立复述目标页的特定论证。",
+        "answer_evidence": "课程",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2452443382",
@@ -98275,7 +98608,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释的显示词是“课程”，目标页说明课标的含义。回答只在谈教师受强制系统约束时标注这个词；没有复述目标页的具体论证或摘录其正文。",
+        "answer_evidence": "教师受强制性的 课程 和 强制学校教育 系统的约束",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2512507437",
@@ -98628,7 +98970,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释以“课标”为脚注显示词，位于一段讨论学校外驱力的图注中。目标页的课程定义与关键词相符，但该图注没有重述目标页独有的论点；按词语引用分为1级。",
+        "answer_evidence": "由于学校通过 课程 （而不是通过 学习内驱力 的神经机制）将知识序列化",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2790831549",
@@ -98847,7 +99198,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "脚注显示词是“课程”。回答把课程列为课堂无聊的可能原因，目标页定义了相应术语；没有重述该页关于强制课标的具体结论。",
+        "answer_evidence": "要么怪老师，要么怪学科，要么怪 前置知识 不足，要么怪 课程 ，要么怪系统",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3029922725",
@@ -99085,7 +99445,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "脚注只把“课程”这个词链接到课标词条。回答在说明考试压力可能令课程内容被夸大，没有进一步化用目标页的独特观点或连续摘录。",
+        "answer_evidence": "可能会在 课程 中被夸大，可能会在早期被搭建起来",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3265798117",
@@ -99418,7 +99787,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生注释的显示词是“课程”，出现在关于教师受制度约束的一句话中。目标页提供术语定义；回答没有摘录或明确复述该页的具体论证。",
+        "answer_evidence": "教师受强制性的 课程 和 强制学校教育 系统的约束",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "58331676288",
@@ -99562,7 +99940,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "长篇译文中多处原生脚注 data-text 为完整目标标题“课标”。虽有一处明确反对用课程塑造知识，但该表述位于另一篇译文节选内；整体对应仍是目标标题/关键词引用，没有把该回答当作目标页摘录或独立复述其具体结构。",
+        "answer_evidence": "使用课标来塑造学生的知识，这样的模式是错误的！",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1998446984764346810",
@@ -99629,7 +100016,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注 data-text 为目标页《课标》的近义关键词“课标”，正文只是说急于赶课程会妨碍理解；未出现目标文章的具体观点。",
+        "answer_evidence": "急于赶课程的老师",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2704862701",
@@ -101356,7 +101752,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载其他译文，原生注释显示目标标题；高奖励可能成瘾属于宽泛观点，不能确认对目标译文特定论证的化用。",
+        "answer_evidence": "电子游戏",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1973462354927826885",
@@ -103932,7 +104337,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答以“人类智力”作为概念标签，讨论的是表征与压缩性；目标页将智力定义为解决问题的能力。两边只有术语层面的对应，没有化用该定义或论证。",
+        "answer_evidence": "这是 人类智力 的核心。",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1998446984764346810",
@@ -106818,7 +107232,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载另一篇译文，原生注释显示目标标题；狂欢与反抗的概念相关，但不足以确认该段化用了目标译文的特定论证。",
+        "answer_evidence": "反抗",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3632686438",
@@ -106866,7 +107289,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注链接的是“反抗”这个词。扫描发现的92字符重合位于回答与目标页共同使用的同一图注；其内容是跨页复用的图片说明，不能据此认定回答摘录了《反抗》正文。除术语链接外未见对该页独有论证的化用。",
+        "answer_evidence": "强大的 学习内驱力 会导致 反抗 ，保护内在的激情",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2017887574232937536",
@@ -107104,7 +107536,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答以“约翰·霍尔特”作为引出其引语的人名注释。目标页提供人物背景，但回答随后所引的考试压力段落并不在该页正文中；未见对该页具体内容的复述。",
+        "answer_evidence": "约翰·霍尔特 观察到",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3460822546",
@@ -107685,7 +108126,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《考试》，原生注释显示目标标题；答文讨论个人知识和目标，目标译文讨论领域依赖，不能确认是同一具体论点。",
+        "answer_evidence": "适用性",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3260921778",
@@ -107942,7 +108392,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答只在描述热力学定律时使用并链接“适用性”一词，没有复述目标页关于适用性和领域依赖性的定义。",
+        "answer_evidence": "它具有 广泛的适用性",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2017887574232937536",
@@ -111462,7 +111921,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "摘录中的原生注释显示目标标题；正文“网络的压力”与目标主题不完全吻合，不能据此确认观点化用或正文摘录。",
+        "answer_evidence": "自稳态的睡眠倾向",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "117708177094",
@@ -115660,7 +116128,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《老师》，原生注释显示目标标题；对《爱弥儿》导师的概述可能来自共同原著，无法确认化用目标译文。",
+        "answer_evidence": "卢梭之谬误：荼毒至今的教育理论",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2772990761",
@@ -118051,7 +118528,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答在谈模型泛化时链接“遗忘”这个术语；目标页提供遗忘词条定义，但回答没有复述该页的干扰机制或遗忘曲线论述。",
+        "answer_evidence": "当 遗忘 和 记忆优化 从模型中雕刻出新的性质时",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2017163223938376088",
@@ -121321,7 +121807,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答提到“模型”并说明其在学习中的细化；目标页链接作为模型概念词条，但目标页的定义与例子未被逐字引用或具体改述。",
+        "answer_evidence": "我喜欢讨论 模型 的细化（当新信息符合模型时）、矛盾（当新信息的引入导致模型需要更正时）",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2024783376297596199",
@@ -122016,7 +122511,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "转载译文内原生注释显示目标标题；该段将无聊和习得性无助与成瘾联系起来，不能确认它是对目标译文具体论证的独立化用。",
+        "answer_evidence": "习得性无助增加成瘾风险",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3003779978",
@@ -125054,7 +125558,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "脚注链接的是“概念”这个通用术语。回答讨论概念图之间的估值关系，未复述目标词条关于概念泛化或概念细胞的说明。",
+        "answer_evidence": "如果考试这个概念是根据工作前景这个 概念 来估值的",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2024783376297596199",
@@ -126416,7 +126929,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《老师》，原生注释显示目标标题；依赖教学和目标词条的自由剥夺与习得性无助并非足以确认同一具体论证。",
+        "answer_evidence": "习得性无助",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1968439846369489451",
@@ -134566,7 +135088,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答明确概括前一篇帖子的结论；链接目标页提出的正是把解释作为科学研究领域的策略。它复述结论，没有复制正文段落。",
+        "answer_evidence": "在 前一篇帖子 中，我认为，把解释当作一个科学领域对待，是促进大众创建更多优质解释的最佳策略。",
+        "article_evidence": "如果没有人真正知道如何做出优秀的解释，「将解释作为科学」是很好的策略。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3212564228",
@@ -139345,7 +139876,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 3,
+      "classification": {
+        "evidence": "回答以“先前的帖子”链接目标文章，并连续复述其中 Benezet 实验结果段落；所选句子在回答和译文正文中逐字一致，属于实质性摘录。",
+        "answer_evidence": "但六年级结束时，他们在计算问题的表现上已经跟上其他人了，而且应用题的表现仍然遥遥领先。",
+        "article_evidence": "但六年级结束时，他们在计算问题的表现上已经跟上其他人了，而且应用题的表现仍然遥遥领先。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3496726816",
@@ -142035,7 +142575,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《学习的乐趣》，原生注释显示目标标题；难易导致无聊与目标文的相关性和估值机制不足以确认是同一具体论点。",
+        "answer_evidence": "知识估值网络",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3003779978",
@@ -144272,7 +144821,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答只把目标译文中的一个小节标题《表扬的宗教》作为参见链接；上下文没有复述该节关于评分的论证。它是标题/关键词提及。",
+        "answer_evidence": "表扬的宗教",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3249341480",
@@ -146089,7 +146647,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答将学校环境中的顺从解释为适应/生存策略；目标页也把强制教育下学生被塑造成顺从者、适应能力受限作为核心论点。回答改述了该结论。",
+        "answer_evidence": "在这种环境下生存下来的最优策略就是「顺从」",
+        "article_evidence": "我们把学生折磨成一群顺从且苦闷的人",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2074635056820262903",
@@ -146422,7 +146989,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答链接“辍学生”这个关键词；随后讲的是芬兰学生邮件，目标页则是一般性讨论辍学者，两页没有共享该学生故事或足以确认的观点摘录。",
+        "answer_evidence": "展现了他如何从一名 辍学生 蜕变为 渐进阅读 方法的践行者",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "58941139455",
@@ -147459,7 +148035,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答用在家教育/自主教育学校少有欺凌来支持替代教育选择；目标译文论证学生自治的学校能有效遏制霸凌。这里概括了目标页的具体结论。",
+        "answer_evidence": "那里的每个孩子都可以以自己的方式学习，而且几乎听不到欺凌的事情",
+        "article_evidence": "它的民主治理在霸凌行为尚未形成伤害之前，就已经非常有效地遏制了它。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3548850618",
@@ -150091,7 +150676,16 @@
       ],
       "evidence": [
         "link"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答介绍 Refold 语言学习方法并在其路线图目录中链接目标页；目录的共同介绍文字不能单独归为目标子页的摘录。",
+        "answer_evidence": "Refold 语言学习方法",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3513356283",
@@ -160293,7 +160887,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答转载《教育同理心》，原生注释显示目标标题；既有知识和孩子当下正在学习什么并非足以确认同一具体论点。",
+        "answer_evidence": "Tom 老师：理解玩耍并不容易",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3494743741",
@@ -167055,7 +167658,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答概括了目标综述对划重点效果的结论及其普及现象；目标文有同一结论，但回答没有逐字复制。",
+        "answer_evidence": "举个例子，在课本上划重点这种方法完全无效，但却在全球范围内被广泛使用。",
+        "article_evidence": "划重点和重复阅读是许多学生常用的两种方法，但实际上效果不佳",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3599113590",
@@ -169991,7 +170603,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "检查原始 HTML 可见该目标是“同作者文章”卡片，卡片显示目标文章标题。回答正文讨论学历与应试，未复述《那些年我们对孩子撒过的谎》的内容；另一处47字符重合只是两篇文末共同出现的审稿人名单。",
+        "answer_evidence": "Thoughts Memo：那些年我们对孩子撒过的谎（父母对我们撒过的谎）",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "3604577454",
@@ -172985,7 +173606,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答将玩耍视为进化形成的学习机制；目标文章的主要结论是玩耍形式与生存所需技能相契合、其教育价值来自进化。回答概括该结论。",
+        "answer_evidence": "玩耍是儿童的天性，也是儿童进行自由学习 的主要手段。几乎所有哺乳类动物的幼崽都会玩耍 。可以说，玩耍是进化赋予人类的最强学习算法。",
+        "article_evidence": "从进化的视角来看，玩耍的首要目的是教育。玩耍是大自然巧妙设计的一种方式",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "4222185139",
@@ -187667,7 +188297,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "这是回答正文自己的论证，不在后面的《教育同理心》摘录中；它把学生背景分化与个性化教学必要性相连。目标章明确指出不同能力的学生会使统一教案失效，并以技术实现个性化，属于可逐对说明的观点化用。",
+        "answer_evidence": "每个人的知识背景差异巨大，而且会在学习过程中自然分化，这就是为什么个性化在教育中是非常重要的，非个性化的教育是低效甚至反效果的。",
+        "article_evidence": "任何主动学习的教案，一旦面对一个充满不同能力学生的班级，都无法按原计划进行。",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1919092573588416310",
@@ -187886,7 +188525,16 @@
       ],
       "evidence": [
         "link_card"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "回答在正文开头用链接卡标题指向目标页；卡片显示的旧标题章次为“第二十六章”，目标页当前标题为“第二十九章”，其余标题主体相同。回答有对另一篇 Math Academy 评述的长摘录，但未发现与这个目标章正文的实质复制或可辨识观点化用。",
+        "answer_evidence": "第二十六章间隔重复的技术深度剖析",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1919092573588416310",
@@ -188981,7 +189629,16 @@
       ],
       "evidence": [
         "link"
-      ]
+      ],
+      "level": 2,
+      "classification": {
+        "evidence": "回答明确标明由 Gemini 基于此译文生成；它将译文有关为自卫侵犯无辜者权利与征税的论证归纳为滑坡论困境。",
+        "answer_evidence": "如果你为了自卫可以接受杀死无辜的「人肉盾牌」，那为什么不能接受为了抵御侵略而征税或征兵呢？",
+        "article_evidence": "可以说，要抵御富有侵略性的邻国，就不得不征税。征税侵犯了纳税人的权利",
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "1935311935399784849",
@@ -189542,7 +190199,16 @@
       ],
       "evidence": [
         "native_reference"
-      ]
+      ],
+      "level": 1,
+      "classification": {
+        "evidence": "原生脚注以“Math Academy”标示目标页。邻近正文谈的是 Alpha 与 Math Academy 对 K-12 教育的定位；目标译文实际评测平台功能和使用体验，不支持回答中“压缩基础教育时间”的共同论述，故只确认标题级引用。",
+        "answer_evidence": "Math Academy",
+        "article_evidence": null,
+        "reviewer_model": "gpt-6-luna",
+        "reasoning_effort": "max",
+        "review_status": "reviewed"
+      }
     },
     {
       "answer_id": "2093765968375948817",

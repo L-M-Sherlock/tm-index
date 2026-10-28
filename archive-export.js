@@ -3,6 +3,7 @@ import { gfm } from './vendor/turndown-plugin-gfm.js';
 const input = document.getElementById('archive-input');
 const includeAnswers = document.getElementById('archive-include-answers');
 const answerLimit = document.getElementById('archive-answer-limit');
+const answerLevel = document.getElementById('archive-answer-level');
 const button = document.getElementById('archive-export-button');
 const status = document.getElementById('archive-export-status');
 const errors = document.getElementById('archive-export-errors');
@@ -45,6 +46,8 @@ function selectedAnswerLimit() {
 
 function exportPlan() {
   const limit = selectedAnswerLimit();
+  const selectedLevel = answerLevel.value;
+  if (includeAnswers.checked && !['1', '2', '3', 'unknown', 'all'].includes(selectedLevel)) throw new Error('请选择有效的引用程度。');
   const result = [...pages];
   const seen = new Set(result.map(page => page.id));
   let addedAnswers = 0;
@@ -60,13 +63,18 @@ function exportPlan() {
       for (const id of candidates) {
         if (!answerIndex[id]) throw new Error(`缺少回答 ${id} 的索引数据`);
       }
-      candidates.sort((a, b) => {
+      const eligible = candidates.filter(id => {
+        const rawLevel = article.answer_reference_levels?.[id]?.level;
+        const level = [1, 2, 3].includes(rawLevel) ? String(rawLevel) : 'unknown';
+        return selectedLevel === 'all' || selectedLevel === level;
+      });
+      eligible.sort((a, b) => {
         const x = answerIndex[a], y = answerIndex[b];
         return (y.voteup_count ?? -1) - (x.voteup_count ?? -1)
           || (y.created_time ?? 0) - (x.created_time ?? 0)
           || b.length - a.length || (a === b ? 0 : a < b ? 1 : -1);
       });
-      for (const id of limit === null ? candidates : candidates.slice(0, limit)) {
+      for (const id of limit === null ? eligible : eligible.slice(0, limit)) {
         if (seen.has(id)) continue;
         seen.add(id);
         addedAnswers++;
@@ -79,7 +87,7 @@ function exportPlan() {
 
 function refreshSelection() {
   if (running) return;
-  answerLimit.disabled = !includeAnswers.checked;
+  answerLimit.disabled = answerLevel.disabled = !includeAnswers.checked;
   errors.replaceChildren();
   errors.hidden = true;
   links.replaceChildren();
@@ -325,7 +333,7 @@ async function exportPages() {
   }
   const selectedPages = plan.items;
   running = true;
-  input.disabled = includeAnswers.disabled = answerLimit.disabled = button.disabled = true;
+  input.disabled = includeAnswers.disabled = answerLimit.disabled = answerLevel.disabled = button.disabled = true;
   errors.hidden = true;
   errors.replaceChildren();
   const failures = [];
@@ -383,7 +391,7 @@ async function exportPages() {
   } finally {
     running = false;
     input.disabled = includeAnswers.disabled = false;
-    answerLimit.disabled = !includeAnswers.checked;
+    answerLimit.disabled = answerLevel.disabled = !includeAnswers.checked;
     button.disabled = pages.length === 0;
   }
 }
@@ -391,4 +399,5 @@ async function exportPages() {
 input.addEventListener('input', refreshInput);
 includeAnswers.addEventListener('change', refreshSelection);
 answerLimit.addEventListener('input', refreshSelection);
+answerLevel.addEventListener('change', refreshSelection);
 button.addEventListener('click', exportPages);
