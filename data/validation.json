@@ -266,12 +266,12 @@
       "all_direct_links_retained": true
     },
     "classification_counts": {
-      "1": 8096,
+      "1": 8097,
       "2": 351,
       "3": 1348,
-      "unclassified": 1
+      "unclassified": 0
     },
-    "classification_method": "gpt-6-luna max; direct relationships without sufficient evidence remain unclassified",
+    "classification_method": "gpt-6-luna max and explicit user confirmations; direct relationships without sufficient evidence remain unclassified",
     "new_nonlink_pairs": 276,
     "reviewed_pairs": 12310,
     "submitted_pairs": 12310,

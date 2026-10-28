@@ -47,7 +47,7 @@ function selectedAnswerLimit() {
 function exportPlan() {
   const limit = selectedAnswerLimit();
   const selectedLevel = answerLevel.value;
-  if (includeAnswers.checked && !['1', '2', '3', 'unknown', 'all'].includes(selectedLevel)) throw new Error('请选择有效的引用程度。');
+  if (includeAnswers.checked && !['1', '2', '3', 'all'].includes(selectedLevel)) throw new Error('请选择有效的引用程度。');
   const result = [...pages];
   const seen = new Set(result.map(page => page.id));
   let addedAnswers = 0;
@@ -65,7 +65,7 @@ function exportPlan() {
       }
       const eligible = candidates.filter(id => {
         const rawLevel = article.answer_reference_levels?.[id]?.level;
-        const level = [1, 2, 3].includes(rawLevel) ? String(rawLevel) : 'unknown';
+        const level = [1, 2, 3].includes(rawLevel) ? String(rawLevel) : null;
         return selectedLevel === 'all' || selectedLevel === level;
       });
       eligible.sort((a, b) => {

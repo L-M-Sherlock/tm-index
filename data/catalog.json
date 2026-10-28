@@ -267,12 +267,12 @@
         "all_direct_links_retained": true
       },
       "classification_counts": {
-        "1": 8096,
+        "1": 8097,
         "2": 351,
         "3": 1348,
-        "unclassified": 1
+        "unclassified": 0
       },
-      "classification_method": "gpt-6-luna max; direct relationships without sufficient evidence remain unclassified",
+      "classification_method": "gpt-6-luna max and explicit user confirmations; direct relationships without sufficient evidence remain unclassified",
       "new_nonlink_pairs": 276,
       "reviewed_pairs": 12310,
       "submitted_pairs": 12310,
@@ -415593,6 +415593,11 @@
         "2528850158": {
           "level": 1,
           "evidence": "答案正文展示目标译文准确标题/关键词“《间隔重复的历史》01 前言”，未见其专属正文。",
+          "direct": true
+        },
+        "1431100578": {
+          "level": 1,
+          "evidence": "用户确认按低程度分类；原生注释指向该译文，标题为空。",
           "direct": true
         }
       }
