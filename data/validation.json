@@ -251,19 +251,32 @@
   },
   "answer_references": {
     "schema_version": 1,
-    "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; direct links to included translations only.",
+    "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; existing direct links plus independently reviewed textual relationships.",
     "answers_scanned": 2357,
-    "answers_with_citations": 1351,
-    "translations_cited": 1256,
-    "citation_pairs": 9520,
+    "answers_with_citations": 1373,
+    "translations_cited": 1274,
+    "citation_pairs": 9796,
     "skipped_other_authors": 0,
     "earliest_answer_date": "2017-03-17",
     "latest_answer_date": "2026-10-27",
     "checks": {
       "unique_pairs": true,
       "targets_exist": true,
-      "counts_match": true
-    }
+      "counts_match": true,
+      "all_direct_links_retained": true
+    },
+    "classification_counts": {
+      "1": 8035,
+      "2": 340,
+      "3": 1346,
+      "unclassified": 75
+    },
+    "classification_method": "gpt-6-luna max; unreviewed direct relationships remain unclassified",
+    "new_nonlink_pairs": 276,
+    "reviewed_pairs": 12310,
+    "submitted_pairs": 12310,
+    "unreviewed_submitted_pairs": 0,
+    "classification_limitations": "Excerpt validation and blockquote checks do not establish semantic attribution; level 2 requires contextual review of the answer author’s own paraphrase."
   },
   "latest_incremental_annotation_date": "2026-10-28"
 }

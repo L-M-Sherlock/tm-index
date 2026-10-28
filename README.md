@@ -24,7 +24,7 @@ Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索
 - `keyword-per-article.json`：只适用于特定文章语境的标签更正
 - `keyword-normalization-review.json`：标签合并理由与保留边界
 - `references.json`：译文之间的引用边、匹配方式与歧义记录；同时识别正文链接和知乎原生引用注释
-- `answer-references.json`：本地回答中直接指向译文的引用关系，附回答标题、账号和链接
+- `answer-references.json`：本地回答与译文之间的直接链接和经核验的正文关系，附引用程度、证据及回答链接
 - `missing-zhihu-references.json` / `.csv`：原文链接有唯一译文匹配、但未发现指向该译文的知乎链接或注释的候选。其他译本或相关引用仍需逐条核对
 - `missing-zhihu-reference-review-method.json`：候选的置信分级、类别规则与抽样审计
 - `validation.json`：最终覆盖与完整性检查
@@ -34,7 +34,7 @@ Thoughts Memo 汉化组译文的摘要、关键词、原作者和双向引用索
 
 文章间引用关系使用已核验的公开版及新增文章的备份快照；核验范围和时间记录在 `references.json` 的元数据中。数据不会随知乎文章更新自动变化。
 
-回答反链只覆盖本地存档中的 Thoughts Memo 和 Jarrett Ye 回答；未添加直接链接的提及、其他账号的回答，以及存档之后的更新可能不在其中。
+回答反链覆盖本地存档中的 Thoughts Memo 和 Jarrett Ye 回答，按逐对证据区分标题或关键词提及、观点化用、摘录或全文引用。没有足够证据分级的直接链接仍保留；无链接的关系依赖候选召回和模型审阅，可能有遗漏。其他账号的回答及存档之后的更新不在本次分析范围内。
 
 ## 权利说明
 
