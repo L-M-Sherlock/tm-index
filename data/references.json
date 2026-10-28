@@ -1,25 +1,37 @@
 {
   "metadata": {
     "schema_version": 1,
-    "nodes": 2119,
-    "edges": 13529,
-    "link_occurrences": 28013,
-    "nodes_with_outgoing": 1879,
-    "nodes_with_incoming": 1859,
+    "nodes": 2150,
+    "edges": 13652,
+    "link_occurrences": 28322,
+    "link_records_examined": 63088,
+    "self_links_ignored": 2380,
+    "nodes_with_outgoing": 1905,
+    "nodes_with_incoming": 1886,
     "method_edge_counts": {
       "archive": 4,
-      "original": 7609,
-      "zhihu": 13038
+      "original": 7629,
+      "zhihu": 13321
     },
-    "missing_zhihu_reference_candidates": 489,
-    "articles_with_missing_zhihu_references": 272,
+    "method_occurrence_counts": {
+      "archive": 4,
+      "original": 11034,
+      "zhihu": 17284
+    },
+    "source_url_exact_keys": 1977,
+    "source_url_collision_keys": 24,
+    "ambiguous_original_links": 736,
+    "direct_links_to_nontranslations": 705,
+    "missing_zhihu_reference_candidates": 329,
+    "articles_with_missing_zhihu_references": 192,
     "methodology": [
       "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
       "Include Zhihu native reference annotations via sup[data-draft-type=reference][data-url], using data-text as the citation label.",
       "Match external links to the explicit original URL of a translated article after conservative URL normalization.",
       "Keep PDF page fragments and Archive.org page paths; skip shared or otherwise ambiguous original URLs.",
       "Remove self-links, deduplicate article pairs, and derive incoming links from the directed edge set.",
-      "Verified sources use live public article content; unverified sources retain their previous outgoing edges.",
+      "Public content is used from saved verified public snapshots; newer successful published readbacks override older snapshots.",
+      "Newly added translations use their archived public content, not an assumed fresh live verification.",
       "Zhihu article IDs require an allowed exact host and exact article path."
     ],
     "checks": {
@@ -28,25 +40,34 @@
       "unique_article_edges": true,
       "bidirectional_symmetry": true
     },
+    "known_original_url_redirects": [
+      {
+        "from": "https://www.readthesequences.com/ConfigurationsAndAmplitude",
+        "to": "https://www.readthesequences.com/Configurations-And-Amplitude",
+        "basis": "verified HTTP redirect"
+      }
+    ],
     "live_public_verification": {
-      "scope_articles": 2119,
+      "scope_articles": 2150,
       "verified_articles": 2119,
-      "unverified_articles": 0,
+      "unverified_articles": 31,
       "earliest_checked_at": "2026-10-27T10:31:13.387383+00:00",
-      "latest_checked_at": "2026-10-27T10:45:06.701130+00:00",
-      "unverified_behavior": "retain previous edges and candidate counts; mark those articles unverified",
-      "title_identity_reconciliations": [
-        {
-          "id": "401155017",
-          "catalog_title": "JOST'S LAW 约斯特定律",
-          "current_title": "Jost 定律",
-          "captured_at": "2026-10-27T10:45:06.701130+00:00",
-          "basis": "matching ID and author identity across catalog archive, prior published snapshot, and current public snapshot"
-        }
-      ]
+      "latest_checked_at": "2026-10-28T04:00:57.374660+00:00",
+      "archive_only_articles": 31,
+      "updated_public_articles": 120,
+      "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
     }
   },
   "ambiguous_examples": [
+    {
+      "source_id": "2094798951593649206",
+      "href": "https://gwern.net/smpy",
+      "link_text": "SMPY/TIP 等文献",
+      "candidate_ids": [
+        "1929551996844738028",
+        "1930308891650004960"
+      ]
+    },
     {
       "source_id": "2087970903049102764",
       "href": "https://archive.org/details/InsteadOfEducation/mode/2up",
@@ -3026,15 +3047,6 @@
         "1996642051769509301",
         "1996642328971081633"
       ]
-    },
-    {
-      "source_id": "1996642051769509301",
-      "href": "https://notes.andymatuschak.org/z7LkE41xEbQ4AMvXWegTjZE",
-      "link_text": "David Holz’s iterative invention cycle",
-      "candidate_ids": [
-        "1996642051769509301",
-        "1996642328971081633"
-      ]
     }
   ],
   "edges": [
@@ -3731,19 +3743,23 @@
       "source_id": "52805512",
       "target_id": "1949441047303258874",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "为什么这本书会失败",
+        "为何阐释高效的教育体系如此之难？",
         "失败"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_is_it_hard_to_explain_an_effective_education_system?"
+        "https://supermemo.guru/wiki/Why_is_it_hard_to_explain_an_effective_education_system?",
+        "https://zhuanlan.zhihu.com/p/1949441047303258874"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "52990307",
@@ -4742,18 +4758,22 @@
       "source_id": "55041489",
       "target_id": "272801606",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "漏洞百出的方法"
+        "漏洞百出的方法",
+        "论老鼠比受过学校教育的人更优越"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/On_the_superiority_of_a_rat_over_a_schooled_human"
+        "https://supermemo.guru/wiki/On_the_superiority_of_a_rat_over_a_schooled_human",
+        "https://zhuanlan.zhihu.com/p/272801606"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "55041489",
@@ -5334,18 +5354,21 @@
       "source_id": "64571517",
       "target_id": "655457394",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/learntropy"
+        "https://supermemo.guru/wiki/learntropy",
+        "https://zhuanlan.zhihu.com/p/655457394"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "64571517",
@@ -5486,36 +5509,44 @@
       "source_id": "64572381",
       "target_id": "274352214",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵",
-        "遗忘"
+        "遗忘",
+        "遗忘曲线"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Forgetting_curve"
+        "https://supermemo.guru/wiki/Forgetting_curve",
+        "https://zhuanlan.zhihu.com/p/274352214"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "64572381",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "64572381",
@@ -5659,18 +5690,21 @@
       "source_id": "64572381",
       "target_id": "655457394",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/learntropy"
+        "https://supermemo.guru/wiki/learntropy",
+        "https://zhuanlan.zhihu.com/p/655457394"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "64572381",
@@ -5801,18 +5835,22 @@
       "source_id": "64573017",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "64573017",
@@ -8429,18 +8467,22 @@
       "source_id": "66683201",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用类比?"
+        "为什么使用类比?",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "66683201",
@@ -8891,36 +8933,44 @@
       "source_id": "67390960",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 5
+      "occurrences": 6
     },
     {
       "source_id": "67390960",
       "target_id": "307602868",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "水蛭",
+        "水蛭（Leech）[Anki, SuperMemo]",
         "难点"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Leech"
+        "https://supermemo.guru/wiki/Leech",
+        "https://zhuanlan.zhihu.com/p/307602868"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "67390960",
@@ -10673,18 +10723,22 @@
       "source_id": "72498488",
       "target_id": "427095337",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "你会忍心把小狗关在笼子里吗"
+        "你会忍心把小狗关在笼子里吗",
+        "你会忍心把小狗关进笼子吗？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Would_you_have_a_heart_to_cage_a_puppy?"
+        "https://supermemo.guru/wiki/Would_you_have_a_heart_to_cage_a_puppy?",
+        "https://zhuanlan.zhihu.com/p/427095337"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72589385",
@@ -10894,35 +10948,42 @@
       "source_id": "72792752",
       "target_id": "266856783",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "睡眠中的记忆优化",
         "睡眠中突触消除"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_optimization_in_sleep"
+        "https://supermemo.guru/wiki/Memory_optimization_in_sleep",
+        "https://zhuanlan.zhihu.com/p/266856783"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72792752",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72792752",
@@ -10970,18 +11031,22 @@
       "source_id": "72792752",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72792752",
@@ -11007,19 +11072,23 @@
       "source_id": "72792752",
       "target_id": "611469462",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学校教育",
+        "学校教育的问题",
         "整本书"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Problem_of_schooling"
+        "https://supermemo.guru/wiki/Problem_of_schooling",
+        "https://zhuanlan.zhihu.com/p/611469462"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "72792752",
@@ -11080,35 +11149,42 @@
       "source_id": "72794136",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72794136",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "72794136",
@@ -12082,18 +12158,22 @@
       "source_id": "73367196",
       "target_id": "266856783",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "睡眠中的记忆优化",
         "记忆优化"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_optimization_in_sleep"
+        "https://supermemo.guru/wiki/Memory_optimization_in_sleep",
+        "https://zhuanlan.zhihu.com/p/266856783"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "73367196",
@@ -12792,18 +12872,22 @@
       "source_id": "96603060",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "96603060",
@@ -12887,18 +12971,22 @@
       "source_id": "97887756",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "97887756",
@@ -12997,18 +13085,22 @@
       "source_id": "99505568",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "99505568",
@@ -13185,18 +13277,22 @@
       "source_id": "156672476",
       "target_id": "304800091",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "复杂程度"
+        "复杂程度",
+        "记忆复杂性"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_complexity"
+        "https://supermemo.guru/wiki/Memory_complexity",
+        "https://zhuanlan.zhihu.com/p/304800091"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "156672476",
@@ -13243,18 +13339,21 @@
       "source_id": "164968911",
       "target_id": "156672476",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "艾宾浩斯遗忘曲线的错误"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Error_of_Ebbinghaus_forgetting_curve"
+        "https://supermemo.guru/wiki/Error_of_Ebbinghaus_forgetting_curve",
+        "https://zhuanlan.zhihu.com/p/156672476"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "164968911",
@@ -13280,18 +13379,22 @@
       "source_id": "164968911",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 7
+      "occurrences": 8
     },
     {
       "source_id": "164968911",
@@ -13318,18 +13421,22 @@
       "source_id": "164968911",
       "target_id": "401155017",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Jost 定律",
         "约斯特定律"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Jost's_law"
+        "https://supermemo.guru/wiki/Jost's_law",
+        "https://zhuanlan.zhihu.com/p/401155017"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "164968911",
@@ -13541,18 +13648,22 @@
       "source_id": "205600711",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "205600711",
@@ -13794,18 +13905,22 @@
       "source_id": "213170503",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "213170503",
@@ -15056,18 +15171,22 @@
       "source_id": "251148900",
       "target_id": "626772579",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Papert 有远见地呼吁抛弃过时的字识（letteracy）（1993）",
         "letteracy 的问题"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Papert's_visionary_call_to_ditch_obsolete_letteracy_(1993)"
+        "https://supermemo.guru/wiki/Papert's_visionary_call_to_ditch_obsolete_letteracy_(1993)",
+        "https://zhuanlan.zhihu.com/p/626772579"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "251148900",
@@ -15594,18 +15713,22 @@
       "source_id": "256212819",
       "target_id": "579476637",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "记忆的双组分模型",
         "长期记忆"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Two_component_model_of_memory"
+        "https://supermemo.guru/wiki/Two_component_model_of_memory",
+        "https://zhuanlan.zhihu.com/p/579476637"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "258435094",
@@ -16591,18 +16714,22 @@
       "source_id": "264940693",
       "target_id": "266856783",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "睡眠中的记忆优化",
         "睡眠中的记忆优化过程"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_optimization_in_sleep"
+        "https://supermemo.guru/wiki/Memory_optimization_in_sleep",
+        "https://zhuanlan.zhihu.com/p/266856783"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "264940693",
@@ -16912,18 +17039,22 @@
       "source_id": "264989664",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "264989664",
@@ -17373,18 +17504,22 @@
       "source_id": "265081034",
       "target_id": "304800091",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "复杂的记忆"
+        "复杂的记忆",
+        "记忆复杂性"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_complexity"
+        "https://supermemo.guru/wiki/Memory_complexity",
+        "https://zhuanlan.zhihu.com/p/304800091"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "265081034",
@@ -18330,18 +18465,22 @@
       "source_id": "266922623",
       "target_id": "307602868",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "leeches"
+        "leeches",
+        "水蛭（Leech）[Anki, SuperMemo]"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Leech"
+        "https://supermemo.guru/wiki/Leech",
+        "https://zhuanlan.zhihu.com/p/307602868"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "266922623",
@@ -19278,18 +19417,22 @@
       "source_id": "268536400",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "268536400",
@@ -19462,18 +19605,22 @@
       "source_id": "268536400",
       "target_id": "427095337",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "下药"
+        "下药",
+        "你会忍心把小狗关进笼子吗？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Would_you_have_a_heart_to_cage_a_puppy?"
+        "https://supermemo.guru/wiki/Would_you_have_a_heart_to_cage_a_puppy?",
+        "https://zhuanlan.zhihu.com/p/427095337"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "268536400",
@@ -20087,18 +20234,22 @@
       "source_id": "269974053",
       "target_id": "611469462",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "学校教育"
+        "学校教育",
+        "学校教育的问题"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Problem_of_schooling"
+        "https://supermemo.guru/wiki/Problem_of_schooling",
+        "https://zhuanlan.zhihu.com/p/611469462"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "269997143",
@@ -20220,18 +20371,21 @@
       "source_id": "269997143",
       "target_id": "304800091",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "记忆复杂性"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_complexity"
+        "https://supermemo.guru/wiki/Memory_complexity",
+        "https://zhuanlan.zhihu.com/p/304800091"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "269997143",
@@ -22276,9 +22430,11 @@
       "source_id": "274352214",
       "target_id": "304800091",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
@@ -22289,26 +22445,31 @@
         "难点"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_complexity"
+        "https://supermemo.guru/wiki/Memory_complexity",
+        "https://zhuanlan.zhihu.com/p/304800091"
       ],
-      "occurrences": 5
+      "occurrences": 6
     },
     {
       "source_id": "274352214",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "274352214",
@@ -23306,18 +23467,22 @@
       "source_id": "283017134",
       "target_id": "307602868",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "水蛭"
+        "水蛭",
+        "水蛭（Leech）[Anki, SuperMemo]"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Leech"
+        "https://supermemo.guru/wiki/Leech",
+        "https://zhuanlan.zhihu.com/p/307602868"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "283017134",
@@ -25017,18 +25182,22 @@
       "source_id": "303204832",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "使用比喻"
+        "使用比喻",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "303204832",
@@ -25438,18 +25607,22 @@
       "source_id": "304800091",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "304800091",
@@ -27987,18 +28160,22 @@
       "source_id": "349290940",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "如何解决任何问题？",
         "解决问题"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "349290940",
@@ -28079,18 +28256,22 @@
       "source_id": "349290940",
       "target_id": "492731786",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "智力",
         "智慧"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Intelligence"
+        "https://supermemo.guru/wiki/Intelligence",
+        "https://zhuanlan.zhihu.com/p/492731786"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "349290940",
@@ -31275,18 +31456,22 @@
       "source_id": "353614809",
       "target_id": "626772579",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Papert 有远见地呼吁抛弃过时的字识（letteracy）（1993）",
         "Papert's visionary call to ditch obsolete letteracy (1993)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Papert's_visionary_call_to_ditch_obsolete_letteracy_(1993)"
+        "https://supermemo.guru/wiki/Papert's_visionary_call_to_ditch_obsolete_letteracy_(1993)",
+        "https://zhuanlan.zhihu.com/p/626772579"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "353614809",
@@ -32041,18 +32226,22 @@
       "source_id": "356977535",
       "target_id": "304193622",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "大脑中的激活图"
+        "大脑中的激活图",
+        "概念计算"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Conceptual_computation"
+        "https://supermemo.guru/wiki/Conceptual_computation",
+        "https://zhuanlan.zhihu.com/p/304193622"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "356977535",
@@ -32816,18 +33005,22 @@
       "source_id": "357209357",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为何要使用比喻？"
+        "为何要使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "357209357",
@@ -34529,18 +34722,22 @@
       "source_id": "359658715",
       "target_id": "611469462",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "学校教育的问题",
         "强制学校教育"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Problem_of_schooling"
+        "https://supermemo.guru/wiki/Problem_of_schooling",
+        "https://zhuanlan.zhihu.com/p/611469462"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "359658715",
@@ -37479,18 +37676,22 @@
       "source_id": "372072085",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "372072085",
@@ -38368,18 +38569,22 @@
       "source_id": "379665183",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "379665183",
@@ -38751,19 +38956,23 @@
       "source_id": "380354533",
       "target_id": "420105707",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "(1/5) 高效学习的间隔重复——概述",
         "spaced repetition",
         "间隔重复"
       ],
       "source_urls": [
-        "https://www.gwern.net/Spaced-repetition"
+        "https://www.gwern.net/Spaced-repetition",
+        "https://zhuanlan.zhihu.com/p/420105707"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "382699591",
@@ -39036,18 +39245,21 @@
       "source_id": "385629349",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "385629349",
@@ -44174,18 +44386,22 @@
       "source_id": "401155017",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "401155017",
@@ -53321,35 +53537,42 @@
       "source_id": "423449068",
       "target_id": "490699755",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Bjork ：「上帝啊，这个困难正合我意」——  合意困难",
         "合意困难（术语来自 Bjork）"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z49u8mtc9wZoY7siV7nz4V3PG2oMkNBn7AgUk"
+        "https://notes.andymatuschak.org/z49u8mtc9wZoY7siV7nz4V3PG2oMkNBn7AgUk",
+        "https://zhuanlan.zhihu.com/p/490699755"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "423449068",
       "target_id": "520108661",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "间隔重复记忆系统非常高效"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z5rVJfPsyCU3pHBbhwef9DNR5fohTHCQFJWir"
+        "https://notes.andymatuschak.org/z5rVJfPsyCU3pHBbhwef9DNR5fohTHCQFJWir",
+        "https://zhuanlan.zhihu.com/p/520108661"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "423449068",
@@ -55059,18 +55282,22 @@
       "source_id": "427095337",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻？"
+        "为什么使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "427095337",
@@ -59676,35 +59903,42 @@
       "source_id": "439795148",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻？"
+        "为什么使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "439795148",
       "target_id": "595158577",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "稳定化"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Stabilization"
+        "https://supermemo.guru/wiki/Stabilization",
+        "https://zhuanlan.zhihu.com/p/595158577"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "439795148",
@@ -60284,18 +60518,22 @@
       "source_id": "441532847",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 5
+      "occurrences": 6
     },
     {
       "source_id": "441532847",
@@ -62201,18 +62439,22 @@
       "source_id": "445497724",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 5
+      "occurrences": 6
     },
     {
       "source_id": "445497724",
@@ -63184,18 +63426,22 @@
       "source_id": "447640544",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "447640544",
@@ -67556,18 +67802,22 @@
       "source_id": "456690402",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 6
+      "occurrences": 7
     },
     {
       "source_id": "456690402",
@@ -73913,9 +74163,11 @@
       "source_id": "471760789",
       "target_id": "304800091",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
@@ -73923,45 +74175,54 @@
         "记忆的复杂性"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_complexity"
+        "https://supermemo.guru/wiki/Memory_complexity",
+        "https://zhuanlan.zhihu.com/p/304800091"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "471760789",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "最优间隔",
         "重复间隔时间",
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 7
+      "occurrences": 8
     },
     {
       "source_id": "471760789",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "如何解决任何问题？",
         "最佳形式的头脑风暴"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "471760789",
@@ -75000,19 +75261,23 @@
       "source_id": "473666349",
       "target_id": "303204832",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "彼得 · 沃兹尼亚克",
         "沃兹尼亚克",
         "第一个用户"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Piotr_Wozniak"
+        "https://supermemo.guru/wiki/Piotr_Wozniak",
+        "https://zhuanlan.zhihu.com/p/303204832"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "473666349",
@@ -75039,18 +75304,22 @@
       "source_id": "473666349",
       "target_id": "353404375",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "自学"
+        "自学",
+        "自我导向/自定进度/自学"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Self-learning"
+        "https://supermemo.guru/wiki/Self-learning",
+        "https://zhuanlan.zhihu.com/p/353404375"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "473666349",
@@ -75112,18 +75381,21 @@
       "source_id": "473666349",
       "target_id": "558542113",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "遗忘"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Forgetting"
+        "https://supermemo.guru/wiki/Forgetting",
+        "https://zhuanlan.zhihu.com/p/558542113"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "473666349",
@@ -75146,18 +75418,22 @@
       "source_id": "473666349",
       "target_id": "574628398",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "“间隔重复历史”"
+        "“间隔重复历史”",
+        "重复历史"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Repetition_history"
+        "https://supermemo.guru/wiki/Repetition_history",
+        "https://zhuanlan.zhihu.com/p/574628398"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "473666349",
@@ -77653,18 +77929,22 @@
       "source_id": "481230325",
       "target_id": "667506807",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "最初的助记媒介以威权主义为隐含前提"
+        "最初的助记媒介以威权主义为隐含前提",
+        "最初的助记媒介在前提上隐含着专制"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z2SaePptX2K1sudevrMYrjaqP7ZBRLs82iSv"
+        "https://notes.andymatuschak.org/z2SaePptX2K1sudevrMYrjaqP7ZBRLs82iSv",
+        "https://zhuanlan.zhihu.com/p/667506807"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "481236886",
@@ -79063,18 +79343,21 @@
       "source_id": "487321909",
       "target_id": "422644661",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "Mochi"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/zxAXSEQidXeYW2XFBj9ftGxz1kTNtV4fXjhZ"
+        "https://notes.andymatuschak.org/zxAXSEQidXeYW2XFBj9ftGxz1kTNtV4fXjhZ",
+        "https://zhuanlan.zhihu.com/p/422644661"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "487321909",
@@ -81481,18 +81764,22 @@
       "source_id": "497000116",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻?"
+        "为什么使用比喻?",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "497619395",
@@ -81772,18 +82059,22 @@
       "source_id": "497982235",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻?"
+        "为什么使用比喻?",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "497982873",
@@ -83135,18 +83426,22 @@
       "source_id": "503348150",
       "target_id": "611469462",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "学校不是学习的好地方"
+        "学校不是学习的好地方",
+        "学校教育的问题"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Problem_of_schooling"
+        "https://supermemo.guru/wiki/Problem_of_schooling",
+        "https://zhuanlan.zhihu.com/p/611469462"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "503348150",
@@ -83173,18 +83468,22 @@
       "source_id": "503362774",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "503362774",
@@ -85499,18 +85798,21 @@
       "source_id": "521844479",
       "target_id": "631040289",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "工具制造者和工具使用者之间的深度合作可能会支持实践出洞见"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z7PLEhbuGGhQx3o5oxpSD8oMxEHJXxZGUxBWD"
+        "https://notes.andymatuschak.org/z7PLEhbuGGhQx3o5oxpSD8oMxEHJXxZGUxBWD",
+        "https://zhuanlan.zhihu.com/p/631040289"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "521844479",
@@ -85584,18 +85886,22 @@
       "source_id": "521885826",
       "target_id": "266856783",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "睡眠中的记忆优化",
         "神经组织者"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_optimization_in_sleep"
+        "https://supermemo.guru/wiki/Memory_optimization_in_sleep",
+        "https://zhuanlan.zhihu.com/p/266856783"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "521885826",
@@ -86289,18 +86595,22 @@
       "source_id": "525125666",
       "target_id": "626772579",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Papert 对学校教育崩溃的预言"
+        "Papert 对学校教育崩溃的预言",
+        "Papert 有远见地呼吁抛弃过时的字识（letteracy）（1993）"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Papert%27s_visionary_call_to_ditch_obsolete_letteracy_(1993)"
+        "https://supermemo.guru/wiki/Papert%27s_visionary_call_to_ditch_obsolete_letteracy_(1993)",
+        "https://zhuanlan.zhihu.com/p/626772579"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "525125666",
@@ -89085,18 +89395,21 @@
       "source_id": "537644290",
       "target_id": "623551320",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "SRS 重试机制"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z2GB3wDnERaJr2337zGJdb5Gnr7tURrfmoxu"
+        "https://notes.andymatuschak.org/z2GB3wDnERaJr2337zGJdb5Gnr7tURrfmoxu",
+        "https://zhuanlan.zhihu.com/p/623551320"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "539022457",
@@ -90932,18 +91245,22 @@
       "source_id": "545188205",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "545188205",
@@ -93024,35 +93341,41 @@
       "source_id": "547948317",
       "target_id": "699342664",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "普及助记媒介似乎需要网页出版的普及"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/zLbzDQF4MLSUEgDKu16i2h9q1ea8jC5crTV"
+        "https://notes.andymatuschak.org/zLbzDQF4MLSUEgDKu16i2h9q1ea8jC5crTV",
+        "https://zhuanlan.zhihu.com/p/699342664"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "547948317",
       "target_id": "715577675",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "把任意网页转化成助记媒介"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z2hABbXxq3dz9XQ6bWrqLyModyC5EC2MXxNA"
+        "https://notes.andymatuschak.org/z2hABbXxq3dz9XQ6bWrqLyModyC5EC2MXxNA",
+        "https://zhuanlan.zhihu.com/p/715577675"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "548017967",
@@ -101781,18 +102104,22 @@
       "source_id": "562476836",
       "target_id": "593177804",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "实现幸福的简单公式",
         "终身满足"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Simple_formula_for_happiness"
+        "https://supermemo.guru/wiki/Simple_formula_for_happiness",
+        "https://zhuanlan.zhihu.com/p/593177804"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "562476836",
@@ -101913,35 +102240,42 @@
       "source_id": "563354359",
       "target_id": "576166369",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "Alfie Kohn"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Alfie_Kohn"
+        "https://supermemo.guru/wiki/Alfie_Kohn",
+        "https://zhuanlan.zhihu.com/p/576166369"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "563354359",
       "target_id": "581054626",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "比尔·盖茨会对教育抱有错误看法"
+        "比尔·盖茨会对教育抱有错误看法",
+        "比尔·盖茨对教育的看法错了"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Bill_Gates_is_wrong_about_education"
+        "https://supermemo.guru/wiki/Bill_Gates_is_wrong_about_education",
+        "https://zhuanlan.zhihu.com/p/581054626"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "563354359",
@@ -101981,35 +102315,42 @@
       "source_id": "563354359",
       "target_id": "660799452",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "PISA 助长教育内卷"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/PISA_fuels_the_education_arms_race"
+        "https://supermemo.guru/wiki/PISA_fuels_the_education_arms_race",
+        "https://zhuanlan.zhihu.com/p/660799452"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "563354359",
       "target_id": "709231544",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么优秀老师不安排考试"
+        "为什么优秀老师不安排考试",
+        "为什么最好的老师不安排考试"
       ],
       "source_urls": [
-        "https://www.alfiekohn.org/blogs/no-tests/"
+        "https://www.alfiekohn.org/blogs/no-tests/",
+        "https://zhuanlan.zhihu.com/p/709231544"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "563438547",
@@ -102676,36 +103017,44 @@
       "source_id": "565085812",
       "target_id": "625602245",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "我不再爱（波兰）国了",
         "我自己对青年爱国主义的不太友好的表达"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/I_stopped_being_patriotic"
+        "https://supermemo.guru/wiki/I_stopped_being_patriotic",
+        "https://zhuanlan.zhihu.com/p/625602245"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "565085812",
       "target_id": "694890917",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "学历史：学校 vs 自主学习",
         "我自己学习历史的历程",
         "自由学习：学习历史"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Learning_history:_school_vs._self-directed_learning"
+        "https://supermemo.guru/wiki/Learning_history:_school_vs._self-directed_learning",
+        "https://zhuanlan.zhihu.com/p/694890917"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "565085812",
@@ -104053,35 +104402,42 @@
       "source_id": "569941349",
       "target_id": "575245791",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "习得性无助"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Learned_helplessness"
+        "https://supermemo.guru/wiki/Learned_helplessness",
+        "https://zhuanlan.zhihu.com/p/575245791"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "569941349",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻？"
+        "为什么使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "569941349",
@@ -104121,18 +104477,22 @@
       "source_id": "569941349",
       "target_id": "20111493435",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "在家上学禁令",
         "禁止在家上学"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Ban_on_homeschooling"
+        "https://supermemo.guru/wiki/Ban_on_homeschooling",
+        "https://zhuanlan.zhihu.com/p/20111493435"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "570172907",
@@ -104640,18 +105000,22 @@
       "source_id": "571702216",
       "target_id": "677540148",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "一些创新洞察依赖于长期记忆",
         "有些创造性的洞察力依赖于长期记忆"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/zNW5jyTpU1v4XBQfTYwoM8Q"
+        "https://notes.andymatuschak.org/zNW5jyTpU1v4XBQfTYwoM8Q",
+        "https://zhuanlan.zhihu.com/p/677540148"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "572241126",
@@ -105125,18 +105489,22 @@
       "source_id": "573089008",
       "target_id": "662753699",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "优化成长过程中的行为空间",
         "儿童发展中对行为空间的优化"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Optimization_of_behavioral_spaces_in_development"
+        "https://supermemo.guru/wiki/Optimization_of_behavioral_spaces_in_development",
+        "https://zhuanlan.zhihu.com/p/662753699"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "573838070",
@@ -111523,18 +111891,22 @@
       "source_id": "585249833",
       "target_id": "687576239",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "其他地方"
+        "其他地方",
+        "有可能开展真正的教育改革吗? 如果可能，怎么办？"
       ],
       "source_urls": [
-        "https://www.psychologytoday.com/us/blog/freedom-learn/201108/is-real-educational-reform-possible-if-so-how"
+        "https://www.psychologytoday.com/us/blog/freedom-learn/201108/is-real-educational-reform-possible-if-so-how",
+        "https://zhuanlan.zhihu.com/p/687576239"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "585570298",
@@ -112146,18 +112518,21 @@
       "source_id": "586408138",
       "target_id": "617467538",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "知识估值网络"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Knowledge_valuation_network"
+        "https://supermemo.guru/wiki/Knowledge_valuation_network",
+        "https://zhuanlan.zhihu.com/p/617467538"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "587086992",
@@ -112590,18 +112965,22 @@
       "source_id": "587991760",
       "target_id": "394795804",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "助记媒介"
+        "助记媒介",
+        "我们如何才能开发出变革性的思想工具？"
       ],
       "source_urls": [
-        "https://numinous.productions/ttft"
+        "https://numinous.productions/ttft",
+        "https://zhuanlan.zhihu.com/p/394795804"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "588396638",
@@ -114077,18 +114456,21 @@
       "source_id": "591159393",
       "target_id": "657707474",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "我们仍然不知道系统性撰写优质文字解释的方法"
       ],
       "source_urls": [
-        "https://wiki.issarice.com/wiki/We_still_don't_know_how_to_systematically_write_great_word_explanations"
+        "https://wiki.issarice.com/wiki/We_still_don't_know_how_to_systematically_write_great_word_explanations",
+        "https://zhuanlan.zhihu.com/p/657707474"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "591159393",
@@ -115268,35 +115650,43 @@
       "source_id": "592277212",
       "target_id": "648372165",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Peter Gray"
+        "Peter Gray",
+        "彼得·格雷（Peter Gray）"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Peter_Gray"
+        "https://supermemo.guru/wiki/Peter_Gray",
+        "https://zhuanlan.zhihu.com/p/648372165"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "592277212",
       "target_id": "715287744",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "波兰学生罢学"
+        "波兰学生罢学",
+        "波兰学生罢学（评估）"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Student_strike_in_Poland_(assessment)"
+        "https://supermemo.guru/wiki/Student_strike_in_Poland_(assessment)",
+        "https://zhuanlan.zhihu.com/p/715287744"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "592464904",
@@ -116349,18 +116739,22 @@
       "source_id": "595158577",
       "target_id": "304193622",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "思路"
+        "思路",
+        "概念计算"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Conceptual_computation"
+        "https://supermemo.guru/wiki/Conceptual_computation",
+        "https://zhuanlan.zhihu.com/p/304193622"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "595158577",
@@ -121708,18 +122102,22 @@
       "source_id": "602033506",
       "target_id": "607106318",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "欧洲之耻"
+        "欧洲之耻",
+        "欧洲之耻——德国与瑞典"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/European_Outcasts"
+        "https://supermemo.guru/wiki/European_Outcasts",
+        "https://zhuanlan.zhihu.com/p/607106318"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "602033506",
@@ -125907,18 +126305,21 @@
       "source_id": "606958647",
       "target_id": "620994555",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "内在价值状态"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Intrinsically_valuable_state"
+        "https://supermemo.guru/wiki/Intrinsically_valuable_state",
+        "https://zhuanlan.zhihu.com/p/620994555"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "607106318",
@@ -131113,18 +131514,21 @@
       "source_id": "613210988",
       "target_id": "642001483",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "新颖的用户界面创意是公共物品"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/zXseK39g1SHgQvMXLbnaB1AUZ2WL5ffDzsbZ"
+        "https://notes.andymatuschak.org/zXseK39g1SHgQvMXLbnaB1AUZ2WL5ffDzsbZ",
+        "https://zhuanlan.zhihu.com/p/642001483"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "613549623",
@@ -131294,18 +131698,22 @@
       "source_id": "613549623",
       "target_id": "307602868",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "水蛭"
+        "水蛭",
+        "水蛭（Leech）[Anki, SuperMemo]"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Leech"
+        "https://supermemo.guru/wiki/Leech",
+        "https://zhuanlan.zhihu.com/p/307602868"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "613549623",
@@ -133003,35 +133411,41 @@
       "source_id": "616163443",
       "target_id": "617467538",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "知识估值网络"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Knowledge_valuation_network"
+        "https://supermemo.guru/wiki/Knowledge_valuation_network",
+        "https://zhuanlan.zhihu.com/p/617467538"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "616163443",
       "target_id": "655457394",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Learntropy"
+        "https://supermemo.guru/wiki/Learntropy",
+        "https://zhuanlan.zhihu.com/p/655457394"
       ],
-      "occurrences": 5
+      "occurrences": 6
     },
     {
       "source_id": "616345319",
@@ -134732,18 +135146,22 @@
       "source_id": "617900278",
       "target_id": "648372165",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Peter Gray"
+        "Peter Gray",
+        "彼得·格雷（Peter Gray）"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Peter_Gray"
+        "https://supermemo.guru/wiki/Peter_Gray",
+        "https://zhuanlan.zhihu.com/p/648372165"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "618183325",
@@ -139604,35 +140022,42 @@
       "source_id": "626772579",
       "target_id": "655457394",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Learntropy"
+        "https://supermemo.guru/wiki/Learntropy",
+        "https://zhuanlan.zhihu.com/p/655457394"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "626772579",
       "target_id": "694257020",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "学校字识的隧道视野"
+        "学校字识的隧道视野",
+        "学校字识（letteracy）的一孔之见"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Tunnel_vision_of_school_letteracy"
+        "https://supermemo.guru/wiki/Tunnel_vision_of_school_letteracy",
+        "https://zhuanlan.zhihu.com/p/694257020"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "627546446",
@@ -146711,52 +147136,63 @@
       "source_id": "642497766",
       "target_id": "655457394",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "学习熵"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Learntropy"
+        "https://supermemo.guru/wiki/Learntropy",
+        "https://zhuanlan.zhihu.com/p/655457394"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "642497766",
       "target_id": "697213157",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "瑞士奶酪模型",
         "睡眠不足的瑞士奶酪模型"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Swiss_cheese_model"
+        "https://supermemo.guru/wiki/Swiss_cheese_model",
+        "https://zhuanlan.zhihu.com/p/697213157"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "642497766",
       "target_id": "1954544526724167425",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "不可逆的适应不良",
         "不可逆转的适应力低下"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Irreversible_maladaptability"
+        "https://supermemo.guru/wiki/Irreversible_maladaptability",
+        "https://zhuanlan.zhihu.com/p/1954544526724167425"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "642714761",
@@ -168199,18 +168635,21 @@
       "source_id": "690467591",
       "target_id": "592277212",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "结束学校奴役"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/End_School_Slavery"
+        "https://supermemo.guru/wiki/End_School_Slavery",
+        "https://zhuanlan.zhihu.com/p/592277212"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "690467591",
@@ -169922,18 +170361,22 @@
       "source_id": "694034973",
       "target_id": "303204832",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "彼得 · 沃兹尼亚克",
         "彼得·沃兹尼亚克"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Piotr_Wozniak"
+        "https://supermemo.guru/wiki/Piotr_Wozniak",
+        "https://zhuanlan.zhihu.com/p/303204832"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "694034973",
@@ -170320,18 +170763,22 @@
       "source_id": "694257020",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻？"
+        "为什么使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "694257020",
@@ -170919,18 +171366,22 @@
       "source_id": "694626102",
       "target_id": "697566052",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Primer++ 被嵌入到一个领域中，通过情景体验来引导学习者参与"
+        "Primer++ 被嵌入到一个领域中，通过情景体验来引导学习者参与",
+        "超级《启蒙琼林》被嵌入到一个领域中，通过情景体验来引导学习者参与"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/zP7xzHHLs9rLZudGvGjmD9k"
+        "https://notes.andymatuschak.org/zP7xzHHLs9rLZudGvGjmD9k",
+        "https://zhuanlan.zhihu.com/p/697566052"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "694626102",
@@ -177276,18 +177727,21 @@
       "source_id": "698714697",
       "target_id": "24750040813",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "如何努力工作"
       ],
       "source_urls": [
-        "http://paulgraham.com/hwh.html"
+        "http://paulgraham.com/hwh.html",
+        "https://zhuanlan.zhihu.com/p/24750040813"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "698931449",
@@ -177314,18 +177768,22 @@
       "source_id": "699093323",
       "target_id": "1974434605189858200",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Dual n-Back"
+        "Dual n-Back",
+        "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答"
       ],
       "source_urls": [
-        "https://gwern.net/dnb-faq"
+        "https://gwern.net/dnb-faq",
+        "https://zhuanlan.zhihu.com/p/1974434605189858200"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "699166157",
@@ -177852,18 +178310,22 @@
       "source_id": "700282239",
       "target_id": "420105707",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "(1/5) 高效学习的间隔重复——概述",
         "间隔重复"
       ],
       "source_urls": [
-        "https://gwern.net/spaced-repetition"
+        "https://gwern.net/spaced-repetition",
+        "https://zhuanlan.zhihu.com/p/420105707"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "700282239",
@@ -181313,20 +181775,24 @@
       "source_id": "711526074",
       "target_id": "1950516755240817475",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "「早起鸟」在打压「夜猫子」吗？",
         "百灵鸟会压制猫头鹰吗？Robin Hanson - Overcoming Bias",
         "评论区"
       ],
       "source_urls": [
         "https://www.overcomingbias.com/p/do-larks-repress-owlshtml",
-        "https://www.overcomingbias.com/p/do-larks-repress-owlshtml#comment-443555"
+        "https://www.overcomingbias.com/p/do-larks-repress-owlshtml#comment-443555",
+        "https://zhuanlan.zhihu.com/p/1950516755240817475"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "712438738",
@@ -181915,18 +182381,22 @@
       "source_id": "713753922",
       "target_id": "715741793",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "优绩主义，众矢之的——莫与学历崇拜混为一谈。",
         "基于学历证书的伪精英制度"
       ],
       "source_urls": [
-        "https://slatestarcodex.com/2017/07/24/targeting-meritocracy/"
+        "https://slatestarcodex.com/2017/07/24/targeting-meritocracy/",
+        "https://zhuanlan.zhihu.com/p/715741793"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "713858417",
@@ -182589,18 +183059,21 @@
       "source_id": "715287744",
       "target_id": "592277212",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "结束学校奴役"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/End_School_Slavery"
+        "https://supermemo.guru/wiki/End_School_Slavery",
+        "https://zhuanlan.zhihu.com/p/592277212"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "715287744",
@@ -183612,18 +184085,22 @@
       "source_id": "716414565",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么使用比喻？"
+        "为什么使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "716414565",
@@ -183802,18 +184279,22 @@
       "source_id": "716570823",
       "target_id": "630862056",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "GPT-3 可以基于填空卡生成问答卡"
+        "GPT-3 可以基于填空卡生成问答卡",
+        "GPT-3 能够将填空卡转换为问答卡"
       ],
       "source_urls": [
-        "https://notes.andymatuschak.org/z4A7LCXBAkAUH2uZ21JnNrBhJHCjkobFMyn"
+        "https://notes.andymatuschak.org/z4A7LCXBAkAUH2uZ21JnNrBhJHCjkobFMyn",
+        "https://zhuanlan.zhihu.com/p/630862056"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "716570823",
@@ -185306,18 +185787,22 @@
       "source_id": "718792618",
       "target_id": "607106318",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "德国甚至援引纳粹时期的法律来打压在家上学者"
+        "德国甚至援引纳粹时期的法律来打压在家上学者",
+        "欧洲之耻——德国与瑞典"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/European_Outcasts"
+        "https://supermemo.guru/wiki/European_Outcasts",
+        "https://zhuanlan.zhihu.com/p/607106318"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "718792618",
@@ -191084,6 +191569,23 @@
       "occurrences": 2
     },
     {
+      "source_id": "4958428326",
+      "target_id": "2094066206470836669",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "量子力学"
+      ],
+      "source_urls": [
+        "https://www.readthesequences.com/Quantum-Physics-And-Many-Worlds-Sequence"
+      ],
+      "occurrences": 1
+    },
+    {
       "source_id": "5049045593",
       "target_id": "675267539",
       "via": [
@@ -194077,18 +194579,22 @@
       "source_id": "18080570922",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "创造性破坏"
+        "创造性破坏",
+        "如何解决任何问题？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "18080570922",
@@ -194131,18 +194637,22 @@
       "source_id": "18080570922",
       "target_id": "369568521",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "民主学校/在家上学/非学校教育",
         "非学校教育"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Unschooling"
+        "https://supermemo.guru/wiki/Unschooling",
+        "https://zhuanlan.zhihu.com/p/369568521"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "18080570922",
@@ -194243,19 +194753,23 @@
       "source_id": "18080570922",
       "target_id": "622147932",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "定向探索",
+        "误导因素",
         "谬误向量"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Falsity_vector"
+        "https://supermemo.guru/wiki/Falsity_vector",
+        "https://zhuanlan.zhihu.com/p/622147932"
       ],
-      "occurrences": 25
+      "occurrences": 26
     },
     {
       "source_id": "18080570922",
@@ -194282,18 +194796,22 @@
       "source_id": "18080570922",
       "target_id": "648372165",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Peter Gray"
+        "Peter Gray",
+        "彼得·格雷（Peter Gray）"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Peter_Gray"
+        "https://supermemo.guru/wiki/Peter_Gray",
+        "https://zhuanlan.zhihu.com/p/648372165"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "18080570922",
@@ -194380,18 +194898,22 @@
       "source_id": "18080570922",
       "target_id": "20111493435",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "在家上学禁令",
         "禁止在家上学"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Ban_on_homeschooling"
+        "https://supermemo.guru/wiki/Ban_on_homeschooling",
+        "https://zhuanlan.zhihu.com/p/20111493435"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "18159574293",
@@ -194862,19 +195384,23 @@
       "source_id": "19500298520",
       "target_id": "1976595620086162802",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "《你和你的研究》"
+        "《你和你的研究》",
+        "你和你的研究"
       ],
       "source_urls": [
         "https://gwern.net/doc/science/1986-hamming#anger-negativity-and-self-delusion",
-        "https://gwern.net/doc/science/1986-hamming#courage"
+        "https://gwern.net/doc/science/1986-hamming#courage",
+        "https://zhuanlan.zhihu.com/p/1976595620086162802"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "19690323495",
@@ -195232,19 +195758,23 @@
       "source_id": "20111493435",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "《如何解决任何问题？》",
+        "如何解决任何问题？",
         "将遥远的想法通过强有力的思维模式联系起来"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "20111493435",
@@ -201203,18 +201733,22 @@
       "source_id": "1895168314860357192",
       "target_id": "1907408881207976645",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Math Academy 的 AI 是如何工作？",
         "人工智能系统"
       ],
       "source_urls": [
-        "https://mathacademy.com/how-our-ai-works"
+        "https://mathacademy.com/how-our-ai-works",
+        "https://zhuanlan.zhihu.com/p/1907408881207976645"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "1895420939283440005",
@@ -206475,18 +207009,22 @@
       "source_id": "1920870897704736060",
       "target_id": "303204832",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "Piotr Wozniak"
+        "Piotr Wozniak",
+        "彼得 · 沃兹尼亚克"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Piotr_Wozniak"
+        "https://supermemo.guru/wiki/Piotr_Wozniak",
+        "https://zhuanlan.zhihu.com/p/303204832"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "1920870897704736060",
@@ -207679,18 +208217,22 @@
       "source_id": "1926635154627105265",
       "target_id": "708077659",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "建议"
+        "建议",
+        "车票理论：什么造就了天才？- 保罗•格雷厄姆（硅谷创业教父）"
       ],
       "source_urls": [
-        "https://paulgraham.com/genius.html?ref=commoncog.com#:~:text=But there are some heuristics,consuming something someone else creates."
+        "https://paulgraham.com/genius.html?ref=commoncog.com#:~:text=But there are some heuristics,consuming something someone else creates.",
+        "https://zhuanlan.zhihu.com/p/708077659"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "1926635154627105265",
@@ -223786,18 +224328,22 @@
       "source_id": "1965877098586548169",
       "target_id": "720099642",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Bloom 的「两个标准差」问题：系统比较精熟学习法、一对一辅导和直接教学法的有效性",
         "学习"
       ],
       "source_urls": [
-        "https://nintil.com/bloom-sigma/"
+        "https://nintil.com/bloom-sigma/",
+        "https://zhuanlan.zhihu.com/p/720099642"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "1965877098586548169",
@@ -226337,19 +226883,23 @@
       "source_id": "1979846755966276606",
       "target_id": "2040752225060902476",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "上行风险",
+        "寻找上行风险",
         "百利而无一害的"
       ],
       "source_urls": [
-        "https://www.neelnanda.io/blog/33-upside-risk"
+        "https://www.neelnanda.io/blog/33-upside-risk",
+        "https://zhuanlan.zhihu.com/p/2040752225060902476"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "1979846755966276606",
@@ -227314,18 +227864,22 @@
       "source_id": "1992987499266580645",
       "target_id": "2058920207188547370",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "关于看透与解构：黑客心态",
         "看穿"
       ],
       "source_urls": [
-        "https://www.gwern.net/Unseeing"
+        "https://www.gwern.net/Unseeing",
+        "https://zhuanlan.zhihu.com/p/2058920207188547370"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "1993332131317970026",
@@ -227947,6 +228501,23 @@
       ],
       "source_urls": [
         "https://gwern.net/research-criticism"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "1994704480931948124",
+      "target_id": "2094798951593649206",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "复杂性并非 AI 的障碍"
+      ],
+      "source_urls": [
+        "https://gwern.net/complexity"
       ],
       "occurrences": 1
     },
@@ -230169,18 +230740,21 @@
       "source_id": "2003123734962271041",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "如何解决任何问题？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2003123734962271041",
@@ -230474,35 +231048,42 @@
       "source_id": "2003548240998597680",
       "target_id": "2004873847392974568",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "阅读技巧"
+        "阅读技巧",
+        "阅读技巧与策略"
       ],
       "source_urls": [
-        "https://learnjapanese.moe/readingtips"
+        "https://learnjapanese.moe/readingtips",
+        "https://zhuanlan.zhihu.com/p/2004873847392974568"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2003548240998597680",
       "target_id": "2005215549949514985",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "单语指南"
       ],
       "source_urls": [
-        "https://learnjapanese.moe/monolingual"
+        "https://learnjapanese.moe/monolingual",
+        "https://zhuanlan.zhihu.com/p/2005215549949514985"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2003772621796434134",
@@ -230526,6 +231107,23 @@
         "https://zhuanlan.zhihu.com/p/2021959106978652806"
       ],
       "occurrences": 4
+    },
+    {
+      "source_id": "2003772621796434134",
+      "target_id": "2095539874195562788",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "科学是一个强链接问题"
+      ],
+      "source_urls": [
+        "https://www.experimental-history.com/p/science-is-a-strong-link-problem"
+      ],
+      "occurrences": 1
     },
     {
       "source_id": "2003833529948214082",
@@ -233692,18 +234290,21 @@
       "source_id": "2014412442348828304",
       "target_id": "266856783",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "睡眠中的记忆优化"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Memory_optimization_in_sleep"
+        "https://supermemo.guru/wiki/Memory_optimization_in_sleep",
+        "https://zhuanlan.zhihu.com/p/266856783"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2014412442348828304",
@@ -233730,18 +234331,22 @@
       "source_id": "2014412442348828304",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "如何解决任何问题？",
         "解决问题"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2014412442348828304",
@@ -234386,6 +234991,23 @@
       ],
       "source_urls": [
         "https://zhuanlan.zhihu.com/p/2015489803068651120"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2014673035655925994",
+      "target_id": "2096646046239683603",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "多世界诠释"
+      ],
+      "source_urls": [
+        "https://www.readthesequences.com/Decoherence-Is-Simple"
       ],
       "occurrences": 1
     },
@@ -236222,19 +236844,23 @@
       "source_id": "2019518093127349449",
       "target_id": "2040752225060902476",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "信息的价值和尝试新事物可能带来的惊喜",
+        "寻找上行风险",
         "寻求上行风险"
       ],
       "source_urls": [
-        "https://www.neelnanda.io/blog/33-upside-risk"
+        "https://www.neelnanda.io/blog/33-upside-risk",
+        "https://zhuanlan.zhihu.com/p/2040752225060902476"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "2019518093127349449",
@@ -238567,18 +239193,21 @@
       "source_id": "2025182281086576504",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "2025182281086576504",
@@ -239440,18 +240069,22 @@
       "source_id": "2033920915696776105",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 9
+      "occurrences": 10
     },
     {
       "source_id": "2033920915696776105",
@@ -240056,18 +240689,22 @@
       "source_id": "2033920915696776105",
       "target_id": "583216628",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "为什么要使用比喻？"
+        "为什么要使用比喻？",
+        "我在文章中为什么要使用比喻？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Why_use_metaphors?"
+        "https://supermemo.guru/wiki/Why_use_metaphors?",
+        "https://zhuanlan.zhihu.com/p/583216628"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2033920915696776105",
@@ -241079,18 +241716,22 @@
       "source_id": "2037246808632586458",
       "target_id": "2040752225060902476",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "寻找上行风险",
         "寻求上行风险"
       ],
       "source_urls": [
-        "https://www.neelnanda.io/blog/33-upside-risk"
+        "https://www.neelnanda.io/blog/33-upside-risk",
+        "https://zhuanlan.zhihu.com/p/2040752225060902476"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2037661439368942685",
@@ -241338,18 +241979,21 @@
       "source_id": "2039439212685038490",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2039439212685038490",
@@ -241376,18 +242020,21 @@
       "source_id": "2039439212685038490",
       "target_id": "351779186",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "如何解决任何问题？"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/How_to_solve_any_problem?"
+        "https://supermemo.guru/wiki/How_to_solve_any_problem?",
+        "https://zhuanlan.zhihu.com/p/351779186"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2039439212685038490",
@@ -242681,35 +243328,43 @@
       "source_id": "2045830886017460032",
       "target_id": "420105707",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "(1/5) 高效学习的间隔重复——概述",
         "间隔重复"
       ],
       "source_urls": [
-        "https://gwern.net/spaced-repetition"
+        "https://gwern.net/spaced-repetition",
+        "https://zhuanlan.zhihu.com/p/420105707"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2045830886017460032",
       "target_id": "699093323",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "《亚文化社会的忧郁》"
+        "《亚文化社会的忧郁》",
+        "亚文化社会的忧郁"
       ],
       "source_urls": [
-        "https://gwern.net/subculture"
+        "https://gwern.net/subculture",
+        "https://zhuanlan.zhihu.com/p/699093323"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2045830886017460032",
@@ -242732,43 +243387,72 @@
       "source_id": "2045830886017460032",
       "target_id": "1944108824375060346",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "《进化作为强化学习的后盾》",
         "『生理上的痛苦（Pain）』不就是这一机制最完美的化身吗",
-        "往往会继续做出短视的「看似合理」的选择，但从长远来看这些选择并不奏效"
+        "往往会继续做出短视的「看似合理」的选择，但从长远来看这些选择并不奏效",
+        "演化：强化学习的最终保障"
       ],
       "source_urls": [
         "https://gwern.net/backstop",
         "https://gwern.net/backstop#black-box-vs-white-box-optimization",
-        "https://gwern.net/backstop#pain-is-the-only-school-teacher"
+        "https://gwern.net/backstop#pain-is-the-only-school-teacher",
+        "https://zhuanlan.zhihu.com/p/1944108824375060346"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "2045830886017460032",
       "target_id": "1966554384348459311",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "「为大模型写作」"
+        "「为大模型写作」",
+        "为大语言模型写作：如何让它们听你的"
       ],
       "source_urls": [
-        "https://gwern.net/llm-writing"
+        "https://gwern.net/llm-writing",
+        "https://zhuanlan.zhihu.com/p/1966554384348459311"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2045830886017460032",
       "target_id": "1976595620086162802",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "「关闭你的办公室门」",
+        "你和你的研究"
+      ],
+      "source_urls": [
+        "https://gwern.net/doc/science/1986-hamming#open-door-policy",
+        "https://zhuanlan.zhihu.com/p/1976595620086162802"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2045830886017460032",
+      "target_id": "2094798951593649206",
       "via": [
         "original"
       ],
@@ -242776,10 +243460,27 @@
         "exact"
       ],
       "link_texts": [
-        "「关闭你的办公室门」"
+        "那可能并不重要"
       ],
       "source_urls": [
-        "https://gwern.net/doc/science/1986-hamming#open-door-policy"
+        "https://gwern.net/complexity#parable-of-the-worms"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2045830886017460032",
+      "target_id": "2096214419600568640",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "学会了的/进化了的系统 1 启发式/近似算法集合"
+      ],
+      "source_urls": [
+        "https://gwern.net/meta-math"
       ],
       "occurrences": 1
     },
@@ -243964,69 +244665,85 @@
       "source_id": "2052354958029239207",
       "target_id": "420105707",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "(1/5) 高效学习的间隔重复——概述",
         "间隔重复（spaced repetition）"
       ],
       "source_urls": [
-        "https://gwern.net/spaced-repetition"
+        "https://gwern.net/spaced-repetition",
+        "https://zhuanlan.zhihu.com/p/420105707"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052354958029239207",
       "target_id": "1975560125474418990",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "使用各种「创造力基准」的方法"
+        "使用各种「创造力基准」的方法",
+        "迈向 LLM 多样性与创造力的基准测试"
       ],
       "source_urls": [
-        "https://gwern.net/creative-benchmark"
+        "https://gwern.net/creative-benchmark",
+        "https://zhuanlan.zhihu.com/p/1975560125474418990"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052354958029239207",
       "target_id": "1983854157661229705",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "利特尔伍德定律与全球媒体",
         "放眼全球，只要有一个人"
       ],
       "source_urls": [
-        "https://gwern.net/littlewood"
+        "https://gwern.net/littlewood",
+        "https://zhuanlan.zhihu.com/p/1983854157661229705"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052354958029239207",
       "target_id": "1994704480931948124",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "「工具型 AI 渴望成为智能体 AI」"
+        "「工具型 AI 渴望成为智能体 AI」",
+        "为什么工具 AI 渴望成为智能体 AI"
       ],
       "source_urls": [
-        "https://gwern.net/tool-ai"
+        "https://gwern.net/tool-ai",
+        "https://zhuanlan.zhihu.com/p/1994704480931948124"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052354958029239207",
@@ -244049,29 +244766,36 @@
       "source_id": "2052354958029239207",
       "target_id": "2037661439368942685",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "「『尝试、打分、改进』：为儿童设计的强化学习」"
+        "「『尝试、打分、改进』：为儿童设计的强化学习」",
+        "「尝试，得分，改变」：给小朋友讲的强化学习"
       ],
       "source_urls": [
-        "https://gwern.net/rl-children"
+        "https://gwern.net/rl-children",
+        "https://zhuanlan.zhihu.com/p/2037661439368942685"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052354958029239207",
       "target_id": "2045830886017460032",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "Gwern：Dwarkesh Patel 访谈录",
         "《Dwarkesh 访谈》",
         "不断深挖扩展我对高中时代记忆",
         "在我采访 Dwarkesh Patel 后 LLM 自动生成的后续采访"
@@ -244079,26 +244803,31 @@
       "source_urls": [
         "https://gwern.net/interview-dwarkesh#gwerns-intelligence-and-process",
         "https://gwern.net/interview-dwarkesh#llm-auto-interview",
-        "https://gwern.net/interview-dwarkesh#media-literacy"
+        "https://gwern.net/interview-dwarkesh#media-literacy",
+        "https://zhuanlan.zhihu.com/p/2045830886017460032"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "2052354958029239207",
       "target_id": "2062181341119125309",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "我推测，那些采用极端过度参数化并施以重度正则化的 LLM"
+        "我推测，那些采用极端过度参数化并施以重度正则化的 LLM",
+        "通过弹射构建类人神经网络"
       ],
       "source_urls": [
-        "https://gwern.net/llm-catapult"
+        "https://gwern.net/llm-catapult",
+        "https://zhuanlan.zhihu.com/p/2062181341119125309"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2052688537791750991",
@@ -245904,6 +246633,23 @@
       "occurrences": 1
     },
     {
+      "source_id": "2058221554144637051",
+      "target_id": "2094798951593649206",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "这种绕道的方法往往是存在的"
+      ],
+      "source_urls": [
+        "https://gwern.net/complexity"
+      ],
+      "occurrences": 1
+    },
+    {
       "source_id": "2058920207188547370",
       "target_id": "1972234251777840886",
       "via": [
@@ -246717,18 +247463,22 @@
       "source_id": "2062181341119125309",
       "target_id": "1944108824375060346",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "演化：强化学习的最终保障",
         "逼近贝叶斯最优"
       ],
       "source_urls": [
-        "https://gwern.net/backstop#deep-bayes"
+        "https://gwern.net/backstop#deep-bayes",
+        "https://zhuanlan.zhihu.com/p/1944108824375060346"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2062181341119125309",
@@ -248282,18 +249032,21 @@
       "source_id": "2063930331716236217",
       "target_id": "269974053",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "干扰"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Interference"
+        "https://supermemo.guru/wiki/Interference",
+        "https://zhuanlan.zhihu.com/p/269974053"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2063930331716236217",
@@ -248404,18 +249157,22 @@
       "source_id": "2063930331716236217",
       "target_id": "307602868",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "水蛭（Leech）[Anki, SuperMemo]",
         "顽固记忆项"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Leech"
+        "https://supermemo.guru/wiki/Leech",
+        "https://zhuanlan.zhihu.com/p/307602868"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2063930331716236217",
@@ -248728,18 +249485,22 @@
       "source_id": "2063930331716236217",
       "target_id": "2033920915696776105",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "不要教你的孩子阅读"
+        "不要教你的孩子阅读",
+        "别教你孩子阅读"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Don't_teach_your_child_to_read"
+        "https://supermemo.guru/wiki/Don't_teach_your_child_to_read",
+        "https://zhuanlan.zhihu.com/p/2033920915696776105"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2064048381673084062",
@@ -248861,6 +249622,23 @@
       ],
       "source_urls": [
         "https://zhuanlan.zhihu.com/p/2083996452456490783"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2064365098970436713",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
       ],
       "occurrences": 1
     },
@@ -249278,35 +250056,42 @@
       "source_id": "2066110309966861533",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 3
+      "occurrences": 4
     },
     {
       "source_id": "2066110309966861533",
       "target_id": "313020639",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
         "渐进阅读的必然性"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Inevitability_of_incremental_reading"
+        "https://supermemo.guru/wiki/Inevitability_of_incremental_reading",
+        "https://zhuanlan.zhihu.com/p/313020639"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2066110309966861533",
@@ -250035,18 +250820,22 @@
       "source_id": "2068268922776839997",
       "target_id": "305651556",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "间隔重复"
+        "间隔重复",
+        "间隔重复 (spaced repetition)"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Spaced_repetition"
+        "https://supermemo.guru/wiki/Spaced_repetition",
+        "https://zhuanlan.zhihu.com/p/305651556"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2068268922776839997",
@@ -250591,18 +251380,22 @@
       "source_id": "2068290280005035106",
       "target_id": "2033920915696776105",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "不要教你的孩子阅读"
+        "不要教你的孩子阅读",
+        "别教你孩子阅读"
       ],
       "source_urls": [
-        "https://supermemo.guru/wiki/Don't_teach_your_child_to_read"
+        "https://supermemo.guru/wiki/Don't_teach_your_child_to_read",
+        "https://zhuanlan.zhihu.com/p/2033920915696776105"
       ],
-      "occurrences": 2
+      "occurrences": 3
     },
     {
       "source_id": "2068290280005035106",
@@ -251905,35 +252698,43 @@
       "source_id": "2072641951653017056",
       "target_id": "699093323",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
-        "亚文化"
+        "亚文化",
+        "亚文化社会的忧郁"
       ],
       "source_urls": [
-        "https://gwern.net/subculture"
+        "https://gwern.net/subculture",
+        "https://zhuanlan.zhihu.com/p/699093323"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2072641951653017056",
       "target_id": "1972234251777840886",
       "via": [
-        "original"
+        "original",
+        "zhihu"
       ],
       "match_quality": [
+        "direct",
         "exact"
       ],
       "link_texts": [
+        "创造力、乐趣与内在动机的形式化理论",
         "抽象解释"
       ],
       "source_urls": [
-        "https://people.idsia.ch/~juergen/creativity.html"
+        "https://people.idsia.ch/~juergen/creativity.html",
+        "https://zhuanlan.zhihu.com/p/1972234251777840886"
       ],
-      "occurrences": 1
+      "occurrences": 2
     },
     {
       "source_id": "2072641951653017056",
@@ -258801,6 +259602,57 @@
       "occurrences": 1
     },
     {
+      "source_id": "2092325318552036912",
+      "target_id": "2093999484334359166",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第六章 考试的暴政"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2093999484334359166"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2092325608407749676",
+      "target_id": "2093999484334359166",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第六章 考试的暴政"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2093999484334359166"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2092325608407749676",
+      "target_id": "2094396716246217480",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第八章 怎样让孩子讨厌阅读"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094396716246217480"
+      ],
+      "occurrences": 1
+    },
+    {
       "source_id": "2092664126510216396",
       "target_id": "2064365098970436713",
       "via": [
@@ -259192,6 +260044,1939 @@
       ],
       "source_urls": [
         "https://zhuanlan.zhihu.com/p/2093350438557040811"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2093705279259131933",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2093999484334359166",
+      "target_id": "2092325318552036912",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第五章 老师话太多"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325318552036912"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2093999484334359166",
+      "target_id": "2092325608407749676",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第七章 并不美好的学校时光"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325608407749676"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2064705136883245583",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "世界：导读"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064705136883245583"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2093705279259131933",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "灵能/特异功能"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2093705279259131933"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2094433739879224610",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子解释"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094433739879224610"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2094830441081599393",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "构型与振幅"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094830441081599393"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2095226693917086175",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "联合构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095226693917086175"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2095629973038044075",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "不同的构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095629973038044075"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2095980195484382180",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "坍缩假说"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095980195484382180"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2096646046239683603",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是简洁的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2096646046239683603"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2097065827761644392",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是可证伪且可检验的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097065827761644392"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2097772133044826263",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "给予假设特权"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097772133044826263"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094066206470836669",
+      "target_id": "2098066369656968761",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "生活在多世界中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098066369656968761"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094396716246217480",
+      "target_id": "2092325608407749676",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第七章 并不美好的学校时光"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325608407749676"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094396716246217480",
+      "target_id": "2094397492439926678",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第九章 秩序与混乱"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094397492439926678"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094397492439926678",
+      "target_id": "2094396716246217480",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第八章 怎样让孩子讨厌阅读"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094396716246217480"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094397492439926678",
+      "target_id": "2094398667616793699",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十章 教育“不可教”之才"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094398667616793699"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094398667616793699",
+      "target_id": "2094397492439926678",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第九章 秩序与混乱"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094397492439926678"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094398667616793699",
+      "target_id": "2094400540436328532",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十一章 面向未来的教育"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094400540436328532"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094400540436328532",
+      "target_id": "2094398667616793699",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十章 教育“不可教”之才"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094398667616793699"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094400540436328532",
+      "target_id": "2095161553360373144",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十二章 乌烟瘴气的黑板"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095161553360373144"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094433739879224610",
+      "target_id": "2062903307765650455",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "插曲：贝叶斯定理的直观解释"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2062903307765650455"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094433739879224610",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094433739879224610",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2094433739879224610",
+      "target_id": "2094830441081599393",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "构型与振幅"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094830441081599393"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094787805947999182",
+      "target_id": "1994704480931948124",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "自我优化堆栈"
+      ],
+      "source_urls": [
+        "https://gwern.net/tool-ai"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094787805947999182",
+      "target_id": "2094799990279370013",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "“你的计算机里有多少台计算机？”"
+      ],
+      "source_urls": [
+        "https://gwern.net/computers"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094798951593649206",
+      "target_id": "1994704480931948124",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "为什么工具型 AI 最终想成为代理型 AI"
+      ],
+      "source_urls": [
+        "https://gwern.net/tool-ai"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094798951593649206",
+      "target_id": "2058221554144637051",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "功能固着",
+        "已移至《技术预测：小径分岔的花园》。",
+        "技术预测：小径分岔的花园"
+      ],
+      "source_urls": [
+        "https://gwern.net/forking-path",
+        "https://zhuanlan.zhihu.com/p/2058221554144637051"
+      ],
+      "occurrences": 3
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2073383390892537693",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "心智投射谬误"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2073383390892537693"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2073707395801408592",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率存在于心智之中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2073707395801408592"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2094433739879224610",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子解释"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094433739879224610"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2094830441081599393",
+      "target_id": "2095226693917086175",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "联合构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095226693917086175"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095161553360373144",
+      "target_id": "2094400540436328532",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十一章 面向未来的教育"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094400540436328532"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095161553360373144",
+      "target_id": "2095162111609549589",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十三章 狱中孩童"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095162111609549589"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095162111609549589",
+      "target_id": "2095161553360373144",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十二章 乌烟瘴气的黑板"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095161553360373144"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095162111609549589",
+      "target_id": "2095163506584823308",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "关于紧迫问题的滑稽真相"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095163506584823308"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095163506584823308",
+      "target_id": "2095162111609549589",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十三章 狱中孩童"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095162111609549589"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095163506584823308",
+      "target_id": "2097689749066626029",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》演讲 & 信件"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097689749066626029"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095226693917086175",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095226693917086175",
+      "target_id": "2067904248742932977",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率之美"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2067904248742932977"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095226693917086175",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095226693917086175",
+      "target_id": "2094830441081599393",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "构型与振幅"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094830441081599393"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095226693917086175",
+      "target_id": "2095629973038044075",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "不同的构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095629973038044075"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095539874195562788",
+      "target_id": "1983908490331301204",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "同行评议的兴与衰"
+      ],
+      "source_urls": [
+        "https://www.experimental-history.com/p/the-rise-and-fall-of-peer-review",
+        "https://zhuanlan.zhihu.com/p/1983908490331301204"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2095539874195562788",
+      "target_id": "1991088195111237194",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "收到了海量评论",
+        "裸体皇帝的舞蹈"
+      ],
+      "source_urls": [
+        "https://www.experimental-history.com/p/the-dance-of-the-naked-emperors",
+        "https://zhuanlan.zhihu.com/p/1991088195111237194"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2095539874195562788",
+      "target_id": "2021959106978652806",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "心理学没准就是放狗屁，不过倒也无妨"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2021959106978652806"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095539874195562788",
+      "target_id": "2095552317445640342",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "经费申请机制已经崩坏。这里是修复之法。"
+      ],
+      "source_urls": [
+        "https://www.experimental-history.com/p/grant-funding-is-broken-heres-how"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095539874195562788",
+      "target_id": "2095553153739632965",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "那我可要跟你拼命"
+      ],
+      "source_urls": [
+        "https://www.experimental-history.com/p/ideas-arent-getting-harder-to-find"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2069478246668939394",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "热力学第二定律与认知引擎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2069478246668939394"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2092664126510216396",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "相信必然蕴含的不可见事物"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092664126510216396"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2094830441081599393",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "《构型与振幅》一文中的图 2",
+        "构型与振幅",
+        "没有放入这个小物件的前一版实验"
+      ],
+      "source_urls": [
+        "https://www.readthesequences.com/ConfigurationsAndAmplitude#figure2",
+        "https://zhuanlan.zhihu.com/p/2094830441081599393"
+      ],
+      "occurrences": 4
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2095226693917086175",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "联合构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095226693917086175"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095629973038044075",
+      "target_id": "2095980195484382180",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "坍缩假说"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095980195484382180"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2069478246668939394",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "热力学第二定律与认知引擎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2069478246668939394"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2073707395801408592",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率存在于心智之中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2073707395801408592"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2095629973038044075",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "不同的构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095629973038044075"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2095980195484382180",
+      "target_id": "2096646046239683603",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是简洁的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2096646046239683603"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096214419600568640",
+      "target_id": "1944108824375060346",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "我的最终保障文章",
+        "演化：强化学习的最终保障"
+      ],
+      "source_urls": [
+        "https://gwern.net/backstop",
+        "https://zhuanlan.zhihu.com/p/1944108824375060346"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2096214419600568640",
+      "target_id": "1955580086083364669",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "《速通，真的没那么浪费天赋》",
+        "速通，真的没那么浪费天赋"
+      ],
+      "source_urls": [
+        "https://gwern.net/speedrunning",
+        "https://zhuanlan.zhihu.com/p/1955580086083364669"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2096214419600568640",
+      "target_id": "1972234251777840886",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "创造力、乐趣与内在动机的形式化理论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1972234251777840886"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096214419600568640",
+      "target_id": "2058920207188547370",
+      "via": [
+        "original"
+      ],
+      "match_quality": [
+        "exact"
+      ],
+      "link_texts": [
+        "无视游戏原本设计的 UI/UX（用户界面/用户体验）"
+      ],
+      "source_urls": [
+        "https://gwern.net/unseeing"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096308707458138933",
+      "target_id": "1972234251777840886",
+      "via": [
+        "original",
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct",
+        "exact"
+      ],
+      "link_texts": [
+        "创造力、乐趣与内在动机的形式化理论",
+        "基于压缩的「创造力」/「新颖度」指标"
+      ],
+      "source_urls": [
+        "https://people.idsia.ch/~juergen/creativity.html",
+        "https://zhuanlan.zhihu.com/p/1972234251777840886"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2096646046239683603",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096646046239683603",
+      "target_id": "2092664126510216396",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "相信必然蕴含的不可见事物"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092664126510216396"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2096646046239683603",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096646046239683603",
+      "target_id": "2095980195484382180",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "坍缩假说"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095980195484382180"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2096646046239683603",
+      "target_id": "2097065827761644392",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是可证伪且可检验的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097065827761644392"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "991286265",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "0 和 1 不是概率"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/991286265"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "2092664126510216396",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "相信必然蕴含的不可见事物"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092664126510216396"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "2096646046239683603",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是简洁的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2096646046239683603"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097065827761644392",
+      "target_id": "2097772133044826263",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "给予假设特权"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097772133044826263"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097689749066626029",
+      "target_id": "2095163506584823308",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十四章 关于紧迫问题的滑稽真相"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095163506584823308"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "30421407549",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "黑暗面的认识论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/30421407549"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2070084674295279996",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "永动机信念"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2070084674295279996"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2095980195484382180",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "坍缩假说"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095980195484382180"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2097065827761644392",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是可证伪且可检验的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097065827761644392"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2097772133044826263",
+      "target_id": "2098066369656968761",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "生活在多世界中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098066369656968761"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "812068575",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "彩票：浪费希望"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/812068575"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "827889733",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "全新升级的彩票"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/827889733"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "2077715865362085704",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "区区现实中的喜悦"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2077715865362085704"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "2078777423596995416",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "发现的喜悦"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2078777423596995416"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098066369656968761",
+      "target_id": "2097772133044826263",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "给予假设特权"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097772133044826263"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092320644734230574",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第一章 真正的学习"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092320644734230574"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092323919575388335",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第二章 一知半解"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092323919575388335"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092324403388347509",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第三章 学校对孩子没好处"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092324403388347509"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092325110220854040",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第四章 必修科目四：内卷"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325110220854040"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092325318552036912",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第五章 老师话太多"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325318552036912"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2092325608407749676",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第七章 并不美好的学校时光"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2092325608407749676"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2093999484334359166",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第六章 考试的暴政"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2093999484334359166"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2094396716246217480",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第八章 怎样让孩子讨厌阅读"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094396716246217480"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2094397492439926678",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第九章 秩序与混乱"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094397492439926678"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2094398667616793699",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十章 教育“不可教”之才"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094398667616793699"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2094400540436328532",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十一章 面向未来的教育"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094400540436328532"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2095161553360373144",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十二章 乌烟瘴气的黑板"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095161553360373144"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2095162111609549589",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十三章 狱中孩童"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095162111609549589"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2095163506584823308",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》第十四章 关于紧迫问题的滑稽真相"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095163506584823308"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098106223535076245",
+      "target_id": "2097689749066626029",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "《表现不佳的学校》演讲 & 信件"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2097689749066626029"
       ],
       "occurrences": 1
     }

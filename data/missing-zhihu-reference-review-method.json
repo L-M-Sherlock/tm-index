@@ -5,7 +5,7 @@
   "input": {
     "references": "references.json",
     "catalog": "catalog.json",
-    "candidate_edges": 1694
+    "candidate_edges": 329
   },
   "confidence_rules": {
     "review": [
@@ -35,25 +35,26 @@
   },
   "counts": {
     "confidence": {
-      "medium": 986,
-      "high": 651,
-      "review": 57
+      "unreviewed": 36,
+      "medium": 196,
+      "high": 91,
+      "review": 6
     },
     "category": {
-      "bibliography": 13,
-      "content": 1023,
-      "term": 600,
-      "generic": 27,
-      "author": 17,
-      "directory": 14
+      "unreviewed": 36,
+      "content": 204,
+      "term": 79,
+      "directory": 2,
+      "generic": 4,
+      "bibliography": 4
     }
   },
   "validation": {
     "unique_pairs": true,
-    "record_count": 1694,
-    "reused_review_rows": 1694,
-    "unreviewed_candidates": 0,
-    "old_reviews_no_longer_candidates": 4812
+    "record_count": 329,
+    "reused_review_rows": 293,
+    "unreviewed_candidates": 36,
+    "old_reviews_no_longer_candidates": 0
   },
   "sampling_audit": {
     "method": "按(source_id,target_id)排序后等距抽取60条人工核验。",

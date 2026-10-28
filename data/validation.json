@@ -3,25 +3,25 @@
   "annotation_date": "2026-10-26",
   "model": "gpt-6-luna",
   "reasoning_effort": "max",
-  "source_articles": 2379,
-  "annotated_articles": 2379,
-  "included_articles": 2119,
+  "source_articles": 2410,
+  "annotated_articles": 2410,
+  "included_articles": 2150,
   "decision_counts": {
     "excluded": 260,
-    "translated_adaptation": 62,
-    "translated_excerpt": 74,
-    "translation": 1983
+    "translated_adaptation": 63,
+    "translated_excerpt": 76,
+    "translation": 2011
   },
   "publisher_counts": {
-    "Thoughts Memo": 1778,
-    "Jarrett Ye": 601
+    "Thoughts Memo": 1803,
+    "Jarrett Ye": 607
   },
   "included_publisher_counts": {
-    "Thoughts Memo": 1540,
-    "Jarrett Ye": 579
+    "Thoughts Memo": 1565,
+    "Jarrett Ye": 585
   },
-  "covered_visible_text_chars": 10493877,
-  "unique_keywords": 4253,
+  "covered_visible_text_chars": 10700596,
+  "unique_keywords": 4257,
   "keyword_aliases": {
     "AGI": "通用人工智能",
     "AI 对齐": "AI对齐",
@@ -171,17 +171,17 @@
     "本次未刷新存档或发布网站；额外来源核对及历史版本限制记录于各复核文件。"
   ],
   "original_authors": {
-    "articles": 2119,
+    "articles": 2150,
     "status_counts": {
-      "resolved": 2119
+      "resolved": 2150
     },
     "source_counts": {
-      "original_web": 459,
-      "directory": 1437,
-      "user_confirmation": 71,
-      "translation": 152
+      "directory": 1446,
+      "translation": 168,
+      "original_web": 465,
+      "user_confirmation": 71
     },
-    "distinct_credited_names": 164,
+    "distinct_credited_names": 165,
     "excluded_original_author_records": 1,
     "priority": [
       "user_confirmation",
@@ -192,25 +192,37 @@
   },
   "references": {
     "schema_version": 1,
-    "nodes": 2119,
-    "edges": 13529,
-    "link_occurrences": 28013,
-    "nodes_with_outgoing": 1879,
-    "nodes_with_incoming": 1859,
+    "nodes": 2150,
+    "edges": 13652,
+    "link_occurrences": 28322,
+    "link_records_examined": 63088,
+    "self_links_ignored": 2380,
+    "nodes_with_outgoing": 1905,
+    "nodes_with_incoming": 1886,
     "method_edge_counts": {
       "archive": 4,
-      "original": 7609,
-      "zhihu": 13038
+      "original": 7629,
+      "zhihu": 13321
     },
-    "missing_zhihu_reference_candidates": 489,
-    "articles_with_missing_zhihu_references": 272,
+    "method_occurrence_counts": {
+      "archive": 4,
+      "original": 11034,
+      "zhihu": 17284
+    },
+    "source_url_exact_keys": 1977,
+    "source_url_collision_keys": 24,
+    "ambiguous_original_links": 736,
+    "direct_links_to_nontranslations": 705,
+    "missing_zhihu_reference_candidates": 329,
+    "articles_with_missing_zhihu_references": 192,
     "methodology": [
       "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
       "Include Zhihu native reference annotations via sup[data-draft-type=reference][data-url], using data-text as the citation label.",
       "Match external links to the explicit original URL of a translated article after conservative URL normalization.",
       "Keep PDF page fragments and Archive.org page paths; skip shared or otherwise ambiguous original URLs.",
       "Remove self-links, deduplicate article pairs, and derive incoming links from the directed edge set.",
-      "Verified sources use live public article content; unverified sources retain their previous outgoing edges.",
+      "Public content is used from saved verified public snapshots; newer successful published readbacks override older snapshots.",
+      "Newly added translations use their archived public content, not an assumed fresh live verification.",
       "Zhihu article IDs require an allowed exact host and exact article path."
     ],
     "checks": {
@@ -219,38 +231,39 @@
       "unique_article_edges": true,
       "bidirectional_symmetry": true
     },
+    "known_original_url_redirects": [
+      {
+        "from": "https://www.readthesequences.com/ConfigurationsAndAmplitude",
+        "to": "https://www.readthesequences.com/Configurations-And-Amplitude",
+        "basis": "verified HTTP redirect"
+      }
+    ],
     "live_public_verification": {
-      "scope_articles": 2119,
+      "scope_articles": 2150,
       "verified_articles": 2119,
-      "unverified_articles": 0,
+      "unverified_articles": 31,
       "earliest_checked_at": "2026-10-27T10:31:13.387383+00:00",
-      "latest_checked_at": "2026-10-27T10:45:06.701130+00:00",
-      "unverified_behavior": "retain previous edges and candidate counts; mark those articles unverified",
-      "title_identity_reconciliations": [
-        {
-          "id": "401155017",
-          "catalog_title": "JOST'S LAW 约斯特定律",
-          "current_title": "Jost 定律",
-          "captured_at": "2026-10-27T10:45:06.701130+00:00",
-          "basis": "matching ID and author identity across catalog archive, prior published snapshot, and current public snapshot"
-        }
-      ]
+      "latest_checked_at": "2026-10-28T04:00:57.374660+00:00",
+      "archive_only_articles": 31,
+      "updated_public_articles": 120,
+      "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
     }
   },
   "answer_references": {
     "schema_version": 1,
     "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; direct links to included translations only.",
-    "answers_scanned": 2335,
-    "answers_with_citations": 1336,
-    "translations_cited": 1245,
-    "citation_pairs": 9420,
+    "answers_scanned": 2357,
+    "answers_with_citations": 1351,
+    "translations_cited": 1256,
+    "citation_pairs": 9520,
     "skipped_other_authors": 0,
     "earliest_answer_date": "2017-03-17",
-    "latest_answer_date": "2026-10-14",
+    "latest_answer_date": "2026-10-27",
     "checks": {
       "unique_pairs": true,
       "targets_exist": true,
       "counts_match": true
     }
-  }
+  },
+  "latest_incremental_annotation_date": "2026-10-28"
 }

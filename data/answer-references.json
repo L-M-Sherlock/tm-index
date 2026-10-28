@@ -2,13 +2,13 @@
   "metadata": {
     "schema_version": 1,
     "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; direct links to included translations only.",
-    "answers_scanned": 2335,
-    "answers_with_citations": 1336,
-    "translations_cited": 1245,
-    "citation_pairs": 9420,
+    "answers_scanned": 2357,
+    "answers_with_citations": 1351,
+    "translations_cited": 1256,
+    "citation_pairs": 9520,
     "skipped_other_authors": 0,
     "earliest_answer_date": "2017-03-17",
-    "latest_answer_date": "2026-10-14",
+    "latest_answer_date": "2026-10-27",
     "checks": {
       "unique_pairs": true,
       "targets_exist": true,
@@ -7011,6 +7011,171 @@
       "date": "2026-10-14",
       "url": "https://www.zhihu.com/question/2086691939248763290/answer/2093719266759595549",
       "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2093719266759595549.html"
+    },
+    "2093765968375948817": {
+      "id": "2093765968375948817",
+      "question_id": "2093454112922912690",
+      "title": "如何评价10月13日正式推出的Gemini 4 Argon？",
+      "author": "Thoughts Memo",
+      "created_time": 1791972707,
+      "voteup_count": 337,
+      "date": "2026-10-14",
+      "url": "https://www.zhihu.com/question/2093454112922912690/answer/2093765968375948817",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2093765968375948817.html"
+    },
+    "2094108133140457382": {
+      "id": "2094108133140457382",
+      "question_id": "423780782",
+      "title": "现阶段的时代红利是什么？",
+      "author": "Thoughts Memo",
+      "created_time": 1792054285,
+      "voteup_count": 644,
+      "date": "2026-10-15",
+      "url": "https://www.zhihu.com/question/423780782/answer/2094108133140457382",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094108133140457382.html"
+    },
+    "2094495642341074348": {
+      "id": "2094495642341074348",
+      "question_id": "2085495876101862156",
+      "title": "中办、国办发布《关于分类推进高校改革的意见》，对不同高校未来发展有什么影响？",
+      "author": "Thoughts Memo",
+      "created_time": 1792146675,
+      "voteup_count": 932,
+      "date": "2026-10-16",
+      "url": "https://www.zhihu.com/question/2085495876101862156/answer/2094495642341074348",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094495642341074348.html"
+    },
+    "2094736201873887817": {
+      "id": "2094736201873887817",
+      "question_id": "2038200491411236835",
+      "title": "阶层为什么会固化？",
+      "author": "Thoughts Memo",
+      "created_time": 1792204028,
+      "voteup_count": 567,
+      "date": "2026-10-17",
+      "url": "https://www.zhihu.com/question/2038200491411236835/answer/2094736201873887817",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094736201873887817.html"
+    },
+    "2095115543095277105": {
+      "id": "2095115543095277105",
+      "question_id": "2032522453633779666",
+      "title": "怎么看待现在的中学生过得极其压抑？",
+      "author": "Thoughts Memo",
+      "created_time": 1792294470,
+      "voteup_count": 1145,
+      "date": "2026-10-18",
+      "url": "https://www.zhihu.com/question/2032522453633779666/answer/2095115543095277105",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095115543095277105.html"
+    },
+    "2095485024871113793": {
+      "id": "2095485024871113793",
+      "question_id": "2092961269254971598",
+      "title": "有人说砍掉科研圈95%的研究和论文，完全不影响科学发展，这话对吗？",
+      "author": "Thoughts Memo",
+      "created_time": 1792382562,
+      "voteup_count": 1475,
+      "date": "2026-10-19",
+      "url": "https://www.zhihu.com/question/2092961269254971598/answer/2095485024871113793",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095485024871113793.html"
+    },
+    "2095938419339936496": {
+      "id": "2095938419339936496",
+      "question_id": "58282964",
+      "title": "中国的应试教育真的很糟糕吗？",
+      "author": "Thoughts Memo",
+      "created_time": 1792490659,
+      "voteup_count": 1944,
+      "date": "2026-10-20",
+      "url": "https://www.zhihu.com/question/58282964/answer/2095938419339936496",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095938419339936496.html"
+    },
+    "2096181111248401477": {
+      "id": "2096181111248401477",
+      "question_id": "2094714809187149630",
+      "title": "多家高校家长吐槽大学课太少，担心孩子没课时睡懒觉，你怎么看待这件事？",
+      "author": "Thoughts Memo",
+      "created_time": 1792548522,
+      "voteup_count": 1129,
+      "date": "2026-10-21",
+      "url": "https://www.zhihu.com/question/2094714809187149630/answer/2096181111248401477",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2096181111248401477.html"
+    },
+    "2096606319906240122": {
+      "id": "2096606319906240122",
+      "question_id": "2077198242647914053",
+      "title": "如何评价邵艾伦的“薄肌观”？",
+      "author": "Thoughts Memo",
+      "created_time": 1792649899,
+      "voteup_count": 773,
+      "date": "2026-10-22",
+      "url": "https://www.zhihu.com/question/2077198242647914053/answer/2096606319906240122",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2096606319906240122.html"
+    },
+    "2096675972963623307": {
+      "id": "2096675972963623307",
+      "question_id": "2095840244973004152",
+      "title": "陶哲轩和邓煜的对谈《数学与 AI 究竟是什么关系？》，如何理解他们各自的观点？",
+      "author": "Jarrett Ye",
+      "created_time": 1792666506,
+      "voteup_count": 26,
+      "date": "2026-10-22",
+      "url": "https://www.zhihu.com/question/2095840244973004152/answer/2096675972963623307",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2096675972963623307.html"
+    },
+    "2097024948749579232": {
+      "id": "2097024948749579232",
+      "question_id": "2078432889029517634",
+      "title": "如果中小学教材如果全罗列知识，就叫「填鸭式教育」，如果加入探究式学习，就叫「防自学教材」，怎么办？",
+      "author": "Thoughts Memo",
+      "created_time": 1792749708,
+      "voteup_count": 284,
+      "date": "2026-10-23",
+      "url": "https://www.zhihu.com/question/2078432889029517634/answer/2097024948749579232",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2097024948749579232.html"
+    },
+    "2097034162112815958": {
+      "id": "2097034162112815958",
+      "question_id": "2096519816542736864",
+      "title": "高校发倡议规范使用得体庄重的「老师」称谓，严禁学生称辅导员为「哥、姐」，你怎么看？",
+      "author": "Thoughts Memo",
+      "created_time": 1792751905,
+      "voteup_count": 1417,
+      "date": "2026-10-23",
+      "url": "https://www.zhihu.com/question/2096519816542736864/answer/2097034162112815958",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2097034162112815958.html"
+    },
+    "2097360352426059094": {
+      "id": "2097360352426059094",
+      "question_id": "2096910627998585435",
+      "title": "如何评价博主称“游戏劫持了人生最珍贵的算力，导致现实问题一个都没碰”的观点？",
+      "author": "Thoughts Memo",
+      "created_time": 1792829675,
+      "voteup_count": 8397,
+      "date": "2026-10-24",
+      "url": "https://www.zhihu.com/question/2096910627998585435/answer/2097360352426059094",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2097360352426059094.html"
+    },
+    "2097674584610845141": {
+      "id": "2097674584610845141",
+      "question_id": "2096067176604111062",
+      "title": "如何看待2026年10月土耳其与中国的网民爆发的大规模互怼？",
+      "author": "Thoughts Memo",
+      "created_time": 1792904593,
+      "voteup_count": 1125,
+      "date": "2026-10-25",
+      "url": "https://www.zhihu.com/question/2096067176604111062/answer/2097674584610845141",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2097674584610845141.html"
+    },
+    "2098136609711460390": {
+      "id": "2098136609711460390",
+      "question_id": "2097060153531053682",
+      "title": "高一开学仅一个月多班出现学生因心理问题休学，背后折射出哪些深层原因？",
+      "author": "Thoughts Memo",
+      "created_time": 1793014749,
+      "voteup_count": 286,
+      "date": "2026-10-26",
+      "url": "https://www.zhihu.com/question/2097060153531053682/answer/2098136609711460390",
+      "archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2098136609711460390.html"
     },
     "2125907304": {
       "id": "2125907304",
@@ -17209,6 +17374,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "52990549",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1578551193",
       "article_id": "52990626",
       "via": [
@@ -21502,6 +21677,36 @@
       ]
     },
     {
+      "answer_id": "2095938419339936496",
+      "article_id": "67390960",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "67390960",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2098136609711460390",
+      "article_id": "67390960",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1578551193",
       "article_id": "67694020",
       "via": [
@@ -24336,6 +24541,16 @@
       ],
       "evidence": [
         "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2095115543095277105",
+      "article_id": "73207325",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
       ]
     },
     {
@@ -28748,6 +28963,16 @@
     },
     {
       "answer_id": "2024783376297596199",
+      "article_id": "264327134",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
       "article_id": "264327134",
       "via": [
         "zhihu"
@@ -35731,6 +35956,16 @@
       ]
     },
     {
+      "answer_id": "2095938419339936496",
+      "article_id": "281085595",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1872145962",
       "article_id": "283017134",
       "via": [
@@ -36498,6 +36733,26 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "295053968",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "295053968",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -45086,6 +45341,16 @@
       ]
     },
     {
+      "answer_id": "2098136609711460390",
+      "article_id": "359603059",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1822707507",
       "article_id": "359658715",
       "via": [
@@ -45948,6 +46213,16 @@
     },
     {
       "answer_id": "2024783376297596199",
+      "article_id": "359921139",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2098136609711460390",
       "article_id": "359921139",
       "via": [
         "zhihu"
@@ -47278,6 +47553,16 @@
     },
     {
       "answer_id": "2013175443356942684",
+      "article_id": "361350076",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
       "article_id": "361350076",
       "via": [
         "zhihu"
@@ -53805,6 +54090,16 @@
       ]
     },
     {
+      "answer_id": "2096181111248401477",
+      "article_id": "427095337",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2446781501",
       "article_id": "427460683",
       "via": [
@@ -54848,6 +55143,16 @@
     },
     {
       "answer_id": "2017163223938376088",
+      "article_id": "436727078",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
       "article_id": "436727078",
       "via": [
         "zhihu"
@@ -61355,6 +61660,16 @@
       ]
     },
     {
+      "answer_id": "2094495642341074348",
+      "article_id": "497619395",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
       "answer_id": "2492056458",
       "article_id": "497975420",
       "via": [
@@ -64351,6 +64666,16 @@
       ]
     },
     {
+      "answer_id": "2098136609711460390",
+      "article_id": "529003673",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2531966162",
       "article_id": "529510540",
       "via": [
@@ -64743,6 +65068,17 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2098136609711460390",
+      "article_id": "530834207",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
       ]
     },
     {
@@ -69651,6 +69987,16 @@
       ]
     },
     {
+      "answer_id": "2096606319906240122",
+      "article_id": "559705516",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2690587187",
       "article_id": "559819340",
       "via": [
@@ -70883,6 +71229,16 @@
       ]
     },
     {
+      "answer_id": "2095115543095277105",
+      "article_id": "565441715",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "2829723822",
       "article_id": "565583093",
       "via": [
@@ -71826,6 +72182,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "573938786",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -75340,6 +75706,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "591675068",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3631852862",
       "article_id": "591919206",
       "via": [
@@ -75371,6 +75747,16 @@
     },
     {
       "answer_id": "2068035230112421262",
+      "article_id": "591919206",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
       "article_id": "591919206",
       "via": [
         "zhihu"
@@ -75571,6 +75957,16 @@
     },
     {
       "answer_id": "1939382691255526731",
+      "article_id": "593630309",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
       "article_id": "593630309",
       "via": [
         "zhihu"
@@ -76021,6 +76417,16 @@
     },
     {
       "answer_id": "2017887574232937536",
+      "article_id": "597949223",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
       "article_id": "597949223",
       "via": [
         "zhihu"
@@ -77522,6 +77928,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "602457764",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
       "answer_id": "3116624476",
       "article_id": "602800824",
       "via": [
@@ -77572,6 +77988,16 @@
       ],
       "evidence": [
         "link",
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097360352426059094",
+      "article_id": "602800824",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
         "native_reference"
       ]
     },
@@ -80641,6 +81067,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "619231929",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2568403953",
       "article_id": "619764249",
       "via": [
@@ -80799,6 +81235,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "619764249",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -81392,6 +81838,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2097360352426059094",
+      "article_id": "622925977",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -82413,6 +82869,17 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2098136609711460390",
+      "article_id": "636293259",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
       ]
     },
     {
@@ -84286,6 +84753,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "654018059",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3493971609",
       "article_id": "654077958",
       "via": [
@@ -85928,6 +86405,16 @@
       ]
     },
     {
+      "answer_id": "2096181111248401477",
+      "article_id": "662753699",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3334605503",
       "article_id": "662953967",
       "via": [
@@ -87032,6 +87519,16 @@
       ]
     },
     {
+      "answer_id": "2098136609711460390",
+      "article_id": "670118024",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3334605503",
       "article_id": "670175623",
       "via": [
@@ -87689,6 +88186,27 @@
       ],
       "evidence": [
         "link"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "672073212",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "672073212",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
       ]
     },
     {
@@ -89163,6 +89681,16 @@
       ]
     },
     {
+      "answer_id": "2097674584610845141",
+      "article_id": "694890917",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3597882375",
       "article_id": "695299744",
       "via": [
@@ -89422,6 +89950,26 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094495642341074348",
+      "article_id": "696904074",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "696904074",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -89884,6 +90432,17 @@
       "evidence": [
         "link",
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "700878710",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
       ]
     },
     {
@@ -91087,6 +91646,16 @@
       ]
     },
     {
+      "answer_id": "2095938419339936496",
+      "article_id": "704855447",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3539929267",
       "article_id": "705043219",
       "via": [
@@ -91214,6 +91783,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "705411294",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -91968,6 +92547,17 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "708235908",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3565670981",
       "article_id": "708518560",
       "via": [
@@ -92055,6 +92645,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2097034162112815958",
+      "article_id": "708518560",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -93448,6 +94048,26 @@
       ]
     },
     {
+      "answer_id": "2094495642341074348",
+      "article_id": "711526074",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "711526074",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3585303679",
       "article_id": "712219496",
       "via": [
@@ -93615,6 +94235,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "712219496",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -93828,6 +94458,16 @@
       ]
     },
     {
+      "answer_id": "2098136609711460390",
+      "article_id": "712642705",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "3587565869",
       "article_id": "712750254",
       "via": [
@@ -93978,6 +94618,26 @@
       ]
     },
     {
+      "answer_id": "2094495642341074348",
+      "article_id": "712750254",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
+      "article_id": "712750254",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "3595617414",
       "article_id": "712910928",
       "via": [
@@ -94059,6 +94719,16 @@
     },
     {
       "answer_id": "2016796179850085860",
+      "article_id": "713133139",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
       "article_id": "713133139",
       "via": [
         "zhihu"
@@ -97013,6 +97683,16 @@
       ]
     },
     {
+      "answer_id": "2098136609711460390",
+      "article_id": "8370378840",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "83552021814",
       "article_id": "8749726218",
       "via": [
@@ -97735,6 +98415,26 @@
       ]
     },
     {
+      "answer_id": "2095115543095277105",
+      "article_id": "14141127318",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "14141127318",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "74310836668",
       "article_id": "15194624579",
       "via": [
@@ -97752,6 +98452,16 @@
       ],
       "evidence": [
         "link"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "15194624579",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -98004,6 +98714,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094495642341074348",
+      "article_id": "16471087476",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
       ]
     },
     {
@@ -98518,6 +99238,16 @@
       ]
     },
     {
+      "answer_id": "2093765968375948817",
+      "article_id": "17839729470",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
       "answer_id": "83386424539",
       "article_id": "18159574293",
       "via": [
@@ -98690,6 +99420,16 @@
     },
     {
       "answer_id": "2082403702342796878",
+      "article_id": "18691292186",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
       "article_id": "18691292186",
       "via": [
         "zhihu"
@@ -99270,6 +100010,16 @@
       ]
     },
     {
+      "answer_id": "2097360352426059094",
+      "article_id": "22816938382",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1891516167593629671",
       "article_id": "23650307827",
       "via": [
@@ -99559,6 +100309,16 @@
       ],
       "evidence": [
         "link"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "24164944495",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -100163,6 +100923,16 @@
       ]
     },
     {
+      "answer_id": "2096181111248401477",
+      "article_id": "26983893625",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "118070180037",
       "article_id": "27405404757",
       "via": [
@@ -100666,6 +101436,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "29101571919",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "123567409293",
       "article_id": "29208385281",
       "via": [
@@ -100913,6 +101693,26 @@
       ],
       "evidence": [
         "link"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
+      "article_id": "29760184109",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097024948749579232",
+      "article_id": "29760184109",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -101454,6 +102254,26 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094495642341074348",
+      "article_id": "1889973887506297083",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "1889973887506297083",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -102431,6 +103251,16 @@
       ]
     },
     {
+      "answer_id": "2096181111248401477",
+      "article_id": "1896502230300988542",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1897299015898477279",
       "article_id": "1896508097243104808",
       "via": [
@@ -102681,6 +103511,17 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "1898672179136165570",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1902073930858082442",
       "article_id": "1899037431396804330",
       "via": [
@@ -102852,6 +103693,36 @@
     },
     {
       "answer_id": "2018523075621209316",
+      "article_id": "1900847448211067390",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2093765968375948817",
+      "article_id": "1900847448211067390",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2094495642341074348",
+      "article_id": "1900847448211067390",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2095938419339936496",
       "article_id": "1900847448211067390",
       "via": [
         "zhihu"
@@ -103252,6 +104123,16 @@
       ]
     },
     {
+      "answer_id": "2094108133140457382",
+      "article_id": "1905419670535780190",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "1919092573588416310",
       "article_id": "1905583686872704300",
       "via": [
@@ -103504,6 +104385,16 @@
     },
     {
       "answer_id": "2000977687901132792",
+      "article_id": "1907408881207976645",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2093765968375948817",
       "article_id": "1907408881207976645",
       "via": [
         "zhihu"
@@ -104822,6 +105713,17 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "1933460394887868508",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1937082010712670379",
       "article_id": "1933832627044988705",
       "via": [
@@ -105058,6 +105960,16 @@
     },
     {
       "answer_id": "2074918762462168352",
+      "article_id": "1935994484769916045",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094736201873887817",
       "article_id": "1935994484769916045",
       "via": [
         "zhihu"
@@ -105368,6 +106280,16 @@
       ]
     },
     {
+      "answer_id": "2097024948749579232",
+      "article_id": "1942735669291126946",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1945457557566104429",
       "article_id": "1942735826783036612",
       "via": [
@@ -105425,6 +106347,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096675972963623307",
+      "article_id": "1944108824375060346",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -105489,6 +106421,16 @@
     },
     {
       "answer_id": "2083259189959440064",
+      "article_id": "1946145253959668829",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
       "article_id": "1946145253959668829",
       "via": [
         "zhihu"
@@ -105895,6 +106837,26 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "1954544526724167425",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097360352426059094",
+      "article_id": "1955580086083364669",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -106439,6 +107401,16 @@
       ]
     },
     {
+      "answer_id": "2096606319906240122",
+      "article_id": "1971506992318243062",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "1974900055992468603",
       "article_id": "1972234251777840886",
       "via": [
@@ -106446,6 +107418,16 @@
       ],
       "evidence": [
         "link"
+      ]
+    },
+    {
+      "answer_id": "2096675972963623307",
+      "article_id": "1972234251777840886",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -106850,6 +107832,16 @@
       ]
     },
     {
+      "answer_id": "2095485024871113793",
+      "article_id": "1982109644060112752",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "2050553071042928939",
       "article_id": "1982416471104721533",
       "via": [
@@ -107030,6 +108022,17 @@
       ]
     },
     {
+      "answer_id": "2095485024871113793",
+      "article_id": "1983908490331301204",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link",
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "2050553071042928939",
       "article_id": "1984953170284271195",
       "via": [
@@ -107091,6 +108094,16 @@
     },
     {
       "answer_id": "2082403702342796878",
+      "article_id": "1991088195111237194",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
       "article_id": "1991088195111237194",
       "via": [
         "zhihu"
@@ -107177,6 +108190,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "1992987499266580645",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -107460,6 +108483,16 @@
       ]
     },
     {
+      "answer_id": "2094736201873887817",
+      "article_id": "1993762465067070598",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "2062935798148752503",
       "article_id": "1994704480931948124",
       "via": [
@@ -107631,6 +108664,16 @@
     },
     {
       "answer_id": "2079910330893858216",
+      "article_id": "1996328710610108547",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094736201873887817",
       "article_id": "1996328710610108547",
       "via": [
         "zhihu"
@@ -107891,6 +108934,16 @@
     },
     {
       "answer_id": "2083259189959440064",
+      "article_id": "2003772621796434134",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
       "article_id": "2003772621796434134",
       "via": [
         "zhihu"
@@ -108453,6 +109506,16 @@
       ]
     },
     {
+      "answer_id": "2096181111248401477",
+      "article_id": "2025182281086576504",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2074070618279096353",
       "article_id": "2033920915696776105",
       "via": [
@@ -108753,6 +109816,16 @@
       ]
     },
     {
+      "answer_id": "2094108133140457382",
+      "article_id": "2052354958029239207",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
       "answer_id": "2058486836918587572",
       "article_id": "2053415071997601134",
       "via": [
@@ -108770,6 +109843,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2093765968375948817",
+      "article_id": "2053415071997601134",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
       ]
     },
     {
@@ -108830,6 +109913,16 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096181111248401477",
+      "article_id": "2057400181230940452",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -108894,6 +109987,16 @@
     },
     {
       "answer_id": "2072059123949217726",
+      "article_id": "2062834806409401236",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2094108133140457382",
       "article_id": "2062834806409401236",
       "via": [
         "zhihu"
@@ -109040,6 +110143,26 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096606319906240122",
+      "article_id": "2081033975301256938",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
+      "answer_id": "2097034162112815958",
+      "article_id": "2081054522097648002",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
       ]
     },
     {
@@ -109203,6 +110326,16 @@
       ]
     },
     {
+      "answer_id": "2097034162112815958",
+      "article_id": "2085394340784895564",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "native_reference"
+      ]
+    },
+    {
       "answer_id": "2087975068836050418",
       "article_id": "2085795301030478053",
       "via": [
@@ -109230,6 +110363,46 @@
       ],
       "evidence": [
         "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096675972963623307",
+      "article_id": "2085795301030478053",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
+      ]
+    },
+    {
+      "answer_id": "2095115543095277105",
+      "article_id": "2092325110220854040",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2095485024871113793",
+      "article_id": "2095539874195562788",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link_card"
+      ]
+    },
+    {
+      "answer_id": "2096675972963623307",
+      "article_id": "2096214419600568640",
+      "via": [
+        "zhihu"
+      ],
+      "evidence": [
+        "link"
       ]
     }
   ]
