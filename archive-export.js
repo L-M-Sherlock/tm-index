@@ -377,7 +377,7 @@ async function exportPages() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = '备份文章汇编.md';
+    link.download = `备份文章汇编_${new Date().toISOString().replace(/[:.]/g, '-')}.md`;
     document.body.append(link);
     link.click();
     link.remove();
