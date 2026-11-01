@@ -140,7 +140,8 @@ def _validate_format_corrections(work, manifest, owners):
         require(not manifest.get("initial_point_repairs"), "Approved initial point repairs have no format-correction logs")
         return [], {}
     items = {item["id"]: item for item in manifest["articles"]}
-    valid_actors = set(owners["writer"].values()) | set(owners["reviewer"].values()) | {"Codex主代理"}
+    valid_actors = (set(owners["writer"].values()) | set(owners["reviewer"].values())
+                    | set(manifest.get("assignments", {}).get("reviewer", {})) | {"Codex主代理"})
     approved_point_repairs = {}
     for repair in manifest.get("initial_point_repairs", []):
         require(isinstance(repair, dict), "Invalid initial_point_repairs entry")
@@ -207,7 +208,12 @@ def _validate_format_corrections(work, manifest, owners):
                 require(actor in {owners["writer"].get(article_id), owners["reviewer"].get(article_id)},
                         f"{log_path.name}: request correction is not from an assigned reader")
             if role is not None:
-                require(owners[role].get(article_id) == actor, f"{log_path.name}: actor does not own {relative}")
+                transfer = manifest.get("final_reviewer_transfers", {}).get(article_id, {})
+                owns_final_review = (parts[0] == "reviewers" and role == "reviewer"
+                                     and transfer.get("from") == owners["reviewer"].get(article_id)
+                                     and transfer.get("to") == actor)
+                require(owners[role].get(article_id) == actor or owns_final_review,
+                        f"{log_path.name}: actor does not own {relative}")
             elif actor != "Codex主代理" and parts[0] not in {"outlines", "requests"}:
                 require(actor in valid_actors, f"{log_path.name}: invalid actor for {relative}")
             frozen_path = parts[0] in {"outlines", "reviewer-outlines", "initial", "reviewer-initial"}
@@ -305,6 +311,17 @@ def _validate_format_corrections(work, manifest, owners):
                         after_obj = _normalize_initial_reason_aliases(after_obj)
                     if record["section"] in {"writers", "reviewers"}:
                         ignored_fields.update(("blind_outline_sha256", "initial_assessment_sha256", "summary_evidence"))
+                    if record["section"] == "writers":
+                        # Only paragraph breaks after sentence punctuation are
+                        # cosmetic; arbitrary whitespace can change a claim.
+                        before_summary = before_obj.get("summary")
+                        after_summary = after_obj.get("summary")
+                        if isinstance(before_summary, str) and isinstance(after_summary, str):
+                            def paragraphs(text):
+                                return re.sub(r"(?<=[。！？!?；;])\n\n", "", text)
+                            if paragraphs(before_summary) == paragraphs(after_summary):
+                                before_obj["summary"] = paragraphs(before_summary)
+                                after_obj["summary"] = paragraphs(after_summary)
                     if record["section"] == "reviewers":
                         ignored_fields.add("blind_key")
                     if record["section"] in {"requests", "adjudications"}:
@@ -368,7 +385,7 @@ def _validate_input_exceptions(work, manifest, owners):
             archived_path = confined(work, archived_record)
             require(archived_path.exists() and file_hash(archived_path) == record.get("archived_sha256"),
                     f"{article_id}: archived exception record hash mismatch")
-        elif kind == "cross_stage_point_mismatch_reassigned":
+        elif kind in {"cross_stage_point_mismatch_reassigned", "writer_provenance_reassigned"}:
             archived_records = record.get("archived_records")
             require(isinstance(archived_records, list) and bool(archived_records),
                     f"{article_id}: cross-stage exception must archive original records")
@@ -400,6 +417,62 @@ def _validate_input_exceptions(work, manifest, owners):
     return exceptions
 
 
+def _validate_reviewer_reassignments(work, manifest, owners):
+    records = manifest.get("reviewer_reassignments", [])
+    require(isinstance(records, list), "Invalid reviewer reassignment records")
+    items = {item["id"]: item for item in manifest["articles"]}
+    seen = set()
+    for record in records:
+        require(isinstance(record, dict), "Invalid reviewer reassignment record")
+        article_id = record.get("id")
+        item = items.get(article_id)
+        require(item is not None and article_id not in seen and item.get("review_origin") == "sampling_reuse_problem",
+                f"{article_id}: invalid reviewer reassignment scope")
+        seen.add(article_id)
+        old, new = record.get("from"), record.get("to")
+        require(old != new and new == owners["reviewer"].get(article_id)
+                and old in set(manifest["assignments"]["reviewer"])
+                and record.get("confirmed_unread") is True,
+                f"{article_id}: invalid reassigned reviewer identity")
+        nonempty(record.get("reason"), f"{article_id}: reviewer reassignment reason missing")
+        for path_key, hash_key in (("archived_outline_path", "archived_outline_sha256"),
+                                   ("instance_outline_path", "instance_outline_sha256"),
+                                   ("instance_initial_path", "instance_initial_sha256")):
+            path = record.get(path_key)
+            require(isinstance(path, str) and not Path(path).is_absolute() and ".." not in Path(path).parts,
+                    f"{article_id}: invalid reviewer reassignment path")
+            file = confined(work, path)
+            require(file.exists() and file_hash(file) == record.get(hash_key),
+                    f"{article_id}: reviewer reassignment record changed")
+        archived = read_json(confined(work, record["archived_outline_path"]))
+        require(archived.get("id") == article_id and archived.get("actor") == old
+                and archived.get("body_sha256") == item["body_sha256"]
+                and archived == record.get("archived_outline_record"),
+                f"{article_id}: archived reviewer outline identity mismatch")
+        instance_outline = read_json(confined(work, record["instance_outline_path"]))
+        instance_initial = read_json(confined(work, record["instance_initial_path"]))
+        for instance in (instance_outline, instance_initial):
+            require(instance.get("id") == article_id and instance.get("body_sha256") == item["body_sha256"]
+                    and instance.get("model") == MODEL and instance.get("reasoning_effort") == EFFORT,
+                    f"{article_id}: reassigned reviewer instance input mismatch")
+            validate_reading(instance, item)
+        require(instance_initial.get("old_summary_sha256") == item["old_summary_sha256"]
+                and instance_initial.get("outline_sha256") == record["instance_outline_sha256"]
+                and instance_initial.get("actor") == instance_outline.get("actor") == new
+                and instance_initial.get("verdict") in {"adequate", "undercovered", "distorted"},
+                f"{article_id}: reassigned reviewer initial mismatch")
+        prior_verdict = item.get("reused_audit", {}).get("final_verdict")
+        if instance_initial["verdict"] != prior_verdict:
+            adjudication_path = Path(work) / "adjudications" / (article_id + ".json")
+            require(adjudication_path.exists()
+                    and file_hash(adjudication_path) == record.get("adjudication_sha256")
+                    and read_json(adjudication_path).get("decider") == "Codex主代理",
+                    f"{article_id}: reassigned reviewer disagreement needs primary adjudication")
+        require(not (Path(work) / "outlines" / old / (article_id + ".json")).exists(),
+                f"{article_id}: archived reviewer outline still assigned")
+    return records
+
+
 def _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases):
     root = Path(work)
     index_root = root / "checkpoints/index"
@@ -411,10 +484,13 @@ def _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases):
         if exception.get("kind") == "reported_old_summary_seen_before_blind_outline_saved":
             archived[(actor, "outline", article_id)] = {"path": exception["archived_record"],
                                                           "sha256": exception["archived_sha256"]}
-        elif exception.get("kind") == "cross_stage_point_mismatch_reassigned":
+        elif exception.get("kind") in {"cross_stage_point_mismatch_reassigned", "writer_provenance_reassigned"}:
             for record in exception.get("archived_records", []):
                 archived[(actor, record.get("role"), article_id)] = {"path": record.get("path"),
                                                                       "sha256": record.get("sha256")}
+    for record in manifest.get("reviewer_reassignments", []):
+        archived[(record["from"], "outline", record["id"])] = {
+            "path": record["archived_outline_path"], "sha256": record["archived_outline_sha256"]}
 
     def expected_path(actor, role, article_id):
         if role == "outline":
@@ -428,12 +504,20 @@ def _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases):
         if role == "reviewer-initial":
             require(actor == owners["reviewer"].get(article_id), f"{article_id}: checkpoint reviewer-initial actor is not assigned")
             return f"reviewer-initial/{article_id}.json"
+        if role in {"transfer-outline", "transfer-initial"}:
+            transfer = manifest.get("final_reviewer_transfers", {}).get(article_id, {})
+            require(transfer.get("to") == actor, f"{article_id}: transferred checkpoint actor is not assigned")
+            suffix = "outline.json" if role == "transfer-outline" else "initial.json"
+            return f"final-review-transfers/{article_id}/{actor}/{suffix}"
         if role == "writer":
             require(actor == owners["writer"].get(article_id) or (actor, role, article_id) in archived,
                     f"{article_id}: checkpoint writer actor is not assigned")
             return f"writers/{article_id}.json"
         if role == "reviewer":
-            require(actor == owners["reviewer"].get(article_id), f"{article_id}: checkpoint reviewer actor is not assigned")
+            transfer = manifest.get("final_reviewer_transfers", {}).get(article_id, {})
+            require(actor == owners["reviewer"].get(article_id)
+                    or (transfer.get("from") == owners["reviewer"].get(article_id) and actor == transfer.get("to")),
+                    f"{article_id}: checkpoint reviewer actor is not assigned")
             return f"reviewers/{article_id}.json"
         if role == "adjudication":
             require(actor == "Codex主代理", f"{article_id}: checkpoint adjudication actor is invalid")
@@ -494,11 +578,11 @@ def _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases):
             continue
         target = confined(root, record_path)
         if not target.exists():
-            require(role not in {"outline", "initial", "reviewer-initial"},
+            require(role not in {"outline", "initial", "reviewer-initial", "transfer-outline", "transfer-initial"},
                     f"Frozen checkpoint record was deleted: {record_path}")
             continue
         current_hash = file_hash(target)
-        if role in {"outline", "initial", "reviewer-initial"} and current_hash != index["first_sha256"]:
+        if role in {"outline", "initial", "reviewer-initial", "transfer-outline", "transfer-initial"} and current_hash != index["first_sha256"]:
             aliases = format_hash_aliases.get(record_path, set())
             require(index["first_sha256"] in aliases and current_hash in aliases,
                     f"Frozen checkpoint changed without a valid format chain: {record_path}")
@@ -1044,6 +1128,85 @@ def validate_blind_reviewer(review, outline, outline_path, item, body, initial=N
             require("initial_assessment_sha256" not in review, f"{item['id']}: reused prior judgment must not be fabricated as a new initial assessment")
 
 
+def validate_final_reviewer_transfer(work, transfer, owners, item, body, writer, review,
+                                     prior_outline, prior_outline_path, prior_initial, prior_initial_path,
+                                     excluded_prior=(), expected_old_verdict=None):
+    """Validate a genuinely new blind reader while retaining the original old-draft judgment."""
+    article_id = item["id"]
+    original = owners["reviewer"][article_id]
+    replacement = transfer.get("to")
+    require(transfer.get("id") == article_id and transfer.get("from") == original,
+            f"{article_id}: invalid final reviewer transfer identity")
+    reviewer_prefix = original.rsplit("_", 1)[0]
+    require(replacement in {f"{reviewer_prefix}_1", f"{reviewer_prefix}_2"} and replacement != original
+            and replacement != owners["writer"][article_id] and transfer.get("confirmed_unread") is True,
+            f"{article_id}: final reviewer transfer is not independent")
+    nonempty(transfer.get("reason"), f"{article_id}: reviewer transfer reason missing")
+    previous = transfer.get("previous_review")
+    require(isinstance(previous, dict) and previous.get("path") ==
+            f"exceptions/{article_id}/previous-review-before-transfer.json",
+            f"{article_id}: transferred reviewer history is missing")
+    previous_path = confined(work, previous["path"])
+    require(isinstance(previous.get("record"), dict) and previous_path.exists()
+            and file_hash(previous_path) == previous.get("sha256")
+            and read_json(previous_path) == previous.get("record")
+            and previous["record"].get("id") == article_id
+            and previous["record"].get("reviewer") == original,
+            f"{article_id}: transferred reviewer history changed")
+    base = f"final-review-transfers/{article_id}/{replacement}"
+    require(transfer.get("outline_path") == f"{base}/outline.json"
+            and transfer.get("initial_path") == f"{base}/initial.json",
+            f"{article_id}: invalid reviewer transfer evidence paths")
+    outline_path = confined(work, transfer["outline_path"])
+    initial_path = confined(work, transfer["initial_path"])
+    require(outline_path.exists() and initial_path.exists()
+            and file_hash(outline_path) == transfer.get("outline_sha256")
+            and file_hash(initial_path) == transfer.get("initial_sha256"),
+            f"{article_id}: reviewer transfer evidence missing or changed")
+    for role, expected_hash in (("transfer-outline", file_hash(outline_path)),
+                                ("transfer-initial", file_hash(initial_path))):
+        index_path = Path(work) / "checkpoints" / "index" / replacement / role / (article_id + ".json")
+        require(index_path.exists() and read_json(index_path).get("first_sha256") == expected_hash,
+                f"{article_id}: transferred reviewer stage lacks its original checkpoint")
+    outline, initial = read_json(outline_path), read_json(initial_path)
+    require(digest(json_text(outline)) == file_hash(outline_path)
+            and digest(json_text(initial)) == file_hash(initial_path),
+            f"{article_id}: reviewer transfer evidence must use canonical JSON")
+    validate_outline(outline, replacement, item, body)
+    validate_initial(initial, outline, outline_path, replacement, item, body)
+    if initial["verdict"] != expected_old_verdict:
+        decision = transfer.get("new_initial_adjudication", {})
+        require(decision.get("decider") == "Codex主代理"
+                and decision.get("initial_sha256") == file_hash(initial_path)
+                and decision.get("final_old_verdict") == expected_old_verdict,
+                f"{article_id}: transferred reviewer disagreement is not adjudicated")
+        nonempty(decision.get("reason"), f"{article_id}: transfer adjudication reason missing")
+        validate_blind_spans({"source_spans": decision.get("source_spans")}, item, body)
+    require(review.get("reviewer") == replacement and review.get("transfer_provenance") == {
+        "from": original, "to": replacement, "reason": transfer["reason"],
+        "outline": outline, "initial": initial, "outline_sha256": file_hash(outline_path),
+        "initial_sha256": file_hash(initial_path)}, f"{article_id}: final reviewer provenance mismatch")
+    validate_reviewer(review, writer, item)
+    validate_blind_reviewer(review, outline, outline_path, item, body, initial, initial_path)
+    prior_points = review.get("prior_independent_major_points")
+    require(isinstance(prior_points, list) and bool(prior_points),
+            f"{article_id}: transferred review omitted original independent points")
+    prior_review = dict(review, independent_major_points=prior_points,
+                        blind_outline_sha256=file_hash(prior_outline_path),
+                        initial_assessment_sha256=file_hash(prior_initial_path))
+    validate_reviewer(prior_review, writer, item)
+    validate_blind_reviewer(prior_review, prior_outline, prior_outline_path, item, body,
+                            prior_initial, prior_initial_path, excluded_prior)
+    for evidence_points, blind_outline in ((review["independent_major_points"], outline),
+                                           (prior_points, prior_outline)):
+        original_points = {point["key"]: point for point in blind_outline["major_points"]}
+        for point in evidence_points:
+            key = point.get("blind_key") or point.get("key")
+            if key in original_points:
+                require(point.get("point") == original_points[key]["point"],
+                        f"{article_id}: transferred review changed a frozen blind point")
+
+
 def load_ledger(root):
     path = root / "data/summary-revisions.json"
     return read_json(path) if path.exists() else {"schema_version": 1, "entries": []}
@@ -1198,10 +1361,23 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
         for agent, assigned in groups.items():
             index = agent.rsplit("_", 1)[1]
             require(read_json(work / f"{role}-{index}-assignment.json") == assigned, f"{agent}: assignment file changed")
+    final_transfers = manifest.get("final_reviewer_transfers", {})
+    require(isinstance(final_transfers, dict) and set(final_transfers) <= eligible_ids,
+            "Invalid final reviewer transfer inventory")
+    for article_id, transfer in final_transfers.items():
+        require(isinstance(transfer, dict) and transfer.get("id") == article_id
+                and items[article_id].get("review_origin") == "fresh"
+                and transfer.get("from") == owners["reviewer"][article_id]
+                and transfer.get("to") in set(assignments["reviewer"])
+                and transfer.get("to") != transfer.get("from")
+                and transfer.get("to") != owners["writer"][article_id]
+                and transfer.get("confirmed_unread") is True,
+                f"{article_id}: invalid final reviewer transfer")
     format_logs, format_hash_aliases = _validate_format_corrections(work, manifest, owners)
     manifest["_format_correction_logs"] = format_logs
     manifest["_format_hash_aliases"] = format_hash_aliases
     manifest["_input_exceptions"] = _validate_input_exceptions(work, manifest, owners)
+    manifest["_reviewer_reassignments"] = _validate_reviewer_reassignments(work, manifest, owners)
     _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases)
     global_reuse = manifest.get("reused_audit")
     if global_reuse is not None:
@@ -1385,8 +1561,15 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
             else:
                 review = read_json(review_path)
                 validate_reviewer(review, writer, item)
-                require(review["reviewer"] == reviewer_actor, f"{article_id}: unexpected reviewer")
-                if reviewer_outline is not None:
+                transfer = final_transfers.get(article_id)
+                if transfer is not None and reviewer_outline is not None and reviewer_initial is not None:
+                    validate_final_reviewer_transfer(work, transfer, owners, item, body, writer, review,
+                        reviewer_outline, reviewer_outline_path, reviewer_initial, reviewer_initial_path,
+                        excluded_reviewer, expected_old_verdict)
+                elif transfer is not None:
+                    add_pending(article_id, "original-reviewer-evidence")
+                elif reviewer_outline is not None:
+                    require(review["reviewer"] == reviewer_actor, f"{article_id}: unexpected reviewer")
                     reviewer_outline_hashes = _allowed_file_hashes(work, reviewer_outline_path, format_hash_aliases)
                     reviewer_initial_hashes = (_allowed_file_hashes(work, reviewer_initial_path, format_hash_aliases)
                                                if reviewer_initial_path.exists() else set())
@@ -1396,6 +1579,7 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
                                             allowed_outline_hashes=reviewer_outline_hashes,
                                             allowed_initial_hashes=reviewer_initial_hashes)
                 else:
+                    require(review["reviewer"] == reviewer_actor, f"{article_id}: unexpected reviewer")
                     add_pending(article_id, "reviewer-outline")
                 for point in [*writer["major_points"], *review["independent_major_points"]]:
                     for span in point["source_spans"]:
@@ -1454,6 +1638,21 @@ def validate_history_review(event):
     writer = {"writer": after["writer"], "summary": after["summary"], "major_points": event["coverage"]}
     try:
         validate_reviewer(review, writer, item)
+        provenance = review.get("transfer_provenance")
+        if provenance is not None:
+            require(isinstance(provenance, dict) and provenance.get("to") == review["reviewer"]
+                    and provenance.get("from") != provenance.get("to"),
+                    f"{event['id']}: invalid historical reviewer transfer")
+            for kind in ("outline", "initial"):
+                record = provenance.get(kind)
+                require(isinstance(record, dict) and record.get("actor") == provenance["to"]
+                        and digest(json_text(record)) == provenance.get(kind + "_sha256"),
+                        f"{event['id']}: invalid historical transferred {kind}")
+                validate_reading(record, item)
+            prior_points = review.get("prior_independent_major_points")
+            require(isinstance(prior_points, list) and bool(prior_points),
+                    f"{event['id']}: historical transfer lacks original reviewer points")
+            validate_reviewer(dict(review, independent_major_points=prior_points), writer, item)
     except (ValueError, KeyError, TypeError) as error:
         raise ValueError(f"{event['id']}: invalid historical review: {error}") from error
 
@@ -1663,6 +1862,9 @@ def _checkpoint_targets(work, manifest, actor=None, article_id=None):
             ("reviewers", "reviewer", "reviewer", "reviewer"),
         ):
             assigned_actor = owners[assignment_role][current_id]
+            transfer = manifest.get("final_reviewer_transfers", {}).get(current_id, {})
+            if role == "reviewer" and transfer:
+                assigned_actor = transfer["to"]
             if actor is not None and assigned_actor != actor:
                 continue
             path = Path(work) / directory / (current_id + ".json")
@@ -1671,6 +1873,15 @@ def _checkpoint_targets(work, manifest, actor=None, article_id=None):
                 require(record.get("id") == current_id and record.get(identity_key) == assigned_actor,
                         f"{current_id}: cannot checkpoint {role} with mismatched identity")
                 targets.append((assigned_actor, role, current_id, path))
+        transfer = manifest.get("final_reviewer_transfers", {}).get(current_id, {})
+        if transfer and (actor is None or actor == transfer["to"]):
+            for role, field in (("transfer-outline", "outline_path"), ("transfer-initial", "initial_path")):
+                path = confined(work, transfer[field])
+                if path.exists():
+                    record = read_json(path)
+                    require(record.get("id") == current_id and record.get("actor") == transfer["to"],
+                            f"{current_id}: cannot checkpoint transferred reviewer with mismatched identity")
+                    targets.append((transfer["to"], role, current_id, path))
         for directory, role, identity_key in (("adjudications", "adjudication", "decider"),):
             if actor is not None and actor != "Codex主代理":
                 continue
@@ -1731,6 +1942,8 @@ def checkpoint_records(root, work, actor=None, article_id=None):
             assigned = any(article_id in ids for role, groups in manifest["assignments"].items()
                            if role in ("writer", "reviewer")
                            for name, ids in groups.items() if name == actor)
+            transfer = manifest.get("final_reviewer_transfers", {}).get(article_id, {})
+            assigned = assigned or transfer.get("to") == actor
             require(assigned, f"Actor {actor!r} is not assigned article {article_id}")
     targets = _checkpoint_targets(work, manifest, actor=actor, article_id=article_id)
     captured = unchanged = 0
@@ -1902,12 +2115,19 @@ def _select_publication_ids(work, manifest, acceptance, requested_ids, prior_sta
 def _validate_primary_acceptance(work, manifest, pairs, allow_subset=False, required_ids=None):
     path = Path(work) / "primary-acceptance.json"
     if not path.exists():
+        require(not manifest.get("require_bound_primary_review", False),
+                "Primary acceptance with bound review evidence is required for this run")
         return None
     acceptance = read_json(path)
     acceptance_map = _primary_acceptance_map(acceptance, manifest, allow_subset=allow_subset)
     expected_ids = [item["id"] for item in manifest["articles"]]
     final_summaries = {item["id"]: writer["summary"] if writer is not None else item["summary"]
                        for item, writer, _ in pairs}
+    pair_map = {item["id"]: (item, writer, review) for item, writer, review in pairs}
+    require(isinstance(acceptance.get("bind_review_sha", False), bool),
+            "Primary acceptance review binding must be boolean")
+    require(not manifest.get("require_bound_primary_review", False) or acceptance.get("bind_review_sha") is True,
+            "Primary acceptance must bind the review evidence for this run")
     to_validate = set(expected_ids) if required_ids is None else set(required_ids)
     if not allow_subset:
         require(to_validate == set(expected_ids), "Primary acceptance must cover the exact run scope")
@@ -1917,6 +2137,16 @@ def _validate_primary_acceptance(work, manifest, pairs, allow_subset=False, requ
         require(entry.get("accepted") is True, f"{article_id}: primary acceptance is not accepted")
         require(entry.get("summary_sha256") == digest(final_summaries[article_id]),
                 f"{article_id}: primary acceptance summary SHA is stale")
+        if acceptance.get("bind_review_sha", False):
+            item, writer, review = pair_map[article_id]
+            if writer is None:
+                require(entry.get("reused_entry_sha256") == item.get("reused_audit", {}).get("entry_sha256"),
+                        f"{article_id}: primary acceptance reused evidence SHA is stale")
+            else:
+                review_path = Path(work) / "reviewers" / (article_id + ".json")
+                require(review is not None and review_path.exists()
+                        and entry.get("review_sha256") == file_hash(review_path),
+                        f"{article_id}: primary acceptance review SHA is stale")
     return acceptance
 
 
@@ -2089,6 +2319,10 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
              "entries": entries}
     if manifest.get("process_exceptions"):
         audit["process_exceptions"] = manifest["process_exceptions"]
+    if manifest.get("final_reviewer_transfers"):
+        audit["final_reviewer_transfers"] = manifest["final_reviewer_transfers"]
+    if manifest.get("_reviewer_reassignments"):
+        audit["reviewer_reassignments"] = manifest["_reviewer_reassignments"]
     if primary_acceptance is not None:
         audit["primary_acceptance"] = primary_acceptance
     publication = None

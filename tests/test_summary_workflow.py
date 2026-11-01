@@ -1062,7 +1062,7 @@ class WorkflowTests(unittest.TestCase):
                                      reviewer_actor=owners["reviewer"][article_id])
             writer = flow.read_json(work / "writers" / (article_id + ".json"))
             return {"id": article_id, "accepted": True, "summary_sha256": flow.digest(writer["summary"]),
-                    "review_sha256": "independent-review-receipt"}
+                    "review_sha256": flow.file_hash(work / "reviewers" / (article_id + ".json"))}
 
         first = add_records(target_ids[0])
         acceptance = {"decider": "Codex主代理", "entries": [first]}
@@ -1086,6 +1086,11 @@ class WorkflowTests(unittest.TestCase):
         flow.apply(self.root, work, accepted_only=True, publication_ids=[target_ids[0]])
         self.assertEqual(published_bytes, self.output_bytes())
 
+        # A later phase may strengthen primary-review binding without changing
+        # the first publication's immutable per-article receipt.
+        manifest["require_bound_primary_review"] = True
+        flow.write_json(work / "manifest.json", manifest)
+        acceptance["bind_review_sha"] = True
         second = add_records(target_ids[1])
         acceptance["entries"].append(second)
         flow.write_json(work / "primary-acceptance.json", acceptance)
@@ -1198,6 +1203,49 @@ class WorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "unselected old summary changed"):
             flow.apply(self.root, work, accepted_only=True, publication_ids=[target_ids[0]])
 
+    def test_reused_reviewer_reassignment_pins_independent_reading(self):
+        work = self.prepare_blind(work_name="reviewer-reassignment", run="reviewer-reassignment")
+        manifest = flow.read_json(work / "manifest.json")
+        item = manifest["articles"][0]
+        item["review_origin"] = "sampling_reuse_problem"
+        item["reused_audit"] = {"final_verdict": "undercovered"}
+        article_id = item["id"]
+        old, new = "mid_reviewer_1", "mid_reviewer_2"
+        manifest["assignments"]["reviewer"][old].remove(article_id)
+        manifest["assignments"]["reviewer"][new].append(article_id)
+        owners = {role: {aid: actor for actor, ids in groups.items() for aid in ids}
+                  for role, groups in manifest["assignments"].items()}
+        base = {"id": article_id, "source_sha256": item["source_sha256"],
+                "body_sha256": item["body_sha256"], "model": flow.MODEL,
+                "reasoning_effort": flow.EFFORT, "read_chunks": list(range(len(item["chunks"])))}
+        archived = work / "exceptions" / article_id / "reviewer-outline.json"
+        outline = work / "private-provenance" / "independent-outline.json"
+        initial = work / "private-provenance" / "independent-initial.json"
+        flow.write_json(archived, {**base, "actor": old})
+        flow.write_json(outline, {**base, "actor": new})
+        flow.write_json(initial, {**base, "actor": new, "verdict": "undercovered",
+                                 "old_summary_sha256": item["old_summary_sha256"],
+                                 "outline_sha256": flow.file_hash(outline)})
+        record = {"id": article_id, "from": old, "to": new, "confirmed_unread": True,
+                  "reason": "新实例独立阅读后重新接手。",
+                  "archived_outline_record": flow.read_json(archived)}
+        for name, path in (("archived_outline", archived), ("instance_outline", outline),
+                           ("instance_initial", initial)):
+            record[name + "_path"] = path.relative_to(work).as_posix()
+            record[name + "_sha256"] = flow.file_hash(path)
+        manifest["reviewer_reassignments"] = [record]
+        self.assertEqual(flow._validate_reviewer_reassignments(work, manifest, owners), [record])
+        flow.write_json(initial, {**base, "actor": new, "verdict": "adequate"})
+        with self.assertRaisesRegex(ValueError, "reviewer reassignment record changed"):
+            flow._validate_reviewer_reassignments(work, manifest, owners)
+        changed = {**base, "actor": new, "verdict": "adequate",
+                   "old_summary_sha256": item["old_summary_sha256"],
+                   "outline_sha256": flow.file_hash(outline)}
+        flow.write_json(initial, changed)
+        record["instance_initial_sha256"] = flow.file_hash(initial)
+        with self.assertRaisesRegex(ValueError, "disagreement needs primary adjudication"):
+            flow._validate_reviewer_reassignments(work, manifest, owners)
+
     def test_cross_stage_exception_requires_reassignment_and_exact_archives(self):
         work = self.prepare_blind(work_name="cross-stage-exception", run="cross-stage-exception")
         manifest_path = work / "manifest.json"
@@ -1233,6 +1281,10 @@ class WorkflowTests(unittest.TestCase):
         flow.write_json(manifest_path, manifest)
         owners = {role: {article_id: actor for actor, ids in role_groups.items() for article_id in ids}
                   for role, role_groups in manifest["assignments"].items()}
+
+        provenance_manifest = copy.deepcopy(manifest)
+        provenance_manifest["input_exceptions"][0]["kind"] = "writer_provenance_reassigned"
+        flow._validate_input_exceptions(work, provenance_manifest, owners)
 
         bad_manifest = copy.deepcopy(manifest)
         bad_manifest["input_exceptions"][0]["archived_records"][0]["sha256"] = "0" * 64
@@ -1358,6 +1410,198 @@ class WorkflowTests(unittest.TestCase):
                         {"actor": "mid_writer_1", "reason": "草稿日志保留为过程证据。", "revisions": []})
         logs, _ = flow._validate_format_corrections(work, manifest, owners)
         self.assertEqual(len(logs), 1)
+
+    def test_final_reviewer_transfer_preserves_both_blind_records_and_rejects_tampering(self):
+        work = self.prepare_blind(work_name=".work/transfer-test")
+        item = self.write_blind_records(work)
+        manifest_path = work / "manifest.json"
+        manifest = flow.read_json(manifest_path)
+        article_id = item["id"]
+        old_actor = next(actor for actor, ids in manifest["assignments"]["reviewer"].items() if article_id in ids)
+        new_actor = next(actor for actor in manifest["assignments"]["reviewer"] if actor != old_actor)
+        base = work / "final-review-transfers" / article_id / new_actor
+        old_outline_path = work / "outlines" / old_actor / (article_id + ".json")
+        old_initial_path = work / "reviewer-initial" / (article_id + ".json")
+        new_outline = copy.deepcopy(flow.read_json(old_outline_path))
+        new_outline["actor"] = new_actor
+        outline_path = base / "outline.json"
+        flow.write_json(outline_path, new_outline)
+        flow._checkpoint_record(work, new_actor, "transfer-outline", article_id, outline_path)
+        new_initial = copy.deepcopy(flow.read_json(old_initial_path))
+        new_initial.update(actor=new_actor, outline_sha256=flow.file_hash(outline_path))
+        initial_path = base / "initial.json"
+        flow.write_json(initial_path, new_initial)
+        flow._checkpoint_record(work, new_actor, "transfer-initial", article_id, initial_path)
+        transfer = {"id": article_id, "from": old_actor, "to": new_actor, "confirmed_unread": True,
+                    "reason": "原终审实例提前看到稿件，新读者独立重审。",
+                    "outline_path": outline_path.relative_to(work).as_posix(),
+                    "initial_path": initial_path.relative_to(work).as_posix(),
+                    "outline_sha256": flow.file_hash(outline_path), "initial_sha256": flow.file_hash(initial_path)}
+        review_path = work / "reviewers" / (article_id + ".json")
+        previous_path = work / "exceptions" / article_id / "previous-review-before-transfer.json"
+        previous = flow.read_json(review_path)
+        flow.write_json(previous_path, previous)
+        transfer["previous_review"] = {"path": previous_path.relative_to(work).as_posix(),
+                                       "sha256": flow.file_hash(previous_path), "record": previous}
+        manifest["final_reviewer_transfers"] = {article_id: transfer}
+        flow.write_json(manifest_path, manifest)
+        review = flow.read_json(review_path)
+        review["prior_independent_major_points"] = copy.deepcopy(review["independent_major_points"])
+        review.update(reviewer=new_actor, blind_outline_sha256=flow.file_hash(outline_path),
+                      initial_assessment_sha256=flow.file_hash(initial_path),
+                      transfer_provenance={"from": old_actor, "to": new_actor, "reason": transfer["reason"],
+                                           "outline": new_outline, "initial": new_initial,
+                                           "outline_sha256": transfer["outline_sha256"],
+                                           "initial_sha256": transfer["initial_sha256"]})
+        flow.write_json(review_path, review)
+        flow.checkpoint_records(self.root, work, actor=new_actor, article_id=article_id)
+        flow.check(self.root, work)
+
+        transfer["confirmed_unread"] = False
+        flow.write_json(manifest_path, manifest)
+        with self.assertRaisesRegex(ValueError, "invalid final reviewer transfer"):
+            flow.check(self.root, work)
+        transfer["confirmed_unread"] = True
+        flow.write_json(manifest_path, manifest)
+        previous_bytes = previous_path.read_bytes()
+        previous_path.write_text("{}\n", encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "transferred reviewer history changed"):
+            flow.check(self.root, work)
+        previous_path.write_bytes(previous_bytes)
+
+        changed = copy.deepcopy(review)
+        changed["reviewer"] = old_actor
+        flow.write_json(review_path, changed)
+        with self.assertRaisesRegex(ValueError, "reviewer provenance mismatch"):
+            flow.check(self.root, work)
+        changed = copy.deepcopy(review)
+        changed["prior_independent_major_points"] = []
+        flow.write_json(review_path, changed)
+        with self.assertRaisesRegex(ValueError, "omitted original independent points"):
+            flow.check(self.root, work)
+        changed = copy.deepcopy(review)
+        changed["prior_independent_major_points"][0]["point"] = "篡改后的原始盲读观点"
+        flow.write_json(review_path, changed)
+        with self.assertRaisesRegex(ValueError, "changed a frozen blind point"):
+            flow.check(self.root, work)
+        flow.write_json(review_path, review)
+        # A third, genuine initial judgment can disagree with the established
+        # result, but it must not silently replace the original adjudication.
+        new_initial["verdict"] = "adequate"
+        new_initial["major_points"][0]["old_coverage"] = "covered"
+        new_initial["major_points"][0]["old_evidence"] = item["summary"]
+        flow.write_json(initial_path, new_initial)
+        initial_index = work / "checkpoints/index" / new_actor / "transfer-initial" / (article_id + ".json")
+        initial_index.unlink()
+        flow._checkpoint_record(work, new_actor, "transfer-initial", article_id, initial_path)
+        transfer["initial_sha256"] = flow.file_hash(initial_path)
+        review["initial_assessment_sha256"] = transfer["initial_sha256"]
+        review["transfer_provenance"]["initial"] = new_initial
+        review["transfer_provenance"]["initial_sha256"] = transfer["initial_sha256"]
+        flow.write_json(review_path, review)
+        flow.write_json(manifest_path, manifest)
+        with self.assertRaisesRegex(ValueError, "transferred reviewer disagreement is not adjudicated"):
+            flow.check(self.root, work)
+        transfer["new_initial_adjudication"] = {
+            "decider": "Codex主代理", "initial_sha256": transfer["initial_sha256"],
+            "final_old_verdict": "undercovered", "reason": "回查正文与两份初判后保持原裁定。",
+            "source_spans": new_outline["major_points"][0]["source_spans"]}
+        flow.write_json(manifest_path, manifest)
+        flow.check(self.root, work)
+        saved_index = initial_index.read_bytes()
+        initial_index.unlink()
+        with self.assertRaisesRegex(ValueError, "lacks its original checkpoint"):
+            flow.check(self.root, work)
+        initial_index.write_bytes(saved_index)
+        altered = copy.deepcopy(new_outline)
+        altered["genre"] = "被篡改的体裁"
+        flow.write_json(outline_path, altered)
+        with self.assertRaisesRegex(ValueError, "Frozen checkpoint changed|evidence missing or changed"):
+            flow.check(self.root, work)
+        flow.write_json(outline_path, new_outline)
+        writer = flow.read_json(work / "writers" / (article_id + ".json"))
+        flow.write_json(work / "primary-acceptance.json", {"decider": "Codex主代理", "entries": [{
+            "id": article_id, "accepted": True, "summary_sha256": flow.digest(writer["summary"])}]})
+        flow.apply(self.root, work)
+        after = self.output_bytes()
+        flow.apply(self.root, work)
+        self.assertEqual(after, self.output_bytes())
+        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        self.assertEqual(audit["final_reviewer_transfers"][article_id]["to"], new_actor)
+        ledger = flow.read_json(self.root / "data/summary-revisions.json")
+        flow.validate_history_review(ledger["entries"][-1])
+
+    def test_primary_acceptance_can_bind_exact_review_bytes(self):
+        work = self.prepare_blind(work_name=".work/primary-review-binding")
+        item = self.write_blind_records(work)
+        writer = flow.read_json(work / "writers" / (item["id"] + ".json"))
+        review_path = work / "reviewers" / (item["id"] + ".json")
+        acceptance = {"decider": "Codex主代理", "bind_review_sha": True, "entries": [{
+            "id": item["id"], "accepted": True, "summary_sha256": flow.digest(writer["summary"]),
+            "review_sha256": flow.file_hash(review_path)}]}
+        manifest_path = work / "manifest.json"
+        manifest = flow.read_json(manifest_path)
+        manifest["require_bound_primary_review"] = True
+        flow.write_json(manifest_path, manifest)
+        with self.assertRaisesRegex(ValueError, "acceptance with bound review evidence is required"):
+            flow.apply(self.root, work)
+        acceptance["bind_review_sha"] = False
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+        with self.assertRaisesRegex(ValueError, "must bind the review evidence"):
+            flow.apply(self.root, work)
+        acceptance["bind_review_sha"] = True
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+        review = flow.read_json(review_path)
+        review["notes"].append("新增但未经过主代理验收的复核说明")
+        flow.write_json(review_path, review)
+        before = self.output_bytes()
+        with self.assertRaisesRegex(ValueError, "primary acceptance review SHA is stale"):
+            flow.apply(self.root, work)
+        self.assertEqual(before, self.output_bytes())
+        acceptance["entries"][0]["review_sha256"] = flow.file_hash(review_path)
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+        self.assertEqual(flow.apply(self.root, work)["reviewed"], 1)
+
+    def test_primary_acceptance_can_bind_reused_historical_evidence(self):
+        work = self.prepare_blind(work_name=".work/primary-reuse-binding", reuse_verdict="adequate")
+        item = flow.read_json(work / "manifest.json")["articles"][0]
+        acceptance = {"decider": "Codex主代理", "bind_review_sha": True, "entries": [{
+            "id": item["id"], "accepted": True, "summary_sha256": flow.digest(item["summary"]),
+            "reused_entry_sha256": "0" * 64}]}
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+        with self.assertRaisesRegex(ValueError, "primary acceptance reused evidence SHA is stale"):
+            flow.apply(self.root, work)
+        acceptance["entries"][0]["reused_entry_sha256"] = item["reused_audit"]["entry_sha256"]
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+        self.assertEqual(flow.apply(self.root, work)["reviewed"], 1)
+
+    def test_writer_paragraph_breaks_allow_only_sentence_boundary_formatting(self):
+        def validate_change(directory_name, after_summary):
+            work = self.root / directory_name
+            target = work / "writers/1.json"
+            backup = work / "format-before/mid_writer_1/1/writer.json"
+            target.parent.mkdir(parents=True)
+            backup.parent.mkdir(parents=True)
+            before = {"id": "1", "writer": "mid_writer_1",
+                      "summary": "第一句。第二句；第三句。", "decision": "rewrite"}
+            flow.write_json(backup, before)
+            after = dict(before, summary=after_summary)
+            flow.write_json(target, after)
+            flow.write_json(work / "format-corrections/mid_writer_1.json", {
+                "actor": "mid_writer_1", "reason": "分段排版", "files": [{
+                    "id": "1", "path": "writers/1.json", "backup_path": backup.relative_to(work).as_posix(),
+                    "before_sha256": flow.file_hash(backup), "after_sha256": flow.file_hash(target),
+                    "changes": ["paragraph breaks"]}]})
+            owners = {"writer": {"1": "mid_writer_1"}, "reviewer": {"1": "mid_reviewer_1"}}
+            return flow._validate_format_corrections(work, {"articles": [{"id": "1"}]}, owners)
+
+        logs, _ = validate_change("paragraph-ok", "第一句。\n\n第二句；\n\n第三句。")
+        self.assertEqual(len(logs), 1)
+        for name, summary in (("paragraph-inside", "第一\n\n句。第二句；第三句。"),
+                              ("paragraph-text", "第一句。\n\n第二句；第四句。"),
+                              ("paragraph-space", "第一句。 第二句；第三句。")):
+            with self.assertRaisesRegex(ValueError, "Format correction changed non-location judgment content"):
+                validate_change(name, summary)
 
     def test_initial_reason_field_rename_preserves_text_only(self):
         def validate_change(directory_name, after_point):
