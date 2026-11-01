@@ -281,22 +281,52 @@
   "latest_incremental_annotation_date": "2026-10-28",
   "summary_revisions": {
     "latest_date": "2026-11-01",
-    "articles": 60,
-    "events": 62,
+    "articles": 130,
+    "events": 132,
     "review_file": "data/summary-revisions.json",
     "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"
   },
   "summary_reviews": {
-    "run_id": "long-2026-11-01",
+    "run_id": "midlength-full-2026-11-01",
     "latest_date": "2026-11-01",
-    "reviewed": 60,
-    "rewritten": 60,
-    "retained": 0,
-    "body_characters": 2150982,
-    "before_summary_characters": 12443,
-    "after_summary_characters": 53194,
+    "reviewed": 92,
+    "rewritten": 70,
+    "retained": 22,
+    "body_characters": 1312125,
+    "before_summary_characters": 14649,
+    "after_summary_characters": 49247,
+    "reused_old_judgments": 31,
+    "reused_direct_retains": 18,
+    "new_old_judgments": 61,
+    "new_draft_validations": 70,
+    "length_strata": [
+      {
+        "lower": 8000,
+        "upper": 10000,
+        "population_count": 97,
+        "published_count": 9
+      },
+      {
+        "lower": 10000,
+        "upper": 15000,
+        "population_count": 122,
+        "published_count": 44
+      },
+      {
+        "lower": 15000,
+        "upper": 20000,
+        "population_count": 40,
+        "published_count": 39
+      }
+    ],
     "model": "gpt-6-luna",
     "reasoning_effort": "max",
-    "review_file": "data/summary-reviews.json"
+    "review_file": "data/summary-reviews.json",
+    "publication": {
+      "status": "in_progress",
+      "target_scope": 259,
+      "published": 92,
+      "pending": 167
+    }
   }
 }
