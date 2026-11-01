@@ -278,5 +278,25 @@
     "unreviewed_submitted_pairs": 0,
     "classification_limitations": "Excerpt validation and blockquote checks do not establish semantic attribution; level 2 requires contextual review of the answer author’s own paraphrase."
   },
-  "latest_incremental_annotation_date": "2026-10-28"
+  "latest_incremental_annotation_date": "2026-10-28",
+  "summary_revisions": {
+    "latest_date": "2026-11-01",
+    "articles": 60,
+    "events": 62,
+    "review_file": "data/summary-revisions.json",
+    "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"
+  },
+  "summary_reviews": {
+    "run_id": "long-2026-11-01",
+    "latest_date": "2026-11-01",
+    "reviewed": 60,
+    "rewritten": 60,
+    "retained": 0,
+    "body_characters": 2150982,
+    "before_summary_characters": 12443,
+    "after_summary_characters": 53194,
+    "model": "gpt-6-luna",
+    "reasoning_effort": "max",
+    "review_file": "data/summary-reviews.json"
+  }
 }
