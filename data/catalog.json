@@ -257,6 +257,16 @@
         "remaining_candidate_edges": 246,
         "remaining_source_articles": 170,
         "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
+      },
+      "editorial_pending_candidates": 3,
+      "editorial_pending_source_articles": 3,
+      "editorial_review": {
+        "decisions_file": "reference-editorial-decisions.json",
+        "decisions_sha256": "992f2cb63b5c95fb36ab2d35136fbb0b436f467f53241d0c08f56a5f62ffd432",
+        "mechanical_candidates": 246,
+        "editorially_excluded": 243,
+        "pending_candidates": 3,
+        "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
       }
     },
     "answer_references": {
@@ -12738,7 +12748,7 @@
       "referenced_by": [],
       "reference_count": 2,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -16292,7 +16302,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2081399506860614937"
       ],
@@ -22364,7 +22374,7 @@
       "referenced_by": [],
       "reference_count": 1,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2094108133140457382",
         "2072059123949217726"
@@ -23481,7 +23491,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -24964,7 +24974,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -27821,7 +27831,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2094108133140457382",
         "2066563015802147415"
@@ -30664,7 +30674,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2080692584188469780",
         "2066563015802147415"
@@ -36249,7 +36259,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096181111248401477"
       ],
@@ -37170,7 +37180,7 @@
       ],
       "reference_count": 24,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -37573,7 +37583,7 @@
       ],
       "reference_count": 13,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -39357,7 +39367,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2069822729323385693",
         "2064815819155158417",
@@ -54317,7 +54327,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2083489386616963948",
         "2072059123949217726",
@@ -57182,7 +57192,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -61981,7 +61991,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1978793250979612523"
       ],
@@ -67748,7 +67758,7 @@
       ],
       "reference_count": 18,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096181111248401477"
       ],
@@ -72167,7 +72177,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -76877,7 +76887,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1958852263947769187"
       ],
@@ -77708,7 +77718,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -78799,7 +78809,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1951697456325719840",
         "3490031929"
@@ -80121,7 +80131,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -82707,7 +82717,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1941913208832098371"
       ],
@@ -95570,7 +95580,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1976705356563513573",
         "1935311935399784849"
@@ -98210,7 +98220,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2079143887021647656",
         "2069434183437514445",
@@ -102846,7 +102856,7 @@
       "referenced_by": [],
       "reference_count": 3,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -109116,7 +109126,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -111734,7 +111744,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096181111248401477",
         "2094495642341074348",
@@ -112437,7 +112447,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2080591714738234462",
         "1978793250979612523"
@@ -120395,7 +120405,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1932406214786015357"
       ],
@@ -121225,7 +121235,7 @@
       ],
       "reference_count": 46,
       "referenced_by_count": 26,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -122148,7 +122158,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -126404,7 +126414,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 15,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2080591714738234462"
       ],
@@ -131046,7 +131056,9 @@
           "title": "量子物理与多世界",
           "via": [
             "original"
-          ]
+          ],
+          "pending_review": true,
+          "pending_review_reason": "原链与目标知乎页都指向《量子物理与多世界》系列索引，目标仅为目录；它不是支持“接触量子力学致疯狂”这一具体说法的科学证据，目录是否值得作为此处引用有待判断。"
         }
       ],
       "referenced_by": [
@@ -132347,7 +132359,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -136515,7 +136527,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -139702,7 +139714,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -143700,7 +143712,7 @@
       ],
       "reference_count": 38,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2040502508846633914",
         "2037646403690812830",
@@ -144134,7 +144146,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -144978,7 +144990,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -145091,7 +145103,7 @@
       "referenced_by": [],
       "reference_count": 4,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3597882375"
       ],
@@ -146964,7 +146976,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -149772,7 +149784,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -150530,7 +150542,7 @@
       "referenced_by": [],
       "reference_count": 4,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1997363526298261034",
         "1929110154911130148",
@@ -163040,7 +163052,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -164426,7 +164438,7 @@
       ],
       "reference_count": 12,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -165874,7 +165886,7 @@
       ],
       "reference_count": 29,
       "referenced_by_count": 22,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2097674584610845141",
         "1953749966452396544",
@@ -167252,7 +167264,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3631852862",
         "3490031929"
@@ -167818,7 +167830,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -167924,7 +167936,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -196313,7 +196325,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -202445,7 +202457,7 @@
       ],
       "reference_count": 36,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -209705,7 +209717,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1926248931551088800",
         "3455224281",
@@ -213145,7 +213157,7 @@
       ],
       "reference_count": 18,
       "referenced_by_count": 9,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3140628309"
       ],
@@ -213359,7 +213371,7 @@
       ],
       "reference_count": 7,
       "referenced_by_count": 10,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3632686438",
         "3541497395",
@@ -219319,7 +219331,7 @@
       ],
       "reference_count": 24,
       "referenced_by_count": 13,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2015804467698763143",
         "3631852862",
@@ -220674,7 +220686,7 @@
       ],
       "reference_count": 37,
       "referenced_by_count": 76,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017887574232937536",
         "2017163223938376088",
@@ -221519,7 +221531,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -229419,7 +229431,7 @@
       ],
       "reference_count": 7,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3149693040"
       ],
@@ -231043,7 +231055,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 10,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -234703,7 +234715,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -234794,7 +234806,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3560516947"
       ],
@@ -237458,7 +237470,7 @@
       ],
       "reference_count": 91,
       "referenced_by_count": 135,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2084598180658918593",
         "2075973874634712098",
@@ -238175,7 +238187,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2873857418"
       ],
@@ -239736,7 +239748,7 @@
       ],
       "reference_count": 14,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2074635056820262903",
         "2017887574232937536"
@@ -241290,7 +241302,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2984069166",
         "2975567430"
@@ -242198,7 +242210,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -242832,7 +242844,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3576013624",
         "2878762196",
@@ -245140,7 +245152,7 @@
       ],
       "reference_count": 22,
       "referenced_by_count": 20,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1939015819376985120",
         "3273043621"
@@ -245646,7 +245658,7 @@
       ],
       "reference_count": 15,
       "referenced_by_count": 13,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1951697456325719840",
         "1945200625013995084",
@@ -245808,7 +245820,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -246060,7 +246072,7 @@
       ],
       "reference_count": 16,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2095485024871113793",
         "2068035230112421262",
@@ -246223,7 +246235,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2097024948749579232",
         "2013175443356942684",
@@ -248127,7 +248139,7 @@
       "referenced_by": [],
       "reference_count": 3,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -248761,7 +248773,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1905952897956545033",
         "27064833396",
@@ -249340,7 +249352,7 @@
       ],
       "reference_count": 16,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -249675,7 +249687,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -250260,7 +250272,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -251487,7 +251499,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 22,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -253556,7 +253568,7 @@
       ],
       "reference_count": 25,
       "referenced_by_count": 15,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3632686438",
         "3447601853",
@@ -253816,7 +253828,7 @@
       ],
       "reference_count": 12,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -254583,7 +254595,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1905952897956545033",
         "27064833396",
@@ -254896,7 +254908,7 @@
       "referenced_by": [],
       "reference_count": 4,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -255581,7 +255593,7 @@
       ],
       "reference_count": 16,
       "referenced_by_count": 26,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1991462005836637138",
@@ -256290,7 +256302,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2065874803404420225",
         "1984598564136047826",
@@ -260248,7 +260260,7 @@
       ],
       "reference_count": 13,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3524520002",
         "3474908634",
@@ -260890,7 +260902,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1905952897956545033",
         "3366946263",
@@ -261427,7 +261439,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1992893660044496987",
         "3593073392",
@@ -263869,7 +263881,7 @@
       ],
       "reference_count": 22,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1897299015898477279",
         "58331676288",
@@ -266924,7 +266936,7 @@
       ],
       "reference_count": 12,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1897299015898477279",
         "3541497395",
@@ -267581,7 +267593,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -268557,7 +268569,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3249341480"
       ],
@@ -268798,7 +268810,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3490031929",
         "3462080025",
@@ -269110,7 +269122,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -272946,7 +272958,7 @@
       ],
       "reference_count": 131,
       "referenced_by_count": 44,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096606319906240122",
         "2088193254554711496",
@@ -277765,7 +277777,7 @@
       "referenced_by": [],
       "reference_count": 6,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2056726052542615819",
         "1916097566908610366",
@@ -279344,7 +279356,7 @@
       ],
       "reference_count": 26,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2058486836918587572",
         "3632686438",
@@ -283140,7 +283152,7 @@
       ],
       "reference_count": 44,
       "referenced_by_count": 13,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2050514720608851835",
         "89082348961",
@@ -283532,7 +283544,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 12,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "117708177094",
         "3531927202",
@@ -284362,7 +284374,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2073507025888327199",
         "2042178419224475609",
@@ -285519,7 +285531,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -290330,7 +290342,7 @@
       ],
       "reference_count": 49,
       "referenced_by_count": 12,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3202245608"
       ],
@@ -292418,7 +292430,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3029922725"
       ],
@@ -303194,7 +303206,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2094495642341074348",
         "75398985829",
@@ -305053,7 +305065,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1955202241058301369",
         "2746925170",
@@ -306607,7 +306619,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2087118672531809898",
         "2037646403690812830",
@@ -307217,7 +307229,9 @@
           "title": "Kirschner, Sweller, & Clark (2006)：《为什么最小化指导教学是无效的：对建构主义、发现式、问题导向、体验式和探究式教学失败的分析》",
           "via": [
             "original"
-          ]
+          ],
+          "pending_review": true,
+          "pending_review_reason": "正文书目写 Kirschner 等的 2006 年论文，但原链接指向 Andy Matuschak 的读书笔记，目标译文是该笔记而非论文译文。若不注明“笔记”，补成论文引用会误导，需用户确认如何呈现。"
         },
         {
           "id": "698476935",
@@ -310623,7 +310637,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -311162,7 +311176,7 @@
       ],
       "reference_count": 18,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3525777101",
         "3460822546",
@@ -311795,7 +311809,7 @@
       ],
       "reference_count": 38,
       "referenced_by_count": 9,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2059278686289925801",
         "1949111167927685211",
@@ -312633,7 +312647,7 @@
       ],
       "reference_count": 15,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3097162097",
         "2804992705"
@@ -313416,7 +313430,7 @@
       ],
       "reference_count": 22,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -314791,7 +314805,7 @@
       ],
       "reference_count": 19,
       "referenced_by_count": 86,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2021597263521129478",
         "2017887574232937536",
@@ -322025,7 +322039,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1966193463411319610",
         "1955202241058301369",
@@ -322957,7 +322971,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -323543,7 +323557,7 @@
       ],
       "reference_count": 18,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1926248931551088800",
         "3455224281",
@@ -330649,7 +330663,7 @@
       ],
       "reference_count": 23,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3631852862"
       ],
@@ -333015,7 +333029,7 @@
       ],
       "reference_count": 13,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2305757720"
       ],
@@ -337618,7 +337632,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 18,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1967297948657381778",
         "1944807289052726376",
@@ -338501,7 +338515,7 @@
       ],
       "reference_count": 26,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 5,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2074467496766326088",
         "1917956291852215154",
@@ -339129,7 +339143,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -342635,7 +342649,7 @@
       ],
       "reference_count": 14,
       "referenced_by_count": 13,
-      "missing_zhihu_reference_count": 5,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017163223938376088",
         "1955202241058301369",
@@ -343296,7 +343310,7 @@
       ],
       "reference_count": 25,
       "referenced_by_count": 23,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1966193463411319610",
         "1955202241058301369",
@@ -347722,7 +347736,7 @@
       ],
       "reference_count": 23,
       "referenced_by_count": 64,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017887574232937536",
         "2015804467698763143",
@@ -348421,7 +348435,7 @@
       ],
       "reference_count": 28,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1932493360419026358",
         "1926248931551088800",
@@ -354932,7 +354946,7 @@
       ],
       "reference_count": 65,
       "referenced_by_count": 82,
-      "missing_zhihu_reference_count": 29,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2014988415939151609",
         "2000977687901132792",
@@ -356442,7 +356456,7 @@
       ],
       "reference_count": 11,
       "referenced_by_count": 10,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3225403127",
         "2834169225",
@@ -359092,7 +359106,7 @@
       ],
       "reference_count": 23,
       "referenced_by_count": 20,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2834169225",
         "2091409585"
@@ -361771,7 +361785,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 43,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2012324191995703722",
         "1984598564136047826",
@@ -362645,7 +362659,7 @@
       ],
       "reference_count": 23,
       "referenced_by_count": 15,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2015804467698763143",
         "1998446984764346810",
@@ -363586,7 +363600,7 @@
       ],
       "reference_count": 56,
       "referenced_by_count": 16,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1998446984764346810",
         "1945200625013995084",
@@ -363947,7 +363961,7 @@
       ],
       "reference_count": 19,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1968439846369489451",
         "3634213940",
@@ -364072,7 +364086,9 @@
           "title": "(1/5) 高效学习的间隔重复——概述",
           "via": [
             "original"
-          ]
+          ],
+          "pending_review": true,
+          "pending_review_reason": "原链接指 Gwern 完整长文，目标仅为五部分译文的第一篇概述（内有其余部分目录）。中文导语在“间隔重复”一词链接长文，作为概述入口可能有帮助，但不能称其为完整原文译本；需确认呈现范围。"
         },
         {
           "id": "380354533",
@@ -366210,7 +366226,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 84,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017887574232937536",
         "1970550708731355357",
@@ -367427,7 +367443,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 14,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2081340886982583581",
         "1998446984764346810",
@@ -367829,7 +367845,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 15,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2067297071401637178",
         "2057150543362053662",
@@ -368677,7 +368693,7 @@
       ],
       "reference_count": 30,
       "referenced_by_count": 20,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2047758606137811518",
         "2047392061687588063",
@@ -369047,7 +369063,7 @@
       ],
       "reference_count": 7,
       "referenced_by_count": 11,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3222435786",
         "3040571508",
@@ -369223,7 +369239,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2097024948749579232",
         "2013175443356942684",
@@ -373025,7 +373041,7 @@
       ],
       "reference_count": 24,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2098136609711460390",
         "2059278686289925801",
@@ -374066,7 +374082,7 @@
       ],
       "reference_count": 15,
       "referenced_by_count": 63,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2050514720608851835",
         "2047758606137811518",
@@ -376142,7 +376158,7 @@
       ],
       "reference_count": 24,
       "referenced_by_count": 11,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017533326462828638",
         "2010040975188304670",
@@ -378186,7 +378202,7 @@
       ],
       "reference_count": 39,
       "referenced_by_count": 12,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2079531707666118269",
         "1930271508854440121",
@@ -378939,7 +378955,7 @@
       ],
       "reference_count": 21,
       "referenced_by_count": 59,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -379924,7 +379940,7 @@
       ],
       "reference_count": 13,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2066958473557021510",
         "2452443382",
@@ -381109,7 +381125,7 @@
       ],
       "reference_count": 23,
       "referenced_by_count": 80,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2061892063965323661",
         "2024783376297596199",
@@ -384275,7 +384291,7 @@
       ],
       "reference_count": 12,
       "referenced_by_count": 20,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "95091192195",
         "3541497395",
@@ -384639,7 +384655,7 @@
       ],
       "reference_count": 15,
       "referenced_by_count": 5,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2035416556952352231",
         "2015804467698763143",
@@ -384903,7 +384919,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2050514720608851835",
         "1968439846369489451",
@@ -386359,7 +386375,7 @@
       ],
       "reference_count": 26,
       "referenced_by_count": 9,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2076603306365947951",
         "2062545762937057595",
@@ -387551,7 +387567,7 @@
       ],
       "reference_count": 27,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017163223938376088"
       ],
@@ -390479,7 +390495,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 21,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017163223938376088",
         "3525777101",
@@ -392442,7 +392458,7 @@
       ],
       "reference_count": 39,
       "referenced_by_count": 196,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2097024948749579232",
         "2017887574232937536",
@@ -394422,7 +394438,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -395134,7 +395150,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2095938419339936496",
         "2021597263521129478",
@@ -401272,7 +401288,7 @@
       ],
       "reference_count": 14,
       "referenced_by_count": 38,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -404660,7 +404676,7 @@
       ],
       "reference_count": 43,
       "referenced_by_count": 31,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -405184,7 +405200,7 @@
       ],
       "reference_count": 6,
       "referenced_by_count": 25,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1970550708731355357",
         "1945200625013995084",
@@ -405550,7 +405566,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3566747356",
         "2873857418",
@@ -405740,7 +405756,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2063973215517652120",
         "2012459046620406797",
@@ -409704,7 +409720,7 @@
       ],
       "reference_count": 16,
       "referenced_by_count": 18,
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2021597263521129478",
         "107490642741",
@@ -410718,7 +410734,7 @@
       ],
       "reference_count": 25,
       "referenced_by_count": 96,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2097024948749579232",
         "2024783376297596199",
@@ -412861,7 +412877,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 11,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2067297071401637178",
         "2014988415939151609",
@@ -413501,7 +413517,7 @@
       ],
       "reference_count": 19,
       "referenced_by_count": 47,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2047392061687588063",
         "2024783376297596199",
@@ -414923,7 +414939,7 @@
       ],
       "reference_count": 43,
       "referenced_by_count": 44,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2047758606137811518",
         "2017533326462828638",
@@ -421282,7 +421298,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 10,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "89082348961",
         "2804992705",
@@ -423278,7 +423294,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 50,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -424210,7 +424226,7 @@
       ],
       "reference_count": 35,
       "referenced_by_count": 36,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2025337989283215223",
         "2000977687901132792",
@@ -427103,7 +427119,7 @@
       ],
       "reference_count": 31,
       "referenced_by_count": 36,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2035416556952352231",
         "2025337989283215223",
@@ -429090,7 +429106,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3497729748",
         "3402309401",
@@ -429744,7 +429760,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 19,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "90127292424",
         "3606095183",
@@ -430315,7 +430331,7 @@
       ],
       "reference_count": 21,
       "referenced_by_count": 27,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2021597263521129478",
         "1949408051380610891",

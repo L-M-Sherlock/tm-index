@@ -31,6 +31,7 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 - `answer-references.json`：本地回答与译文之间的直接链接和经核验的正文关系，附引用程度、证据及回答链接
 - `missing-zhihu-references.json` / `.csv`：原文链接有唯一译文匹配、但未发现指向该译文的知乎链接或注释的候选。其他译本或相关引用仍需逐条核对
 - `missing-zhihu-reference-review-method.json`：候选的置信分级、类别规则与抽样审计
+- `reference-editorial-decisions.json`：既有候选逐对编辑处置及待判断理由
 - `missing-zhihu-reference-recheck.json`：基于更新后的本地备份，对既有候选逐对复核的结果、链接证据与来源哈希；独立于历史候选清单和页面计数
 - `validation.json`：最终覆盖与完整性检查
 - `user-corrections.json`：人工确认的范围和作者更正
@@ -49,7 +50,7 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 
 ## 待核对译文链接复核
 
-2026-11-02 完成两轮本地备份复核。首轮基于提交 6e0eca6e，移除 11 条过时标记；第二轮更新至提交 00ffc0c9，对剩余 318 条逐对复核，再移除 72 条已有原生引用注释的标记。累计移除 83 条，目前剩余 246 条候选、170 篇来源文章，无法核验为 0。候选清单、页面计数和对应引用关系的链接类型已同步；总结与正文未修改。截图中的《学校让人沾染上的 100+ 恶习》仍有 2 条候选。详见 [最新复核报告](docs/missing-zhihu-reference-recheck-20261102-1230.md)、[首轮历史报告](docs/missing-zhihu-reference-recheck.md) 和 [170 篇来源文章列表](docs/missing-zhihu-reference-articles.md)，另有 [CSV 列表](data/missing-zhihu-reference-articles.csv)。这是本地最新备份核验，不代表实时读取知乎，也不包含新候选发现或全量引用图谱重建。
+2026-11-02 的两轮本地备份核验从既有候选中移除 83 条已有知乎引用的关系，留下 246 条原文链接对应关系。结合此前逐条编辑审阅，其中 243 条暂不添加，网站目前显示 3 条仍需判断的引用、涉及 3 篇文章；完整审阅决定保存在 [编辑处置记录](data/reference-editorial-decisions.json)。这不改变原有引用图谱，也不是新文章的全量扫描或知乎实时核验。历史核验见 [最新复核报告](docs/missing-zhihu-reference-recheck-20261102-1230.md) 和 [首轮历史报告](docs/missing-zhihu-reference-recheck.md)；当前队列见 [文章列表](docs/missing-zhihu-reference-articles.md) 和 [CSV 列表](data/missing-zhihu-reference-articles.csv)。
 
 更新备份仓库后，可运行只读复核：
 
