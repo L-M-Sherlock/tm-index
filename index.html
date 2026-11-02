@@ -12,6 +12,7 @@
 .filters input[type="search"],.filters select{height:42px;box-sizing:border-box;line-height:20px}.sort-group,.sort-control{display:flex;align-items:center;gap:8px;min-width:0}.sort-control{white-space:nowrap}.sort-control select{width:auto;max-width:100%;height:38px;box-sizing:border-box;line-height:20px;margin:0;padding:7px 9px}#sort-direction,#export-txt{height:38px;box-sizing:border-box}.answer-sort-control{display:flex;align-items:center;gap:8px;margin:6px 0;flex-wrap:wrap}.answer-sort-control select{width:auto;height:30px;box-sizing:border-box;line-height:18px;margin:0;padding:5px 7px;font-size:12px}
 button.ui-action,.archive-export-actions button.ui-action,.pager button.ui-action,button.clear.ui-action{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border:1px solid #cbdcd4;border-radius:8px;padding:7px 13px;background:#edf4f0;color:#245c4c;font-size:13px;font-weight:600;line-height:1.4}button.clear.ui-action{justify-self:start}button.ui-action:hover:not(:disabled){background:#dcece4;filter:none}button.ui-action:focus-visible{outline:2px solid #8ec6b5;outline-offset:2px}button.ui-action:disabled{opacity:.45;cursor:not-allowed}button.ui-action.sort-toggle{width:38px;padding:0;background:var(--teal);border-color:var(--teal);color:#fff;font-size:20px}button.ui-action.sort-toggle:hover:not(:disabled){background:#11594f}button.ui-action.sort-toggle.answer-direction{width:30px;height:30px;min-height:30px;font-size:17px}
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.site-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.site-nav a{display:inline-flex;align-items:center;justify-content:center;min-height:38px;border:1px solid #cbdcd4;border-radius:8px;padding:7px 13px;background:#edf4f0;color:#245c4c;font-size:13px;font-weight:600;line-height:1.4;text-decoration:none}.site-nav a:hover{background:#dcece4;filter:none}.site-nav a:focus-visible{outline:2px solid #8ec6b5;outline-offset:2px}
+.cards{align-items:start}.card{height:720px;display:flex;flex-direction:column}.card>*{flex-shrink:0}.card .summary-preview{display:flex;flex-direction:column;flex:1;min-height:0;margin:12px 0 18px}.summary-viewport{flex:1;min-height:0;max-height:18lh;overflow:hidden}.card .summary{margin:0;overflow-wrap:anywhere}.summary-toggle{align-self:flex-start;flex-shrink:0;min-height:30px;margin-top:6px;padding:2px 0;border:0;background:transparent;color:var(--teal);font-size:12px;text-align:left}.summary-toggle:focus-visible{outline:2px solid #8ec6b5;outline-offset:2px}.summary-toggle:disabled{visibility:hidden}.card.summary-expanded,.card:has(details[open]){height:auto;min-height:720px}.card.summary-expanded .summary-viewport{flex:none;max-height:none;overflow:visible}.card.summary-expanded .summary-preview,.card:has(details[open]) .summary-preview{flex:none}.card:has(details[open]):not(.summary-expanded) .summary-viewport{flex:none;max-height:240px}.card h2,.card .meta,.card .tags,.card .links{overflow-wrap:anywhere}
 </style></head><body><main>
 <header class="site-header"><div class="eyebrow">THOUGHTS MEMO · TRANSLATION ARCHIVE</div><nav class="site-nav" aria-label="相关链接"><a href="https://l-m-sherlock.github.io/ZhiHuArchive/" target="_blank" rel="noopener noreferrer">备份网站 ↗</a><a href="https://github.com/L-M-Sherlock/tm-index" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a></nav></header>
 <h1>译文摘要与关键词</h1>
@@ -87,6 +88,33 @@ function exportFiltered(){
  const file=new Blob([lines.join('\n').replace(/\n+$/,'')+'\n'],{type:'text/plain;charset=utf-8'});
  const url=URL.createObjectURL(file),link=document.createElement('a');link.href=url;link.download=`译文摘要汇编_${new Date().toISOString().replace(/[:.]/g,'-')}.txt`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
+const summaryResizeObserver = new ResizeObserver(entries=>{
+ for(const {target} of entries){
+  const card=target.closest('.card');
+  if(card.classList.contains('summary-expanded'))continue;
+  const button=card.querySelector('.summary-toggle'),overflow=target.scrollHeight>target.clientHeight+1;
+  button.disabled=!overflow;
+  button.textContent=overflow?`展开全部总结（当前显示约 ${Math.max(1,Math.min(99,Math.round(target.clientHeight/target.scrollHeight*100)))}%）`:'展开全部总结';
+ }
+});
+function prepareSummaryPreviews(){
+ summaryResizeObserver.disconnect();
+ document.querySelectorAll('#cards .summary').forEach(summary=>{
+  const preview=document.createElement('div'),viewport=document.createElement('div'),button=document.createElement('button');
+  preview.className='summary-preview';viewport.className='summary-viewport';
+  viewport.id=`summary-${summary.closest('.card').id}`;
+  button.type='button';button.className='summary-toggle';button.disabled=true;button.textContent='展开全部总结';
+  button.setAttribute('aria-expanded','false');button.setAttribute('aria-controls',viewport.id);
+  summary.replaceWith(preview);viewport.append(summary);preview.append(viewport,button);
+  button.addEventListener('click',()=>{
+   const expanded=button.getAttribute('aria-expanded')!=='true';
+   button.setAttribute('aria-expanded',String(expanded));
+   preview.closest('.card').classList.toggle('summary-expanded',expanded);
+   button.textContent=expanded?'收起总结':'展开全部总结';
+  });
+  summaryResizeObserver.observe(viewport);
+ });
+}
 function render(reset=true){
  if(reset) page=0;
  const tokens=$('query').value.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean), keyword=$('keyword').value, publisher=$('publisher').value, originalAuthor=$('original-author').value;
@@ -108,6 +136,7 @@ function render(reset=true){
  $('export-txt').disabled=filtered.length===0;
  $('page-count').textContent=`${page+1} / ${totalPages}`;$('previous').disabled=page===0;$('next').disabled=page>=totalPages-1;
  $('cards').innerHTML=filtered.slice(page*pageSize,(page+1)*pageSize).map(r=>`<article class="card" id="article-${escapeHtml(r.id)}"><div class="meta"><span>${escapeHtml(r.date)}</span><span>${escapeHtml(r.publisher)}</span><span>${labels[r.decision]}</span><span title="赞数来自本地存档">${r.voteup_count==null?'赞数未知':`${r.voteup_count.toLocaleString()} 赞`}</span></div><h2><a href="${escapeHtml(r.archive_url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(r.title)}</a></h2>${r.column?`<div class="meta">${escapeHtml(r.column)}</div>`:''}${r.original_author_status?`<div class="meta">${authorLabel(r)}：${escapeHtml(authorText(r))}</div>`:''}<p class="summary">${escapeHtml(r.summary||r.scope_reason)}</p><div class="tags">${r.keywords.map(k=>`<button type="button" class="tag" data-keyword="${escapeHtml(k)}">${escapeHtml(k)}</button>`).join('')}</div>${relationHtml(r)}<div class="links"><a href="${escapeHtml(r.archive_url)}" target="_blank" rel="noopener noreferrer">存档全文 ↗</a><a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">知乎原文 ↗</a><a href="?article=${encodeURIComponent(r.id)}" data-related-id="${escapeHtml(r.id)}">目录链接</a></div><details><summary>范围依据与来源记录</summary>${authorDetails(r)}<p>${escapeHtml(r.scope_reason)}</p><p>正文证据：${escapeHtml(r.evidence)}</p><p>文章 ID：${escapeHtml(r.id)} · 可见正文 ${r.read_chars.toLocaleString()} 字符</p><p>源文件：${escapeHtml(r.source_path)}</p><p>SHA-256：${escapeHtml(r.source_sha256)}</p></details></article>`).join('')||'<p class="empty">没有匹配文章。可清除标签或缩短搜索词。</p>';
+ prepareSummaryPreviews();
  document.querySelectorAll('#topics .tag').forEach(b=>b.classList.toggle('active',b.dataset.keyword===keyword));
 }
 $('filters').addEventListener('submit',event=>event.preventDefault());
