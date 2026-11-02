@@ -67,6 +67,15 @@ def prepare_updates(root, archive, audit_relative="data/missing-zhihu-reference-
     candidate_raw = candidate_path.read_bytes()
     application = audit.get("application", {})
     if digest(candidate_raw) == application.get("candidate_file_sha256_after"):
+        # Older applications could mark an audit complete while retaining
+        # stale top-level edges.  Do not report that state as a clean no-op.
+        candidate = json.loads(candidate_raw)
+        source_pairs = [(source["source_id"], reference["target_id"])
+                        for source in candidate["sources"] for reference in source["references"]]
+        edge_pairs = [(edge["source_id"], edge["target_id"]) for edge in candidate.get("edges", [])]
+        if (len(source_pairs) != len(set(source_pairs)) or len(edge_pairs) != len(set(edge_pairs))
+                or set(source_pairs) != set(edge_pairs)):
+            raise ValueError("Previously applied candidate file has inconsistent top-level edges")
         return {}
     if digest(candidate_raw) != audit["metadata"]["candidate_file_sha256"]:
         raise ValueError("Candidate file changed since audit; no updates applied")
@@ -81,6 +90,12 @@ def prepare_updates(root, archive, audit_relative="data/missing-zhihu-reference-
         raise ValueError("Unresolved audit statuses require manual handling")
     candidates = json.loads(candidate_raw)
     old_pairs = {(source["source_id"], reference["target_id"]) for source in candidates["sources"] for reference in source["references"]}
+    candidate_edges = candidates.get("edges")
+    if not isinstance(candidate_edges, list):
+        raise ValueError("Candidate JSON is missing its top-level edges")
+    edge_pairs = [(edge["source_id"], edge["target_id"]) for edge in candidate_edges]
+    if len(edge_pairs) != len(set(edge_pairs)) or not old_pairs <= set(edge_pairs):
+        raise ValueError("Candidate top-level edges are duplicated or omit a source candidate")
     audit_pairs = {(row["source_id"], row["target_id"]) for row in audit["results"]}
     if old_pairs != audit_pairs or len(audit_pairs) != len(audit["results"]):
         raise ValueError("Audit does not cover exactly the candidate pairs")
@@ -99,6 +114,15 @@ def prepare_updates(root, archive, audit_relative="data/missing-zhihu-reference-
             source["missing_zhihu_reference_count"] = len(kept)
             sources.append(source)
     candidates["sources"] = sources
+    # `sources` is the candidate set used by the audit.  Older applications
+    # accidentally retained removed entries in `edges`; keep the original
+    # order and payload for surviving pairs while discarding those stale rows.
+    kept_pairs = {(source["source_id"], reference["target_id"])
+                  for source in sources for reference in source["references"]}
+    candidates["edges"] = [edge for edge in candidate_edges
+                           if (edge["source_id"], edge["target_id"]) in kept_pairs]
+    if len(candidates["edges"]) != len(kept_pairs):
+        raise ValueError("Candidate top-level edges do not match remaining sources")
     all_references = [reference for source in sources for reference in source["references"]]
     target_counts = Counter(reference["target_id"] for reference in all_references)
     target_titles = {reference["target_id"]: reference["target_title"] for reference in all_references}
@@ -140,15 +164,46 @@ def prepare_updates(root, archive, audit_relative="data/missing-zhihu-reference-
         edge["candidate_recheck"] = {"checked_at": correction["checked_at"], "archive_head": correction["archive_head"], "direct_link_evidence": evidence}
         added_occurrences += len(evidence)
     reference_metadata = references["metadata"]
-    reference_metadata.update({"missing_zhihu_reference_candidates": len(all_references), "articles_with_missing_zhihu_references": len(sources),
+    # After editorial review, the public pending queue is a subset of the
+    # mechanical original-link graph.  Keep both counts in their own domain.
+    editorial = metadata.get("editorial_review")
+    if editorial is not None:
+        if not isinstance(editorial, dict):
+            raise ValueError("Editorial review metadata is malformed")
+        mechanical = [edge for edge in references["edges"]
+                      if "original" in edge["via"] and "zhihu" not in edge["via"]]
+        mechanical_pairs = {(edge["source_id"], edge["target_id"]) for edge in mechanical}
+        if not kept_pairs <= mechanical_pairs:
+            raise ValueError("Editorial queue contains a pair absent from the mechanical graph")
+        mechanical_count = len(mechanical)
+        mechanical_sources = len({edge["source_id"] for edge in mechanical})
+        editorial.update({"mechanical_candidates": mechanical_count,
+                          "editorially_excluded": mechanical_count - len(kept_pairs),
+                          "pending_candidates": len(kept_pairs)})
+        reference_metadata.update({"editorial_pending_candidates": len(kept_pairs),
+                                   "editorial_pending_source_articles": len(sources),
+                                   "editorial_review": copy.deepcopy(editorial)})
+    else:
+        mechanical_count, mechanical_sources = len(all_references), len(sources)
+    reference_metadata.update({"missing_zhihu_reference_candidates": mechanical_count, "articles_with_missing_zhihu_references": mechanical_sources,
                                "method_edge_counts": dict(sorted(Counter(method for edge in references["edges"] for method in edge["via"]).items())),
                                "link_occurrences": sum(edge["occurrences"] for edge in references["edges"]), "candidate_recheck": correction})
     reference_metadata["method_occurrence_counts"]["zhihu"] += added_occurrences
     source_counts = {source["source_id"]: source["missing_zhihu_reference_count"] for source in sources}
+    pending_reasons = {(source["source_id"], reference["target_id"]): reference.get("review_reason", "")
+                       for source in sources for reference in source["references"]}
     for row in catalog["articles"]:
         row["missing_zhihu_reference_count"] = source_counts.get(row["id"], 0)
         for reference in row["references"]:
-            reference["via"] = edges[(row["id"], reference["id"])]["via"]
+            pair = (row["id"], reference["id"])
+            reference["via"] = edges[pair]["via"]
+            if editorial is not None:
+                if pair in kept_pairs:
+                    reference["pending_review"] = True
+                    reference["pending_review_reason"] = pending_reasons[pair]
+                else:
+                    reference.pop("pending_review", None)
+                    reference.pop("pending_review_reason", None)
         for reference in row["referenced_by"]:
             reference["via"] = edges[(reference["id"], row["id"])]["via"]
     for before, after in zip(old_catalog["articles"], catalog["articles"]):
@@ -164,6 +219,8 @@ def prepare_updates(root, archive, audit_relative="data/missing-zhihu-reference-
     method["validation"].update({"record_count": len(all_references), "reused_review_rows": len(all_references) - metadata["unreviewed_candidate_edges"],
                                  "unreviewed_candidates": metadata["unreviewed_candidate_edges"], "old_reviews_no_longer_candidates": metadata["prior_review_rows_no_longer_candidates"]})
     method["candidate_recheck"] = correction
+    if editorial is not None:
+        method["editorial_review"] = copy.deepcopy(editorial)
     html = (root / "index.html").read_text(encoding="utf-8")
     matches = list(DATA_PATTERN.finditer(html))
     if len(matches) != 1:

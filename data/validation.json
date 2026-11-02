@@ -256,6 +256,16 @@
       "remaining_candidate_edges": 246,
       "remaining_source_articles": 170,
       "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
+    },
+    "editorial_pending_candidates": 3,
+    "editorial_pending_source_articles": 3,
+    "editorial_review": {
+      "decisions_file": "reference-editorial-decisions.json",
+      "decisions_sha256": "992f2cb63b5c95fb36ab2d35136fbb0b436f467f53241d0c08f56a5f62ffd432",
+      "mechanical_candidates": 246,
+      "editorially_excluded": 243,
+      "pending_candidates": 3,
+      "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
     }
   },
   "answer_references": {
