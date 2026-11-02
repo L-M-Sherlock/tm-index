@@ -5,7 +5,7 @@
   "input": {
     "references": "references.json",
     "catalog": "catalog.json",
-    "candidate_edges": 329
+    "candidate_edges": 246
   },
   "confidence_rules": {
     "review": [
@@ -35,26 +35,26 @@
   },
   "counts": {
     "confidence": {
-      "unreviewed": 36,
-      "medium": 196,
-      "high": 91,
-      "review": 6
+      "medium": 160,
+      "high": 72,
+      "unreviewed": 9,
+      "review": 5
     },
     "category": {
-      "unreviewed": 36,
-      "content": 204,
-      "term": 79,
-      "directory": 2,
+      "content": 180,
+      "term": 48,
+      "bibliography": 4,
+      "unreviewed": 9,
       "generic": 4,
-      "bibliography": 4
+      "directory": 1
     }
   },
   "validation": {
     "unique_pairs": true,
-    "record_count": 329,
-    "reused_review_rows": 293,
-    "unreviewed_candidates": 36,
-    "old_reviews_no_longer_candidates": 0
+    "record_count": 246,
+    "reused_review_rows": 237,
+    "unreviewed_candidates": 9,
+    "old_reviews_no_longer_candidates": 56
   },
   "sampling_audit": {
     "method": "按(source_id,target_id)排序后等距抽取60条人工核验。",
@@ -83,5 +83,14 @@
     "generic": 60,
     "bibliography": 77,
     "directory": 12
+  },
+  "candidate_recheck": {
+    "checked_at": "2026-11-02T04:30:18.384283+00:00",
+    "archive_head": "00ffc0c99eeed0763118a7c77ac0e9f1ababf066",
+    "audit_file": "missing-zhihu-reference-recheck-20261102-1230.json",
+    "removed_resolved_pairs": 72,
+    "remaining_candidate_edges": 246,
+    "remaining_source_articles": 170,
+    "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
   }
 }

@@ -31,6 +31,7 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 - `answer-references.json`：本地回答与译文之间的直接链接和经核验的正文关系，附引用程度、证据及回答链接
 - `missing-zhihu-references.json` / `.csv`：原文链接有唯一译文匹配、但未发现指向该译文的知乎链接或注释的候选。其他译本或相关引用仍需逐条核对
 - `missing-zhihu-reference-review-method.json`：候选的置信分级、类别规则与抽样审计
+- `missing-zhihu-reference-recheck.json`：基于更新后的本地备份，对既有候选逐对复核的结果、链接证据与来源哈希；独立于历史候选清单和页面计数
 - `validation.json`：最终覆盖与完整性检查
 - `user-corrections.json`：人工确认的范围和作者更正
 - `summary-revisions.json`：长文总结的修订前后稿、来源哈希、主要论点覆盖与旧稿问题
@@ -45,6 +46,22 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 文章间引用关系使用已核验的公开版及新增文章的备份快照；核验范围和时间记录在 `references.json` 的元数据中。数据不会随知乎文章更新自动变化。
 
 回答反链覆盖本地存档中的 Thoughts Memo 和 Jarrett Ye 回答，按逐对证据区分低（提及标题或关键词）、中（化用观点或结论）、高（节选或全文引用）。无链接的关系依赖候选召回和模型审阅，可能有遗漏。其他账号的回答及存档之后的更新不在本次分析范围内。
+
+## 待核对译文链接复核
+
+2026-11-02 完成两轮本地备份复核。首轮基于提交 6e0eca6e，移除 11 条过时标记；第二轮更新至提交 00ffc0c9，对剩余 318 条逐对复核，再移除 72 条已有原生引用注释的标记。累计移除 83 条，目前剩余 246 条候选、170 篇来源文章，无法核验为 0。候选清单、页面计数和对应引用关系的链接类型已同步；总结与正文未修改。截图中的《学校让人沾染上的 100+ 恶习》仍有 2 条候选。详见 [最新复核报告](docs/missing-zhihu-reference-recheck-20261102-1230.md)、[首轮历史报告](docs/missing-zhihu-reference-recheck.md) 和 [170 篇来源文章列表](docs/missing-zhihu-reference-articles.md)，另有 [CSV 列表](data/missing-zhihu-reference-articles.csv)。这是本地最新备份核验，不代表实时读取知乎，也不包含新候选发现或全量引用图谱重建。
+
+更新备份仓库后，可运行只读复核：
+
+```sh
+python3 scripts/audit_missing_zhihu_references.py --archive ../ZhiHuArchive --output data/missing-zhihu-reference-recheck.json --report docs/missing-zhihu-reference-recheck.md
+```
+
+已应用的核验记录受保护；再次复核须为输出和报告指定新文件名，不能覆盖已应用历史。应用脚本会校验候选版本、备份提交及正文文件哈希，保留已移除项与证据；重复应用不产生变化。第二轮应用命令：
+
+```sh
+python3 scripts/apply_reference_recheck.py --archive ../ZhiHuArchive --audit data/missing-zhihu-reference-recheck-20261102-1230.json --report docs/missing-zhihu-reference-recheck-20261102-1230.md
+```
 
 ## 总结工作流
 
