@@ -195,7 +195,7 @@
       "schema_version": 1,
       "nodes": 2150,
       "edges": 13652,
-      "link_occurrences": 28322,
+      "link_occurrences": 28405,
       "link_records_examined": 63088,
       "self_links_ignored": 2380,
       "nodes_with_outgoing": 1905,
@@ -203,19 +203,19 @@
       "method_edge_counts": {
         "archive": 4,
         "original": 7629,
-        "zhihu": 13321
+        "zhihu": 13404
       },
       "method_occurrence_counts": {
         "archive": 4,
         "original": 11034,
-        "zhihu": 17284
+        "zhihu": 17367
       },
       "source_url_exact_keys": 1977,
       "source_url_collision_keys": 24,
       "ambiguous_original_links": 736,
       "direct_links_to_nontranslations": 705,
-      "missing_zhihu_reference_candidates": 329,
-      "articles_with_missing_zhihu_references": 192,
+      "missing_zhihu_reference_candidates": 246,
+      "articles_with_missing_zhihu_references": 170,
       "methodology": [
         "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
         "Include Zhihu native reference annotations via sup[data-draft-type=reference][data-url], using data-text as the citation label.",
@@ -248,6 +248,15 @@
         "archive_only_articles": 31,
         "updated_public_articles": 120,
         "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
+      },
+      "candidate_recheck": {
+        "checked_at": "2026-11-02T04:30:18.384283+00:00",
+        "archive_head": "00ffc0c99eeed0763118a7c77ac0e9f1ababf066",
+        "audit_file": "missing-zhihu-reference-recheck-20261102-1230.json",
+        "removed_resolved_pairs": 72,
+        "remaining_candidate_edges": 246,
+        "remaining_source_articles": 170,
+        "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
       }
     },
     "answer_references": {
@@ -1541,7 +1550,8 @@
           "id": "2014673035655925994",
           "title": "信仰危机",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -1658,7 +1668,8 @@
           "id": "2058920207188547370",
           "title": "关于看透与解构：黑客心态",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -1690,13 +1701,14 @@
           "id": "2045830886017460032",
           "title": "Gwern：Dwarkesh Patel 访谈录",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "reference_count": 4,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096675972963623307"
       ],
@@ -1784,7 +1796,8 @@
           "id": "2095539874195562788",
           "title": "科学是一个强链问题",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -2194,7 +2207,8 @@
           "id": "2095539874195562788",
           "title": "科学是一个强链问题",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -2543,7 +2557,8 @@
           "id": "2095553153739632965",
           "title": "好点子并没有变得越来越难找，任何跟你唱反调的人都是懦夫，我绝对要和他们死磕到底！",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -2565,7 +2580,8 @@
           "id": "2095552317445640342",
           "title": "资助机制已经崩坏。以下是修复它的方法。",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -2574,13 +2590,14 @@
           "id": "2003772621796434134",
           "title": "我对心理学界遭受的损失深表遗憾，如果真有什么损失的话",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "reference_count": 5,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2095485024871113793"
       ],
@@ -2669,7 +2686,8 @@
           "id": "2094787805947999182",
           "title": "计算机优化：你的计算机比你想的还要快",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -2983,7 +3001,8 @@
           "id": "1994704480931948124",
           "title": "为什么工具 AI 渴望成为智能体 AI",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -3000,27 +3019,30 @@
           "id": "2045830886017460032",
           "title": "Gwern：Dwarkesh Patel 访谈录",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "1994704480931948124",
           "title": "为什么工具 AI 渴望成为智能体 AI",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "2058221554144637051",
           "title": "技术预测：小径分岔的花园",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "reference_count": 2,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "answer_reference_levels": {},
@@ -3356,21 +3378,23 @@
           "id": "1994704480931948124",
           "title": "为什么工具 AI 渴望成为智能体 AI",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "2094799990279370013",
           "title": "你的电脑里有多少台电脑？",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "referenced_by": [],
       "reference_count": 2,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "answer_reference_levels": {}
@@ -7736,7 +7760,8 @@
           "id": "2084243627816100719",
           "title": "AGI 毁灭：致命问题清单",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -7752,7 +7777,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2096675972963623307",
         "2093019597305861144",
@@ -9019,7 +9044,8 @@
           "id": "2085795301030478053",
           "title": "AI 灭绝人类风险在即！数学家该如何是好？！",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -24931,7 +24957,8 @@
           "id": "2096214419600568640",
           "title": "数学的超常选择性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -25157,7 +25184,8 @@
           "id": "2094798951593649206",
           "title": "复杂性并非人工智能的障碍",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -25196,7 +25224,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2083489386616963948",
         "2066563015802147415"
@@ -30596,14 +30624,16 @@
           "id": "2094798951593649206",
           "title": "复杂性并非人工智能的障碍",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "2096214419600568640",
           "title": "数学的超常选择性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -30634,7 +30664,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2080692584188469780",
         "2066563015802147415"
@@ -35726,7 +35756,8 @@
           "id": "812068575",
           "title": "彩票：浪费希望",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -39096,7 +39127,8 @@
           "id": "1966554384348459311",
           "title": "为大语言模型写作：如何让它们听你的",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -43071,7 +43103,8 @@
           "id": "2096646046239683603",
           "title": "退相干是简洁的",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -43116,7 +43149,7 @@
       ],
       "reference_count": 31,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -48190,14 +48223,15 @@
           "id": "2095539874195562788",
           "title": "科学是一个强链问题",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "referenced_by": [],
       "reference_count": 2,
       "referenced_by_count": 0,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2095485024871113793",
         "2083259189959440064",
@@ -54235,7 +54269,8 @@
           "id": "2094798951593649206",
           "title": "复杂性并非人工智能的障碍",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -54251,7 +54286,8 @@
           "id": "2094798951593649206",
           "title": "复杂性并非人工智能的障碍",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -54266,7 +54302,8 @@
           "id": "2094787805947999182",
           "title": "计算机优化：你的计算机比你想的还要快",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -54280,7 +54317,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2083489386616963948",
         "2072059123949217726",
@@ -60396,7 +60433,8 @@
           "id": "423065882",
           "title": "(4/5) 高效学习的间隔重复——应用指南",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -60433,7 +60471,8 @@
           "id": "718778050",
           "title": "间隔重复的有效实践",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -63464,7 +63503,8 @@
           "id": "2019752385031975830",
           "title": "AI 同类相食未必是件坏事",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -63480,7 +63520,7 @@
       ],
       "reference_count": 1,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2033687067805357981"
       ],
@@ -88103,7 +88143,8 @@
           "id": "6011586178",
           "title": "D2. 为什么 1950 年到 1990 年青少年（特别是男孩）自杀率急剧上升？",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -121145,7 +121186,8 @@
           "id": "565085812",
           "title": "波兰的历史课标可以塑造民族主义态度",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -127711,7 +127753,8 @@
           "id": "689269979",
           "title": "限制孩子使用电子设备的危害",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -130145,7 +130188,8 @@
           "id": "1933832627044988705",
           "title": "缺少玩耍造成儿童心理健康恶化",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -130216,7 +130260,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1960661998615393339",
         "1916461531618608633",
@@ -135235,7 +135279,8 @@
           "id": "2033339338453423814",
           "title": "超常刺激与西方文明的崩溃",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -135301,7 +135346,7 @@
       ],
       "reference_count": 5,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "27801192527"
       ],
@@ -141595,7 +141640,8 @@
           "id": "1974434605189858200",
           "title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -141611,7 +141657,7 @@
       ],
       "reference_count": 2,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1982745974276375198",
         "1967297948657381778",
@@ -143465,7 +143511,8 @@
           "id": "8779415673",
           "title": "我有 ADHD，而且我喜欢它",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -143589,7 +143636,8 @@
           "id": "622147932",
           "title": "误导因素",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -143652,7 +143700,7 @@
       ],
       "reference_count": 38,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2040502508846633914",
         "2037646403690812830",
@@ -160493,7 +160541,8 @@
           "id": "695300172",
           "title": "韩国教育的破产",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -164769,7 +164818,8 @@
           "id": "697650592",
           "title": "教育军备竞赛正在让韩国破产",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -164785,7 +164835,7 @@
       ],
       "reference_count": 3,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -165730,7 +165780,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -169970,7 +170021,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -184419,7 +184471,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -195054,7 +195107,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -195974,7 +196028,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -199367,7 +199422,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -212716,7 +212772,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -212763,7 +212820,8 @@
           "id": "617467538",
           "title": "知识估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -216147,7 +216205,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -216217,7 +216276,8 @@
           "id": "689269979",
           "title": "限制孩子使用电子设备的危害",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -219177,7 +219237,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -219754,7 +219815,8 @@
           "id": "586408138",
           "title": "位于眶额皮质的价值编码神经元",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -219800,7 +219862,8 @@
           "id": "519016810",
           "title": "学校在教授英语方面屁用没有！",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -219854,7 +219917,8 @@
           "id": "571700330",
           "title": "条目",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -219869,7 +219933,8 @@
           "id": "627555200",
           "title": "概念图",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -220230,7 +220295,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -220608,7 +220674,7 @@
       ],
       "reference_count": 37,
       "referenced_by_count": 76,
-      "missing_zhihu_reference_count": 5,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2017887574232937536",
         "2017163223938376088",
@@ -220984,7 +221050,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -222716,7 +222783,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -228108,7 +228176,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -230233,7 +230302,8 @@
           "id": "446450875",
           "title": "在写作时创建推测性大纲",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -230450,7 +230520,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 16,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -231813,7 +231883,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235716,7 +235787,8 @@
           "id": "586408138",
           "title": "位于眶额皮质的价值编码神经元",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235746,14 +235818,16 @@
           "id": "689271349",
           "title": "喜欢和渴望所涉及的神经回路",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "664801737",
           "title": "在学校的痛苦学习",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235790,7 +235864,8 @@
           "id": "655457394",
           "title": "学习熵",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235804,21 +235879,24 @@
           "id": "694890917",
           "title": "学历史：学校 vs 自主学习",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "525910430",
           "title": "学成强欲",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "519016810",
           "title": "学校在教授英语方面屁用没有！",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235833,7 +235911,8 @@
           "id": "607457096",
           "title": "学校如何妨害学生记忆",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235848,7 +235927,8 @@
           "id": "611469462",
           "title": "学校教育的问题",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235893,14 +235973,16 @@
           "id": "617453799",
           "title": "快速思考",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "562035095",
           "title": "感受学习乐趣的过程涉及到阿片受体",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235915,7 +235997,8 @@
           "id": "570979040",
           "title": "抽象性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235954,7 +236037,8 @@
           "id": "620069714",
           "title": "数码痴呆症的病态谬误",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235975,14 +236059,16 @@
           "id": "564164660",
           "title": "杏仁体可能涉及到奖励新奇的输入",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "571700330",
           "title": "条目",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -235997,7 +236083,8 @@
           "id": "627555200",
           "title": "概念图",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236034,7 +236121,8 @@
           "id": "650257646",
           "title": "注意力",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236057,7 +236145,8 @@
           "id": "490001254",
           "title": "用多样奖励预防上瘾",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236088,7 +236177,8 @@
           "id": "617467538",
           "title": "知识估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236180,7 +236270,8 @@
           "id": "563438547",
           "title": "记忆召回",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236218,7 +236309,8 @@
           "id": "622147932",
           "title": "误导因素",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236249,14 +236341,16 @@
           "id": "274352214",
           "title": "遗忘曲线",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "619231929",
           "title": "问题估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -236278,14 +236372,16 @@
           "id": "654019177",
           "title": "阿片受体沿加工层级形成梯度",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "585790065",
           "title": "阿片药物的奖励可能取决于多巴胺信号",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -237362,7 +237458,7 @@
       ],
       "reference_count": 91,
       "referenced_by_count": 135,
-      "missing_zhihu_reference_count": 26,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2084598180658918593",
         "2075973874634712098",
@@ -243784,7 +243880,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -249555,7 +249652,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -249570,7 +249668,8 @@
           "id": "617467538",
           "title": "知识估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -250146,7 +250245,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -251340,7 +251440,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -251355,7 +251456,8 @@
           "id": "558542113",
           "title": "遗忘",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -252813,7 +252915,8 @@
           "id": "430434841",
           "title": "成年人在教育方面缺乏同理心",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -253698,7 +253801,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -258877,7 +258981,8 @@
           "id": "52990626",
           "title": "5 学校对学习内驱力的影响",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -259903,7 +260008,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -261827,7 +261933,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -262483,7 +262590,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -262546,7 +262654,8 @@
           "id": "617467538",
           "title": "知识估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -262576,7 +262685,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -262930,7 +263040,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -263171,7 +263282,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -266676,7 +266788,8 @@
           "id": "20111493435",
           "title": "在家上学禁令",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -266811,7 +266924,7 @@
       ],
       "reference_count": 12,
       "referenced_by_count": 6,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "1897299015898477279",
         "3541497395",
@@ -267453,7 +267566,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -268155,7 +268269,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -268980,7 +269095,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -270978,7 +271094,8 @@
           "id": "473666349",
           "title": "15 间隔重复的指数式普及",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -271208,7 +271325,8 @@
           "id": "559298549",
           "title": "记忆稳定性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -273587,21 +273705,24 @@
           "id": "584041631",
           "title": "最优间隔",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "571700330",
           "title": "条目",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "571218385",
           "title": "概念",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -273623,21 +273744,24 @@
           "id": "595158577",
           "title": "稳定化",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "559819340",
           "title": "记忆可提取性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "580945538",
           "title": "记忆的三组分模型",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -273667,14 +273791,16 @@
           "id": "572444486",
           "title": "重复",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "574628398",
           "title": "重复历史",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -274121,7 +274247,7 @@
       ],
       "reference_count": 18,
       "referenced_by_count": 58,
-      "missing_zhihu_reference_count": 8,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "2017887574232937536",
@@ -274881,7 +275007,8 @@
           "id": "584041631",
           "title": "最优间隔",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -275611,7 +275738,7 @@
       ],
       "reference_count": 7,
       "referenced_by_count": 86,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "2017163223938376088",
@@ -292665,7 +292792,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -296129,7 +296257,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -296195,7 +296324,8 @@
           "id": "617467538",
           "title": "知识估值网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -300287,7 +300417,8 @@
           "id": "269974053",
           "title": "干扰",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -300398,7 +300529,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -300420,7 +300552,7 @@
       ],
       "reference_count": 21,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -303925,7 +304057,8 @@
           "id": "430434841",
           "title": "成年人在教育方面缺乏同理心",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -305507,7 +305640,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -312410,7 +312544,8 @@
           "id": "559819340",
           "title": "记忆可提取性",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -312498,7 +312633,7 @@
       ],
       "reference_count": 15,
       "referenced_by_count": 8,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "3097162097",
         "2804992705"
@@ -313131,7 +313266,8 @@
           "id": "269974053",
           "title": "干扰",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -313280,7 +313416,7 @@
       ],
       "reference_count": 22,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -322791,7 +322927,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -322820,7 +322957,7 @@
       ],
       "reference_count": 20,
       "referenced_by_count": 3,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -330004,7 +330141,8 @@
           "id": "609604620",
           "title": "卡片笔记写作法 - Ahrens",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -338193,7 +338331,8 @@
           "id": "583003405",
           "title": "学习的外在动机",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -338254,7 +338393,8 @@
           "id": "492731786",
           "title": "智力",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -338361,7 +338501,7 @@
       ],
       "reference_count": 26,
       "referenced_by_count": 2,
-      "missing_zhihu_reference_count": 7,
+      "missing_zhihu_reference_count": 5,
       "cited_by_answer_ids": [
         "2074467496766326088",
         "1917956291852215154",
@@ -338931,7 +339071,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -338988,7 +339129,7 @@
       ],
       "reference_count": 10,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -343322,7 +343463,8 @@
           "id": "382699591",
           "title": "在课堂上使用间隔重复软件的这七年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -343345,7 +343487,8 @@
           "id": "1974434605189858200",
           "title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -343381,7 +343524,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 4,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -363935,21 +364078,24 @@
           "id": "380354533",
           "title": "在课堂上使用间隔重复软件的一年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "382034464",
           "title": "在课堂上使用间隔重复软件的第二年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "375536775",
           "title": "间隔重复在课堂上是行不通的",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -363958,13 +364104,14 @@
           "id": "423065882",
           "title": "(4/5) 高效学习的间隔重复——应用指南",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
       "reference_count": 4,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "1899162472390324259",
         "2024260508"
@@ -364056,7 +364203,8 @@
           "id": "382699591",
           "title": "在课堂上使用间隔重复软件的这七年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -364172,7 +364320,8 @@
           "id": "382699591",
           "title": "在课堂上使用间隔重复软件的这七年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -365011,7 +365160,8 @@
           "id": "382699591",
           "title": "在课堂上使用间隔重复软件的这七年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -365136,7 +365286,8 @@
           "id": "289631499",
           "title": "量子物理学家用 Anki 重新发现渐进阅读",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -377930,7 +378081,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -378034,7 +378186,7 @@
       ],
       "reference_count": 39,
       "referenced_by_count": 12,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "cited_by_answer_ids": [
         "2079531707666118269",
         "1930271508854440121",
@@ -382934,7 +383086,8 @@
           "id": "68262875",
           "title": "12 自然创造力周期",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -387784,7 +387937,8 @@
           "id": "52990626",
           "title": "5 学校对学习内驱力的影响",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -387831,7 +387985,8 @@
           "id": "306014650",
           "title": "老汤比喻",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -388066,7 +388221,8 @@
           "id": "307602868",
           "title": "水蛭（Leech）[Anki, SuperMemo]",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -388299,7 +388455,7 @@
       ],
       "reference_count": 13,
       "referenced_by_count": 26,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2017887574232937536",
         "1970550708731355357",
@@ -388672,7 +388828,8 @@
           "id": "429504395",
           "title": "07 1990：记忆的通用公式",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -388719,7 +388876,8 @@
           "id": "456205621",
           "title": "11 1997：启用神经网络",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -388798,7 +388956,8 @@
           "id": "503348150",
           "title": "17 成败剖析",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -389085,7 +389244,8 @@
           "id": "353614809",
           "title": "无语义课标",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -389298,7 +389458,8 @@
           "id": "268782211",
           "title": "记忆稳定性的两个组成成分",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -389377,14 +389538,16 @@
           "id": "289631499",
           "title": "量子物理学家用 Anki 重新发现渐进阅读",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
           "id": "288609114",
           "title": "间隔效应的结构与分子机理",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -394187,7 +394350,8 @@
           "id": "372072085",
           "title": "渐进阅读的最小定义",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -394241,7 +394405,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -394257,7 +394422,7 @@
       ],
       "reference_count": 17,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 2,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -394446,7 +394611,8 @@
           "id": "258435094",
           "title": "错误模型的价值",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -394460,7 +394626,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -394523,7 +394690,7 @@
       ],
       "reference_count": 16,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1582343122",
         "1366224172"
@@ -396182,7 +396349,8 @@
           "id": "602150910",
           "title": "学习的乐趣",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -402714,7 +402882,8 @@
           "id": "471760789",
           "title": "13 2005：稳定性增长函数",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -402737,7 +402906,8 @@
           "id": "503348150",
           "title": "17 成败剖析",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -403741,7 +403911,8 @@
           "id": "305651556",
           "title": "间隔重复 (spaced repetition)",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -403801,7 +403972,7 @@
       ],
       "reference_count": 7,
       "referenced_by_count": 7,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3213802027",
         "3094580151",
@@ -411754,7 +411925,8 @@
           "id": "288609114",
           "title": "间隔效应的结构与分子机理",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -422709,7 +422881,8 @@
           "id": "351779186",
           "title": "如何解决任何问题？",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -423105,7 +423278,7 @@
       ],
       "reference_count": 9,
       "referenced_by_count": 50,
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 2,
       "cited_by_answer_ids": [
         "2024783376297596199",
         "1970550708731355357",
@@ -431784,7 +431957,8 @@
           "id": "575245791",
           "title": "习得性无助",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -431829,7 +432003,8 @@
           "id": "307602868",
           "title": "水蛭（Leech）[Anki, SuperMemo]",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -432095,7 +432270,7 @@
       ],
       "reference_count": 24,
       "referenced_by_count": 27,
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "2084598180658918593",
         "2073507025888327199",

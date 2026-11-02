@@ -2,34 +2,30 @@
   "metadata": {
     "schema_version": 1,
     "definition": "The translated article links a uniquely matched original-source page, but the same article pair has no direct Zhihu link or native reference annotation.",
-    "candidate_edges": 329,
-    "source_articles": 192,
-    "target_articles": 173,
+    "candidate_edges": 246,
+    "source_articles": 170,
+    "target_articles": 128,
     "original_host_counts": {
-      "supermemo.guru": 203,
-      "notes.andymatuschak.org": 42,
-      "gwern.net": 24,
+      "supermemo.guru": 143,
+      "notes.andymatuschak.org": 41,
       "wiki.issarice.com": 21,
-      "readthesequences.com": 12,
+      "gwern.net": 13,
+      "readthesequences.com": 10,
       "commoncog.com": 5,
-      "lesswrong.com": 4,
-      "mindingourway.com": 3,
       "psychologytoday.com": 3,
+      "mindingourway.com": 3,
       "cognitivemedium.com": 3,
-      "experimental-history.com": 3,
-      "petergray.substack.com": 1,
       "nintil.com": 1,
       "refold.la": 1,
       "l-m-sherlock.github.io": 1,
       "supermemo.com": 1,
-      "wired.com": 1,
-      "koreatimes.co.kr": 1
+      "wired.com": 1
     },
     "top_targets": [
       {
         "id": "611469462",
         "title": "学校教育的问题",
-        "missing_incoming_zhihu_links": 39
+        "missing_incoming_zhihu_links": 38
       },
       {
         "id": "602150910",
@@ -40,11 +36,6 @@
         "id": "418098485",
         "title": "强制学校教育必须结束",
         "missing_incoming_zhihu_links": 11
-      },
-      {
-        "id": "305651556",
-        "title": "间隔重复 (spaced repetition)",
-        "missing_incoming_zhihu_links": 8
       },
       {
         "id": "303204832",
@@ -59,26 +50,16 @@
       {
         "id": "274352214",
         "title": "遗忘曲线",
-        "missing_incoming_zhihu_links": 6
+        "missing_incoming_zhihu_links": 5
       },
       {
         "id": "20111493435",
         "title": "在家上学禁令",
-        "missing_incoming_zhihu_links": 6
+        "missing_incoming_zhihu_links": 5
       },
       {
         "id": "617467538",
         "title": "知识估值网络",
-        "missing_incoming_zhihu_links": 5
-      },
-      {
-        "id": "1974434605189858200",
-        "title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
-        "missing_incoming_zhihu_links": 4
-      },
-      {
-        "id": "571700330",
-        "title": "条目",
         "missing_incoming_zhihu_links": 4
       },
       {
@@ -92,38 +73,8 @@
         "missing_incoming_zhihu_links": 4
       },
       {
-        "id": "572444486",
-        "title": "重复",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
-        "id": "2094798951593649206",
-        "title": "复杂性并非人工智能的障碍",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
-        "id": "627555200",
-        "title": "概念图",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
-        "id": "595158577",
-        "title": "稳定化",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
         "id": "277483881",
         "title": "记忆的神经统计模型",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
-        "id": "655457394",
-        "title": "学习熵",
-        "missing_incoming_zhihu_links": 3
-      },
-      {
-        "id": "622147932",
-        "title": "误导因素",
         "missing_incoming_zhihu_links": 3
       },
       {
@@ -147,6 +98,26 @@
         "missing_incoming_zhihu_links": 3
       },
       {
+        "id": "1974434605189858200",
+        "title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
+        "missing_incoming_zhihu_links": 2
+      },
+      {
+        "id": "572444486",
+        "title": "重复",
+        "missing_incoming_zhihu_links": 2
+      },
+      {
+        "id": "595158577",
+        "title": "稳定化",
+        "missing_incoming_zhihu_links": 2
+      },
+      {
+        "id": "655457394",
+        "title": "学习熵",
+        "missing_incoming_zhihu_links": 2
+      },
+      {
         "id": "266856783",
         "title": "睡眠中的记忆优化",
         "missing_incoming_zhihu_links": 2
@@ -157,33 +128,8 @@
         "missing_incoming_zhihu_links": 2
       },
       {
-        "id": "351779186",
-        "title": "如何解决任何问题？",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "269974053",
-        "title": "干扰",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "559819340",
-        "title": "记忆可提取性",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
         "id": "714263767",
         "title": "比较教学场景",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "575245791",
-        "title": "习得性无助",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "307602868",
-        "title": "水蛭（Leech）[Anki, SuperMemo]",
         "missing_incoming_zhihu_links": 2
       },
       {
@@ -197,16 +143,6 @@
         "missing_incoming_zhihu_links": 2
       },
       {
-        "id": "2019752385031975830",
-        "title": "AI 同类相食未必是件坏事",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "1994704480931948124",
-        "title": "为什么工具 AI 渴望成为智能体 AI",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
         "id": "487321909",
         "title": "助记媒介可以扩展到个人笔记上",
         "missing_incoming_zhihu_links": 2
@@ -214,21 +150,6 @@
       {
         "id": "707318570",
         "title": "针对学习数学证明的刻意练习",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "586408138",
-        "title": "位于眶额皮质的价值编码神经元",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "694890917",
-        "title": "学历史：学校 vs 自主学习",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "519016810",
-        "title": "学校在教授英语方面屁用没有！",
         "missing_incoming_zhihu_links": 2
       },
       {
@@ -242,18 +163,8 @@
         "missing_incoming_zhihu_links": 2
       },
       {
-        "id": "8779415673",
-        "title": "我有 ADHD，而且我喜欢它",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
         "id": "2025180672604554190",
         "title": "进化心理学",
-        "missing_incoming_zhihu_links": 2
-      },
-      {
-        "id": "571218385",
-        "title": "概念",
         "missing_incoming_zhihu_links": 2
       },
       {
@@ -272,9 +183,94 @@
         "missing_incoming_zhihu_links": 2
       },
       {
-        "id": "584041631",
-        "title": "最优间隔",
+        "id": "558887872",
+        "title": "在间隔重复上稍微多努力一点，就能得到指数级的回报",
         "missing_incoming_zhihu_links": 2
+      },
+      {
+        "id": "305651556",
+        "title": "间隔重复 (spaced repetition)",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "571700330",
+        "title": "条目",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "627555200",
+        "title": "概念图",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "622147932",
+        "title": "误导因素",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "351779186",
+        "title": "如何解决任何问题？",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "575245791",
+        "title": "习得性无助",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "2019752385031975830",
+        "title": "AI 同类相食未必是件坏事",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "694890917",
+        "title": "学历史：学校 vs 自主学习",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "8779415673",
+        "title": "我有 ADHD，而且我喜欢它",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "571218385",
+        "title": "概念",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1919436287145927324",
+        "title": "你无法教授他们尚未准备好理解的知识",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1933460394887868508",
+        "title": "Kirschner, Sweller, & Clark (2006)：《为什么最小化指导教学是无效的：对建构主义、发现式、问题导向、体验式和探究式教学失败的分析》",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1946145253959668829",
+        "title": "我们应如何评判研究？",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1946150192517714943",
+        "title": "意义建构",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "19500298520",
+        "title": "论真正的努力",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1971878962755011075",
+        "title": "生命的价值",
+        "missing_incoming_zhihu_links": 1
+      },
+      {
+        "id": "1980993626159986184",
+        "title": "停止「努力去尝试」，直接去尝试",
+        "missing_incoming_zhihu_links": 1
       }
     ],
     "limitations": [
@@ -282,21 +278,21 @@
       "Shared book roots, multiple translations of one source, and other ambiguous source URLs are excluded from this report."
     ],
     "confidence_counts": {
-      "unreviewed": 36,
-      "medium": 196,
-      "high": 91,
-      "review": 6
+      "medium": 160,
+      "high": 72,
+      "unreviewed": 9,
+      "review": 5
     },
     "category_counts": {
-      "unreviewed": 36,
-      "content": 204,
-      "term": 79,
-      "directory": 2,
+      "content": 180,
+      "term": 48,
+      "bibliography": 4,
+      "unreviewed": 9,
       "generic": 4,
-      "bibliography": 4
+      "directory": 1
     },
-    "prior_review_rows_no_longer_candidates": 0,
-    "unreviewed_candidate_edges": 36,
+    "prior_review_rows_no_longer_candidates": 56,
+    "unreviewed_candidate_edges": 9,
     "live_public_verification": {
       "scope_articles": 2150,
       "verified_articles": 2119,
@@ -307,8 +303,17 @@
       "updated_public_articles": 120,
       "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
     },
-    "verified_candidate_edges": 323,
-    "unverified_candidate_edges": 6
+    "verified_candidate_edges": 246,
+    "unverified_candidate_edges": 0,
+    "candidate_recheck": {
+      "checked_at": "2026-11-02T04:30:18.384283+00:00",
+      "archive_head": "00ffc0c99eeed0763118a7c77ac0e9f1ababf066",
+      "audit_file": "missing-zhihu-reference-recheck-20261102-1230.json",
+      "removed_resolved_pairs": 72,
+      "remaining_candidate_edges": 246,
+      "remaining_source_articles": 170,
+      "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
+    }
   },
   "sources": [
     {
@@ -994,77 +999,8 @@
       "source_id": "602150910",
       "source_title": "学习的乐趣",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/602150910",
-      "missing_zhihu_reference_count": 26,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "586408138",
-          "target_title": "位于眶额皮质的价值编码神经元",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/586408138",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/586408138.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Value-encoding_neurons_in_the_orbitofrontal_cortex"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "一些 OFC 神经元"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "689271349",
-          "target_title": "喜欢和渴望所涉及的神经回路",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/689271349",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/689271349.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Neural_circuits_involved_in_liking_and_wanting"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "大脑的愉悦中枢"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "664801737",
-          "target_title": "在学校的痛苦学习",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/664801737",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/664801737.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Unpleasant_learning_at_school"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "大量的毒性学习"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
         {
           "target_id": "20111493435",
           "target_title": "在家上学禁令",
@@ -1087,724 +1023,16 @@
           "confidence": "medium",
           "category": "content",
           "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "655457394",
-          "target_title": "学习熵",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/655457394",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/655457394.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Learntropy"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "学习熵"
-          ],
-          "occurrences": 9,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "694890917",
-          "target_title": "学历史：学校 vs 自主学习",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/694890917",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/694890917.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Learning_history:_school_vs._self-directed_learning#Self-directed_acceleration"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "假期中学习速度加快 1600%"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "525910430",
-          "target_title": "学成强欲",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/525910430",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/525910430.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Rage_to_master"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "冲动"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "519016810",
-          "target_title": "学校在教授英语方面屁用没有！",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/519016810",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/519016810.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Schools_are_useless_in_teaching_English!#Inefficiency_of_schooling"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "一个月上完 13 年学"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "607457096",
-          "target_title": "学校如何妨害学生记忆",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/607457096",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/607457096.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/How_school_turns_off_memory"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "学校是如何阻止记忆巩固的"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "611469462",
-          "target_title": "学校教育的问题",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/611469462",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/611469462.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Problem_of_Schooling"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "我永远不会送我的孩子去学校"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "617453799",
-          "target_title": "快速思考",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/617453799",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/617453799.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Fast_thinking"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "快速思考"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "562035095",
-          "target_title": "感受学习乐趣的过程涉及到阿片受体",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/562035095",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/562035095.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Opioid_receptors_are_involved_in_the_pleasure_of_learning"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "知觉的愉悦与大脑",
-            "这一系列梯度的阿片受体是人能感知到快乐的来源"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "review",
-          "category": "directory",
-          "review_reason": "链接属于章节、系列、目录或索引关系；图谱关系有效，回填知乎正文时应确认应链接目录还是具体篇目。"
-        },
-        {
-          "target_id": "570979040",
-          "target_title": "抽象性",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/570979040",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/570979040.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Abstractness"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "抽象程度"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "620069714",
-          "target_title": "数码痴呆症的病态谬误",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/620069714",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/620069714.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/The_morbid_myth_of_Digital_Dementia"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "数码痴呆症的病态迷思"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "564164660",
-          "target_title": "杏仁体可能涉及到奖励新奇的输入",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/564164660",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/564164660.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Amygdala_may_be_involved_in_rewarding_novel_input"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "Rolls 推测这可能会通过杏仁体实现新颖性的奖励"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "571700330",
-          "target_title": "条目",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/571700330",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/571700330.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Item"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "问答卡片"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "627555200",
-          "target_title": "概念图",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/627555200",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/627555200.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Concept_map"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "概念图"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "650257646",
-          "target_title": "注意力",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/650257646",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/650257646.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Attention"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "注意力"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "490001254",
-          "target_title": "用多样奖励预防上瘾",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/490001254",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/490001254.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Reward_diversity_in_preventing_addictions"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "奖励多样性在预防成瘾中的作用"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "617467538",
-          "target_title": "知识估值网络",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/617467538",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/617467538.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Knowledge_valuation_network"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "知识估值网络",
-            "高价值知识",
-            "高质量高价值"
-          ],
-          "occurrences": 7,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "563438547",
-          "target_title": "记忆召回",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/563438547",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/563438547.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Recall"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "回忆"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "622147932",
-          "target_title": "误导因素",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/622147932",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/622147932.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Falsity_vector"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "错误向量"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "274352214",
-          "target_title": "遗忘曲线",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/274352214",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/274352214.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Forgetting_curve"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "遗忘"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "619231929",
-          "target_title": "问题估值网络",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/619231929",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/619231929.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Problem_valuation_network"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "问题估值网络"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "654019177",
-          "target_title": "阿片受体沿加工层级形成梯度",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/654019177",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/654019177.html",
-          "original_urls": [
-            "http://supermemo.guru/wiki/Opioid_receptors_form_a_gradient_along_a_processing_hierarchy",
-            "https://supermemo.guru/wiki/Opioid_receptors_form_a_gradient_along_a_processing_hierarchy"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "Michael E. Lewis 等人，1981",
-            "猕猴的大脑皮质"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "585790065",
-          "target_title": "阿片药物的奖励可能取决于多巴胺信号",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/585790065",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/585790065.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Opioid_rewards_may_depend_on_dopamine_signals"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "多巴胺"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
         }
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:31:13.964899+00:00"
     },
     {
-      "source_id": "559298549",
-      "source_title": "记忆稳定性",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/559298549",
-      "missing_zhihu_reference_count": 8,
-      "references": [
-        {
-          "target_id": "584041631",
-          "target_title": "最优间隔",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/584041631",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/584041631.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Optimum_interval"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "最优间隔"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "571700330",
-          "target_title": "条目",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/571700330",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/571700330.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Item"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "条目"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "571218385",
-          "target_title": "概念",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/571218385",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/571218385.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Concept"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "概念"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "595158577",
-          "target_title": "稳定化",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/595158577",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/595158577.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Stabilization"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "概念细胞",
-            "稳定化"
-          ],
-          "occurrences": 6,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "content",
-          "review_reason": "锚文本与目标译文标题相同或明确包含，且原文 URL 唯一匹配，适合直接补知乎链接。"
-        },
-        {
-          "target_id": "559819340",
-          "target_title": "记忆可提取性",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/559819340",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/559819340.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Retrievability"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "R",
-            "可提取性"
-          ],
-          "occurrences": 6,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "580945538",
-          "target_title": "记忆的三组分模型",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/580945538",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/580945538.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Three_component_model_of_memory"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "记忆的三变量模型"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "572444486",
-          "target_title": "重复",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/572444486",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/572444486.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "复习",
-            "重复"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "574628398",
-          "target_title": "重复历史",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/574628398",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/574628398.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Repetition_history"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "重复历史"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:31:24.756277+00:00"
-    },
-    {
       "source_id": "430434841",
       "source_title": "成年人在教育方面缺乏同理心",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/430434841",
-      "missing_zhihu_reference_count": 7,
+      "missing_zhihu_reference_count": 5,
       "references": [
         {
           "target_id": "655457394",
@@ -1853,29 +1081,6 @@
           "review_reason": "锚文本与目标译文标题相同或明确包含，且原文 URL 唯一匹配，适合直接补知乎链接。"
         },
         {
-          "target_id": "583003405",
-          "target_title": "学习的外在动机",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/583003405",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/583003405.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Extrinsic_motivation"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "外在动机"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
           "target_id": "611469462",
           "target_title": "学校教育的问题",
           "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/611469462",
@@ -1888,29 +1093,6 @@
           ],
           "link_texts": [
             "学校教育的问题"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "content",
-          "review_reason": "锚文本与目标译文标题相同或明确包含，且原文 URL 唯一匹配，适合直接补知乎链接。"
-        },
-        {
-          "target_id": "492731786",
-          "target_title": "智力",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/492731786",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/492731786.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Intelligence"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "智力"
           ],
           "occurrences": 1,
           "match_quality": [
@@ -1975,100 +1157,8 @@
       "source_id": "617467538",
       "source_title": "知识估值网络",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/617467538",
-      "missing_zhihu_reference_count": 5,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "586408138",
-          "target_title": "位于眶额皮质的价值编码神经元",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/586408138",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/586408138.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Value-encoding_neurons_in_the_orbitofrontal_cortex"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "一些 OFC 神经元"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "519016810",
-          "target_title": "学校在教授英语方面屁用没有！",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/519016810",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/519016810.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Schools_are_useless_in_teaching_English!#Inefficiency_of_schooling"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "一个月上完 13 年学"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "571700330",
-          "target_title": "条目",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/571700330",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/571700330.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Item"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "问答卡片"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "627555200",
-          "target_title": "概念图",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/627555200",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/627555200.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Concept_map"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "概念图"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
         {
           "target_id": "274352214",
           "target_title": "遗忘曲线",
@@ -2327,7 +1417,7 @@
       "source_id": "382699591",
       "source_title": "在课堂上使用间隔重复软件的这七年",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/382699591",
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 1,
       "references": [
         {
           "target_id": "420105707",
@@ -2355,100 +1445,6 @@
           "confidence": "high",
           "category": "content",
           "review_reason": "锚文本与目标译文标题相同或明确包含，且原文 URL 唯一匹配，适合直接补知乎链接。"
-        },
-        {
-          "target_id": "380354533",
-          "target_title": "在课堂上使用间隔重复软件的一年",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/380354533",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/380354533.html",
-          "original_urls": [
-            "https://www.lesswrong.com/posts/Ww2dxwWpSfkQB4NZb/a-year-of-spaced-repetition-software-in-the-classroom",
-            "https://www.lesswrong.com/posts/Ww2dxwWpSfkQB4NZb/a-year-of-spaced-repetition-software-in-the-classroom#Baby_cards_need_immediate_love",
-            "https://www.lesswrong.com/posts/Ww2dxwWpSfkQB4NZb/a-year-of-spaced-repetition-software-in-the-classroom#Days_off_suck",
-            "https://www.lesswrong.com/posts/Ww2dxwWpSfkQB4NZb/a-year-of-spaced-repetition-software-in-the-classroom#The_procedure",
-            "https://www.lesswrong.com/posts/Ww2dxwWpSfkQB4NZb/a-year-of-spaced-repetition-software-in-the-classroom#Those_discussions___"
-          ],
-          "original_hosts": [
-            "lesswrong.com"
-          ],
-          "link_texts": [
-            "2015",
-            "anecdotal impressions",
-            "seven",
-            "someone",
-            "uncapped",
-            "七",
-            "传闻印象",
-            "某人"
-          ],
-          "occurrences": 11,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "382034464",
-          "target_title": "在课堂上使用间隔重复软件的第二年",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/382034464",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/382034464.html",
-          "original_urls": [
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#7",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#A_life_changed",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#Autopilot_years",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#Missing_out__free_association",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#Stuck_in_neutral",
-            "https://www.lesswrong.com/posts/dtCfxYubZgRnEkGpQ/a-second-year-of-spaced-repetition-software-in-the-classroom#Tiers_of_availability"
-          ],
-          "original_hosts": [
-            "lesswrong.com"
-          ],
-          "link_texts": [
-            "2016",
-            "SRS 的存在",
-            "an older footnote",
-            "as I put it in 2016",
-            "called her out",
-            "failed to cut back the following year",
-            "high automaticity targets",
-            "the existence of SRS"
-          ],
-          "occurrences": 14,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "375536775",
-          "target_title": "间隔重复在课堂上是行不通的",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/375536775",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/375536775.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition_does_not_work_in_a_classroom"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "a page",
-            "一页"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
         }
       ],
       "reference_live_status": "verified",
@@ -2560,7 +1556,7 @@
       "source_id": "289631499",
       "source_title": "量子物理学家用 Anki 重新发现渐进阅读",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/289631499",
-      "missing_zhihu_reference_count": 4,
+      "missing_zhihu_reference_count": 2,
       "references": [
         {
           "target_id": "420105707",
@@ -2608,52 +1604,6 @@
           "confidence": "medium",
           "category": "content",
           "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "372072085",
-          "target_title": "渐进阅读的最小定义",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/372072085",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/372072085.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Minimum_definition_of_incremental_reading"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "渐进阅读的最低定义"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "间隔重复"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
         }
       ],
       "reference_live_status": "verified",
@@ -2663,33 +1613,8 @@
       "source_id": "68262875",
       "source_title": "12 自然创造力周期",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/68262875",
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 2,
       "references": [
-        {
-          "target_id": "351779186",
-          "target_title": "如何解决任何问题？",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/351779186",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/351779186.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/How_to_solve_any_problem?"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "不同的创作模式",
-            "如何解决任何问题？",
-            "怎样解决任何问题？"
-          ],
-          "occurrences": 3,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
         {
           "target_id": "353878177",
           "target_title": "学校教育的徒劳",
@@ -2744,54 +1669,8 @@
       "source_id": "2045830886017460032",
       "source_title": "Gwern：Dwarkesh Patel 访谈录",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2045830886017460032",
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "2094798951593649206",
-          "target_title": "复杂性并非人工智能的障碍",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2094798951593649206",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094798951593649206.html",
-          "original_urls": [
-            "https://gwern.net/complexity#parable-of-the-worms"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "那可能并不重要"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "2096214419600568640",
-          "target_title": "数学的超常选择性",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2096214419600568640",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2096214419600568640.html",
-          "original_urls": [
-            "https://gwern.net/meta-math"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "学会了的/进化了的系统 1 启发式/近似算法集合"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
         {
           "target_id": "19500298520",
           "target_title": "论真正的努力",
@@ -3143,31 +2022,8 @@
       "source_id": "689269979",
       "source_title": "限制孩子使用电子设备的危害",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/689269979",
-      "missing_zhihu_reference_count": 3,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "8779415673",
-          "target_title": "我有 ADHD，而且我喜欢它",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/8779415673",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/8779415673.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/I_have_ADHD_and_I_love_it"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "我有 ADHD，我喜欢它"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
         {
           "target_id": "359658715",
           "target_title": "神经网络战争",
@@ -3191,96 +2047,16 @@
           "confidence": "medium",
           "category": "content",
           "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "622147932",
-          "target_title": "误导因素",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/622147932",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/622147932.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Falsity_vector"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "虚假性向量",
-            "虚假性矢量"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
         }
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:35.517024+00:00"
     },
     {
-      "source_id": "423065882",
-      "source_title": "(4/5) 高效学习的间隔重复——应用指南",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/423065882",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "382699591",
-          "target_title": "在课堂上使用间隔重复软件的这七年",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/382699591",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/382699591.html",
-          "original_urls": [
-            "https://www.lesswrong.com/posts/F6ZTtBXn2cFLmWPdM/seven-years-of-spaced-repetition-software-in-the-classroom-1"
-          ],
-          "original_hosts": [
-            "lesswrong.com"
-          ],
-          "link_texts": [
-            "seven year followup"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "1974434605189858200",
-          "target_title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1974434605189858200",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1974434605189858200.html",
-          "original_urls": [
-            "https://www.gwern.net/DNB-FAQ#sleep"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "dual n-back"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:32:08.617264+00:00"
-    },
-    {
       "source_id": "429504395",
       "source_title": "07 1990：记忆的通用公式",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/429504395",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
         {
           "target_id": "571700330",
@@ -3304,30 +2080,6 @@
           "confidence": "medium",
           "category": "term",
           "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "最佳时机",
-            "间隔重复"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
         }
       ],
       "reference_live_status": "verified",
@@ -3337,7 +2089,7 @@
       "source_id": "456205621",
       "source_title": "11 1997：启用神经网络",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/456205621",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
         {
           "target_id": "608600880",
@@ -3361,30 +2113,6 @@
           "confidence": "medium",
           "category": "term",
           "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "原子记忆",
-            "间隔重复"
-          ],
-          "occurrences": 5,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
         }
       ],
       "reference_live_status": "verified",
@@ -3450,31 +2178,8 @@
       "source_id": "471760789",
       "source_title": "13 2005：稳定性增长函数",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/471760789",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "269974053",
-          "target_title": "干扰",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/269974053",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/269974053.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Interference"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "干扰"
-          ],
-          "occurrences": 4,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
         {
           "target_id": "304193622",
           "target_title": "概念计算",
@@ -3506,7 +2211,7 @@
       "source_id": "473666349",
       "source_title": "15 间隔重复的指数式普及",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/473666349",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
         {
           "target_id": "602150910",
@@ -3530,145 +2235,10 @@
           "confidence": "medium",
           "category": "content",
           "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
-        {
-          "target_id": "559819340",
-          "target_title": "记忆可提取性",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/559819340",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/559819340.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Retrievability"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "可提取性"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
         }
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T01:05:25.800607+00:00"
-    },
-    {
-      "source_id": "503348150",
-      "source_title": "17 成败剖析",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/503348150",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "269974053",
-          "target_title": "干扰",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/269974053",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/269974053.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Interference"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "干扰"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "间隔重复"
-          ],
-          "occurrences": 22,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-28T01:07:38.102499+00:00"
-    },
-    {
-      "source_id": "52990626",
-      "source_title": "5 学校对学习内驱力的影响",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/52990626",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "575245791",
-          "target_title": "习得性无助",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/575245791",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/575245791.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Learned_helplessness"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "习得性无助"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "high",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        },
-        {
-          "target_id": "307602868",
-          "target_title": "水蛭（Leech）[Anki, SuperMemo]",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/307602868",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/307602868.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Leech"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "难点"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:33:29.094899+00:00"
     },
     {
       "source_id": "563354359",
@@ -3786,31 +2356,8 @@
       "source_id": "1994704480931948124",
       "source_title": "为什么工具 AI 渴望成为智能体 AI",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/1994704480931948124",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "2094798951593649206",
-          "target_title": "复杂性并非人工智能的障碍",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2094798951593649206",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094798951593649206.html",
-          "original_urls": [
-            "https://gwern.net/complexity"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "复杂性并非 AI 的障碍"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
         {
           "target_id": "1946145253959668829",
           "target_title": "我们应如何评判研究？",
@@ -4348,7 +2895,7 @@
       "source_id": "353614809",
       "source_title": "无语义课标",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/353614809",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
         {
           "target_id": "418098485",
@@ -4372,29 +2919,6 @@
           "confidence": "high",
           "category": "content",
           "review_reason": "锚文本与目标译文标题相同或明确包含，且原文 URL 唯一匹配，适合直接补知乎链接。"
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "间隔重复"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
         }
       ],
       "reference_live_status": "verified",
@@ -4516,31 +3040,8 @@
       "source_id": "565085812",
       "source_title": "波兰的历史课标可以塑造民族主义态度",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/565085812",
-      "missing_zhihu_reference_count": 2,
+      "missing_zhihu_reference_count": 1,
       "references": [
-        {
-          "target_id": "20111493435",
-          "target_title": "在家上学禁令",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/20111493435",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/20111493435.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Ban_on_homeschooling"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "禁止在家上学"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        },
         {
           "target_id": "611469462",
           "target_title": "学校教育的问题",
@@ -4738,62 +3239,6 @@
       "reference_checked_at": "2026-10-28T01:09:27.045573+00:00"
     },
     {
-      "source_id": "2095539874195562788",
-      "source_title": "科学是一个强链问题",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2095539874195562788",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "2095553153739632965",
-          "target_title": "好点子并没有变得越来越难找，任何跟你唱反调的人都是懦夫，我绝对要和他们死磕到底！",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2095553153739632965",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095553153739632965.html",
-          "original_urls": [
-            "https://www.experimental-history.com/p/ideas-arent-getting-harder-to-find"
-          ],
-          "original_hosts": [
-            "experimental-history.com"
-          ],
-          "link_texts": [
-            "那我可要跟你拼命"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "2095552317445640342",
-          "target_title": "资助机制已经崩坏。以下是修复它的方法。",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2095552317445640342",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095552317445640342.html",
-          "original_urls": [
-            "https://www.experimental-history.com/p/grant-funding-is-broken-heres-how"
-          ],
-          "original_hosts": [
-            "experimental-history.com"
-          ],
-          "link_texts": [
-            "经费申请机制已经崩坏。这里是修复之法。"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "unverified",
-      "reference_checked_at": null
-    },
-    {
       "source_id": "592277212",
       "source_title": "结束学校奴役",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/592277212",
@@ -4964,62 +3409,6 @@
       "reference_checked_at": "2026-10-27T10:33:10.021638+00:00"
     },
     {
-      "source_id": "2094787805947999182",
-      "source_title": "计算机优化：你的计算机比你想的还要快",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2094787805947999182",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "1994704480931948124",
-          "target_title": "为什么工具 AI 渴望成为智能体 AI",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1994704480931948124",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1994704480931948124.html",
-          "original_urls": [
-            "https://gwern.net/tool-ai"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "自我优化堆栈"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "2094799990279370013",
-          "target_title": "你的电脑里有多少台电脑？",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2094799990279370013",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094799990279370013.html",
-          "original_urls": [
-            "https://gwern.net/computers"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "“你的计算机里有多少台计算机？”"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "unverified",
-      "reference_checked_at": null
-    },
-    {
       "source_id": "386372396",
       "source_title": "让陈旧的学校系统继续存活的谬误",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/386372396",
@@ -5186,62 +3575,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:15.083528+00:00"
-    },
-    {
-      "source_id": "288609114",
-      "source_title": "间隔效应的结构与分子机理",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/288609114",
-      "missing_zhihu_reference_count": 2,
-      "references": [
-        {
-          "target_id": "258435094",
-          "target_title": "错误模型的价值",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/258435094",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/258435094.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Value_of_wrong_models"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "any falsifiable model is better than an absence of models"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        },
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "spaced repetition"
-          ],
-          "occurrences": 2,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:31:38.570526+00:00"
     },
     {
       "source_id": "715765481",
@@ -5697,39 +4030,6 @@
       "reference_checked_at": "2026-10-27T10:32:40.060427+00:00"
     },
     {
-      "source_id": "2085795301030478053",
-      "source_title": "AI 灭绝人类风险在即！数学家该如何是好？！",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2085795301030478053",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2084243627816100719",
-          "target_title": "AGI 毁灭：致命问题清单",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2084243627816100719",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2084243627816100719.html",
-          "original_urls": [
-            "https://www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities"
-          ],
-          "original_hosts": [
-            "lesswrong.com"
-          ],
-          "link_texts": [
-            "www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:33:30.190587+00:00"
-    },
-    {
       "source_id": "490699755",
       "source_title": "Bjork ：「上帝啊，这个困难正合我意」——  合意困难",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/490699755",
@@ -5761,39 +4061,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:31.212381+00:00"
-    },
-    {
-      "source_id": "6011586178",
-      "source_title": "D2. 为什么 1950 年到 1990 年青少年（特别是男孩）自杀率急剧上升？",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/6011586178",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "1933832627044988705",
-          "target_title": "缺少玩耍造成儿童心理健康恶化",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1933832627044988705",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1933832627044988705.html",
-          "original_urls": [
-            "https://petergray.substack.com/p/15-play-deficit-as-cause-of-decline"
-          ],
-          "original_hosts": [
-            "petergray.substack.com"
-          ],
-          "link_texts": [
-            "第 15 期简讯"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:33:31.619541+00:00"
     },
     {
       "source_id": "693330899",
@@ -6195,39 +4462,6 @@
       "reference_checked_at": "2026-10-27T10:32:12.436473+00:00"
     },
     {
-      "source_id": "1966554384348459311",
-      "source_title": "为大语言模型写作：如何让它们听你的",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/1966554384348459311",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2019752385031975830",
-          "target_title": "AI 同类相食未必是件坏事",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2019752385031975830",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2019752385031975830.html",
-          "original_urls": [
-            "https://gwern.net/blog/2025/ai-cannibalism"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "《AI 自噬可以是好事》"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:33:45.177999+00:00"
-    },
-    {
       "source_id": "361530732",
       "source_title": "乌托邦的愿景：教育与 NK 对比",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/361530732",
@@ -6360,39 +4594,6 @@
       "reference_checked_at": "2026-10-27T10:33:50.115175+00:00"
     },
     {
-      "source_id": "2014673035655925994",
-      "source_title": "信仰危机",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2014673035655925994",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2096646046239683603",
-          "target_title": "退相干是简洁的",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2096646046239683603",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2096646046239683603.html",
-          "original_urls": [
-            "https://www.readthesequences.com/Decoherence-Is-Simple"
-          ],
-          "original_hosts": [
-            "readthesequences.com"
-          ],
-          "link_texts": [
-            "多世界诠释"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:36:41.837994+00:00"
-    },
-    {
       "source_id": "547324740",
       "source_title": "健康自律的公式",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/547324740",
@@ -6523,39 +4724,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:31:56.271971+00:00"
-    },
-    {
-      "source_id": "609604620",
-      "source_title": "卡片笔记写作法 - Ahrens",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/609604620",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "446450875",
-          "target_title": "在写作时创建推测性大纲",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/446450875",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/446450875.html",
-          "original_urls": [
-            "https://notes.andymatuschak.org/z2uXyfV67dnWLUKg1iDbsrHk3DGjtNWTxSTah"
-          ],
-          "original_hosts": [
-            "notes.andymatuschak.org"
-          ],
-          "link_texts": [
-            "卢曼"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:34:00.075288+00:00"
     },
     {
       "source_id": "608600880",
@@ -6754,39 +4922,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:15.725875+00:00"
-    },
-    {
-      "source_id": "2094798951593649206",
-      "source_title": "复杂性并非人工智能的障碍",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2094798951593649206",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "1994704480931948124",
-          "target_title": "为什么工具 AI 渴望成为智能体 AI",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1994704480931948124",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1994704480931948124.html",
-          "original_urls": [
-            "https://gwern.net/tool-ai"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "为什么工具型 AI 最终想成为代理型 AI"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "unverified",
-      "reference_checked_at": null
     },
     {
       "source_id": "475366689",
@@ -7485,39 +5620,6 @@
       "reference_checked_at": "2026-10-27T10:32:22.540910+00:00"
     },
     {
-      "source_id": "812068575",
-      "source_title": "彩票：浪费希望",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/812068575",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2033339338453423814",
-          "target_title": "超常刺激与西方文明的崩溃",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2033339338453423814",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2033339338453423814.html",
-          "original_urls": [
-            "https://www.readthesequences.com/Superstimuli-And-The-Collapse-Of-Western-Civilization"
-          ],
-          "original_hosts": [
-            "readthesequences.com"
-          ],
-          "link_texts": [
-            "人工甜味剂"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:34:21.675160+00:00"
-    },
-    {
       "source_id": "476588071",
       "source_title": "情景体验需要参与者置身的因果关系",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/476588071",
@@ -7753,72 +5855,6 @@
       "reference_checked_at": "2026-10-27T10:32:55.430195+00:00"
     },
     {
-      "source_id": "2003772621796434134",
-      "source_title": "我对心理学界遭受的损失深表遗憾，如果真有什么损失的话",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2003772621796434134",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2095539874195562788",
-          "target_title": "科学是一个强链问题",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2095539874195562788",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2095539874195562788.html",
-          "original_urls": [
-            "https://www.experimental-history.com/p/science-is-a-strong-link-problem"
-          ],
-          "original_hosts": [
-            "experimental-history.com"
-          ],
-          "link_texts": [
-            "科学是一个强链接问题"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:34:27.024841+00:00"
-    },
-    {
-      "source_id": "2058221554144637051",
-      "source_title": "技术预测：小径分岔的花园",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2058221554144637051",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2094798951593649206",
-          "target_title": "复杂性并非人工智能的障碍",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2094798951593649206",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094798951593649206.html",
-          "original_urls": [
-            "https://gwern.net/complexity"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "这种绕道的方法往往是存在的"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:36:08.440917+00:00"
-    },
-    {
       "source_id": "599379155",
       "source_title": "把天才视为阿斯伯格（Asperger）",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/599379155",
@@ -8015,39 +6051,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:24.757598+00:00"
-    },
-    {
-      "source_id": "2096214419600568640",
-      "source_title": "数学的超常选择性",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/2096214419600568640",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "2058920207188547370",
-          "target_title": "关于看透与解构：黑客心态",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2058920207188547370",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2058920207188547370.html",
-          "original_urls": [
-            "https://gwern.net/unseeing"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "无视游戏原本设计的 UI/UX（用户界面/用户体验）"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "unverified",
-      "reference_checked_at": null
     },
     {
       "source_id": "591929088",
@@ -8975,39 +6978,6 @@
       "reference_checked_at": "2026-10-27T10:34:54.506986+00:00"
     },
     {
-      "source_id": "306014650",
-      "source_title": "老汤比喻",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/306014650",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "307602868",
-          "target_title": "水蛭（Leech）[Anki, SuperMemo]",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/307602868",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/307602868.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Leech"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "Leech"
-          ],
-          "occurrences": 4,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:31:48.651041+00:00"
-    },
-    {
       "source_id": "417595864",
       "source_title": "考试",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/417595864",
@@ -9371,40 +7341,6 @@
       "reference_checked_at": "2026-10-27T10:32:06.694308+00:00"
     },
     {
-      "source_id": "268782211",
-      "source_title": "记忆稳定性的两个组成成分",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/268782211",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "305651556",
-          "target_title": "间隔重复 (spaced repetition)",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/305651556",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/305651556.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Spaced_repetition"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "最优复习",
-            "间隔重复"
-          ],
-          "occurrences": 4,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "unreviewed",
-          "category": "unreviewed",
-          "review_reason": ""
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:32:07.034265+00:00"
-    },
-    {
       "source_id": "645932367",
       "source_title": "语义大脑",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/645932367",
@@ -9604,72 +7540,6 @@
       "reference_checked_at": "2026-10-27T10:35:11.713423+00:00"
     },
     {
-      "source_id": "558542113",
-      "source_title": "遗忘",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/558542113",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "584041631",
-          "target_title": "最优间隔",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/584041631",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/584041631.html",
-          "original_urls": [
-            "https://supermemo.guru/wiki/Optimum_interval"
-          ],
-          "original_hosts": [
-            "supermemo.guru"
-          ],
-          "link_texts": [
-            "最佳间隔"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "term",
-          "review_reason": "目标为术语或定义页；原文 URL 唯一对应本地译文，可将术语外链补为对应知乎译文链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:35:12.455081+00:00"
-    },
-    {
-      "source_id": "718778050",
-      "source_title": "间隔重复的有效实践",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/718778050",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "1974434605189858200",
-          "target_title": "训练工作记忆以提高智商？双任务 n-Back：常见问题与解答",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1974434605189858200",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1974434605189858200.html",
-          "original_urls": [
-            "https://gwern.net/dnb-faq#personal-reflection-on-results"
-          ],
-          "original_hosts": [
-            "gwern.net"
-          ],
-          "link_texts": [
-            "大概"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:35:15.083444+00:00"
-    },
-    {
       "source_id": "401463758",
       "source_title": "间隔重复记忆卡片应该从多个角度对概念进行编码",
       "source_zhihu_url": "https://zhuanlan.zhihu.com/p/401463758",
@@ -9800,39 +7670,6 @@
       ],
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:31:51.691984+00:00"
-    },
-    {
-      "source_id": "695300172",
-      "source_title": "韩国教育的破产",
-      "source_zhihu_url": "https://zhuanlan.zhihu.com/p/695300172",
-      "missing_zhihu_reference_count": 1,
-      "references": [
-        {
-          "target_id": "697650592",
-          "target_title": "教育军备竞赛正在让韩国破产",
-          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/697650592",
-          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/697650592.html",
-          "original_urls": [
-            "http://www.koreatimes.co.kr/www/nation/2017/09/357_134735.html"
-          ],
-          "original_hosts": [
-            "koreatimes.co.kr"
-          ],
-          "link_texts": [
-            "http://www. koreatimes.co.kr/www/na tion/2017/09/357_134735.html"
-          ],
-          "occurrences": 1,
-          "match_quality": [
-            "exact"
-          ],
-          "match_basis": "unique_original_url",
-          "confidence": "medium",
-          "category": "content",
-          "review_reason": "原文 URL 唯一匹配到目标译文，但锚文本与译文标题表达不同，建议按语境复核后补知乎链接。"
-        }
-      ],
-      "reference_live_status": "verified",
-      "reference_checked_at": "2026-10-27T10:35:20.142319+00:00"
     },
     {
       "source_id": "398094270",
