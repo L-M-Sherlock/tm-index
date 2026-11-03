@@ -5,7 +5,7 @@
   "input": {
     "references": "references.json",
     "catalog": "catalog.json",
-    "candidate_edges": 3
+    "candidate_edges": 0
   },
   "confidence_rules": {
     "review": [
@@ -34,21 +34,15 @@
     "other": "保留枚举值；本次没有无法归入上述类别的记录。"
   },
   "counts": {
-    "confidence": {
-      "review": 3
-    },
-    "category": {
-      "content": 1,
-      "unreviewed": 1,
-      "bibliography": 1
-    }
+    "confidence": {},
+    "category": {}
   },
   "validation": {
     "unique_pairs": true,
-    "record_count": 3,
-    "reused_review_rows": 3,
+    "record_count": 0,
+    "reused_review_rows": 0,
     "unreviewed_candidates": 0,
-    "old_reviews_no_longer_candidates": 56
+    "old_reviews_no_longer_candidates": 59
   },
   "sampling_audit": {
     "method": "按(source_id,target_id)排序后等距抽取60条人工核验。",
@@ -79,20 +73,20 @@
     "directory": 12
   },
   "candidate_recheck": {
-    "checked_at": "2026-11-02T04:30:18.384283+00:00",
-    "archive_head": "00ffc0c99eeed0763118a7c77ac0e9f1ababf066",
-    "audit_file": "missing-zhihu-reference-recheck-20261102-1230.json",
-    "removed_resolved_pairs": 72,
-    "remaining_candidate_edges": 246,
-    "remaining_source_articles": 170,
+    "checked_at": "2026-11-03T02:28:23.994553+00:00",
+    "archive_head": "ac46c45ee032d8dce9f2c13d3c10bfbd56a6027b",
+    "audit_file": "missing-zhihu-reference-recheck-20261103.json",
+    "removed_resolved_pairs": 3,
+    "remaining_candidate_edges": 0,
+    "remaining_source_articles": 0,
     "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
   },
   "editorial_review": {
     "decisions_file": "reference-editorial-decisions.json",
     "decisions_sha256": "992f2cb63b5c95fb36ab2d35136fbb0b436f467f53241d0c08f56a5f62ffd432",
-    "mechanical_candidates": 246,
+    "mechanical_candidates": 243,
     "editorially_excluded": 243,
-    "pending_candidates": 3,
+    "pending_candidates": 0,
     "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
   }
 }

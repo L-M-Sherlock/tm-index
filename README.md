@@ -50,7 +50,7 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 
 ## 待核对译文链接复核
 
-2026-11-02 的两轮本地备份核验从既有候选中移除 83 条已有知乎引用的关系，留下 246 条原文链接对应关系。结合此前逐条编辑审阅，其中 243 条暂不添加，网站目前显示 3 条仍需判断的引用、涉及 3 篇文章；完整审阅决定保存在 [编辑处置记录](data/reference-editorial-decisions.json)。这不改变原有引用图谱，也不是新文章的全量扫描或知乎实时核验。历史核验见 [最新复核报告](docs/missing-zhihu-reference-recheck-20261102-1230.md) 和 [首轮历史报告](docs/missing-zhihu-reference-recheck.md)；当前队列见 [文章列表](docs/missing-zhihu-reference-articles.md) 和 [CSV 列表](data/missing-zhihu-reference-articles.csv)。
+2026-11-03 基于本地备份提交 ac46c45e 复核最后 3 条待判断引用，均已找到对应译文的知乎原生引用注释，已移除过时标记；当前待核对队列为 0 条、0 篇文章。此前两轮核验已移除 83 条，累计移除 86 条；另有 243 条此前编辑决定暂不添加，不属于待核对队列。候选清单、页面计数和对应引用关系的链接类型已同步，正文与总结未修改。完整历史编辑决定保存在 [编辑处置记录](data/reference-editorial-decisions.json)，其 pending 状态记录当时判断，不代表当前队列；后续解决证据保存在 [最新复核报告](docs/missing-zhihu-reference-recheck-20261103.md)。这不是新文章的全量扫描或知乎实时核验。历史核验见 [第二轮报告](docs/missing-zhihu-reference-recheck-20261102-1230.md) 和 [首轮报告](docs/missing-zhihu-reference-recheck.md)；当前队列见 [文章列表](docs/missing-zhihu-reference-articles.md) 和 [CSV 列表](data/missing-zhihu-reference-articles.csv)。
 
 更新备份仓库后，可运行只读复核：
 
@@ -58,10 +58,10 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 python3 scripts/audit_missing_zhihu_references.py --archive ../ZhiHuArchive --output data/missing-zhihu-reference-recheck.json --report docs/missing-zhihu-reference-recheck.md
 ```
 
-已应用的核验记录受保护；再次复核须为输出和报告指定新文件名，不能覆盖已应用历史。应用脚本会校验候选版本、备份提交及正文文件哈希，保留已移除项与证据；重复应用不产生变化。第二轮应用命令：
+已应用的核验记录受保护；再次复核须为输出和报告指定新文件名，不能覆盖已应用历史。应用脚本会校验候选版本、备份提交及正文文件哈希，保留已移除项与证据；重复应用不产生变化。最新一轮应用命令：
 
 ```sh
-python3 scripts/apply_reference_recheck.py --archive ../ZhiHuArchive --audit data/missing-zhihu-reference-recheck-20261102-1230.json --report docs/missing-zhihu-reference-recheck-20261102-1230.md
+python3 scripts/apply_reference_recheck.py --archive ../ZhiHuArchive --audit data/missing-zhihu-reference-recheck-20261103.json --report docs/missing-zhihu-reference-recheck-20261103.md
 ```
 
 ## 总结工作流
