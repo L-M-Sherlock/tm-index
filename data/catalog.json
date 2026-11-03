@@ -195,7 +195,7 @@
       "schema_version": 1,
       "nodes": 2150,
       "edges": 13652,
-      "link_occurrences": 28405,
+      "link_occurrences": 28408,
       "link_records_examined": 63088,
       "self_links_ignored": 2380,
       "nodes_with_outgoing": 1905,
@@ -203,19 +203,19 @@
       "method_edge_counts": {
         "archive": 4,
         "original": 7629,
-        "zhihu": 13404
+        "zhihu": 13407
       },
       "method_occurrence_counts": {
         "archive": 4,
         "original": 11034,
-        "zhihu": 17367
+        "zhihu": 17370
       },
       "source_url_exact_keys": 1977,
       "source_url_collision_keys": 24,
       "ambiguous_original_links": 736,
       "direct_links_to_nontranslations": 705,
-      "missing_zhihu_reference_candidates": 246,
-      "articles_with_missing_zhihu_references": 170,
+      "missing_zhihu_reference_candidates": 243,
+      "articles_with_missing_zhihu_references": 167,
       "methodology": [
         "Unwrap link.zhihu.com redirects and match Zhihu/archive article IDs directly.",
         "Include Zhihu native reference annotations via sup[data-draft-type=reference][data-url], using data-text as the citation label.",
@@ -250,22 +250,22 @@
         "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
       },
       "candidate_recheck": {
-        "checked_at": "2026-11-02T04:30:18.384283+00:00",
-        "archive_head": "00ffc0c99eeed0763118a7c77ac0e9f1ababf066",
-        "audit_file": "missing-zhihu-reference-recheck-20261102-1230.json",
-        "removed_resolved_pairs": 72,
-        "remaining_candidate_edges": 246,
-        "remaining_source_articles": 170,
+        "checked_at": "2026-11-03T02:28:23.994553+00:00",
+        "archive_head": "ac46c45ee032d8dce9f2c13d3c10bfbd56a6027b",
+        "audit_file": "missing-zhihu-reference-recheck-20261103.json",
+        "removed_resolved_pairs": 3,
+        "remaining_candidate_edges": 0,
+        "remaining_source_articles": 0,
         "scope": "Only existing candidate pairs were rechecked against the local archive; historical live-check dates are unchanged."
       },
-      "editorial_pending_candidates": 3,
-      "editorial_pending_source_articles": 3,
+      "editorial_pending_candidates": 0,
+      "editorial_pending_source_articles": 0,
       "editorial_review": {
         "decisions_file": "reference-editorial-decisions.json",
         "decisions_sha256": "992f2cb63b5c95fb36ab2d35136fbb0b436f467f53241d0c08f56a5f62ffd432",
-        "mechanical_candidates": 246,
+        "mechanical_candidates": 243,
         "editorially_excluded": 243,
-        "pending_candidates": 3,
+        "pending_candidates": 0,
         "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
       }
     },
@@ -3915,7 +3915,8 @@
           "id": "4958428326",
           "title": "愚蠢的反面并非智慧",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -88492,7 +88493,8 @@
           "id": "487188240",
           "title": "赋能环境着重于环境所赋能的事",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         }
       ],
@@ -131055,10 +131057,9 @@
           "id": "2094066206470836669",
           "title": "量子物理与多世界",
           "via": [
-            "original"
-          ],
-          "pending_review": true,
-          "pending_review_reason": "原链与目标知乎页都指向《量子物理与多世界》系列索引，目标仅为目录；它不是支持“接触量子力学致疯狂”这一具体说法的科学证据，目录是否值得作为此处引用有待判断。"
+            "original",
+            "zhihu"
+          ]
         }
       ],
       "referenced_by": [
@@ -131148,7 +131149,7 @@
       ],
       "reference_count": 8,
       "referenced_by_count": 11,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [],
       "cited_by_answer_count": 0,
       "original_authors": [
@@ -307228,10 +307229,9 @@
           "id": "1933460394887868508",
           "title": "Kirschner, Sweller, & Clark (2006)：《为什么最小化指导教学是无效的：对建构主义、发现式、问题导向、体验式和探究式教学失败的分析》",
           "via": [
-            "original"
-          ],
-          "pending_review": true,
-          "pending_review_reason": "正文书目写 Kirschner 等的 2006 年论文，但原链接指向 Andy Matuschak 的读书笔记，目标译文是该笔记而非论文译文。若不注明“笔记”，补成论文引用会误导，需用户确认如何呈现。"
+            "original",
+            "zhihu"
+          ]
         },
         {
           "id": "698476935",
@@ -307518,7 +307518,7 @@
       ],
       "reference_count": 19,
       "referenced_by_count": 19,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "3225403127"
       ],
@@ -346136,7 +346136,8 @@
           "id": "382699591",
           "title": "在课堂上使用间隔重复软件的这七年",
           "via": [
-            "original"
+            "original",
+            "zhihu"
           ]
         },
         {
@@ -364085,10 +364086,9 @@
           "id": "420105707",
           "title": "(1/5) 高效学习的间隔重复——概述",
           "via": [
-            "original"
-          ],
-          "pending_review": true,
-          "pending_review_reason": "原链接指 Gwern 完整长文，目标仅为五部分译文的第一篇概述（内有其余部分目录）。中文导语在“间隔重复”一词链接长文，作为概述入口可能有帮助，但不能称其为完整原文译本；需确认呈现范围。"
+            "original",
+            "zhihu"
+          ]
         },
         {
           "id": "380354533",
@@ -364127,7 +364127,7 @@
       ],
       "reference_count": 4,
       "referenced_by_count": 1,
-      "missing_zhihu_reference_count": 1,
+      "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
         "1899162472390324259",
         "2024260508"

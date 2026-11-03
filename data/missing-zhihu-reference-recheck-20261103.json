@@ -1,0 +1,227 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "checked_at": "2026-11-03T02:28:23.994553+00:00",
+    "scope": "Recheck every existing candidate pair; no new candidate discovery or live Zhihu verification.",
+    "archive_head": "ac46c45ee032d8dce9f2c13d3c10bfbd56a6027b",
+    "archive_remote": "https://github.com/L-M-Sherlock/ZhiHuArchive.git",
+    "archive_tracked_changes": "",
+    "candidate_file_sha256": "1e9b75d2449932107619b1b9b1d17afb33bd400be173306419d11c64aeedc2b8",
+    "candidate_edges": 3,
+    "source_articles": 3,
+    "status_counts": {
+      "resolved_direct_link": 3
+    },
+    "still_missing_source_articles": 0,
+    "url_matching": "Unwrap Zhihu target redirects; normalize scheme/www/trailing slash and tracking queries; preserve fragments and meaningful queries. On supermemo.guru and wiki.issarice.com only, match a terminal wiki-title question mark to its percent-encoded form.",
+    "limitations": [
+      "Latest local archive is not a fresh live read of Zhihu.",
+      "An absent original link is not proof that a translation link was added.",
+      "Historical reference data and accepted summaries are not modified."
+    ]
+  },
+  "sources": [
+    {
+      "source_id": "382699591",
+      "path": "article/382699591.json",
+      "source_sha256": "c1ace1d0df5a4eca72e3fc67e671896ea00a00c52d8498092af1dc3a4732e947",
+      "content_sha256": "00973a3085e9f457adcd7445b73894fad32ff9bab86fdf44afa3840c4006cacc",
+      "article_updated": 1793601521,
+      "link_count": 61
+    },
+    {
+      "source_id": "4958428326",
+      "path": "article/4958428326.json",
+      "source_sha256": "55375e9e6f14cade25391e1cb2519fa99f542aa52e5bdaee35e7733ee73d785c",
+      "content_sha256": "c922e649219cdc5dc8a0be17d2c73a755b9f0965e7f5e2974064647ce21ee41c",
+      "article_updated": 1793601543,
+      "link_count": 18
+    },
+    {
+      "source_id": "487188240",
+      "path": "article/487188240.json",
+      "source_sha256": "dc14c4c752f03f42bea97d437da93d13eab0c0f87598eda6d1eccd659ece82b7",
+      "content_sha256": "31196e1a6fa63a32f327504a3b9aefe4bc0b3be25b524f6f043a644ef1762c31",
+      "article_updated": 1793601532,
+      "link_count": 36
+    }
+  ],
+  "results": [
+    {
+      "source_id": "382699591",
+      "source_title": "在课堂上使用间隔重复软件的这七年",
+      "target_id": "420105707",
+      "target_title": "(1/5) 高效学习的间隔重复——概述",
+      "original_urls": [
+        "https://www.gwern.net/Spaced-repetition",
+        "https://www.gwern.net/Spaced-repetition#how-much-to-add"
+      ],
+      "status": "resolved_direct_link",
+      "direct_link_evidence": [
+        {
+          "kind": "native_reference",
+          "url": "https://zhuanlan.zhihu.com/p/420105707"
+        }
+      ],
+      "original_link_evidence": [
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//www.gwern.net/Spaced-repetition"
+        },
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//www.gwern.net/Spaced-repetition"
+        },
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//www.gwern.net/Spaced-repetition%23how-much-to-add"
+        },
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//www.gwern.net/Spaced-repetition%23how-much-to-add"
+        }
+      ]
+    },
+    {
+      "source_id": "4958428326",
+      "source_title": "愚蠢的反面并非智慧",
+      "target_id": "2094066206470836669",
+      "target_title": "量子物理与多世界",
+      "original_urls": [
+        "https://www.readthesequences.com/Quantum-Physics-And-Many-Worlds-Sequence"
+      ],
+      "status": "resolved_direct_link",
+      "direct_link_evidence": [
+        {
+          "kind": "native_reference",
+          "url": "https://zhuanlan.zhihu.com/p/2094066206470836669"
+        }
+      ],
+      "original_link_evidence": [
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//www.readthesequences.com/Quantum-Physics-And-Many-Worlds-Sequence"
+        }
+      ]
+    },
+    {
+      "source_id": "487188240",
+      "source_title": "赋能环境着重于环境所赋能的事",
+      "target_id": "1933460394887868508",
+      "target_title": "Kirschner, Sweller, & Clark (2006)：《为什么最小化指导教学是无效的：对建构主义、发现式、问题导向、体验式和探究式教学失败的分析》",
+      "original_urls": [
+        "https://notes.andymatuschak.org/zUiDqjKiS3udc3wcvcFbcpc"
+      ],
+      "status": "resolved_direct_link",
+      "direct_link_evidence": [
+        {
+          "kind": "native_reference",
+          "url": "https://zhuanlan.zhihu.com/p/1933460394887868508"
+        }
+      ],
+      "original_link_evidence": [
+        {
+          "kind": "anchor",
+          "url": "https://link.zhihu.com/?target=https%3A//notes.andymatuschak.org/zUiDqjKiS3udc3wcvcFbcpc"
+        }
+      ]
+    }
+  ],
+  "application": {
+    "applied_at": "2026-11-03T02:28:25.024503+00:00",
+    "removed_candidate_edges": 3,
+    "candidate_file_sha256_after": "367a142821821cd1a0e411fc719a1e618e5ac5c6737db238b460120c8f7f2e0d",
+    "remaining_candidate_edges": 0,
+    "remaining_source_articles": 0,
+    "removed_candidates": [
+      {
+        "source_id": "382699591",
+        "source_title": "在课堂上使用间隔重复软件的这七年",
+        "reference": {
+          "target_id": "420105707",
+          "target_title": "(1/5) 高效学习的间隔重复——概述",
+          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/420105707",
+          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/420105707.html",
+          "original_urls": [
+            "https://www.gwern.net/Spaced-repetition",
+            "https://www.gwern.net/Spaced-repetition#how-much-to-add"
+          ],
+          "original_hosts": [
+            "gwern.net"
+          ],
+          "link_texts": [
+            "Gwern’s “5 and 5” rule",
+            "Spaced Repetition",
+            "格温的 \"5 和 5\"规则",
+            "间隔重复"
+          ],
+          "occurrences": 4,
+          "match_quality": [
+            "exact"
+          ],
+          "match_basis": "unique_original_url",
+          "confidence": "review",
+          "category": "content",
+          "review_reason": "原链接指 Gwern 完整长文，目标仅为五部分译文的第一篇概述（内有其余部分目录）。中文导语在“间隔重复”一词链接长文，作为概述入口可能有帮助，但不能称其为完整原文译本；需确认呈现范围。",
+          "initial_confidence": "high"
+        }
+      },
+      {
+        "source_id": "4958428326",
+        "source_title": "愚蠢的反面并非智慧",
+        "reference": {
+          "target_id": "2094066206470836669",
+          "target_title": "量子物理与多世界",
+          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/2094066206470836669",
+          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/2094066206470836669.html",
+          "original_urls": [
+            "https://www.readthesequences.com/Quantum-Physics-And-Many-Worlds-Sequence"
+          ],
+          "original_hosts": [
+            "readthesequences.com"
+          ],
+          "link_texts": [
+            "量子力学"
+          ],
+          "occurrences": 1,
+          "match_quality": [
+            "exact"
+          ],
+          "match_basis": "unique_original_url",
+          "confidence": "review",
+          "category": "unreviewed",
+          "review_reason": "原链与目标知乎页都指向《量子物理与多世界》系列索引，目标仅为目录；它不是支持“接触量子力学致疯狂”这一具体说法的科学证据，目录是否值得作为此处引用有待判断。",
+          "initial_confidence": "unreviewed"
+        }
+      },
+      {
+        "source_id": "487188240",
+        "source_title": "赋能环境着重于环境所赋能的事",
+        "reference": {
+          "target_id": "1933460394887868508",
+          "target_title": "Kirschner, Sweller, & Clark (2006)：《为什么最小化指导教学是无效的：对建构主义、发现式、问题导向、体验式和探究式教学失败的分析》",
+          "recommended_zhihu_url": "https://zhuanlan.zhihu.com/p/1933460394887868508",
+          "target_archive_url": "https://l-m-sherlock.github.io/ZhiHuArchive/1933460394887868508.html",
+          "original_urls": [
+            "https://notes.andymatuschak.org/zUiDqjKiS3udc3wcvcFbcpc"
+          ],
+          "original_hosts": [
+            "notes.andymatuschak.org"
+          ],
+          "link_texts": [
+            "Kirschner, P. A., Sweller, J., & Clark, R. E. (2006). Why Minimal Guidance During Instruction Does Not Work: An Analysis of the Failure of Constructivist, Discovery, Problem-Based, Experiential, and Inquiry-Based Teaching. Educational Psychologist, 41(2), 75–86"
+          ],
+          "occurrences": 1,
+          "match_quality": [
+            "exact"
+          ],
+          "match_basis": "unique_original_url",
+          "confidence": "review",
+          "category": "bibliography",
+          "review_reason": "正文书目写 Kirschner 等的 2006 年论文，但原链接指向 Andy Matuschak 的读书笔记，目标译文是该笔记而非论文译文。若不注明“笔记”，补成论文引用会误导，需用户确认如何呈现。",
+          "initial_confidence": "medium"
+        }
+      }
+    ]
+  }
+}
