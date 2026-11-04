@@ -66,6 +66,8 @@ python3 scripts/apply_reference_recheck.py --archive ../ZhiHuArchive --audit dat
 
 ## 总结工作流
 
+正文 3,000～8,000 字符的 622 篇译文已完成本地全量复核：436 篇重写、186 篇保留，总结平均长度从 143.3 增至 280.3 字符。分层统计、逐篇理由与过程异常说明见[复核报告](docs/summary-compact-results.md)，文章列表见 [CSV](docs/summary-compact-articles.csv)。本轮不自动提交或发布。
+
 写作、独立复核和主代理验收规范见 [总结工作流](docs/summary-workflow.md)。先阅读全文并建立主要观点清单，按体裁、正文长度和内容复杂度决定篇幅，不设置 260 字的长文上限。结构、哈希和阅读区间校验不能代替语义复核。
 
 `scripts/summary_workflow.py` 提供 `prepare`、`check`、`apply` 三个入口，不生成总结或调用模型 API。正文快照只读，工作文件存于忽略的 `.work/` 中；全部结果通过独立复核后才应用。导入旧目录须使用 `apply --import-catalog`，重放已验收的修订历史；未知总结或来源冲突会停止同步。

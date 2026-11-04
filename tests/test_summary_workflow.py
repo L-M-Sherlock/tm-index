@@ -46,10 +46,10 @@ class WorkflowTests(unittest.TestCase):
         self.prepare()
         self.make_results()
 
-    def prepare(self, run="test-1"):
-        return flow.prepare(self.root, self.sources, self.baseline, self.work, run, "2026-11-01", 20, 50)
+    def prepare(self, run="test-1", **config):
+        return flow.prepare(self.root, self.sources, self.baseline, self.work, run, "2026-11-01", 20, 50, **config)
 
-    def prepare_blind(self, work_name="blind-work", run="blind-run", reuse_verdict=None, omit_archive_url=False):
+    def prepare_blind(self, work_name="blind-work", run="blind-run", reuse_verdict=None, omit_archive_url=False, **config):
         reuse_path = None
         if reuse_verdict is not None:
             entry = {"id": self.row["id"], "title": self.row["title"], "url": self.row["url"],
@@ -61,14 +61,16 @@ class WorkflowTests(unittest.TestCase):
             if omit_archive_url:
                 entry.pop("archive_url")
             reuse_path = self.root / "data/summary-sampling-audit.json"
-            flow.write_json(reuse_path, {"run_id": "prior-audit", "entries": [entry]})
+            flow.write_json(reuse_path, {"run_id": "prior-audit", "model": flow.MODEL,
+                                         "reasoning_effort": flow.EFFORT, "entries": [entry]})
         work = self.root / work_name
         flow.prepare(self.root, self.sources, self.baseline, work, run, "2026-11-01", 20,
                      max_body_chars=len(self.body) + 1, recovery_dir=None, reuse_audit=reuse_path,
-                     actor_prefix="mid", blind_review=True)
+                     actor_prefix="mid", blind_review=True, **config)
         return work
 
-    def prepare_multi_blind(self, count=3, work_name=".work/multi-blind", run="multi-blind", lengths=None):
+    def prepare_multi_blind(self, count=3, work_name=".work/multi-blind", run="multi-blind", lengths=None,
+                            bounds=(8000, 20000)):
         rows, baseline = [], {}
         for number in range(1, count + 1):
             article_id = str(number)
@@ -101,7 +103,7 @@ class WorkflowTests(unittest.TestCase):
         payload = json.dumps(embedded, ensure_ascii=False)
         (self.root / "index.html").write_text(html[:match.start(2)] + payload + html[match.end(2):], encoding="utf-8")
         work = self.root / work_name
-        minimum, maximum = (8000, 20000) if lengths is not None else (20, len(self.body) + 1)
+        minimum, maximum = bounds if lengths is not None else (20, len(self.body) + 1)
         flow.prepare(self.root, self.sources, self.baseline, work, run, "2026-11-01", minimum,
                      max_body_chars=maximum, actor_prefix="mid", blind_review=True)
         return work
@@ -111,10 +113,10 @@ class WorkflowTests(unittest.TestCase):
                             writer_point_coverage=None, reviewer_point_coverage=None, article_id=None,
                             reviewer_actor="mid_reviewer_1"):
         manifest = flow.read_json(work / "manifest.json")
+        config = {key: manifest[key] for key in ("model", "reasoning_effort")}
         item = next(item for item in manifest["articles"] if article_id is None or item["id"] == article_id)
         body = "".join((work / chunk["path"]).read_text(encoding="utf-8") for chunk in item["chunks"])
-        writer_outline = {"id": item["id"], "actor": writer_actor, "model": flow.MODEL,
-                          "reasoning_effort": flow.EFFORT, "source_sha256": item["source_sha256"],
+        writer_outline = {"id": item["id"], "actor": writer_actor, **config, "source_sha256": item["source_sha256"],
                           "body_sha256": item["body_sha256"], "read_chunks": list(range(len(item["chunks"]))),
                           "genre": "论说文", "major_points": [{"key": "P1", "point": "理解与反馈的主要观点",
                               "source_spans": [{"start": 0, "end": 25, "quote": body[0:12]}]}]}
@@ -129,16 +131,14 @@ class WorkflowTests(unittest.TestCase):
         reviewer_initial_path = work / "reviewer-initial" / (item["id"] + ".json")
         writer_coverage = writer_point_coverage or ("covered" if writer_old == "adequate" else "missing")
         reviewer_coverage = reviewer_point_coverage or ("covered" if reviewer_old == "adequate" else "missing")
-        writer_initial = {"id": item["id"], "actor": writer_actor, "model": flow.MODEL,
-                          "reasoning_effort": flow.EFFORT, "source_sha256": item["source_sha256"],
+        writer_initial = {"id": item["id"], "actor": writer_actor, **config, "source_sha256": item["source_sha256"],
                           "body_sha256": item["body_sha256"], "old_summary_sha256": item["old_summary_sha256"],
                           "outline_sha256": flow.file_hash(writer_outline_path), "read_chunks": writer_outline["read_chunks"],
                           "verdict": writer_old, "rationale": "依据旧稿覆盖的独立主要点作初判",
                           "major_points": [{**writer_outline["major_points"][0],
                               "old_coverage": writer_coverage,
                               "old_evidence": self.row["summary"] if writer_coverage != "missing" else None}], "distortions": []}
-        reviewer_initial = {"id": item["id"], "actor": reviewer_actor, "model": flow.MODEL,
-                            "reasoning_effort": flow.EFFORT, "source_sha256": item["source_sha256"],
+        reviewer_initial = {"id": item["id"], "actor": reviewer_actor, **config, "source_sha256": item["source_sha256"],
                             "body_sha256": item["body_sha256"], "old_summary_sha256": item["old_summary_sha256"],
                             "outline_sha256": flow.file_hash(reviewer_outline_path), "read_chunks": reviewer_outline["read_chunks"],
                             "verdict": reviewer_old, "rationale": "独立比较旧稿与正文",
@@ -161,7 +161,7 @@ class WorkflowTests(unittest.TestCase):
                             "excluded_writer_points": [], "excluded_reviewer_points": []}
             flow.write_json(work / "adjudications" / (item["id"] + ".json"), adjudication)
         summary = summary_text or "本文主张学习应关注实际理解，并通过及时反馈调整方法。"
-        writer = {"id": item["id"], "writer": writer_actor, "model": flow.MODEL, "reasoning_effort": flow.EFFORT,
+        writer = {"id": item["id"], "writer": writer_actor, **config,
                   "source_sha256": item["source_sha256"], "body_sha256": item["body_sha256"],
                   "old_summary_sha256": item["old_summary_sha256"], "read_chunks": writer_outline["read_chunks"],
                   "genre": "论说文", "decision": "rewrite", "decision_reason": "旧稿漏掉反馈机制",
@@ -172,8 +172,7 @@ class WorkflowTests(unittest.TestCase):
                                     "summary_evidence": summary}],
                   "issues": [{"problem": "旧稿未说明反馈机制", "fix": "补入反馈与学习路径的关系"}],
                   "blind_outline_sha256": flow.file_hash(writer_outline_path)}
-        review = {"id": item["id"], "reviewer": reviewer_actor, "model": flow.MODEL,
-                  "reasoning_effort": flow.EFFORT, "source_sha256": item["source_sha256"],
+        review = {"id": item["id"], "reviewer": reviewer_actor, **config, "source_sha256": item["source_sha256"],
                   "body_sha256": item["body_sha256"], "summary_sha256": flow.digest(summary),
                   "read_chunks": reviewer_outline["read_chunks"], "verdict": "pass",
                   "major_point_checks": [{"key": "P1", "verdict": "covered", "evidence": summary}],
@@ -191,15 +190,17 @@ class WorkflowTests(unittest.TestCase):
 
     def make_results(self, summary="本文主张学习应关注实际理解，并通过及时反馈调整方法。", decision="rewrite"):
         item = flow.read_json(self.work / "inputs/1/article.json")
+        manifest = flow.read_json(self.work / "manifest.json")
+        config = {key: manifest[key] for key in ("model", "reasoning_effort")}
         self.item = item
-        self.writer = {"id": "1", "writer": "long_writer_1", "model": flow.MODEL, "reasoning_effort": flow.EFFORT,
+        self.writer = {"id": "1", "writer": "long_writer_1", **config,
                        "source_sha256": item["source_sha256"], "body_sha256": item["body_sha256"], "old_summary_sha256": item["old_summary_sha256"],
                        "read_chunks": list(range(len(item["chunks"]))), "genre": "论说文", "decision": decision,
                        "decision_reason": "旧稿没有覆盖反馈机制", "summary": summary, "length_reason": "保留两个独立论点",
                        "major_points": [{"key": "P1", "point": "理解和反馈", "source_spans": [{"start": 0, "end": 20}],
                                          "old_coverage": "missing" if decision == "rewrite" else "covered", "old_coverage_reason": "比较完整句", "summary_evidence": summary}],
                        "issues": [{"problem": "遗漏反馈", "fix": "补充反馈"}] if decision == "rewrite" else []}
-        self.review = {"id": "1", "reviewer": "long_reviewer_1", "model": flow.MODEL, "reasoning_effort": flow.EFFORT,
+        self.review = {"id": "1", "reviewer": "long_reviewer_1", **config,
                        "source_sha256": item["source_sha256"], "body_sha256": item["body_sha256"], "summary_sha256": flow.digest(summary),
                        "read_chunks": self.writer["read_chunks"], "verdict": "pass",
                        "major_point_checks": [{"key": "P1", "verdict": "covered", "evidence": summary}],
@@ -213,6 +214,204 @@ class WorkflowTests(unittest.TestCase):
 
     def output_bytes(self):
         return {str(p.relative_to(self.root)): p.read_bytes() for p in (self.root / "data").glob("*.json")} | {"index.html": (self.root / "index.html").read_bytes()}
+
+    def test_prepare_cli_freezes_model_in_blind_inputs_and_requires_bound_acceptance(self):
+        work = self.root / ".work/configured"
+        config = {"model": "gpt-6", "reasoning_effort": "max"}
+        with patch("sys.stdout", new=io.StringIO()):
+            result = flow.main(["--root", str(self.root), "prepare", "--source-dir", str(self.sources),
+                "--source-manifest", str(self.baseline), "--work-dir", str(work), "--run-id", "configured",
+                "--date", "2026-11-03", "--min-body-chars", "20", "--max-body-chars", str(len(self.body) + 1),
+                "--blind-review", "--actor-prefix", "compact", "--model", "gpt-6", "--reasoning-effort", "max",
+                "--require-bound-primary-review"])
+        self.assertEqual(result, 0)
+        manifest = flow.read_json(work / "manifest.json")
+        item = manifest["articles"][0]
+        source = flow.read_json(work / "inputs/1/source.json")
+        for record in (manifest, item, source, flow.read_json(work / "inputs/1/article.json")):
+            self.assertEqual({key: record[key] for key in config}, config)
+        self.assertEqual(item["initial_provenance"]["model"], flow.MODEL)
+        self.assertTrue(manifest["require_bound_primary_review"])
+        self.write_blind_records(work, writer_actor="compact_writer_1", reviewer_actor="compact_reviewer_1")
+        outline = flow.read_json(work / "outlines/compact_writer_1/1.json")
+        flow.validate_outline(outline, "compact_writer_1", source, self.body)
+        flow.checkpoint_records(self.root, work)
+        self.assertEqual(flow.check(self.root, work)[2], [])
+        before = self.output_bytes()
+        with self.assertRaisesRegex(ValueError, "acceptance with bound review evidence is required"):
+            flow.apply(self.root, work)
+        self.assertEqual(before, self.output_bytes())
+        review_path = work / "reviewers/1.json"
+        review = flow.read_json(review_path)
+        flow.write_json(work / "primary-acceptance.json", {"decider": "Codex主代理", "bind_review_sha": True,
+            "entries": [{"id": "1", "accepted": True, "summary_sha256": review["summary_sha256"],
+                         "review_sha256": flow.file_hash(review_path)}]})
+        self.assertEqual(flow.apply(self.root, work)["reviewed"], 1)
+        first = self.output_bytes()
+        flow.apply(self.root, work)
+        self.assertEqual(first, self.output_bytes())
+
+    def test_all_blind_stages_reject_model_or_effort_different_from_run(self):
+        work = self.prepare_blind(model="gpt-6", reasoning_effort="high")
+        self.write_blind_records(work)
+        flow.check(self.root, work)
+        for relative in ("outlines/mid_writer_1/1.json", "outlines/mid_reviewer_1/1.json",
+                         "initial/1.json", "reviewer-initial/1.json", "writers/1.json", "reviewers/1.json"):
+            path = work / relative
+            original = flow.read_json(path)
+            for field, wrong in (("model", flow.MODEL), ("reasoning_effort", flow.EFFORT)):
+                with self.subTest(path=relative, field=field):
+                    flow.write_json(path, {**original, field: wrong})
+                    with self.assertRaisesRegex(ValueError, "incorrect model provenance"):
+                        flow.check(self.root, work)
+                    flow.write_json(path, original)
+        item = flow.read_json(work / "inputs/1/article.json")
+        for directory, actor, validator in (("writers", "mid_writer_1", flow.validate_blind_writer),
+                                             ("reviewers", "mid_reviewer_1", flow.validate_blind_reviewer)):
+            record = flow.read_json(work / directory / "1.json")
+            outline_path = work / "outlines" / actor / "1.json"
+            outline = flow.read_json(outline_path)
+            validator(record, outline, outline_path, item, self.body)
+            with self.assertRaisesRegex(ValueError, "incorrect model provenance"):
+                validator({**record, "model": flow.MODEL}, outline, outline_path, item, self.body)
+
+    def test_source_only_body_validation_does_not_read_old_summary_or_manifest(self):
+        work = self.prepare_blind(model="gpt-6")
+        source_path = work / "inputs/1/source.json"
+        source = flow.read_json(source_path)
+        with patch.object(flow, "read_json", wraps=flow.read_json) as reads:
+            self.assertEqual(flow.validate_body(work, source), self.body)
+        reads.assert_called_once_with(source_path)
+        changed = {**source, "body_sha256": "0" * 64}
+        with self.assertRaisesRegex(ValueError, "source input differs from supplied source"):
+            flow.validate_body(work, changed)
+        chunk = work / source["chunks"][0]["path"]
+        chunk.write_text(self.body.replace("学习", "休息"), encoding="utf-8")
+        with self.assertRaisesRegex(ValueError, "body hash/length mismatch"):
+            flow.validate_body(work, source)
+
+    def test_prepare_rejects_invalid_model_config_before_writing(self):
+        for field in ("model", "reasoning_effort"):
+            for invalid in (None, "", " ", " gpt-6", 6):
+                with self.subTest(field=field, value=invalid):
+                    target = self.root / "invalid-config"
+                    with self.assertRaisesRegex(ValueError, "Invalid model configuration"):
+                        flow.prepare(self.root, self.sources, self.baseline, target, "invalid", "2026-11-03", 20,
+                                     **{field: invalid})
+                    self.assertFalse(target.exists())
+
+    def test_manifest_model_cannot_drift_from_frozen_article_or_source(self):
+        work = self.prepare_blind(model="gpt-6")
+        self.write_blind_records(work)
+        manifest_path = work / "manifest.json"
+        manifest = flow.read_json(manifest_path)
+        flow.write_json(manifest_path, {**manifest, "model": flow.MODEL})
+        with self.assertRaisesRegex(ValueError, "model configuration differs from manifest"):
+            flow.check(self.root, work)
+        flow.write_json(manifest_path, manifest)
+        source_path = work / "inputs/1/source.json"
+        source = flow.read_json(source_path)
+        flow.write_json(source_path, {**source, "model": flow.MODEL})
+        with self.assertRaisesRegex(ValueError, "source input differs from manifest"):
+            flow.check(self.root, work)
+
+    def test_legacy_inputs_without_model_fields_remain_accepted(self):
+        for work in (self.work, self.prepare_blind()):
+            if work != self.work:
+                self.write_blind_records(work)
+            manifest_path = work / "manifest.json"
+            manifest = flow.read_json(manifest_path)
+            for item in manifest["articles"]:
+                for field in ("model", "reasoning_effort"):
+                    item.pop(field)
+                flow.write_json(work / "inputs" / item["id"] / "article.json", item)
+                source_path = work / "inputs" / item["id"] / "source.json"
+                if source_path.exists():
+                    source = flow.read_json(source_path)
+                    for field in ("model", "reasoning_effort"):
+                        source.pop(field)
+                    flow.write_json(source_path, source)
+            flow.write_json(manifest_path, manifest)
+            before = manifest_path.read_bytes()
+            self.assertEqual(flow.check(self.root, work)[2], [])
+            self.assertEqual(manifest_path.read_bytes(), before)
+
+    def test_mixed_model_history_replay_keeps_original_provenance(self):
+        flow.apply(self.root, self.work)
+        original_event = copy.deepcopy(flow.load_ledger(self.root)["entries"][0])
+        original_audit = flow.read_json(self.root / "data/summary-reviews.json")
+        self.work = self.root / "configured-legacy"
+        self.prepare("configured-legacy", model="gpt-6", reasoning_effort="high")
+        self.make_results("新版还说明反馈应服务于实际理解，并据结果调整学习方法。")
+        flow.apply(self.root, self.work)
+        ledger = flow.load_ledger(self.root)
+        self.assertEqual(ledger["entries"][0], original_event)
+        latest = ledger["entries"][-1]
+        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        row = flow.read_json(self.root / "data/catalog.json")["articles"][0]
+        metadata = flow.read_json(self.root / "data/validation.json")["summary_reviews"]
+        for record in (latest["after"], latest["review"], audit, metadata, row["summary_revision"]):
+            self.assertEqual(record["model"], "gpt-6")
+            self.assertEqual(record["reasoning_effort"], "high")
+        self.assertEqual(row["model"], flow.MODEL)
+        self.assertEqual(row["reasoning_effort"], flow.EFFORT)
+        self.assertEqual(audit["previous_runs"][0], {key: value for key, value in original_audit.items()
+                                                   if key != "previous_runs"})
+        self.assertEqual(ledger["reviewer"], "Codex orchestration; gpt-6 high independent review")
+        changed = copy.deepcopy(latest)
+        changed["review"]["model"] = flow.MODEL
+        with self.assertRaisesRegex(ValueError, "invalid historical review.*incorrect model provenance"):
+            flow.validate_history_review(changed)
+        imported = self.root / "original-catalog.json"
+        flow.write_json(imported, self.catalog)
+        flow.sync_import(self.root, imported)
+        self.assertEqual(flow.load_ledger(self.root), ledger)
+        self.assertEqual(flow.read_json(self.root / "data/validation.json")["summary_reviews"], metadata)
+
+    def test_new_model_reuses_historical_evidence_without_relabeling(self):
+        for verdict in ("adequate", "undercovered"):
+            work = self.prepare_blind(work_name=verdict, run=verdict, reuse_verdict=verdict, model="gpt-6")
+            item = flow.read_json(work / "inputs/1/article.json")
+            prior = flow.read_json(work / item["prior_review_path"])
+            report_path = self.root / "data/summary-sampling-audit.json"
+            report_bytes = report_path.read_bytes()
+            if verdict == "undercovered":
+                self.write_blind_records(work, reused=True)
+            flow.check(self.root, work)
+            flow.apply(self.root, work)
+            audit = flow.read_json(self.root / "data/summary-reviews.json")
+            self.assertEqual(audit["model"], "gpt-6")
+            self.assertEqual(audit["entries"][0]["prior_review"], prior)
+            self.assertEqual(report_path.read_bytes(), report_bytes)
+            self.assertFalse((work / "initial/1.json").exists())
+            if verdict == "adequate":
+                self.assertIsNone(audit["entries"][0]["writer"])
+                self.assertIsNone(audit["entries"][0]["review"])
+                self.assertEqual(flow.load_ledger(self.root)["entries"], [])
+            else:
+                self.assertEqual(audit["entries"][0]["writer"]["model"], "gpt-6")
+                self.assertEqual(audit["entries"][0]["review"]["model"], "gpt-6")
+
+    def test_compact_length_strata_cover_full_and_partial_publications(self):
+        work = self.prepare_multi_blind(count=4, lengths=[3000, 4999, 5000, 7999], bounds=(3000, 8000))
+        manifest = flow.read_json(work / "manifest.json")
+        for item in manifest["articles"]:
+            writer = next(actor for actor, ids in manifest["assignments"]["writer"].items() if item["id"] in ids)
+            reviewer = next(actor for actor, ids in manifest["assignments"]["reviewer"].items() if item["id"] in ids)
+            self.write_blind_records(work, article_id=item["id"], writer_actor=writer, reviewer_actor=reviewer)
+        result = flow.apply(self.root, work)
+        self.assertEqual(result["length_strata"], [{"lower": 3000, "upper": 5000, "population_count": 2},
+                                                  {"lower": 5000, "upper": 8000, "population_count": 2}])
+        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        partial = flow._publication_statistics(audit["entries"][:1], manifest["articles"])
+        self.assertEqual(partial["length_strata"], [
+            {"lower": 3000, "upper": 5000, "population_count": 2, "published_count": 0},
+            {"lower": 5000, "upper": 8000, "population_count": 2, "published_count": 1}])
+        self.assertEqual(flow._publication_statistics(audit["entries"])["length_strata"], [
+            {"lower": 3000, "upper": 5000, "population_count": 2, "published_count": 2},
+            {"lower": 5000, "upper": 8000, "population_count": 2, "published_count": 2}])
+        self.assertEqual(flow._length_strata([8000, 10000, 15000, 19999]),
+                         ((8000, 10000), (10000, 15000), (15000, 20000)))
 
     def test_prepare_validates_all_inputs_before_writing(self):
         flow.write_json(self.baseline, {"1": {**self.source_entry, "source_sha256": "wrong"}})
@@ -1204,7 +1403,13 @@ class WorkflowTests(unittest.TestCase):
             flow.apply(self.root, work, accepted_only=True, publication_ids=[target_ids[0]])
 
     def test_reused_reviewer_reassignment_pins_independent_reading(self):
-        work = self.prepare_blind(work_name="reviewer-reassignment", run="reviewer-reassignment")
+        self.check_reviewer_reassignment()
+
+    def test_reused_reviewer_reassignment_uses_run_model_and_effort(self):
+        self.check_reviewer_reassignment(model="gpt-6", reasoning_effort="high")
+
+    def check_reviewer_reassignment(self, **config):
+        work = self.prepare_blind(work_name="reviewer-reassignment", run="reviewer-reassignment", **config)
         manifest = flow.read_json(work / "manifest.json")
         item = manifest["articles"][0]
         item["review_origin"] = "sampling_reuse_problem"
@@ -1216,8 +1421,8 @@ class WorkflowTests(unittest.TestCase):
         owners = {role: {aid: actor for actor, ids in groups.items() for aid in ids}
                   for role, groups in manifest["assignments"].items()}
         base = {"id": article_id, "source_sha256": item["source_sha256"],
-                "body_sha256": item["body_sha256"], "model": flow.MODEL,
-                "reasoning_effort": flow.EFFORT, "read_chunks": list(range(len(item["chunks"])))}
+                "body_sha256": item["body_sha256"], "model": item["model"],
+                "reasoning_effort": item["reasoning_effort"], "read_chunks": list(range(len(item["chunks"])))}
         archived = work / "exceptions" / article_id / "reviewer-outline.json"
         outline = work / "private-provenance" / "independent-outline.json"
         initial = work / "private-provenance" / "independent-initial.json"
@@ -1235,6 +1440,14 @@ class WorkflowTests(unittest.TestCase):
             record[name + "_sha256"] = flow.file_hash(path)
         manifest["reviewer_reassignments"] = [record]
         self.assertEqual(flow._validate_reviewer_reassignments(work, manifest, owners), [record])
+        valid_initial = flow.read_json(initial)
+        for field in ("model", "reasoning_effort"):
+            flow.write_json(initial, {**valid_initial, field: "wrong"})
+            record["instance_initial_sha256"] = flow.file_hash(initial)
+            with self.assertRaisesRegex(ValueError, "reassigned reviewer instance input mismatch"):
+                flow._validate_reviewer_reassignments(work, manifest, owners)
+        flow.write_json(initial, valid_initial)
+        record["instance_initial_sha256"] = flow.file_hash(initial)
         flow.write_json(initial, {**base, "actor": new, "verdict": "adequate"})
         with self.assertRaisesRegex(ValueError, "reviewer reassignment record changed"):
             flow._validate_reviewer_reassignments(work, manifest, owners)
@@ -1412,7 +1625,13 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(len(logs), 1)
 
     def test_final_reviewer_transfer_preserves_both_blind_records_and_rejects_tampering(self):
-        work = self.prepare_blind(work_name=".work/transfer-test")
+        self.check_final_reviewer_transfer()
+
+    def test_final_reviewer_transfer_and_history_use_run_model_and_effort(self):
+        self.check_final_reviewer_transfer(model="gpt-6", reasoning_effort="high")
+
+    def check_final_reviewer_transfer(self, **config):
+        work = self.prepare_blind(work_name=".work/transfer-test", **config)
         item = self.write_blind_records(work)
         manifest_path = work / "manifest.json"
         manifest = flow.read_json(manifest_path)
@@ -1530,6 +1749,13 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(audit["final_reviewer_transfers"][article_id]["to"], new_actor)
         ledger = flow.read_json(self.root / "data/summary-revisions.json")
         flow.validate_history_review(ledger["entries"][-1])
+        for kind in ("outline", "initial"):
+            altered = copy.deepcopy(ledger["entries"][-1])
+            provenance = altered["review"]["transfer_provenance"]
+            provenance[kind]["model"] = "wrong"
+            provenance[kind + "_sha256"] = flow.digest(flow.json_text(provenance[kind]))
+            with self.assertRaisesRegex(ValueError, "incorrect model provenance"):
+                flow.validate_history_review(altered)
 
     def test_primary_acceptance_can_bind_exact_review_bytes(self):
         work = self.prepare_blind(work_name=".work/primary-review-binding")
@@ -1649,6 +1875,65 @@ class WorkflowTests(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "conflicting reason/old_coverage_reason"):
             validate_change("reason-rename-conflict", conflicting_fields)
+
+    def test_short_distortion_claim_expansion_is_narrow_and_preserves_judgments(self):
+        short_claim = "学生不喜欢停课"
+        full_claim = "学生不喜欢停课、非实用课程等例子提出替代解释"
+        old_summary = full_claim + "。作者认为学习需要及时反馈。"
+        cases = [
+            ("valid", short_claim, full_claim, None, True),
+            ("replacement", short_claim, "作者认为学习需要及时反馈", None, False),
+            ("outside-summary", short_claim, short_claim + "因为课程毫无价值", None, False),
+            ("already-long", full_claim[:9], full_claim, None, False),
+            ("still-short", "学生不喜欢", short_claim, None, False),
+            ("punctuation-only", "、", full_claim, None, False),
+            ("reason", short_claim, full_claim, "reason", False),
+            ("verdict", short_claim, full_claim, "verdict", False),
+            ("rationale", short_claim, full_claim, "rationale", False),
+            ("point", short_claim, full_claim, "point", False),
+        ]
+        for section, actor in (("initial", "mid_writer_1"), ("reviewer-initial", "mid_reviewer_1")):
+            for name, before_claim, after_claim, changed_field, accepted in cases:
+                with self.subTest(section=section, case=name):
+                    work = self.root / (section + "-claim-" + name)
+                    target = work / section / "1.json"
+                    backup = work / "format-before" / actor / "1/initial.json"
+                    before = {"id": "1", "actor": actor, "verdict": "distorted", "rationale": "原始判断",
+                              "major_points": [{"key": "P1", "point": "原始观点", "old_coverage": "distorted"}],
+                              "distortions": [{"claim": before_claim, "reason": "原句改变了作者论证方向",
+                                               "source_spans": [{"start": 0, "end": 20}]}]}
+                    after = copy.deepcopy(before)
+                    after["distortions"][0]["claim"] = after_claim
+                    if changed_field == "reason":
+                        after["distortions"][0]["reason"] = "更换了判断依据"
+                    elif changed_field == "point":
+                        after["major_points"][0]["point"] = "更换了主要观点"
+                    elif changed_field is not None:
+                        after[changed_field] = "adequate" if changed_field == "verdict" else "更换了初判理由"
+                    flow.write_json(backup, before)
+                    flow.write_json(target, after)
+                    log = {"actor": actor, "reason": "补足同一断言的旧稿连续引文",
+                           "files": [{"id": "1", "path": target.relative_to(work).as_posix(),
+                                      "backup_path": backup.relative_to(work).as_posix(),
+                                      "before_sha256": flow.file_hash(backup), "after_sha256": flow.file_hash(target),
+                                      "changes": ["扩展不足8实质字的claim"]}]}
+                    flow.write_json(work / "format-corrections" / (actor + ".json"), log)
+                    manifest = {"articles": [{"id": "1", "summary": old_summary}]}
+                    owners = {"writer": {"1": "mid_writer_1"}, "reviewer": {"1": "mid_reviewer_1"}}
+                    original_bytes = backup.read_bytes(), target.read_bytes()
+                    if accepted:
+                        logs, aliases = flow._validate_format_corrections(work, manifest, owners)
+                        self.assertEqual(len(logs), 1)
+                        self.assertEqual(aliases[target.relative_to(work).as_posix()],
+                                         {flow.file_hash(backup), flow.file_hash(target)})
+                        log["files"][0]["before_sha256"] = "0" * 64
+                        flow.write_json(work / "format-corrections" / (actor + ".json"), log)
+                        with self.assertRaisesRegex(ValueError, "backup hash mismatch"):
+                            flow._validate_format_corrections(work, manifest, owners)
+                    else:
+                        with self.assertRaisesRegex(ValueError, "short distortion claim expansion|non-location judgment content"):
+                            flow._validate_format_corrections(work, manifest, owners)
+                    self.assertEqual((backup.read_bytes(), target.read_bytes()), original_bytes)
 
     def test_initial_point_text_repair_requires_explicit_exact_manifest_approval(self):
         old_text, new_text = "本可以追求独有的问题", "本可以追求独有"

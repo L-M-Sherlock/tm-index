@@ -25,7 +25,7 @@ class SamplingAuditTests(unittest.TestCase):
         for number, length in enumerate([5100, 6100, 7100, 8100, 10100, 11100, 15100], 1):
             id = str(number)
             body = ((self.summary + "\n作者还主张保障独立选择的条件。\n") * length)[:length]
-            row = {"id": id, "title": "文章" + id, "read_chars": length, "summary": self.summary,
+            row = {"id": id, "title": "文章" + id, "read_chars": length, "summary": self.summary, "decision": "translation",
                    "publisher": "Thoughts Memo", "publisher_token": "L.M.Sherlock", "url": "https://example.com/" + id,
                    "archive_url": "https://example.com/archive/" + id, "source_path": "article/" + id + ".json",
                    "source_sha256": base.digest("raw-" + id), "content_sha256": base.digest("html-" + id)}
@@ -87,6 +87,80 @@ class SamplingAuditTests(unittest.TestCase):
     def test_oversampling_does_not_silently_change_design(self):
         with self.assertRaisesRegex(ValueError, "exceeds population"):
             audit.sampled_population(self.rows, 1, 2)
+
+    def test_custom_bounds_and_included_decisions(self):
+        rows = [{**self.rows[0], "id": str(index), "read_chars": length, "decision": decision}
+                for index, (length, decision) in enumerate([
+                    (999, "translation"), (1000, "translation"), (1999, "translated_excerpt"),
+                    (2000, "translated_adaptation"), (3000, "translation"), (5000, "translation"),
+                    (8000, "translation"), (1500, "excluded"), (1600, None)], 1)]
+        bounds = (1000, 2000, 3000, 5000, 8000)
+        population, strata, selected = audit.sampled_population(rows, 20261103, 1, bounds, audit.INCLUDED_DECISIONS)
+        self.assertEqual([row["id"] for row in population], ["2", "3", "4", "5", "6"])
+        self.assertEqual([row["population_size"] for row in strata], [2, 1, 1, 1])
+        self.assertEqual((population, strata, selected), audit.sampled_population(list(reversed(rows)), 20261103, 1, bounds, audit.INCLUDED_DECISIONS))
+        self.assertEqual(len(audit.sampled_population(rows, 20261103, 1, bounds)[0]), 7)
+
+    def test_invalid_bounds_rejected(self):
+        for bounds in ([], [1000], [2000, 1000], [1000, 1000], [-1, 1000], [True, 1000]):
+            with self.subTest(bounds=bounds), self.assertRaisesRegex(ValueError, "bounds"):
+                audit.sampled_population(self.rows, 1, 1, bounds)
+
+    def test_legacy_manifest_keeps_historical_defaults(self):
+        for key in ("bounds", "included_decisions", "report_path"):
+            self.manifest.pop(key)
+        base.write_json(self.work / "manifest.json", self.manifest)
+        audit.check(self.root, self.work)
+        audit.report(self.root, self.work)
+        result = base.read_json(self.root / audit.REPORT_PATH)
+        self.assertEqual(result["sampling"]["bounds_left_closed_right_open"], list(audit.BOUNDS))
+        self.assertNotIn("included_decisions", result["sampling"])
+
+    def test_cli_custom_config_prepare_check_report(self):
+        original_report = self.root / audit.REPORT_PATH
+        base.write_json(original_report, {"kind": "sampling_audit", "run_id": "prior"})
+        original_hash = audit.file_hash(original_report)
+        self.work = self.root / "custom-work"
+        result = audit.main(["--root", str(self.root), "prepare", "--source-dir", str(self.source),
+                             "--source-manifest", str(self.trusted), "--work-dir", str(self.work),
+                             "--run-id", "short-summary-audit-20261103", "--date", "2026-11-03",
+                             "--seed", "20261103", "--per-stratum", "1", "--bounds", "5000", "8000",
+                             "--model", "gpt-6", "--reasoning-effort", "max", "--report-path", "data/custom-audit.json"])
+        self.assertEqual(result, 0)
+        self.manifest = base.read_json(self.work / "manifest.json")
+        self.assertEqual(self.manifest["bounds"], [5000, 8000])
+        self.assertEqual(self.manifest["model"], "gpt-6")
+        self.assertEqual(self.manifest["reasoning_effort"], "max")
+        self.assertEqual(self.manifest["included_decisions"], list(audit.INCLUDED_DECISIONS))
+        audit.check(self.root, self.work, allow_pending=True)
+        self.owners = {role: {id: actor for actor, ids in groups.items() for id in ids}
+                       for role, groups in self.manifest["assignments"].items()}
+        for item in self.manifest["articles"]:
+            self.make_results(item)
+        with self.assertRaisesRegex(ValueError, "model provenance"):
+            audit.check(self.root, self.work)
+        for directory in ("outlines", "assessments", "independent"):
+            for path in (self.work / directory).rglob("*.json"):
+                record = base.read_json(path)
+                record["model"] = "gpt-6"
+                if directory != "outlines":
+                    record["outline_sha256"] = audit.file_hash(self.work / "outlines" / record["actor"] / path.name)
+                base.write_json(path, record)
+        for item in self.manifest["articles"]:
+            self.save_comparison(item)
+        audit.check(self.root, self.work)
+        audit.report(self.root, self.work)
+        audit.report(self.root, self.work)
+        report = base.read_json(self.root / "data/custom-audit.json")
+        self.assertEqual(report["model"], "gpt-6")
+        self.assertEqual(report["sampling"]["bounds_left_closed_right_open"], [5000, 8000])
+        self.assertEqual(audit.file_hash(original_report), original_hash)
+
+    def test_report_path_cannot_overwrite_catalog_or_escape_root(self):
+        for target in ("data/catalog.json", "../outside.json", "data/summary-revisions.json"):
+            with self.subTest(target=target), self.assertRaises(ValueError):
+                audit.prepare(self.root, self.source, self.trusted, None, self.root / "invalid-work",
+                              "invalid", "2026-11-03", per_stratum=1, report_path=target)
 
     def test_sample_replacement_is_rejected(self):
         manifest = copy.deepcopy(self.manifest)

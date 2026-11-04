@@ -66,6 +66,24 @@ def provenance(row):
     return {key: row[key] for key in ("model", "reasoning_effort", "worker_agent", "worker_shard") if key in row}
 
 
+def model_config(value):
+    fields = ("model", "reasoning_effort")
+    if not any(key in value for key in fields):
+        return {"model": MODEL, "reasoning_effort": EFFORT}
+    config = {key: value.get(key) for key in fields}
+    require(all(isinstance(setting, str) and bool(setting.strip()) and setting == setting.strip()
+                for setting in config.values()), "Invalid model configuration")
+    return config
+
+
+def validate_model_config(manifest):
+    require("model" in manifest and "reasoning_effort" in manifest, "Invalid manifest model")
+    config = model_config(manifest)
+    for item in manifest["articles"]:
+        require(model_config(item) == config, f"{item['id']}: model configuration differs from manifest")
+    return config
+
+
 def assign_articles(items, actor_prefix="long", excluded_ids=()):
     excluded_ids = set(excluded_ids)
     eligible = [item for item in items if item["id"] not in excluded_ids]
@@ -309,6 +327,26 @@ def _validate_format_corrections(work, manifest, owners):
                         ignored_fields.update(("outline_sha256", "old_evidence"))
                         before_obj = _normalize_initial_reason_aliases(before_obj)
                         after_obj = _normalize_initial_reason_aliases(after_obj)
+                        before_distortions = before_obj.get("distortions", [])
+                        after_distortions = after_obj.get("distortions", [])
+                        if (isinstance(before_distortions, list) and isinstance(after_distortions, list)
+                                and len(before_distortions) == len(after_distortions)):
+                            for before_distortion, after_distortion in zip(before_distortions, after_distortions):
+                                if not isinstance(before_distortion, dict) or not isinstance(after_distortion, dict):
+                                    continue
+                                before_claim = before_distortion.get("claim")
+                                after_claim = after_distortion.get("claim")
+                                if before_claim == after_claim:
+                                    continue
+                                old_summary = items[record["id"]].get("summary")
+                                require(isinstance(before_claim, str) and isinstance(after_claim, str)
+                                        and isinstance(old_summary, str)
+                                        and 0 < sum(char.isalnum() for char in before_claim) < 8
+                                        and sum(char.isalnum() for char in after_claim) >= 8
+                                        and before_claim in after_claim
+                                        and before_claim in old_summary and after_claim in old_summary,
+                                        f"Invalid short distortion claim expansion in {relative}")
+                                before_distortion["claim"] = after_claim
                     if record["section"] in {"writers", "reviewers"}:
                         ignored_fields.update(("blind_outline_sha256", "initial_assessment_sha256", "summary_evidence"))
                     if record["section"] == "writers":
@@ -453,7 +491,7 @@ def _validate_reviewer_reassignments(work, manifest, owners):
         instance_initial = read_json(confined(work, record["instance_initial_path"]))
         for instance in (instance_outline, instance_initial):
             require(instance.get("id") == article_id and instance.get("body_sha256") == item["body_sha256"]
-                    and instance.get("model") == MODEL and instance.get("reasoning_effort") == EFFORT,
+                    and all(instance.get(key) == value for key, value in model_config(manifest).items()),
                     f"{article_id}: reassigned reviewer instance input mismatch")
             validate_reading(instance, item)
         require(instance_initial.get("old_summary_sha256") == item["old_summary_sha256"]
@@ -650,7 +688,9 @@ def _prior_entry_fingerprint_errors(entry, row, body_sha256):
     return errors
 
 
-def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000):
+def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000, *,
+                    model=MODEL, reasoning_effort=EFFORT):
+    config = model_config({"model": model, "reasoning_effort": reasoning_effort})
     work = Path(work)
     require(0 < chunk_chars <= 6000, "chunk_chars must be between 1 and 6000")
     require(minimum > 0, "min_body_chars must be positive")
@@ -663,8 +703,7 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
     selected = sorted((row for row in catalog["articles"] if row["read_chars"] >= minimum), key=lambda row: (-row["read_chars"], row["id"]))
     require(selected, "No articles match the requested scope")
     manifest = {"schema_version": 1, "run_id": run_id, "revision_date": revision_date,
-                "min_body_chars": minimum, "chunk_chars": chunk_chars, "model": MODEL,
-                "reasoning_effort": EFFORT, "articles": []}
+                "min_body_chars": minimum, "chunk_chars": chunk_chars, **config, "articles": []}
     prepared = []
     for row in selected:
         try:
@@ -672,7 +711,8 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
         except (ValueError, KeyError, TypeError, OSError) as error:
             raise ValueError(f"{row['id']}: {error}") from error
         item = {key: row[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256", "content_sha256", "read_chars", "summary")}
-        item.update(old_summary_sha256=digest(row["summary"]), body_sha256=digest(body), initial_provenance=provenance(row), chunks=[])
+        item.update(old_summary_sha256=digest(row["summary"]), body_sha256=digest(body),
+                    initial_provenance=provenance(row), chunks=[], **config)
         chunks = []
         for index, offset in enumerate(range(0, len(body), chunk_chars)):
             relative = f"inputs/{row['id']}/chunk-{index:02}.txt"
@@ -698,12 +738,16 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
 
 
 def prepare(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000, *,
-            max_body_chars=None, recovery_dir=None, reuse_audit=None, actor_prefix="long", blind_review=False):
+            max_body_chars=None, recovery_dir=None, reuse_audit=None, actor_prefix="long", blind_review=False,
+            model=MODEL, reasoning_effort=EFFORT, require_bound_primary_review=False):
     """Prepare a fresh review run, retaining the original positional legacy interface."""
+    config = model_config({"model": model, "reasoning_effort": reasoning_effort})
+    require(not require_bound_primary_review or blind_review, "Bound primary review requires blind_review")
     extended = (max_body_chars is not None or recovery_dir is not None or reuse_audit is not None
                 or actor_prefix != "long" or blind_review)
     if not extended:
-        return _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars)
+        return _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars,
+                               **config)
 
     root, work = Path(root), Path(work)
     require(0 < chunk_chars <= 6000, "chunk_chars must be between 1 and 6000")
@@ -725,8 +769,10 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
     reuse = _read_reuse_audit(root, reuse_audit)
     manifest = {"schema_version": 1, "run_id": run_id, "revision_date": revision_date,
                 "min_body_chars": minimum, "max_body_chars": max_body_chars, "chunk_chars": chunk_chars,
-                "model": MODEL, "reasoning_effort": EFFORT, "actor_prefix": actor_prefix,
+                **config, "actor_prefix": actor_prefix,
                 "blind_review": bool(blind_review), "articles": [], "preserve_files": preserve_files(root)}
+    if require_bound_primary_review:
+        manifest["require_bound_primary_review"] = True
     if reuse is not None:
         manifest["reused_audit"] = {"file": reuse["file"], "sha256": reuse["sha256"], "run_id": reuse["run_id"]}
         # This path is private run state. Public reports use the root-relative label above.
@@ -741,7 +787,7 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
         item = {key: row[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256",
                                           "content_sha256", "read_chars", "summary")}
         item.update(old_summary_sha256=digest(row["summary"]), body_sha256=body_sha256,
-                    initial_provenance=provenance(row), chunks=[], source_method=source_method, review_origin="fresh")
+                    initial_provenance=provenance(row), chunks=[], source_method=source_method, review_origin="fresh", **config)
         prior_entry = reuse["entries"].get(row["id"]) if reuse else None
         if reuse is not None and prior_entry is not None:
             errors = _prior_entry_fingerprint_errors(prior_entry, row, body_sha256)
@@ -775,7 +821,7 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
             path.write_text(part, encoding="utf-8")
         write_json(work / "inputs" / item["id"] / "article.json", item)
         source_item = {key: item[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256",
-                                                  "content_sha256", "read_chars", "body_sha256", "chunks")}
+                                                  "content_sha256", "read_chars", "body_sha256", "chunks", "model", "reasoning_effort")}
         write_json(work / "inputs" / item["id"] / "source.json", source_item)
         if prior_entry is not None:
             write_json(work / item["prior_review_path"], prior_entry)
@@ -788,13 +834,19 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
 
 
 def validate_body(work, item, require_source=False):
-    require(read_json(work / "inputs" / item["id"] / "article.json") == item, f"{item['id']}: article input differs from manifest")
-    require(digest(item["summary"]) == item["old_summary_sha256"], f"{item['id']}: old summary hash mismatch")
+    source_only = "summary" not in item and not require_source
+    if source_only:
+        require(read_json(work / "inputs" / item["id"] / "source.json") == item,
+                f"{item['id']}: source input differs from supplied source")
+    else:
+        require(read_json(work / "inputs" / item["id"] / "article.json") == item, f"{item['id']}: article input differs from manifest")
+        require(digest(item["summary"]) == item["old_summary_sha256"], f"{item['id']}: old summary hash mismatch")
     if require_source:
         source_path = work / "inputs" / item["id"] / "source.json"
         source = read_json(source_path)
         expected_source = {key: item[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256",
                                                         "content_sha256", "read_chars", "body_sha256", "chunks")}
+        expected_source.update({key: item[key] for key in ("model", "reasoning_effort") if key in item})
         require(source == expected_source, f"{item['id']}: source input differs from manifest")
     offset, parts = 0, []
     for index, chunk in enumerate(item["chunks"]):
@@ -968,7 +1020,8 @@ def validate_reading(record, item):
     for key in ("source_sha256", "body_sha256"):
         require(record.get(key) == item[key], f"{item['id']}: {key} mismatch")
     require(record.get("id") == item["id"], f"{item['id']}: result ID mismatch")
-    require(record.get("model") == MODEL and record.get("reasoning_effort") == EFFORT, f"{item['id']}: incorrect model provenance")
+    require(all(record.get(key) == value for key, value in model_config(item).items()),
+            f"{item['id']}: incorrect model provenance")
 
 
 def validate_spans(point, item):
@@ -1054,6 +1107,7 @@ def validate_reviewer(review, writer, item, required_major_keys=None):
 
 def validate_blind_writer(writer, outline, outline_path, item, body, initial=None, initial_path=None, excluded_keys=(), require_no_initial=False,
                           allowed_outline_hashes=(), allowed_initial_hashes=(), coverage_corrections=None):
+    validate_reading(writer, item)
     require(writer.get("blind_outline_sha256") in set(allowed_outline_hashes) | {file_hash(outline_path)},
             f"{item['id']}: writer used a stale blind outline")
     excluded = set(excluded_keys)
@@ -1092,6 +1146,7 @@ def validate_blind_writer(writer, outline, outline_path, item, body, initial=Non
 
 def validate_blind_reviewer(review, outline, outline_path, item, body, initial=None, initial_path=None, excluded_keys=(), require_no_initial=False,
                             allowed_outline_hashes=(), allowed_initial_hashes=()):
+    validate_reading(review, item)
     require(review.get("blind_outline_sha256") in set(allowed_outline_hashes) | {file_hash(outline_path)},
             f"{item['id']}: reviewer used a stale blind outline")
     excluded = set(excluded_keys)
@@ -1218,7 +1273,7 @@ def event_id(item, summary, run_id):
 
 def _check_legacy(root, work, allow_incomplete=False):
     manifest = read_json(work / "manifest.json")
-    require(manifest.get("model") == MODEL and manifest.get("reasoning_effort") == EFFORT, "Invalid manifest model")
+    validate_model_config(manifest)
     date.fromisoformat(manifest["revision_date"])
     if "preserve_files" in manifest:
         verify_preserve_files(root, manifest)
@@ -1327,7 +1382,7 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     root, work = Path(root), Path(work)
     manifest = read_json(work / "manifest.json")
     require(manifest.get("blind_review") is True, "Invalid blind-review manifest")
-    require(manifest.get("model") == MODEL and manifest.get("reasoning_effort") == EFFORT, "Invalid manifest model")
+    validate_model_config(manifest)
     date.fromisoformat(manifest["revision_date"])
     verify_preserve_files(root, manifest)
     catalog = read_json(root / "data/catalog.json")
@@ -1634,7 +1689,7 @@ def validate_history_review(event):
     count = source.get("chunk_count")
     require(type(count) is int and count > 0, f"{event['id']}: historical chunk count is missing")
     item = {"id": event["id"], "source_sha256": source["source_sha256"], "body_sha256": source["visible_text_sha256"],
-            "read_chars": source["read_chars"], "chunks": [{}] * count}
+            "read_chars": source["read_chars"], "chunks": [{}] * count, **model_config(after)}
     writer = {"writer": after["writer"], "summary": after["summary"], "major_points": event["coverage"]}
     try:
         validate_reviewer(review, writer, item)
@@ -1666,7 +1721,7 @@ def revision_metadata(ledger):
 
 def review_metadata(audit):
     metadata = {"run_id": audit["run_id"], "latest_date": audit["revision_date"], **audit["statistics"],
-               "model": MODEL, "reasoning_effort": EFFORT, "review_file": "data/summary-reviews.json"}
+               **model_config(audit), "review_file": "data/summary-reviews.json"}
     publication = audit.get("publication")
     if publication is not None:
         metadata["publication"] = {"status": publication["status"],
@@ -2000,6 +2055,7 @@ def _primary_acceptance_map(acceptance, manifest, allow_subset=False):
 def _prior_publication_state(prior_audit, manifest):
     if prior_audit is None or prior_audit.get("run_id") != manifest["run_id"]:
         return None
+    require(model_config(prior_audit) == model_config(manifest), "Previously accepted run model configuration changed")
     publication = prior_audit.get("publication")
     if publication is None:
         return None
@@ -2150,6 +2206,12 @@ def _validate_primary_acceptance(work, manifest, pairs, allow_subset=False, requ
     return acceptance
 
 
+def _length_strata(lengths):
+    if lengths and all(3000 <= length < 8000 for length in lengths):
+        return ((3000, 5000), (5000, 8000))
+    return ((8000, 10000), (10000, 15000), (15000, 20000))
+
+
 def _publication_statistics(entries, target_items=None):
     decisions = Counter(entry["writer"]["decision"] if entry.get("writer") is not None else "retain"
                         for entry in entries)
@@ -2169,7 +2231,7 @@ def _publication_statistics(entries, target_items=None):
                                  "population_count": sum(lower <= length < upper for length in population_lengths),
                                  "published_count": sum(lower <= entry["source"]["read_chars"] < upper
                                                         for entry in entries)}
-                                for lower, upper in ((8000, 10000), (10000, 15000), (15000, 20000))])
+                                for lower, upper in _length_strata(population_lengths)])
     return stats
 
 
@@ -2210,6 +2272,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
             for article_id, receipt in prior_publication["acceptance_entries"].items():
                 require(acceptance_map.get(article_id) == receipt,
                         f"{article_id}: previously published primary acceptance receipt changed")
+    config = model_config(manifest)
     current = read_json(root / "data/catalog.json")
     html = (root / "index.html").read_text(encoding="utf-8")
     match = DATA_PATTERN.search(html)
@@ -2266,7 +2329,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                            "visible_text_sha256": item["body_sha256"], "read_chars": item["read_chars"], "chunk_count": len(item["chunks"])},
                 "before": {"summary": item["summary"], "characters": len(item["summary"]), "provenance": item["initial_provenance"]},
                 "after": {"summary": after_summary, "characters": len(after_summary), "paragraphs": len(after_summary.split("\n\n")),
-                          "writer": writer["writer"], "reviewer": review["reviewer"], "model": MODEL, "reasoning_effort": EFFORT,
+                          "writer": writer["writer"], "reviewer": review["reviewer"], **config,
                           "revision_date": manifest["revision_date"]},
                 "coverage": writer["major_points"], "previous_summary_issues": writer["issues"],
                 "decision_reason": writer["decision_reason"], "length_reason": writer["length_reason"], "review": review,
@@ -2288,7 +2351,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
     replayed = replay_revisions(copy.deepcopy(catalog), ledger)
     require(replayed["articles"] == catalog["articles"], "Applied summaries do not match the latest accepted history")
     ledger["revision_date"] = manifest["revision_date"]
-    ledger["reviewer"] = "Codex orchestration; gpt-6-luna max independent review"
+    ledger["reviewer"] = f"Codex orchestration; {config['model']} {config['reasoning_effort']} independent review"
     new_old = sum(item.get("review_origin", "fresh") == "fresh" for item, _, _ in pairs)
     reused_old = sum(item.get("review_origin", "fresh").startswith("sampling_reuse_") for item, _, _ in pairs)
     reused_direct = sum(item.get("review_origin") == "sampling_reuse_adequate" for item, _, _ in pairs)
@@ -2302,7 +2365,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                      new_old_judgments=new_old, new_draft_validations=counts["rewrite"],
                      length_strata=[{"lower": lower, "upper": upper,
                                      "population_count": sum(lower <= item["read_chars"] < upper for item, _, _ in pairs)}
-                                    for lower, upper in ((8000, 10000), (10000, 15000), (15000, 20000))])
+                                    for lower, upper in _length_strata([item["read_chars"] for item in manifest["articles"]])])
     if accepted_only or prior_publication is not None:
         stats = _publication_statistics(entries, manifest["articles"])
     scope = {"min_body_chars": manifest["min_body_chars"], "article_ids": [item["id"] for item in manifest["articles"]]}
@@ -2310,8 +2373,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
         scope["max_body_chars"] = manifest["max_body_chars"]
     audit = {"schema_version": 1, "run_id": manifest["run_id"], "revision_date": manifest["revision_date"],
              "scope": scope, "assignments": manifest["assignments"],
-             "assignment_changes": manifest.get("assignment_changes", []), "model": MODEL,
-             "reasoning_effort": EFFORT, "statistics": stats,
+             "assignment_changes": manifest.get("assignment_changes", []), **config, "statistics": stats,
              "format_corrections": manifest.get("_format_correction_logs", []),
              "initial_point_repairs": manifest.get("initial_point_repairs", []),
              "input_exceptions": manifest.get("_input_exceptions", []),
@@ -2386,6 +2448,10 @@ def main(argv=None):
     p.add_argument("--reuse-audit", type=Path)
     p.add_argument("--actor-prefix", default="long")
     p.add_argument("--blind-review", action="store_true")
+    p.add_argument("--model", default=MODEL, help="actual model used for this run; frozen in the review inputs")
+    p.add_argument("--reasoning-effort", default=EFFORT, help="actual reasoning effort used for this run")
+    p.add_argument("--require-bound-primary-review", action="store_true",
+                   help="require primary acceptance receipts bound to the exact review evidence")
     p = sub.add_parser("check")
     p.add_argument("--work-dir", type=Path, required=True)
     p.add_argument("--allow-incomplete", action="store_true")
@@ -2402,7 +2468,9 @@ def main(argv=None):
             result = prepare(args.root, args.source_dir, args.source_manifest, args.work_dir, args.run_id, args.date,
                              args.min_body_chars, args.chunk_chars, max_body_chars=args.max_body_chars,
                              recovery_dir=args.recovery_dir, reuse_audit=args.reuse_audit,
-                             actor_prefix=args.actor_prefix, blind_review=args.blind_review)
+                             actor_prefix=args.actor_prefix, blind_review=args.blind_review,
+                             model=args.model, reasoning_effort=args.reasoning_effort,
+                             require_bound_primary_review=args.require_bound_primary_review)
         elif args.command == "check":
             manifest, pairs, pending = check(args.root, args.work_dir, args.allow_incomplete)
             result = {"run_id": manifest["run_id"], "passed": len(pairs), "pending_count": len(pending), "pending": pending}
