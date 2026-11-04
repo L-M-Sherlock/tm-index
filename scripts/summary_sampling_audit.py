@@ -20,17 +20,39 @@ ROOT = Path(__file__).resolve().parents[1]
 BOUNDS = (5000, 8000, 10000, 15000, 20000)
 VERDICTS = {"adequate", "undercovered", "distorted"}
 REPORT_PATH = "data/summary-sampling-audit.json"
+INCLUDED_DECISIONS = ("translation", "translated_excerpt", "translated_adaptation")
+
+
+def validate_config(bounds, model, effort):
+    base.require(isinstance(bounds, (list, tuple)) and len(bounds) >= 2
+                 and all(type(value) is int and value >= 0 for value in bounds)
+                 and all(lower < upper for lower, upper in zip(bounds, bounds[1:])), "Invalid sampling bounds")
+    base.nonempty(model, "Missing audit model")
+    base.nonempty(effort, "Missing reasoning effort (use unknown if unavailable)")
+
+
+def report_target(root, relative):
+    base.nonempty(relative, "Missing report path")
+    path = base.confined(root, relative)
+    base.require(path.suffix == ".json" and path != (root / "data/catalog.json").resolve(), "Invalid report path")
+    if path.exists():
+        base.require(base.read_json(path).get("kind") == "sampling_audit", "Report path is not an audit report")
+    return path
 
 
 def file_hash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def sampled_population(rows, seed, per_stratum):
+def sampled_population(rows, seed, per_stratum, bounds=BOUNDS, included_decisions=None):
+    validate_config(bounds, base.MODEL, base.EFFORT)
+    if included_decisions is not None:
+        base.require(list(included_decisions) == list(INCLUDED_DECISIONS), "Invalid included decisions")
+        rows = [row for row in rows if row.get("decision") in included_decisions]
     base.require(type(per_stratum) is int and per_stratum > 0, "Invalid per-stratum sample size")
     rng = random.Random(seed)
     population, strata, selected = [], [], []
-    for index, (lower, upper) in enumerate(zip(BOUNDS, BOUNDS[1:])):
+    for index, (lower, upper) in enumerate(zip(bounds, bounds[1:])):
         group = sorted((r for r in rows if lower <= r["read_chars"] < upper), key=lambda r: int(r["id"]))
         base.require(len(group) >= per_stratum, f"Stratum {index}: sample exceeds population")
         sample = sorted(rng.sample(group, per_stratum), key=lambda r: int(r["id"]))
@@ -55,24 +77,28 @@ def assign(items):
     return result
 
 
-def protected_files(root):
-    result = {str(p.relative_to(root)): file_hash(p) for p in sorted((root / "data").iterdir())
-              if p.is_file() and str(p.relative_to(root)) != REPORT_PATH}
+def protected_files(root, report_path=REPORT_PATH):
+    result = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted((root / "data").iterdir())
+              if p.is_file() and p.resolve() != (root / report_path).resolve()}
     for name in ("index.html", "archive-export.js"):
         result[name] = file_hash(root / name)
     return result
 
 
-def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit_date, seed=20261101, per_stratum=15):
+def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit_date, seed=20261101, per_stratum=15,
+            bounds=BOUNDS, model=base.MODEL, reasoning_effort=base.EFFORT, report_path=REPORT_PATH):
+    validate_config(bounds, model, reasoning_effort)
+    report_path = report_target(root, report_path).relative_to(root.resolve()).as_posix()
     base.require(not (work / "manifest.json").exists(), "Work directory already contains a frozen run")
     base.require(not work.exists() or not any(work.iterdir()), "Prepare requires a fresh empty work directory; old judgments must not be reused")
     base.date.fromisoformat(audit_date)
     catalog = base.read_json(root / "data/catalog.json")
-    population, strata, selected = sampled_population(catalog["articles"], seed, per_stratum)
+    population, strata, selected = sampled_population(catalog["articles"], seed, per_stratum, bounds, INCLUDED_DECISIONS)
     trusted_data = base.read_json(source_manifest)
     trusted = {r["id"]: r for r in trusted_data["articles"]} if "articles" in trusted_data else trusted_data
     manifest = {"schema_version": 1, "kind": "sampling_audit", "run_id": run_id, "date": audit_date,
-                "seed": seed, "per_stratum": per_stratum, "model": base.MODEL, "reasoning_effort": base.EFFORT,
+                "seed": seed, "per_stratum": per_stratum, "model": model, "reasoning_effort": reasoning_effort,
+                "bounds": list(bounds), "included_decisions": list(INCLUDED_DECISIONS), "report_path": report_path,
                 "chunk_chars": 6000, "strata": strata, "population": population, "articles": [], "source_errors": []}
     for index, row in selected:
         item = {key: row[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256", "content_sha256", "read_chars")}
@@ -95,7 +121,7 @@ def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit
         base.write_json(work / item["summary_path"], {"id": row["id"], "summary": row["summary"], "summary_sha256": item["summary_sha256"]})
         manifest["articles"].append(item)
     manifest["assignments"] = assign(manifest["articles"])
-    manifest["protected_files"] = protected_files(root)
+    manifest["protected_files"] = protected_files(root, report_path)
     base.write_json(work / "manifest.json", manifest)
     for role, groups in manifest["assignments"].items():
         for actor, ids in groups.items():
@@ -106,12 +132,15 @@ def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit
 def validate_manifest(root, work):
     manifest = base.read_json(work / "manifest.json")
     base.require(manifest.get("kind") == "sampling_audit", "Not an audit manifest")
-    base.require(manifest.get("model") == base.MODEL and manifest.get("reasoning_effort") == base.EFFORT, "Audit model mismatch")
+    validate_config(manifest.get("bounds", BOUNDS), manifest.get("model"), manifest.get("reasoning_effort"))
+    target = report_target(root, manifest.get("report_path", REPORT_PATH))
+    base.require(all(base.confined(root, relative) != target for relative in manifest["protected_files"]), "Report overlaps protected file")
     base.date.fromisoformat(manifest["date"])
     for relative, expected in manifest["protected_files"].items():
         base.require(file_hash(base.confined(root, relative)) == expected, f"Protected file changed: {relative}")
     catalog = base.read_json(root / "data/catalog.json")
-    population, strata, sample = sampled_population(catalog["articles"], manifest["seed"], manifest["per_stratum"])
+    population, strata, sample = sampled_population(catalog["articles"], manifest["seed"], manifest["per_stratum"],
+                                                   manifest.get("bounds", BOUNDS), manifest.get("included_decisions"))
     base.require(manifest["population"] == population and manifest["strata"] == strata, "Population or random sample changed")
     base.require([a["id"] for a in manifest["articles"]] == [r["id"] for _, r in sample], "Sample IDs reordered, replaced or duplicated")
     owners, items = {}, {a["id"]: a for a in manifest["articles"]}
@@ -154,9 +183,20 @@ def validate_manifest(root, work):
     return manifest, owners, bodies, summaries
 
 
-def validate_outline(outline, actor, item, body):
+def validate_reading(record, item, config):
+    expected = list(range(len(item["chunks"])))
+    chunks = record.get("read_chunks")
+    base.require(isinstance(chunks, list) and all(type(index) is int for index in chunks), f"{item['id']}: invalid read_chunks")
+    base.require(sorted(chunks) == expected, f"{item['id']}: incomplete/duplicate read_chunks")
+    for key in ("id", "source_sha256", "body_sha256"):
+        base.require(record.get(key) == item[key], f"{item['id']}: {key} mismatch")
+    base.require(record.get("model") == config["model"] and record.get("reasoning_effort") == config["reasoning_effort"],
+                 f"{item['id']}: incorrect model provenance")
+
+
+def validate_outline(outline, actor, item, body, config):
     base.require(outline.get("actor") == actor, f"{item['id']}: unexpected outline actor")
-    base.validate_reading(outline, item)
+    validate_reading(outline, item, config)
     base.nonempty(outline.get("genre"), "Missing genre")
     points = outline.get("major_points")
     base.require(isinstance(points, list) and points, "Missing blind major-point outline")
@@ -178,9 +218,9 @@ def derived_verdict(assessment):
     return "undercovered" if coverage & {"partial", "missing"} else "adequate"
 
 
-def validate_assessment(assessment, outline, outline_path, actor, item, body, summary):
-    validate_outline(outline, actor, item, body)
-    base.validate_reading(assessment, item)
+def validate_assessment(assessment, outline, outline_path, actor, item, body, summary, config):
+    validate_outline(outline, actor, item, body, config)
+    validate_reading(assessment, item, config)
     base.require(assessment.get("actor") == actor, f"{item['id']}: unexpected assessment actor")
     base.require(assessment.get("summary_sha256") == item["summary_sha256"], "Assessment used an outdated summary")
     base.require(assessment.get("outline_sha256") == file_hash(outline_path), "Blind outline changed after assessment")
@@ -221,7 +261,7 @@ def check(root, work, allow_pending=False, allow_unavailable=False):
             actor = owners[role][id]
             outline_path = work / "outlines" / actor / (id + ".json")
             found[role] = base.read_json(path)
-            validate_assessment(found[role], base.read_json(outline_path), outline_path, actor, item, bodies[id], summaries[id])
+            validate_assessment(found[role], base.read_json(outline_path), outline_path, actor, item, bodies[id], summaries[id], manifest)
         if len(found) != 2 or not comparison_path.exists():
             pending.append(id)
             continue
@@ -305,14 +345,16 @@ def statistics(manifest, records):
 def report(root, work, allow_unavailable=False):
     manifest, records, _, gaps = check(root, work, allow_unavailable=allow_unavailable)
     result = {"schema_version": 1, "kind": "sampling_audit", "run_id": manifest["run_id"], "date": manifest["date"],
-              "sampling": {"seed": manifest["seed"], "per_stratum": manifest["per_stratum"], "bounds_left_closed_right_open": list(BOUNDS),
+              "sampling": {"seed": manifest["seed"], "per_stratum": manifest["per_stratum"], "bounds_left_closed_right_open": list(manifest.get("bounds", BOUNDS)),
                            "method": "Numeric ID order within each stratum; one Python random.Random instance, sequential sample without replacement.",
                            "population": manifest["population"]},
-              "model": base.MODEL, "reasoning_effort": base.EFFORT, "assignments": manifest["assignments"],
+              "model": manifest["model"], "reasoning_effort": manifest["reasoning_effort"], "assignments": manifest["assignments"],
               "assignment_changes": manifest.get("assignment_changes", []), "complete": not gaps,
               "statistics": statistics(manifest, records), "entries": records,
               "validation_note": "来源与结构检查不能证明阅读或语义质量；结论来自两次独立全文审阅及必要的主代理裁定。现有总结未修改。"}
-    path = root / REPORT_PATH
+    if "included_decisions" in manifest:
+        result["sampling"]["included_decisions"] = manifest["included_decisions"]
+    path = report_target(root, manifest.get("report_path", REPORT_PATH))
     result["previous_runs"] = []
     if path.exists():
         prior = base.read_json(path)
@@ -342,6 +384,10 @@ def main(argv=None):
     p.add_argument("--date", required=True)
     p.add_argument("--seed", type=int, default=20261101)
     p.add_argument("--per-stratum", type=int, default=15)
+    p.add_argument("--bounds", type=int, nargs="+", default=BOUNDS)
+    p.add_argument("--model", default=base.MODEL)
+    p.add_argument("--reasoning-effort", default=base.EFFORT)
+    p.add_argument("--report-path", default=REPORT_PATH)
     for command in ("check", "report"):
         p = sub.add_parser(command)
         p.add_argument("--work-dir", type=Path, required=True)
@@ -351,7 +397,8 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
-            result = prepare(args.root, args.source_dir, args.source_manifest, args.recovery_dir, args.work_dir, args.run_id, args.date, args.seed, args.per_stratum)
+            result = prepare(args.root, args.source_dir, args.source_manifest, args.recovery_dir, args.work_dir, args.run_id, args.date, args.seed, args.per_stratum,
+                             args.bounds, args.model, args.reasoning_effort, args.report_path)
         elif args.command == "check":
             m, records, pending, gaps = check(args.root, args.work_dir, args.allow_pending, args.allow_unavailable)
             result = {"run_id": m["run_id"], "checked": len(records), "pending": len(pending), "source_gaps": len(gaps)}

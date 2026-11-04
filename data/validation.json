@@ -299,53 +299,39 @@
   },
   "latest_incremental_annotation_date": "2026-10-28",
   "summary_revisions": {
-    "latest_date": "2026-11-01",
-    "articles": 265,
-    "events": 267,
+    "latest_date": "2026-11-03",
+    "articles": 701,
+    "events": 703,
     "review_file": "data/summary-revisions.json",
     "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"
   },
   "summary_reviews": {
-    "run_id": "midlength-full-2026-11-01",
-    "latest_date": "2026-11-01",
-    "reviewed": 259,
-    "rewritten": 205,
-    "retained": 54,
-    "body_characters": 3007263,
-    "before_summary_characters": 40671,
-    "after_summary_characters": 127449,
-    "reused_old_judgments": 45,
-    "reused_direct_retains": 18,
-    "new_old_judgments": 214,
-    "new_draft_validations": 205,
+    "run_id": "compact-full-20261103",
+    "latest_date": "2026-11-03",
+    "reviewed": 622,
+    "rewritten": 436,
+    "retained": 186,
+    "body_characters": 3128869,
+    "before_summary_characters": 89139,
+    "after_summary_characters": 174366,
+    "reused_old_judgments": 30,
+    "reused_direct_retains": 10,
+    "new_old_judgments": 592,
+    "new_draft_validations": 436,
     "length_strata": [
       {
-        "lower": 8000,
-        "upper": 10000,
-        "population_count": 97,
-        "published_count": 97
+        "lower": 3000,
+        "upper": 5000,
+        "population_count": 330
       },
       {
-        "lower": 10000,
-        "upper": 15000,
-        "population_count": 122,
-        "published_count": 122
-      },
-      {
-        "lower": 15000,
-        "upper": 20000,
-        "population_count": 40,
-        "published_count": 40
+        "lower": 5000,
+        "upper": 8000,
+        "population_count": 292
       }
     ],
-    "model": "gpt-6-luna",
+    "model": "gpt-6",
     "reasoning_effort": "max",
-    "review_file": "data/summary-reviews.json",
-    "publication": {
-      "status": "complete",
-      "target_scope": 259,
-      "published": 259,
-      "pending": 0
-    }
+    "review_file": "data/summary-reviews.json"
   }
 }
