@@ -40,7 +40,7 @@ $('included-stat').textContent = report.included_articles.toLocaleString();
 $('keyword-stat').textContent = report.unique_keywords.toLocaleString();
 $('source-stat').textContent = report.source_articles.toLocaleString();
 for(const [k,n] of ordered){const o=document.createElement('option');o.value=k;o.textContent=`${k} · ${n}`;$('keyword').append(o);}
-$('topics').innerHTML=ordered.slice(0,20).map(([k,n])=>`<button type="button" class="tag" data-keyword="${escapeHtml(k)}">${escapeHtml(k)}<span class="count-chip">${n}</span></button>`).join('');
+$('topics').innerHTML=ordered.filter(([,count])=>count>=40).map(([k,n])=>`<button type="button" class="tag" data-keyword="${escapeHtml(k)}">${escapeHtml(k)}<span class="count-chip">${n}</span></button>`).join('');
 const authorFreq = new Map();
 for(const r of records) if(included.has(r.decision)) for(const name of (r.original_authors||[])) authorFreq.set(name,(authorFreq.get(name)||0)+1);
 for(const [name,n] of [...authorFreq].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]))){const o=document.createElement('option');o.value=name;o.textContent=`${name} · ${n}`;$('original-author').append(o);}
