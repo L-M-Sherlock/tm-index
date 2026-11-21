@@ -281,13 +281,13 @@
     "answer_references": {
       "schema_version": 1,
       "scope": "Thoughts Memo and Jarrett Ye answers in the local archive; existing direct links plus independently reviewed textual relationships.",
-      "answers_scanned": 2357,
-      "answers_with_citations": 1373,
-      "translations_cited": 1274,
-      "citation_pairs": 9796,
+      "answers_scanned": 2389,
+      "answers_with_citations": 1393,
+      "translations_cited": 1289,
+      "citation_pairs": 9913,
       "skipped_other_authors": 0,
       "earliest_answer_date": "2017-03-17",
-      "latest_answer_date": "2026-10-27",
+      "latest_answer_date": "2026-11-18",
       "checks": {
         "unique_pairs": true,
         "targets_exist": true,
@@ -295,9 +295,9 @@
         "all_direct_links_retained": true
       },
       "classification_counts": {
-        "1": 8097,
-        "2": 351,
-        "3": 1348,
+        "1": 8149,
+        "2": 414,
+        "3": 1350,
         "unclassified": 0
       },
       "classification_method": "gpt-6-luna max and explicit user confirmations; direct relationships without sufficient evidence remain unclassified",
@@ -305,7 +305,130 @@
       "reviewed_pairs": 12310,
       "submitted_pairs": 12310,
       "unreviewed_submitted_pairs": 0,
-      "classification_limitations": "Excerpt validation and blockquote checks do not establish semantic attribution; level 2 requires contextual review of the answer author’s own paraphrase."
+      "classification_limitations": "Excerpt validation and blockquote checks do not establish semantic attribution; level 2 requires contextual review of the answer author’s own paraphrase.",
+      "incremental_archive_scan": {
+        "archive_base": "1e3772f102444929a534bb84287d7737adccfec5",
+        "archive_tip": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0",
+        "changes": "all",
+        "new_article_ids": [
+          "2098724373855204531",
+          "2099168854605877628",
+          "2099543398021711279",
+          "2099544129046947114",
+          "2099565433678574449",
+          "2099960958772946062",
+          "2100227945059174170",
+          "2100522216823731832",
+          "2100905602411251643",
+          "2101247086901706984",
+          "2101359776634496904",
+          "2101621172253234659",
+          "2101702585862329376",
+          "2101707679865610468",
+          "2102001928645432221",
+          "2102004452093961985",
+          "2102006200615421390",
+          "2102059193201058456",
+          "2102468203410735218",
+          "2102876085436299063",
+          "2103127852757546926",
+          "2103137394409084260",
+          "2103461889414120318",
+          "2103504254212297333",
+          "2103504852005536288",
+          "2103505363291082860",
+          "2103505746315031116",
+          "2103533031562789005",
+          "2103877608198903500",
+          "2104226368514946084",
+          "2104613351229863044",
+          "2104988719879033824",
+          "2105410460992458807",
+          "2105667379665572156",
+          "2105722277195206942",
+          "2106032839716295575",
+          "2106089851644801112"
+        ],
+        "plan_sha256": "840aec49680d319e9c84b6c57e8df65a70592786e87cad83563c21524085f3ab",
+        "reviews_sha256": "2b7d1c1f0b3afbd3dd34b798096159d0e18acdb49a60dc04cd8bf54923e24d48",
+        "counts": {
+          "answers_scanned": 2389,
+          "skipped_other_authors": 0,
+          "earliest_answer_date": "2017-03-17",
+          "latest_answer_date": "2026-11-18",
+          "changed_paths": 2381,
+          "deferred": 0,
+          "excluded": 0,
+          "changes": {
+            "added": 32,
+            "body_changed": 922,
+            "metadata_only": 1427
+          },
+          "candidates": {
+            "add": 117
+          },
+          "citation_equivalent_body_changes": 922,
+          "removed_direct_pairs": 0,
+          "recheck_inferred_pairs": 0
+        },
+        "added_answer_ids": [
+          "2098523145795802563",
+          "2099070723050545844",
+          "2099437464461092618",
+          "2099465493610489721",
+          "2099831118455481183",
+          "2100302641586872321",
+          "2100647328378008991",
+          "2100687603272107303",
+          "2100892039282014185",
+          "2101050951633204937",
+          "2101384876125583080",
+          "2101407229572298450",
+          "2101748545137260491",
+          "2101776452035293754",
+          "2102348607085200445",
+          "2102462801965065232",
+          "2102729190273447791",
+          "2103097374788928856",
+          "2103186677997093124",
+          "2103586240226407410",
+          "2103788077844010890",
+          "2103904386929972540",
+          "2104144024143650995",
+          "2104495389110024157",
+          "2104602900072772486",
+          "2104898711260340257",
+          "2104984119050514618",
+          "2105269775324689189",
+          "2105601321533547312",
+          "2105797883681428560",
+          "2105963600389091900",
+          "2106320887763018432"
+        ],
+        "added_without_citations": [
+          "2099465493610489721",
+          "2100302641586872321",
+          "2101050951633204937",
+          "2101407229572298450",
+          "2101748545137260491",
+          "2102729190273447791",
+          "2103904386929972540",
+          "2104144024143650995",
+          "2104495389110024157",
+          "2104602900072772486",
+          "2104984119050514618",
+          "2105797883681428560"
+        ],
+        "indexed_answer_metadata_changes": 298,
+        "citing_answers_added": 20,
+        "pairs_added": 117,
+        "pairs_reclassified": 0,
+        "pairs_removed": 0,
+        "affected_pairs_sha256": "a7c84c7be2213c2558180aedf520dd2570119bb3fb85a0dc5e20f5ee0ecd927d",
+        "pair_dispositions": [],
+        "scope": "Direct archive links and reviewed changes to existing pairs in the selected archive scope."
+      },
+      "last_full_archive_tip": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0"
     },
     "latest_incremental_annotation_date": "2026-11-21",
     "summary_revisions": {
@@ -9578,8 +9701,10 @@
       "reference_count": 2,
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2101384876125583080"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "John Holt"
       ],
@@ -9609,7 +9734,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:22.037467+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2101384876125583080": {
+          "level": 1,
+          "evidence": "正文批评水课教师念 PPT，未化用本篇关于课堂秩序话语占比及“牧羊犬”管理的具体分析。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2093350438557040811",
@@ -10151,8 +10282,11 @@
       "reference_count": 2,
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185"
+      ],
+      "cited_by_answer_count": 2,
       "original_authors": [
         "John Holt"
       ],
@@ -10182,7 +10316,18 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:23.449470+00:00",
-      "answer_reference_levels": {},
+      "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文具体主张学校摧毁儿童好奇心，与译文对学校压抑提问和好奇的观察相合；正文没有复述链接注释中的摘句。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文明确称学校摧毁好奇心，承接了译文关于学校压制提问和使孩子隐藏好奇心的具体论点。",
+          "direct": true
+        }
+      },
       "summary_revision": {
         "date": "2026-11-01",
         "reviewer": "mid_reviewer_2",
@@ -13200,12 +13345,13 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2099437464461092618",
         "2096675972963623307",
         "2093019597305861144",
         "2091966198078559722",
         "2087975068836050418"
       ],
-      "cited_by_answer_count": 4,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Xiaoyu He"
       ],
@@ -13236,6 +13382,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:30.190587+00:00",
       "answer_reference_levels": {
+        "2099437464461092618": {
+          "level": 2,
+          "evidence": "正文具体讨论用户反馈作为奖励信号会削弱反谄媚约束，并说明迎合会冲淡安全约束；这与目标文对强化训练助长讨好/欺骗的观点相合，属于转述而非逐字引用。",
+          "direct": true
+        },
         "2096675972963623307": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -13535,9 +13686,10 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103586240226407410",
         "2091896782758340000"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "John Holt"
       ],
@@ -13568,6 +13720,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:32.118050+00:00",
       "answer_reference_levels": {
+        "2103586240226407410": {
+          "level": 1,
+          "evidence": "正文讨论江苏家庭教育竞争和科举文化，没有采用目标文关于学校改革运动为何失败的特定论证；标题注释不能提升等级。",
+          "direct": true
+        },
         "2091896782758340000": {
           "level": 1,
           "evidence": "回答正文含明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -15019,8 +15176,10 @@
       "reference_count": 0,
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2099437464461092618"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -15050,7 +15209,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:36.296693+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2099437464461092618": {
+          "level": 1,
+          "evidence": "正文讨论 GPT-4o 的谄媚及安全约束被冲淡，但没有提出目标文“交谈部分无法控制生成部分”的特定命题；对应内容只见于链接标题，故为 1 级。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2081683822433789037",
@@ -16771,8 +16936,10 @@
       "reference_count": 2,
       "referenced_by_count": 5,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2105963600389091900"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Neel Nanda"
       ],
@@ -16805,7 +16972,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:41.671660+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 1,
+          "evidence": "正文只说持续做事并养成习惯，没有呈现目标文通过预先搭建系统来减少未来行动所需意志力的具体主张；本条只有链接关联。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2080958354831234514",
@@ -17494,8 +17667,10 @@
       "reference_count": 11,
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2106320887763018432"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -17537,7 +17712,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:43.923030+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文称技术崇拜可归入广义宗教，但未采用本篇关于火箭带来审美超越感不等于宗教替代的观点。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2080621319687771079",
@@ -23106,8 +23287,10 @@
       "reference_count": 0,
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2098523145795802563"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Ariel"
       ],
@@ -23136,7 +23319,13 @@
       "author_extraction_agent": "misc_original_authors",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:56.236626+00:00",
-      "answer_reference_levels": {},
+      "answer_reference_levels": {
+        "2098523145795802563": {
+          "level": 2,
+          "evidence": "正文围绕高校无法调整 AI 时代考核展开；这与目标关于教授不调整评分系统、AI 使学生更容易通过的具体论点相应，正文有链接标记。",
+          "direct": true
+        }
+      },
       "summary_revision": {
         "date": "2026-11-01",
         "reviewer": "mid_reviewer_2",
@@ -24291,8 +24480,11 @@
       "reference_count": 5,
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2105601321533547312",
+        "2105269775324689189"
+      ],
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -24341,7 +24533,18 @@
       "author_extraction_agent": "user_confirmation",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T03:13:05.913316+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文只给出“顺着兴趣学习”的一般建议，没有区分目标文所说的好奇心和兴趣，也没有化用其奖励机制观点。",
+          "direct": true
+        },
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文只泛谈保护好奇心；链接标签中的连续标题“好奇心与兴趣”对应的具体观点是好奇心与兴趣的区分及其不同学习作用，答主正文没有采用该区分或奖励机制，只有一般主题关联，判 1 级。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2068006501562815518",
@@ -29245,10 +29448,11 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2106320887763018432",
         "2080591714738234462",
         "2075887081709217078"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -29291,6 +29495,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:35:03.316519+00:00",
       "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文概括词语误用，没有展开本篇指出的“问类别成员却说不清真正问题”这一具体错误类型。",
+          "direct": true
+        },
         "2080591714738234462": {
           "level": 1,
           "evidence": "回答以明确的文章题名/术语锚点“词语可能出错的 37 种方式”链接到目标译文，目标摘要与该处语境一致。",
@@ -31937,8 +32146,10 @@
       "reference_count": 8,
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2106320887763018432"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -31980,7 +32191,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:10.375883+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文列举“民主”的历史语义变化，未转述本篇关于事物聚类结构不随词语定义改变的主张。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2055957959021171732",
@@ -33789,10 +34006,11 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "2094108133140457382",
         "2066563015802147415"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Gwern Branwen"
       ],
@@ -33828,6 +34046,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T01:05:14.868686+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文声称 AI 被指出错误后会承认，方向与目标所述指出错误也无法修正相反；该链接不能证明答主采用了目标观点。",
+          "direct": true
+        },
         "2094108133140457382": {
           "level": 1,
           "evidence": "答案展示目标译文准确标题/关键词“守护天使：为了生产力和安全的 LLM 个性化”；未见目标正文摘录。",
@@ -34187,8 +34410,10 @@
       "reference_count": 8,
       "referenced_by_count": 9,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2106320887763018432"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -34231,7 +34456,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:14.325892+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文批评术语误用和混用，但未采用本篇提出的用无歧义、底层要素重述争议的具体办法；仅有引用注释。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "2051369757249736864",
@@ -36148,10 +36379,12 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2099831118455481183",
+        "2098523145795802563",
         "2048168797627064659",
         "2047026879916521334"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Carl Hendrick"
       ],
@@ -36191,6 +36424,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:18.909384+00:00",
       "answer_reference_levels": {
+        "2099831118455481183": {
+          "level": 2,
+          "evidence": "正文主张以能否产出真实成果取代形式化考核，具体呼应目标文“完成任务不等于真正学习、传统评估需重审”的观点；[3]对应该建议。",
+          "direct": true
+        },
+        "2098523145795802563": {
+          "level": 2,
+          "evidence": "正文明确说 AI 让像样成果不再能证明能力、文凭含金量同步归零，具体改述了目标关于学位证书无法区分真实学习与否的观点，并有对应链接。",
+          "direct": true
+        },
         "2048168797627064659": {
           "level": 3,
           "evidence": "回答明确标注摘自目标译文，并重现其中关于生成式 AI 削弱课程作业信号的长段正文；下列判断句可逐字核验。",
@@ -37887,6 +38130,10 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
+        "2101776452035293754",
+        "2100892039282014185",
+        "2098523145795802563",
         "2091896782758340000",
         "2086514238227597269",
         "2082763684032598451",
@@ -37901,7 +38148,7 @@
         "2046163619260503226",
         "2044446815286821464"
       ],
-      "cited_by_answer_count": 13,
+      "cited_by_answer_count": 17,
       "original_authors": [
         "Russ Roberts"
       ],
@@ -37931,6 +38178,26 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:22.758084+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 2,
+          "evidence": "正文把已付成本不应左右是否继续的沉没成本逻辑，应用到发现坏书后是否读完的困境，并在该处附了这篇访谈的链接。",
+          "direct": true
+        },
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文引用信号传递与人力资本的 80/20 拆分，改写了译文中的具体比例；但省略了该比例只适用于扣除能力偏误后的 55% 因果效应这一限定。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文引用并概括了译文中教育因果效应的 80% 信号传递、20% 人力资本比例；数字与论点可对应，但正文公式不是逐字复现，故为 2 级。",
+          "direct": true
+        },
+        "2098523145795802563": {
+          "level": 2,
+          "evidence": "正文把博士训练描述为按既定学术框架完成规训，并称文凭传递执行力信号；这具体化了目标关于学历信号体现规则顺从性的观点，段落有该文引注。",
+          "direct": true
+        },
         "2091896782758340000": {
           "level": 1,
           "evidence": "回答正文含明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -46188,10 +46455,13 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
+        "2103586240226407410",
+        "2103186677997093124",
         "2064350965810180578",
         "2024458374239068964"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Peter Gray"
       ],
@@ -46227,6 +46497,21 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:37.712829+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 1,
+          "evidence": "正文批评打压式育儿，但没有呈现目标文关于如何积极支持孩子自主性的具体做法；本条只有链接关联。",
+          "direct": true
+        },
+        "2103586240226407410": {
+          "level": 2,
+          "evidence": "正文以“成为自己而非优秀工具”主张教育支持人的自主性，化用了目标文“帮助孩子成为自己”的具体观点，[4]紧随句末；并非实质逐字引文。",
+          "direct": true
+        },
+        "2103186677997093124": {
+          "level": 1,
+          "evidence": "正文推测家长通过封闭管理缓解失控焦虑，未据本篇直升机式育儿研究论证具体家庭动机；链接注释明确提示该文不能证明具体家庭动机。",
+          "direct": true
+        },
         "2064350965810180578": {
           "level": 3,
           "evidence": "回答明确标明摘自该译文，并连续复现其教育自主权/信任养育正文。",
@@ -47419,8 +47704,10 @@
       "reference_count": 1,
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2104898711260340257"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "John Holt"
       ],
@@ -47454,7 +47741,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:39.619231+00:00",
-      "answer_reference_levels": {},
+      "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 1,
+          "evidence": "正文谈学生缺少边界和拒绝能力，未归因于本篇关于成人尊重儿童边界的主张；链接摘句不计作正文引述。",
+          "direct": true
+        }
+      },
       "summary_revision": {
         "date": "2026-11-03",
         "reviewer": "compact_reviewer_2",
@@ -54054,8 +54347,10 @@
       "reference_count": 20,
       "referenced_by_count": 13,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2103788077844010890"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -54098,7 +54393,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:14.351571+00:00",
-      "answer_reference_levels": {},
+      "answer_reference_levels": {
+        "2103788077844010890": {
+          "level": 1,
+          "evidence": "目标强调邪教与非邪教没有清晰自然边界；正文直接给人物定性为邪教教主，没有采纳该边界观点，反而缺少其限定。",
+          "direct": true
+        }
+      },
       "summary_revision": {
         "date": "2026-11-03",
         "reviewer": "compact_reviewer_2",
@@ -55382,12 +55683,13 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2102462801965065232",
         "2086519476707767126",
         "2056081942421018499",
         "2014122475764601075",
         "2007436816991671196"
       ],
-      "cited_by_answer_count": 4,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Shoui"
       ],
@@ -55422,6 +55724,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:36:54.451096+00:00",
       "answer_reference_levels": {
+        "2102462801965065232": {
+          "level": 2,
+          "evidence": "正文说明自己按 The Moe Way 指南学习并采用目标文推荐的 Kaishi 1.5k 入门词汇牌组，随后报告学习进度和 N2 成绩；这是有具体做法及亲身结果的应用，不是实质逐字引用。",
+          "direct": true
+        },
         "2086519476707767126": {
           "level": 1,
           "evidence": "正文明确提到 TheMoeWay 面向英语母语者的日语自学指南，可唯一指向该译文。",
@@ -59238,6 +59545,8 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2094736201873887817",
         "2085451151307289177",
         "2079910330893858216",
@@ -59250,7 +59559,7 @@
         "2011726612090098837",
         "1998099456994857553"
       ],
-      "cited_by_answer_count": 11,
+      "cited_by_answer_count": 13,
       "original_authors": [
         "John Holt"
       ],
@@ -59281,6 +59590,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:37:01.834906+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文以人人都有学历则学历失去筛选价值概括教育收益难以从个体外推到全民的观点；译文明确指出普遍化后奖品会失去价值。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文用人人都有学历便失去学历价值概括学历普及后的贬值，承接译文关于个体获得学位有益、规模扩大后学位区分度下降的微观与宏观差异。",
+          "direct": true
+        },
         "2094736201873887817": {
           "level": 1,
           "evidence": "回答以锚文本「《自由与超越》第九章 学校教育与贫困」直接指向目标译文；该锚文本是可辨认的标题或主题词。",
@@ -60424,13 +60743,14 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "2096181111248401477",
         "2069434183437514445",
         "2065874803404420225",
         "2001739352724747471",
         "1999195394375176987"
       ],
-      "cited_by_answer_count": 5,
+      "cited_by_answer_count": 6,
       "original_authors": [
         "hath"
       ],
@@ -60460,6 +60780,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T03:13:16.541305+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 3,
+          "evidence": "正文对能动性的定义与译文有实质性逐字重合，[1]紧随其后标示来源，属于可核验的正文引用。",
+          "direct": true
+        },
         "2096181111248401477": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -62892,9 +63217,10 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "2092186335243253079"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Gwern Branwen"
       ],
@@ -62930,6 +63256,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:54.595316+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文泛称要辨别优质信息源，没有提出目标强调的读全文、追溯完整信源后再下结论这一具体做法；只有主题层面的联系。",
+          "direct": true
+        },
         "2092186335243253079": {
           "level": 1,
           "evidence": "目标作为“相关文章” link-card 出现；回答批评只展示局部真相，但未使用译文关于罕见事件基数和媒体放大的具体分析。",
@@ -64141,8 +64472,10 @@
       "reference_count": 2,
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2105963600389091900"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Nate Soares"
       ],
@@ -64179,7 +64512,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:37:11.496048+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 1,
+          "evidence": "正文只谈独立思考和反复试错，没有采用目标文将宏大目标置于背景、转而处理具体子问题的特定机制；关联仅见于链接。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "1980596235216900732",
@@ -64626,8 +64965,10 @@
       "reference_count": 7,
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2105269775324689189"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Neel Nanda"
       ],
@@ -64662,7 +65003,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T03:13:48.218943+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "目标给出用自己的话复述核心思想并请 AI 检查总结的方法；正文只说不同意时与 AI 辩论，没有化用这一具体方法。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "1979480219023869096",
@@ -65147,10 +65494,12 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
+        "2104898711260340257",
         "1995190152662915038",
         "1993638326507426011"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "a_real_society"
       ],
@@ -65191,6 +65540,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:37:13.805451+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 3,
+          "evidence": "正文明确声明摘自该译文，并连续复现了译文中的实质段落；以下短句可在两端逐字核验。",
+          "direct": true
+        },
+        "2104898711260340257": {
+          "level": 1,
+          "evidence": "正文泛谈学生不会谈判，未转述本篇关于求职、晋升和薪资谈判的职业观点；具体谈判示例仅见链接注释。",
+          "direct": true
+        },
         "1995190152662915038": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -67378,10 +67737,12 @@
       "referenced_by_count": 5,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
+        "2105601321533547312",
         "2069116852446482559",
         "1982977991333144233"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Cedric Chin"
       ],
@@ -67412,6 +67773,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:18.604001+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 1,
+          "evidence": "正文只笼统提到试错；没有复述目标文“失败后反思、吸取教训并带入下一次尝试”的具体循环，关联仅见于引用链接。",
+          "direct": true
+        },
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文虽谈失败后止损和再尝试，但没有提到目标文特定的“反思失败、吸收教训、再尝试”循环；仅有一般试错主题相近。",
+          "direct": true
+        },
         "2069116852446482559": {
           "level": 1,
           "evidence": "回答将止损与复盘推广到项目等场景，但没有明确采用译文的试错循环或其失效分类；此对有可唯一识别的目标链接卡标题，确认一级。",
@@ -68481,9 +68852,10 @@
       "referenced_by_count": 7,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103788077844010890",
         "1978793250979612523"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -68527,6 +68899,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:56.897844+00:00",
       "answer_reference_levels": {
+        "2103788077844010890": {
+          "level": 2,
+          "evidence": "正文把目标对邪教领袖宣称无所不知的警示应用到未明子的全知者姿态，并在相应段落附链接；表述是改述，不是逐字引用。",
+          "direct": true
+        },
         "1978793250979612523": {
           "level": 2,
           "evidence": "回答指出应把马克思主义拆成独立主张分别评估；目标译文明确主张把伟大构想拆解后独立审视。",
@@ -69907,6 +70284,7 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "2073358227262259824",
         "2073120310958862594",
         "2072059123949217726",
@@ -69915,7 +70293,7 @@
         "2014271646421251184",
         "1967667018028291210"
       ],
-      "cited_by_answer_count": 7,
+      "cited_by_answer_count": 8,
       "original_authors": [
         "Jose Luis Ricon"
       ],
@@ -69948,6 +70326,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T03:46:40.129887+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 2,
+          "evidence": "正文具体以“教会徒弟饿死师傅”解释有用知识为何不出售，化用了目标文关于分享激励会损害专家职业优势、私有知识难传播的观点；[13]紧随其后。",
+          "direct": true
+        },
         "2073358227262259824": {
           "level": 1,
           "evidence": "目标准确标题只出现在回答末尾相关文章区的真实 link-card 中；按卡片/标题提及记1，正文没有对该目标的特异引用。",
@@ -81212,11 +81595,12 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "2066992437218878192",
         "1981800524635448557",
         "1976705356563513573"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Nate Soares"
       ],
@@ -81254,6 +81638,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:37:48.286978+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 1,
+          "evidence": "正文说一次成功可以增强自信，但没有涉及目标文在“太迟”之后履行承诺、借此建立自我信任的具体机制；只有链接关联。",
+          "direct": true
+        },
         "2066992437218878192": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -88172,8 +88561,10 @@
       "reference_count": 0,
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2106320887763018432"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Paul Graham"
       ],
@@ -88209,7 +88600,13 @@
       "author_extraction_agent": "essay_original_authors",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:38:02.967247+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文把政治立场列为广义宗教的例子，但没有转述本篇关于身份认同使讨论失效的具体观点。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "1939620723808244220",
@@ -88386,11 +88783,13 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "1961719347023189757",
         "1944401999987713239",
         "1932765619238999469"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Kelsey Piper"
       ],
@@ -88431,6 +88830,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:38:03.650882+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文将学校看护儿童、释放家长全职工作的效果用于论证托育价值，和译文对学前项目看护作用的具体描述相合。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文具体复述学校集中看护儿童、让父母全职工作的作用，与译文关于学前教育日托功能的观点一致。",
+          "direct": true
+        },
         "1961719347023189757": {
           "level": 3,
           "evidence": "回答正文连续重现目标译文的段落/说明，并由本答的直接链接锚点定位该篇。",
@@ -103981,10 +104390,11 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "1940104072419079458",
         "1932008713897612704"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Cedric Chin"
       ],
@@ -104015,6 +104425,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:38:37.814361+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 2,
+          "evidence": "正文把学科区分为结构清晰、不清晰及混合类型，并以医学、法律、外语等为例；这具体化了目标文关于现实领域混合结构的观点，[7]紧随论述。",
+          "direct": true
+        },
         "1940104072419079458": {
           "level": 1,
           "evidence": "逐对核对后，回答锚点“认知灵活性理论：规则”与目标译文标题或唯一关键词相符。",
@@ -104513,9 +104928,10 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "1932008713897612704"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Cedric Chin"
       ],
@@ -104546,6 +104962,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:38:38.517697+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文把一些行业归为难以验证效果的领域，但没有讨论目标文用反馈是否清晰来判断领域结构的具体框架。",
+          "direct": true
+        },
         "1932008713897612704": {
           "level": 3,
           "evidence": "回答先概述该译文的核心观点，随后明确标注摘自译文并连续重现正文；下列关于结构良好领域中第一性原理的段落在原文中可逐字核验。",
@@ -109726,6 +110147,8 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2093765968375948817",
         "2000977687901132792",
         "1953458962163799917",
@@ -109733,7 +110156,7 @@
         "1928903733942657362",
         "1915110629112547208"
       ],
-      "cited_by_answer_count": 6,
+      "cited_by_answer_count": 8,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -109769,6 +110192,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:38:46.933521+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 1,
+          "evidence": "正文只说 AI 可以教数学；链接标签标题“Math Academy 的 AI 是如何工作的”所指向的专家系统模拟辅导决策、推荐学习任务等具体内容只见于注释摘句，答主正文没有采用这些具体观点，因此仅为链接及泛题材相关，判 1 级。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 1,
+          "evidence": "正文泛称 AI 可以教数学，没有提及 Math Academy 或其专家系统、知识图谱和学习任务决策等目标文的特定观点，故按标题/链接关联计 1 级。",
+          "direct": true
+        },
         "2093765968375948817": {
           "level": 1,
           "evidence": "逐对核对了正文的原生引文/卡片锚和目标译文标题；仅标题或关键词指向，计 1 级。",
@@ -120858,11 +121291,12 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2100892039282014185",
         "2085451151307289177",
         "1889299638995116147",
         "129919796524"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Ronald Dore"
       ],
@@ -120904,6 +121338,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:05.454437+00:00",
       "answer_reference_levels": {
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文说决策者缺少动力并回避改革风险，且前文指出校领导从现状获益；这承接译文关于既得利益阻碍教育制度改革的论点。",
+          "direct": true
+        },
         "2085451151307289177": {
           "level": 1,
           "evidence": "回答正文含明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -122458,6 +122897,7 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103186677997093124",
         "2097024948749579232",
         "2014988415939151609",
         "2013175443356942684",
@@ -122470,7 +122910,7 @@
         "1893376207954882868",
         "127251635186"
       ],
-      "cited_by_answer_count": 11,
+      "cited_by_answer_count": 12,
       "original_authors": [
         "Justin Skycak"
       ],
@@ -122500,6 +122940,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:08.359207+00:00",
       "answer_reference_levels": {
+        "2103186677997093124": {
+          "level": 1,
+          "evidence": "正文称机构教材和讲解有效，未复述本篇用示范例题降低认知负荷的具体主张；链接注释还指出该研究不涉及此处机构教材。",
+          "direct": true
+        },
         "2097024948749579232": {
           "level": 1,
           "evidence": "正文以原生引文锚明确链接该目标译文；锚内的附加摘录不在答文正文中，按标题/关键词提及计 1 级。",
@@ -123916,11 +124361,12 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103788077844010890",
         "1903521464583460023",
         "1891516167593629671",
         "118070180037"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Paul Graham"
       ],
@@ -123956,6 +124402,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:33:04.182311+00:00",
       "answer_reference_levels": {
+        "2103788077844010890": {
+          "level": 2,
+          "evidence": "正文关于不承认绝对真理、保持判断和警惕的论述，具体化了目标对真理严谨态度及抵抗思想灌输的主张；[3]处链接该文。",
+          "direct": true
+        },
         "1903521464583460023": {
           "level": 3,
           "evidence": "答文明确标注后续内容“摘自”译文《独立思考的艺术》，匹配段位于该摘录内；目标译文正文同段逐字一致，原文为 Paul Graham 的 How to Think for Yourself。",
@@ -124077,6 +124528,9 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
+        "2099831118455481183",
         "2096181111248401477",
         "2045585411431520219",
         "2044815384386204009",
@@ -124098,7 +124552,7 @@
         "119610980659",
         "115521782293"
       ],
-      "cited_by_answer_count": 20,
+      "cited_by_answer_count": 23,
       "original_authors": [
         "Justin Skycak"
       ],
@@ -124128,6 +124582,21 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:11.368302+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 1,
+          "evidence": "正文只说大学生在校学不到东西、听完课便离开；没有具体化译文的主动学习方法或认知参与要求。主动/被动学习的细节仅见链接注释，因此判为注释级别。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 1,
+          "evidence": "正文将上课后离开作为大学教育无效的一般批评；链接标签中的连续标题“第十章 主动学习”对应主动参与优于被动接收的具体观点，正文没有提出主动参与或该比较结论，相关对照只见注释摘句，判 1 级。",
+          "direct": true
+        },
+        "2099831118455481183": {
+          "level": 2,
+          "evidence": "正文以 AI 个别化互动和学生带着问题学习替代单向课堂，具体承接目标文关于主动参与优于被动听讲的观点；[1]位于对课堂的讨论处。",
+          "direct": true
+        },
         "2096181111248401477": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -125760,10 +126229,11 @@
       "referenced_by_count": 7,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2099070723050545844",
         "2069116852446482559",
         "1978793250979612523"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -125806,6 +126276,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:46.021029+00:00",
       "answer_reference_levels": {
+        "2099070723050545844": {
+          "level": 2,
+          "evidence": "全文用伪史讽刺论证，结尾要求读者不能只在自己编造时才接受伪史，[1]链接到对偏向性证据标准的分析；这是对目标观点的具体应用，没有照录原句。",
+          "direct": true
+        },
         "2069116852446482559": {
           "level": 1,
           "evidence": "译文讨论因动机而过早停止搜索或拖延结论；回答只讲错误归因和止损，没有明确复述这一特异搜索偏差框架，故按可唯一识别的链接卡标题确认一级。",
@@ -128886,6 +129361,8 @@
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2086514238227597269",
         "2079910330893858216",
         "2066992437218878192",
@@ -128904,7 +129381,7 @@
         "89700593914",
         "87423200298"
       ],
-      "cited_by_answer_count": 17,
+      "cited_by_answer_count": 19,
       "original_authors": [
         "Paul Graham"
       ],
@@ -128939,6 +129416,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:18.152771+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 1,
+          "evidence": "正文提到考公考研培训，链接也涉及补习和文凭，但正文没有采用译文关于补习机构把家庭财富转成文凭、破坏教育公平的具体论点。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 1,
+          "evidence": "正文只提到考公、考研培训产业兴盛并批评应试崇拜；没有提及译文关于补习机构将上一代财富转为下一代文凭、破坏教育公平的特定论点，故计 1 级。",
+          "direct": true
+        },
         "2086514238227597269": {
           "level": 1,
           "evidence": "回答末尾真实 link-card 显示该译文准确标题。",
@@ -129086,9 +129573,10 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2099831118455481183",
         "86246545352"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Henrik Karlsson"
       ],
@@ -129124,6 +129612,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:18.513747+00:00",
       "answer_reference_levels": {
+        "2099831118455481183": {
+          "level": 2,
+          "evidence": "正文提出以学习空间、AI 资源和教师引导重构高校，具体化用了目标文“连接人与资源、由引导者帮助学生找到学习路径”的学习网络观点；[4]紧随方案段落。",
+          "direct": true
+        },
         "86246545352": {
           "level": 1,
           "evidence": "答案以“Thoughts Memo：Christopher Alexander 的以学习为中心的建筑理念”的明确链接/标题提及目标译文；没有该目标正文或独特论点。",
@@ -129904,6 +130397,8 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2100892039282014185",
+        "2098523145795802563",
         "2095485024871113793",
         "2082403702342796878",
         "2073358227262259824",
@@ -129912,7 +130407,7 @@
         "2067634560196727558",
         "111107071392"
       ],
-      "cited_by_answer_count": 7,
+      "cited_by_answer_count": 9,
       "original_authors": [
         "Michael Nielsen"
       ],
@@ -129943,6 +130438,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:19.453873+00:00",
       "answer_reference_levels": {
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文认为既有决策者缺少解决制度问题的动力，承接了译文关于组织惯性使机构难以快速变革、难以承认旧做法错误的观点。",
+          "direct": true
+        },
+        "2098523145795802563": {
+          "level": 2,
+          "evidence": "正文把大学描述为惯性强、难承认旧做法失效的官僚机构，具体改述了目标关于组织难以快速变革和承认过往错误的观点；[4]处有来源链接。",
+          "direct": true
+        },
         "2095485024871113793": {
           "level": 1,
           "evidence": "回答中的原生引用/链接以“【科学社会学】一个关于元科学的愿景：科学的社会过程的改进引擎”明确指向《【科学社会学】一个关于元科学的愿景：科学的社会过程的改进引擎》。",
@@ -131136,9 +131641,11 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
+        "2100892039282014185",
         "83386424539"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Henrik Karlsson"
       ],
@@ -131173,6 +131680,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:21.639834+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文仅泛泛建议和 AI 对话，没有采用目标关于苏格拉底式 AI 导师、引导性提问或文化阻力的具体观点；链接和题材相关不足以升到 2。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 1,
+          "evidence": "正文只说 AI 可回答知识问题、降低知识灌输收益；没有表达译文关于 AI 辅导效果受文化制约的观点，故仅凭链接关联计 1 级。",
+          "direct": true
+        },
         "83386424539": {
           "level": 1,
           "evidence": "回答通过正文原生链接或相关文章卡片明确点名该译文标题/关键词。",
@@ -131556,6 +132073,8 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2094495642341074348",
         "2082763684032598451",
         "2069434183437514445",
@@ -131569,7 +132088,7 @@
         "86246545352",
         "83386424539"
       ],
-      "cited_by_answer_count": 12,
+      "cited_by_answer_count": 14,
       "original_authors": [
         "Henrik Karlsson"
       ],
@@ -131604,6 +132123,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:05.517592+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文把学校课程说成互联网前时代的产物，并列举网络学习工具，化用了译文关于数字环境打破传统学校规模限制的观点。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文将现行课程设计称为前互联网时代产物，并紧接着举出网络及 AI 教育方式，承接了译文关于数字领域已出现学校之外教育方式的观点。",
+          "direct": true
+        },
         "2094495642341074348": {
           "level": 2,
           "evidence": "回答用自己的话复述学徒生活在未来工作环境、直接观察模仿熟练者，并对照学校将学习者与真实环境隔离；这是目标译文提出的学徒式学习论证。",
@@ -147962,11 +148491,12 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "114431735919",
         "36353440987",
         "4694938179"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -148017,6 +148547,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:50.953327+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 2,
+          "evidence": "正文明确主张通过实践和尝试获得真知识，并以“坐屋里臆想”对照“试出来、闯出来”；这对应目标文以实际目标和反复尝试学习的具体主张，[12]作相邻标记。",
+          "direct": true
+        },
         "114431735919": {
           "level": 3,
           "evidence": "回答正文连续复现目标译文的具体段落/引语，且与目标页面内容一致，判为3级。",
@@ -149022,12 +149557,13 @@
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101384876125583080",
         "2091458372172264359",
         "1933252840454873451",
         "3629370945",
         "3627801854"
       ],
-      "cited_by_answer_count": 4,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Peter Gray"
       ],
@@ -149063,6 +149599,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:52.548714+00:00",
       "answer_reference_levels": {
+        "2101384876125583080": {
+          "level": 1,
+          "evidence": "正文把智慧教室称为全景监狱，但未援引本篇的学生射频追踪器案例或其具体论证；属于监控话题相近。",
+          "direct": true
+        },
         "2091458372172264359": {
           "level": 1,
           "evidence": "回答在相关阅读列表中以准确标题链接指向目标译文；正文未摘录该页内容。",
@@ -153476,6 +154017,8 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2067297071401637178",
         "2012603663412114968",
         "2011726612090098837",
@@ -153499,7 +154042,7 @@
         "3598169152",
         "3596253464"
       ],
-      "cited_by_answer_count": 22,
+      "cited_by_answer_count": 24,
       "original_authors": [
         "Bryan Caplan"
       ],
@@ -153544,6 +154087,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:57.548328+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文在注释[1]处把托育概括为学校的核心功能，具体借用了译文关于学校日托职能的观点；正文没有照搬链接注释中的摘句。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文把学校的核心功能界定为托育，并说明学校看护孩子使家长能工作；这承接了译文关于学校提供日托、释放父母时间的特定论点。",
+          "direct": true
+        },
         "2067297071401637178": {
           "level": 1,
           "evidence": "回答实际展示的链接卡标题准确对应目标译文。",
@@ -153709,9 +154262,10 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2102348607085200445",
         "1910076625804046352"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Scott Alexander"
       ],
@@ -153742,6 +154296,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:39:57.957610+00:00",
       "answer_reference_levels": {
+        "2102348607085200445": {
+          "level": 1,
+          "evidence": "正文提到学术自由并主张惩罚异议者，但没有复用译文关于言论自由规范如何保持原则一致的具体论证。",
+          "direct": true
+        },
         "1910076625804046352": {
           "level": 3,
           "evidence": "回答明确注明其摘要和后续引文都基于该译文，随后连续重现其“言语行为”章节及后续论证；关于批评/侮辱/骚扰边界的段落两侧一致。",
@@ -155883,6 +156442,9 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103586240226407410",
+        "2101776452035293754",
+        "2100892039282014185",
         "2098136609711460390",
         "2091896782758340000",
         "2019910969988498527",
@@ -155896,7 +156458,7 @@
         "3623033304",
         "3594247162"
       ],
-      "cited_by_answer_count": 12,
+      "cited_by_answer_count": 15,
       "original_authors": [
         "Bryan Caplan"
       ],
@@ -155937,6 +156499,21 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:01.595346+00:00",
       "answer_reference_levels": {
+        "2103586240226407410": {
+          "level": 1,
+          "evidence": "正文没有讨论目标文中《反对学校教育的依据》的左派论据或相关观点，只有链接标题。",
+          "direct": true
+        },
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文直接以学历通胀解释学位筛选效力下降，采用了译文关于学历通胀和工人需更多教育才能获得同等工作的判断。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文明确指出文凭通胀，与译文对学历通胀及劳动市场学历要求上升的具体讨论相对应。",
+          "direct": true
+        },
         "2098136609711460390": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -157063,6 +157640,7 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2099831118455481183",
         "2096181111248401477",
         "2094495642341074348",
         "2088193254554711496",
@@ -157110,7 +157688,7 @@
         "3582973483",
         "3577689562"
       ],
-      "cited_by_answer_count": 46,
+      "cited_by_answer_count": 47,
       "original_authors": [
         "Gwern Branwen"
       ],
@@ -157146,6 +157724,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T03:16:09.047124+00:00",
       "answer_reference_levels": {
+        "2099831118455481183": {
+          "level": 2,
+          "evidence": "正文主张从机械作业转向真实产出并融入生产，改写了目标文关于通过递进项目而非每周作业培养工程师的具体观点；正文中有相应方案。",
+          "direct": true
+        },
         "2096181111248401477": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -157438,6 +158021,8 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2020564104159470581",
         "113544382172",
         "103336084746",
@@ -157450,7 +158035,7 @@
         "3589891688",
         "3583687183"
       ],
-      "cited_by_answer_count": 11,
+      "cited_by_answer_count": 13,
       "original_authors": [
         "Scott Alexander"
       ],
@@ -157486,6 +158071,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:03.643948+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文称高等教育扩张是资源浪费，和译文把大学教育描述为投机泡沫、会阻碍替代方案的具体批评一致。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文将高等教育扩张称为资源浪费，呼应译文把现行大学教育视为泡沫、反对继续维持该传统的判断。",
+          "direct": true
+        },
         "2020564104159470581": {
           "level": 1,
           "evidence": "答案正文展示目标译文准确标题/关键词“反对补贴郁金香”，未见其专属正文。",
@@ -159225,6 +159820,7 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
         "2078050637695161610",
         "100251915285",
         "4135716163",
@@ -159233,7 +159829,7 @@
         "3568201012",
         "3564906726"
       ],
-      "cited_by_answer_count": 7,
+      "cited_by_answer_count": 8,
       "original_authors": [
         "John Taylor Gatto"
       ],
@@ -159267,6 +159863,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:07.136930+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 2,
+          "evidence": "正文以“他还说”承接对 Gatto 的归属，把译文中真实工作、社区生活的教育建议概括为脚踏实地地参与生活。",
+          "direct": true
+        },
         "2078050637695161610": {
           "level": 1,
           "evidence": "逐对核对了正文的原生引文/卡片锚和目标译文标题；仅标题或关键词指向，计 1 级。",
@@ -159502,6 +160103,7 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
         "2097034162112815958",
         "2085663802641666092",
         "2081340886982583581",
@@ -159513,7 +160115,7 @@
         "3568201012",
         "3565670981"
       ],
-      "cited_by_answer_count": 10,
+      "cited_by_answer_count": 11,
       "original_authors": [
         "John Taylor Gatto"
       ],
@@ -159547,6 +160149,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:07.865335+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 2,
+          "evidence": "正文明确将学校实际教授“七样东西”归于 Gatto，并概括其七堂课主张；译文逐字支持七堂课这一具体观点。",
+          "direct": true
+        },
         "2097034162112815958": {
           "level": 1,
           "evidence": "回答末尾真实 link-card 显示该译文准确标题。",
@@ -162046,6 +162653,8 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
+        "2100892039282014185",
         "2081340886982583581",
         "2070568900387942468",
         "2020564104159470581",
@@ -162061,7 +162670,7 @@
         "3564906726",
         "3550794812"
       ],
-      "cited_by_answer_count": 14,
+      "cited_by_answer_count": 16,
       "original_authors": [
         "John Taylor Gatto"
       ],
@@ -162092,6 +162701,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:12.926751+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 2,
+          "evidence": "正文明确归因于 Gatto，并把译文主张改写为给孩子独处、自由探索的时间；属于具体观点化用。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文直接提出服从训练无法培养批判思考，与译文关于学校训练服从、应转而培养独立思考的观点对应。",
+          "direct": true
+        },
         "2081340886982583581": {
           "level": 1,
           "evidence": "答文末尾明确标有“相关文章”，此知乎文章卡片显示该译文标题。",
@@ -162694,6 +163313,9 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
+        "2101776452035293754",
+        "2100892039282014185",
         "2095938419339936496",
         "2017533326462828638",
         "1969338125571559717",
@@ -162707,7 +163329,7 @@
         "3550298608",
         "3544288136"
       ],
-      "cited_by_answer_count": 12,
+      "cited_by_answer_count": 15,
       "original_authors": [
         "Eliezer Yudkowsky"
       ],
@@ -162751,6 +163373,21 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:14.879306+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 2,
+          "evidence": "正文将学校训练概括为追逐标准答案，[2]紧接该论述；这具体改写了目标文对“答对即学会、未必真正理解”的批评，没有逐字复用。",
+          "direct": true
+        },
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文把服从训练与难以形成批判思考联系起来；译文具体论述盲从权威会削弱独立思考。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文把服从训练与缺乏批判思考直接相连；译文具体论述权威答案训练会削弱学生质疑权威和独立思考的能力。",
+          "direct": true
+        },
         "2095938419339936496": {
           "level": 2,
           "evidence": "答主改述目标译文关于学校训练盲目复述、压制困惑觉察的核心论点，判2级。",
@@ -162858,9 +163495,10 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
         "2063973215517652120"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Scott Alexander"
       ],
@@ -162891,6 +163529,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:15.302672+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 1,
+          "evidence": "正文表达的是一般处世准则“不要主动惹事、遇事还击”；链接标签中的连续标题“呼吁友善、社群与文明”对应的具体观点是以牙还牙的互惠合作策略及其形成合作社群的机制，答主正文没有采用合作预期或互惠社群机制，二者仅为类比，判 1 级。",
+          "direct": true
+        },
         "2063973215517652120": {
           "level": 1,
           "evidence": "回答末尾“相关文章”中的知乎卡片明确显示该译文标题。",
@@ -163194,6 +163837,7 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "2095938419339936496",
         "2086514238227597269",
         "2066958473557021510",
@@ -163238,7 +163882,7 @@
         "3548293770",
         "3544288136"
       ],
-      "cited_by_answer_count": 43,
+      "cited_by_answer_count": 44,
       "original_authors": [
         "Paul Graham"
       ],
@@ -163273,6 +163917,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:16.616255+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 2,
+          "evidence": "正文将应试赛道描述为低回报并建议转向真实行动，[14]链接到目标文对学校训练应试思维、把考试策略误当成功路径的具体批评；这是概括改写而非逐字引用。",
+          "direct": true
+        },
         "2095938419339936496": {
           "level": 2,
           "evidence": "答主以毕业生把融资当考试为例，重述目标译文“学校应试思维会延伸到创业”的独特论点，判2级。",
@@ -163965,6 +164614,8 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2067297071401637178",
         "2049485281066226702",
         "2049110910007096283",
@@ -163981,7 +164632,7 @@
         "3553086197",
         "3535859774"
       ],
-      "cited_by_answer_count": 15,
+      "cited_by_answer_count": 17,
       "original_authors": [
         "Robin Hanson"
       ],
@@ -164021,6 +164672,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:17.394359+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文把学校规则解释为服从训练，对应译文关于学校以较易接受的方式包装职场习惯训练的具体观点；注释[3]给出来源。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文将学校日常规则解释为服从训练；译文把学校视为向雇主展示对现代职场服从性的机制，观点具体对应。",
+          "direct": true
+        },
         "2067297071401637178": {
           "level": 1,
           "evidence": "回答实际展示的链接卡标题准确对应目标译文。",
@@ -165136,6 +165797,7 @@
       "referenced_by_count": 6,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "2097024948749579232",
         "1950653095987090643",
         "1934393845417771070",
@@ -165147,7 +165809,7 @@
         "4694938179",
         "3517939237"
       ],
-      "cited_by_answer_count": 10,
+      "cited_by_answer_count": 11,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -165198,6 +165860,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:20.573884+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文主张向 Claude 提问，但没有目标文中特定的围绕项目与阅读文本持续互动做法；只是 AI 对话这一宽泛题材相关。",
+          "direct": true
+        },
         "2097024948749579232": {
           "level": 1,
           "evidence": "正文以原生引文锚明确链接该目标译文；锚内的附加摘录不在答文正文中，按标题/关键词提及计 1 级。",
@@ -168684,11 +169351,12 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103586240226407410",
         "3572066632",
         "3531374795",
         "3501626534"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Shin Hyun-gook"
       ],
@@ -168729,6 +169397,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:25.312707+00:00",
       "answer_reference_levels": {
+        "2103586240226407410": {
+          "level": 2,
+          "evidence": "正文明确把教育竞争与生育下降相连，与目标文对教育成本压低生育率的具体判断一致；[3]紧随该论点，属于概述改写而非逐字引用。",
+          "direct": true
+        },
         "3572066632": {
           "level": 3,
           "evidence": "正文连续重现了目标译文的具体段落/论证，且可唯一定位该目标。",
@@ -179963,12 +180636,13 @@
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "2001739352724747471",
         "1932148556678043197",
         "79492885660",
         "3439853712"
       ],
-      "cited_by_answer_count": 4,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Cate Hall"
       ],
@@ -180009,6 +180683,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:41.297042+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 2,
+          "evidence": "正文建议比较不同赛道、转向更适合自己的方向，[11]所连译文明确主张发掘真正优势，而非靠吃苦取胜；这是对该观点的具体改写。",
+          "direct": true
+        },
         "2001739352724747471": {
           "level": 1,
           "evidence": "回答以锚文本「如何培养更强的能动性」直接指向目标译文；该锚文本是可辨认的标题或主题词。",
@@ -183188,11 +183867,12 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
         "77911515349",
         "3433464820",
         "3395262951"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Peter Gray"
       ],
@@ -183227,6 +183907,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:40:47.064605+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 1,
+          "evidence": "正文提到 Gatto 写过这本书，但未化用本篇调查报告的具体教育观点；本篇链接注释只佐证著作信息。",
+          "direct": true
+        },
         "77911515349": {
           "level": 3,
           "evidence": "答案逐段重现该调查报告的受访者原文/调查结果，目标译文中有连续对应段落。",
@@ -198499,11 +199184,12 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "1952835328378376436",
         "83887365576",
         "3570051079"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Peter Gray"
       ],
@@ -198539,6 +199225,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:41:13.325774+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 2,
+          "evidence": "正文把父母压制与孩子逐渐相信自己无能、陷入无助联系起来；[6]对应目标文“孩子无能”观点成为自我应验预言的具体论点，属于改写而非逐字引用。",
+          "direct": true
+        },
         "1952835328378376436": {
           "level": 1,
           "evidence": "该标题/关键词链接随所摘录的主译文《足够好的父母就是最好的父母》带入；只确认标题提及，没有独立化用目标译文观点。锚点：「传统学校教育和信任型养育之间的冲突」。",
@@ -201556,6 +202247,7 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103097374788928856",
         "2056081942421018499",
         "2012842480853337481",
         "1918737658743612940",
@@ -201579,7 +202271,7 @@
         "3219552411",
         "2766306560"
       ],
-      "cited_by_answer_count": 22,
+      "cited_by_answer_count": 23,
       "original_authors": [
         "Jingyong Su",
         "Junyao Ye",
@@ -201640,6 +202332,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:41:19.962811+00:00",
       "answer_reference_levels": {
+        "2103097374788928856": {
+          "level": 1,
+          "evidence": "正文只列出自己的论文标题，没有使用目标译文中的具体论点或证据。",
+          "direct": true
+        },
         "2056081942421018499": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -206347,11 +207044,12 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "3599966493",
         "3513356283",
         "3334605503"
       ],
-      "cited_by_answer_count": 3,
+      "cited_by_answer_count": 4,
       "original_authors": [
         "Refold"
       ],
@@ -206396,6 +207094,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:41:28.102547+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文批评语法先行的学校英语教学，但没有采用目标文关于词汇、语法如何辅助理解沉浸材料的具体路线图观点。",
+          "direct": true
+        },
         "3599966493": {
           "level": 1,
           "evidence": "正文以明确的知乎引用锚点“0A2：路线图概述”指向该目标，标题/关键词可唯一定位。",
@@ -215167,10 +215870,11 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101384876125583080",
         "2070259052303716875",
         "3496726816"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -215220,6 +215924,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:03.144980+00:00",
       "answer_reference_levels": {
+        "2101384876125583080": {
+          "level": 2,
+          "evidence": "正文借具体课堂看板说明指标会取代学习体验、迎合上级评价，化用了译文关于教育数据痴迷扭曲真实目标的观点；链接锚点附在数据看板处。",
+          "direct": true
+        },
         "2070259052303716875": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -216077,6 +216786,7 @@
       "referenced_by_count": 6,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
         "2074070618279096353",
         "1931283693051287294",
         "64234678319",
@@ -216089,7 +216799,7 @@
         "3190505978",
         "3177678383"
       ],
-      "cited_by_answer_count": 11,
+      "cited_by_answer_count": 12,
       "original_authors": [
         "Peter Gray"
       ],
@@ -216125,6 +216835,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:41:45.789112+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文用儿童接触手机后自然学会识字来支持自主阅读，呼应译文关于数字书面语环境让孩子更早、更轻松学会阅读的具体观点。",
+          "direct": true
+        },
         "2074070618279096353": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -222098,13 +222813,14 @@
       "referenced_by_count": 10,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2102348607085200445",
         "3632686438",
         "3541497395",
         "3213802027",
         "3094580151",
         "3056183604"
       ],
-      "cited_by_answer_count": 5,
+      "cited_by_answer_count": 6,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -222143,6 +222859,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:24.725207+00:00",
       "answer_reference_levels": {
+        "2102348607085200445": {
+          "level": 1,
+          "evidence": "正文表演极端爱国和民族主义立场，与链接文章话题相关；正文没有化用译文关于爱国如何转向民族主义的具体经历或论证。",
+          "direct": true
+        },
         "3632686438": {
           "level": 1,
           "evidence": "目标译文的标题/特异关键词作为内链出现在明确摘录的《芬兰学校悖论》正文中；按一级记录转载内链，不把它当作答主另行引用或正文摘录。",
@@ -230791,6 +231512,7 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2100892039282014185",
         "1945200625013995084",
         "1933252840454873451",
         "1904492226542830923",
@@ -230801,7 +231523,7 @@
         "2978920470",
         "2968452076"
       ],
-      "cited_by_answer_count": 9,
+      "cited_by_answer_count": 10,
       "original_authors": [
         "Peter Gray"
       ],
@@ -230837,6 +231559,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:42:02.381473+00:00",
       "answer_reference_levels": {
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文称教育扩张只让校领导获益，与译文指出教育产业相关从业者因经济利益维持并扩大传统教育的观点一致。",
+          "direct": true
+        },
         "1945200625013995084": {
           "level": 1,
           "evidence": "答案正文以“反对美国教育根本变革的力量”明确链接/提及目标译文标题或关键词，未见该目标的专属正文摘录。",
@@ -238849,6 +239576,8 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2007815025407046105",
         "64330823704",
         "19319161575",
@@ -238862,7 +239591,7 @@
         "2943611284",
         "2932700869"
       ],
-      "cited_by_answer_count": 12,
+      "cited_by_answer_count": 14,
       "original_authors": [
         "Peter Gray"
       ],
@@ -238898,6 +239627,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:39.877898+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文指出传统学校模式可能妨碍产业升级所需的创新能力，直接对应译文关于学校体系抑制创造力和创新的判断。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文指出产业升级需要创新而传统学校模式妨碍这一能力，承接了译文对学校压制创造力、创新的具体批评。",
+          "direct": true
+        },
         "2007815025407046105": {
           "level": 1,
           "evidence": "回答正文含明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -241921,8 +242660,10 @@
       "reference_count": 2,
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
-      "cited_by_answer_ids": [],
-      "cited_by_answer_count": 0,
+      "cited_by_answer_ids": [
+        "2106320887763018432"
+      ],
+      "cited_by_answer_count": 1,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -241958,7 +242699,13 @@
       "author_extraction_agent": "deterministic_directory_and_byline_matching",
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:42:10.039188+00:00",
-      "answer_reference_levels": {}
+      "answer_reference_levels": {
+        "2106320887763018432": {
+          "level": 1,
+          "evidence": "正文提出自己的广义宗教定义，没有明确化用本篇关于超验叙事赋予生活意义的观点；关联内容仅见链接注释。",
+          "direct": true
+        }
+      }
     },
     {
       "id": "605412651",
@@ -244499,6 +245246,7 @@
       "referenced_by_count": 10,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103788077844010890",
         "2097024948749579232",
         "1984598564136047826",
         "1905952897956545033",
@@ -244512,7 +245260,7 @@
         "3212564228",
         "2984069166"
       ],
-      "cited_by_answer_count": 12,
+      "cited_by_answer_count": 13,
       "original_authors": [
         "Issa Rice"
       ],
@@ -244550,6 +245298,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:09.800830+00:00",
       "answer_reference_levels": {
+        "2103788077844010890": {
+          "level": 1,
+          "evidence": "正文只笼统称好教育要讲清复杂概念，没有使用目标关于预判读者常见问题等具体写作方法；同属清晰解释话题不足以升到 2。",
+          "direct": true
+        },
         "2097024948749579232": {
           "level": 1,
           "evidence": "正文通过准确的译文标题或原生引文锚直接指向目标；仅按标题/关键词提及计 1 级。",
@@ -253196,10 +253949,11 @@
       "referenced_by_count": 1,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "83552021814",
         "2980630024"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Derek Sivers"
       ],
@@ -253241,6 +253995,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:34:45.929054+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文只提到用软件自动化间隔重复，没有展开目标文关于编程学习或软件按反馈安排复习的具体做法。",
+          "direct": true
+        },
         "83552021814": {
           "level": 1,
           "evidence": "回答通过明确文章卡片标题“Thoughts Memo：用间隔重复软件记住一门编程语言”链接到目标译文，主题与目标摘要相符。",
@@ -254140,10 +254899,11 @@
       "referenced_by_count": 20,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105963600389091900",
         "1939015819376985120",
         "3273043621"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -254183,6 +254943,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:00.242922+00:00",
       "answer_reference_levels": {
+        "2105963600389091900": {
+          "level": 2,
+          "evidence": "正文以一次小胜恢复自信，改写了目标文关于小成就能增强精神状态的具体观点；对应建议后有[7]来源标记，没有直接照录。",
+          "direct": true
+        },
         "1939015819376985120": {
           "level": 1,
           "evidence": "回答含指向该译文的原生引用锚点，可唯一定位到该标题/关键词。",
@@ -256074,13 +256839,15 @@
       "referenced_by_count": 0,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2101776452035293754",
+        "2100892039282014185",
         "2058486836918587572",
         "64330823704",
         "3618812202",
         "3364299771",
         "2973030241"
       ],
-      "cited_by_answer_count": 5,
+      "cited_by_answer_count": 7,
       "original_authors": [
         "Peter Gray"
       ],
@@ -256114,6 +256881,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:42:19.252200+00:00",
       "answer_reference_levels": {
+        "2101776452035293754": {
+          "level": 2,
+          "evidence": "正文主张生产效率提升使社会不再需要同等工时，并举每周缩短工作日为例，化用了译文关于减少必要劳动量的论点。",
+          "direct": true
+        },
+        "2100892039282014185": {
+          "level": 2,
+          "evidence": "正文主张生产效率提高后维持生活所需工时减少，与译文关于减少必要工作量、重新分配工作及收入的论点相承接。",
+          "direct": true
+        },
         "2058486836918587572": {
           "level": 1,
           "evidence": "回答末尾真实 link-card 显示该译文准确标题。",
@@ -260926,6 +261703,8 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2100687603272107303",
+        "2100647328378008991",
         "1916097566908610366",
         "3495730822",
         "3226806639",
@@ -260935,7 +261714,7 @@
         "2942303093",
         "2849144877"
       ],
-      "cited_by_answer_count": 8,
+      "cited_by_answer_count": 10,
       "original_authors": [
         "Peter Gray"
       ],
@@ -260971,6 +261750,16 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:42:22.981805+00:00",
       "answer_reference_levels": {
+        "2100687603272107303": {
+          "level": 2,
+          "evidence": "正文把筛查中学生的生命健康置于制度责任和尊重之下，具体呼应译文所说成年人有责任为儿童营造安全、健康、相互尊重的环境。",
+          "direct": true
+        },
+        "2100647328378008991": {
+          "level": 1,
+          "evidence": "正文只泛谈尊重“人”；链接标签中的连续标题“孩子们可以自己教育自己 I：证据综述”对应的具体主张是成年人对儿童安全、健康、受尊重环境的责任，答主正文没有采用儿童、环境或成人责任这一观点，具体信息仅在注释摘句中，判 1 级。",
+          "direct": true
+        },
         "1916097566908610366": {
           "level": 1,
           "evidence": "回答正文有明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -266236,6 +267025,7 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2103097374788928856",
         "2016796179850085860",
         "2012842480853337481",
         "1918737658743612940",
@@ -266272,7 +267062,7 @@
         "2731574667",
         "881945657"
       ],
-      "cited_by_answer_count": 35,
+      "cited_by_answer_count": 36,
       "original_authors": [
         "Junyao Ye",
         "Jingyong Su",
@@ -266320,6 +267110,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:42:26.912481+00:00",
       "answer_reference_levels": {
+        "2103097374788928856": {
+          "level": 1,
+          "evidence": "正文只列出自己的论文标题，没有使用目标译文中的具体论点或证据。",
+          "direct": true
+        },
         "2016796179850085860": {
           "level": 1,
           "evidence": "回答明确给出自己所写论文的完整英文题名；目标译文正是该论文的中文译本，题名唯一指向此篇。",
@@ -276068,6 +276863,7 @@
       "referenced_by_count": 6,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2102348607085200445",
         "1897299015898477279",
         "3541497395",
         "3495730822",
@@ -276085,7 +276881,7 @@
         "2711870613",
         "2523903919"
       ],
-      "cited_by_answer_count": 16,
+      "cited_by_answer_count": 17,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -276124,6 +276920,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T01:07:15.892648+00:00",
       "answer_reference_levels": {
+        "2102348607085200445": {
+          "level": 1,
+          "evidence": "正文讽刺蒙古民族主义叙事，和链接文章同属历史与民族主义话题；正文没有涉及该译文关于波兰历史课标如何塑造民族主义态度的具体观点。",
+          "direct": true
+        },
         "1897299015898477279": {
           "level": 1,
           "evidence": "回答在美国教育主题的延伸阅读链接卡中列出该译文的原样标题；仅确认标题提及，不把卡片/摘要算作正文摘录。",
@@ -282090,6 +282891,7 @@
       "referenced_by_count": 44,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "2096606319906240122",
         "2088193254554711496",
         "2078496122126049847",
@@ -282198,7 +283000,7 @@
         "2482729131",
         "2202895186"
       ],
-      "cited_by_answer_count": 107,
+      "cited_by_answer_count": 108,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -282237,6 +283039,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:19.949828+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 2,
+          "evidence": "正文明确归因于 Wozniak，并把目标文中不必从头读完、可舍弃坏书的主张改述成跳读建议；有对应链接，未照录原句。",
+          "direct": true
+        },
         "2096606319906240122": {
           "level": 1,
           "evidence": "回答的原生链接锚点包含目标译文准确标题，足以确认直接标题引用；解析后的回答文本块没有该引文正文，按1级而非正文摘抄。",
@@ -285349,6 +286156,7 @@
       "referenced_by_count": 19,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2104898711260340257",
         "2055588375772639364",
         "2050256510970749902",
         "2040502508846633914",
@@ -285377,7 +286185,7 @@
         "2690587187",
         "2202895186"
       ],
-      "cited_by_answer_count": 27,
+      "cited_by_answer_count": 28,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -285417,6 +286225,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:32:05.143002+00:00",
       "answer_reference_levels": {
+        "2104898711260340257": {
+          "level": 2,
+          "evidence": "正文把“多接触人才能明白”作为理解社会知识的途径，化用了译文关于丰富场景和多样成人交往促进社会化的具体主张；链接锚点附在该句后。",
+          "direct": true
+        },
         "2055588375772639364": {
           "level": 1,
           "evidence": "相关文章卡以可辨认标题直达《社会化模型》；正文未复述该文的神经社会化模型。",
@@ -325993,9 +326806,10 @@
       "referenced_by_count": 4,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "2446038124"
       ],
-      "cited_by_answer_count": 1,
+      "cited_by_answer_count": 2,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -326033,6 +326847,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:43:24.279373+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 2,
+          "evidence": "正文以该文倡导的非线性阅读观点支持不应从头到尾读书，该句后有对应引注；是改述，没有实质逐字引用。",
+          "direct": true
+        },
         "2446038124": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -349442,12 +350261,13 @@
       "referenced_by_count": 10,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "3366385830",
         "2831205170",
         "2772990761",
         "2446781501"
       ],
-      "cited_by_answer_count": 4,
+      "cited_by_answer_count": 5,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -349485,6 +350305,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:43:50.673768+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 2,
+          "evidence": "正文把思维导图和多层笔记库批评为空架子，落到目标文“笔记应服务于思考”的具体主张；[1]紧随其后，属于改写而非逐字引用。",
+          "direct": true
+        },
         "3366385830": {
           "level": 1,
           "evidence": "回答以可辨识的目标译文标题或关键词链接指向该译文；此处对应的是大纲条目/卡片标题。",
@@ -362291,10 +363116,11 @@
       "referenced_by_count": 7,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "2834169225",
         "2772990761"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Andy Matuschak"
       ],
@@ -362337,6 +363163,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:44:05.499033+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文只泛谈间隔重复软件自动记忆，没有提到目标文“把事实与其他概念联系起来”的具体主张；链接标题中的摘句不能代替正文证据。",
+          "direct": true
+        },
         "2834169225": {
           "level": 3,
           "evidence": "答文复制了该译文页面的独立论述，并在同段中保留了 Nielsen 引文。",
@@ -393647,6 +394478,7 @@
       "referenced_by_count": 20,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105269775324689189",
         "95091192195",
         "3541497395",
         "3525777101",
@@ -393669,7 +394501,7 @@
         "2018441984",
         "1810330645"
       ],
-      "cited_by_answer_count": 21,
+      "cited_by_answer_count": 22,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -393703,6 +394535,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:31:33.316571+00:00",
       "answer_reference_levels": {
+        "2105269775324689189": {
+          "level": 1,
+          "evidence": "正文谈信息过载和屏蔽垃圾源，但未采用目标要求用科学工具检验、排除认知偏差与情绪影响的具体论点；属于宽泛相关。",
+          "direct": true
+        },
         "95091192195": {
           "level": 1,
           "evidence": "回答正文有明确指向该译文的知乎内链/链接卡，按直接提及记为1级。",
@@ -396146,10 +396983,11 @@
       "referenced_by_count": 2,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "2271842801",
         "1872145962"
       ],
-      "cited_by_answer_count": 2,
+      "cited_by_answer_count": 3,
       "original_authors": [
         "Master How To Learn"
       ],
@@ -396179,6 +397017,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:44:18.427632+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文谈的是学科是否适合先过框架，没有化用目标文渐进阅读流程中“整体模型越简单越好”的具体建议。",
+          "direct": true
+        },
         "2271842801": {
           "level": 3,
           "evidence": "回答以引文方式整段摘录目标渐进阅读工作流中的手动间隔建议。",
@@ -402338,6 +403181,7 @@
       "referenced_by_count": 3,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "1934675574657365212",
         "3533449051",
         "2783974335",
@@ -402348,7 +403192,7 @@
         "1585216108",
         "1582343122"
       ],
-      "cited_by_answer_count": 9,
+      "cited_by_answer_count": 10,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -402386,6 +403230,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-27T10:44:20.328038+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 1,
+          "evidence": "正文只泛谈碎片化学习和间隔重复，没有采用目标文“先学习、再用间隔重复保留”的具体论点；链接标签中的引文不算正文引用。",
+          "direct": true
+        },
         "1934675574657365212": {
           "level": 1,
           "evidence": "正文链接锚文本明确指向该译文标题或具体关键词。",
@@ -414077,6 +414926,7 @@
       "referenced_by_count": 31,
       "missing_zhihu_reference_count": 0,
       "cited_by_answer_ids": [
+        "2105601321533547312",
         "2024783376297596199",
         "1970550708731355357",
         "1968439846369489451",
@@ -414111,7 +414961,7 @@
         "1595115995",
         "1578551193"
       ],
-      "cited_by_answer_count": 33,
+      "cited_by_answer_count": 34,
       "original_authors": [
         "Piotr Wozniak"
       ],
@@ -414145,6 +414995,11 @@
       "reference_live_status": "verified",
       "reference_checked_at": "2026-10-28T01:09:16.993011+00:00",
       "answer_reference_levels": {
+        "2105601321533547312": {
+          "level": 2,
+          "evidence": "正文用记忆细节会被大脑拼合来解释知识体系自发形成，与目标文知识结晶相撞、建立连贯性的核心观点相符；[2]紧随该句，未实质逐字引用。",
+          "direct": true
+        },
         "2024783376297596199": {
           "level": 1,
           "evidence": "逐对核验：回答用该译文的直接脚注锚点指向文章标题或对应的特定术语。",

@@ -555,6 +555,178 @@ class WorkflowTests(unittest.TestCase):
         audit = flow.read_json(self.root / "data/summary-reviews.json")
         self.assertEqual(len(audit["entries"]), 1)
 
+    def stage_source_transition(self, work_name="source-transition", **options):
+        path = self.root / "data/catalog.json"
+        previous = self.root / "previous-catalog.json"
+        previous.write_bytes(path.read_bytes())
+        changed = flow.read_json(path)
+        self.row = changed["articles"][0]
+        self.body += "新版增加了如何在下一次练习使用反馈的说明。\n"
+        self.row.update(source_sha256=flow.digest("new archive blob"), content_sha256=flow.digest("new HTML"),
+                        read_chars=len(self.body))
+        flow.write_json(path, changed)
+        html_path = self.root / "index.html"
+        html = html_path.read_text()
+        match = flow.DATA_PATTERN.search(html)
+        embedded = json.loads(match[2])
+        embedded["records"] = changed["articles"]
+        html_path.write_text(html[:match.start(2)] + json.dumps(embedded, ensure_ascii=False) + html[match.end(2):])
+        header = {key: self.row[key] for key in ("id", "title", "publisher", "publisher_token")}
+        header["text_chars"] = len(self.body)
+        (self.sources / "1.txt").write_text(json.dumps(header, ensure_ascii=False) + '\n\n【完整可见正文开始】\n'
+                                            + self.body + '\n【完整可见正文结束】\n')
+        flow.write_json(self.baseline, {"1": {"source_sha256": self.row["source_sha256"],
+                                               "content_sha256": self.row["content_sha256"],
+                                               "text_sha256": flow.digest(self.body), "text_chars": len(self.body)}})
+        settings = {"article_ids": ["1"], "require_bound_primary_review": True, "source_transition_from": previous}
+        settings.update(options)
+        return previous, self.prepare_blind(work_name=work_name, run="transition-1", **settings)
+
+    def accept_source_transition(self, work, summary):
+        acceptance = {"decider": "Codex主代理", "bind_review_sha": True, "entries": [{
+            "id": "1", "accepted": True, "summary_sha256": flow.digest(summary),
+            "review_sha256": flow.file_hash(work / "reviewers/1.json")}]}
+        flow.write_json(work / "primary-acceptance.json", acceptance)
+
+    def test_source_transition_preserves_history_even_when_retaining(self):
+        first_summary = self.writer["summary"]
+        flow.apply(self.root, self.work)
+        first_event = flow.load_ledger(self.root)["entries"][0]
+        previous, work = self.stage_source_transition()
+        item = self.write_blind_records(work, writer_old="adequate", reviewer_old="adequate",
+                                        summary_text=first_summary)
+        writer_path = work / "writers/1.json"
+        writer = flow.read_json(writer_path)
+        writer.update(decision="retain", decision_reason="新版正文完整复核，原摘要仍覆盖主要观点。", issues=[])
+        flow.write_json(writer_path, writer)
+        before = self.output_bytes()
+        with self.assertRaisesRegex(ValueError, "Primary acceptance"):
+            flow.apply(self.root, work)
+        self.assertEqual(before, self.output_bytes())
+        self.accept_source_transition(work, first_summary)
+
+        result = flow.apply(self.root, work)
+        self.assertEqual((result["retained"], result["rewritten"], result["source_transitions"]), (1, 0, 1))
+        history = flow.load_ledger(self.root)["entries"]
+        self.assertEqual(len(history), 2)
+        self.assertEqual(history[0], first_event)
+        event = history[1]
+        self.assertEqual(event["source_transition"], item["source_transition"])
+        self.assertEqual(event["source_transition"]["previous_catalog_sha256"], flow.file_hash(previous))
+        self.assertEqual(event["source_transition"]["previous_source_sha256"], first_event["source"]["source_sha256"])
+        self.assertEqual(event["source"]["source_sha256"], item["source_sha256"])
+        self.assertEqual(event["before"]["summary"], event["after"]["summary"])
+        latest = self.output_bytes()
+        flow.apply(self.root, work)
+        self.assertEqual(latest, self.output_bytes())
+        with self.assertRaisesRegex(ValueError, "outside summaries"):
+            flow.sync_import(self.root, previous)
+        self.assertEqual(latest, self.output_bytes())
+
+    def test_source_transition_replays_only_current_version_summary_chain(self):
+        original_summary = self.row["summary"]
+        first_summary = self.writer["summary"]
+        flow.apply(self.root, self.work)
+        _, work = self.stage_source_transition()
+        current_summary = "新版讨论如何根据反馈调整下一次学习练习。"
+        self.write_blind_records(work, summary_text=current_summary)
+        self.accept_source_transition(work, current_summary)
+        flow.apply(self.root, work)
+        imported = self.root / "same-source-catalog.json"
+        current_catalog = flow.read_json(self.root / "data/catalog.json")
+        current_catalog["articles"][0]["summary"] = first_summary
+        flow.write_json(imported, current_catalog)
+        flow.sync_import(self.root, imported)
+        current_catalog["articles"][0]["summary"] = original_summary
+        flow.write_json(imported, current_catalog)
+        with self.assertRaisesRegex(ValueError, "outside accepted history"):
+            flow.sync_import(self.root, imported)
+        ledger = flow.load_ledger(self.root)
+        del ledger["entries"][-1]["source_transition"]
+        with self.assertRaisesRegex(ValueError, "source changed without a transition"):
+            flow.replay_revisions(flow.read_json(self.root / "data/catalog.json"), ledger)
+
+    def test_source_transition_rejects_changed_baseline_or_missing_initial_reader(self):
+        flow.apply(self.root, self.work)
+        _, work = self.stage_source_transition()
+        summary = "新版讨论如何根据反馈调整下一次学习练习。"
+        self.write_blind_records(work, summary_text=summary)
+        self.accept_source_transition(work, summary)
+        snapshot = work / flow.TRANSITION_BASELINE
+        frozen = snapshot.read_bytes()
+        snapshot.write_bytes(frozen + b"\n")
+        with self.assertRaisesRegex(ValueError, "Frozen previous catalog changed"):
+            flow.apply(self.root, work)
+        snapshot.write_bytes(frozen)
+        flow.apply(self.root, work)
+        ledger = flow.load_ledger(self.root)
+        ledger["entries"][-1]["reviewer_initial"] = None
+        with self.assertRaisesRegex(ValueError, "missing independent initial judgment"):
+            flow.replay_revisions(flow.read_json(self.root / "data/catalog.json"), ledger)
+
+    def stage_summary_retirement(self):
+        flow.apply(self.root, self.work)
+        path = self.root / "data/catalog.json"
+        previous = self.root / "pre-retirement.json"
+        previous.write_bytes(path.read_bytes())
+        approvals = self.root / "retirements.json"
+        flow.write_json(approvals, {"schema_version": 1, "archive_base": "a" * 40, "archive_tip": "b" * 40,
+                                   "previous_catalog_sha256": flow.file_hash(previous),
+                                   "entries": [{"id": "1", "reason": "备份确认为下架，保留既有摘要审阅历史。"}]})
+        stage = flow.read_json(path)
+        stage["articles"] = []
+        flow.write_json(path, stage)
+        html_path = self.root / "index.html"
+        html = html_path.read_text()
+        match = flow.DATA_PATTERN.search(html)
+        data = json.loads(match[2])
+        data["records"] = []
+        data["exportOrder"] = []
+        html_path.write_text(html[:match.start(2)] + json.dumps(data, ensure_ascii=False) + html[match.end(2):])
+        return previous, approvals
+
+    def test_retired_summary_is_validated_and_preserved_across_import(self):
+        previous, approvals = self.stage_summary_retirement()
+        current_path = self.root / "data/catalog.json"
+        prior_events = flow.load_ledger(self.root)["entries"]
+        with self.assertRaisesRegex(ValueError, "Revision target absent"):
+            flow.sync_import(self.root, current_path)
+
+        self.assertEqual(flow.retire_articles(self.root, previous, approvals), {"retired_articles": 1})
+        ledger = flow.load_ledger(self.root)
+        self.assertEqual(ledger["entries"], prior_events)
+        receipt = ledger["retired_articles"]["1"]
+        self.assertEqual(receipt["last_summary_sha256"], flow.digest(self.writer["summary"]))
+        self.assertEqual(receipt["previous_catalog_sha256"], flow.file_hash(previous))
+        self.assertEqual(receipt["last_content_sha256"], self.row["content_sha256"])
+        baseline = self.output_bytes()
+        flow.retire_articles(self.root, previous, approvals)
+        self.assertEqual(self.output_bytes(), baseline)
+        self.assertEqual(flow.sync_import(self.root, current_path), {"synchronized": 0, "replayed_articles": 0})
+        self.assertEqual(self.output_bytes(), baseline)
+        with self.assertRaisesRegex(ValueError, "inventory differs"):
+            flow.sync_import(self.root, previous)
+
+    def test_retirement_rejects_stale_decisions_and_mismatched_history(self):
+        previous, approvals = self.stage_summary_retirement()
+        stale = flow.read_json(approvals)
+        stale["previous_catalog_sha256"] = "f" * 64
+        bad_approvals = self.root / "wrong-baseline.json"
+        flow.write_json(bad_approvals, stale)
+        before = self.output_bytes()
+        with self.assertRaisesRegex(ValueError, "baseline catalog changed"):
+            flow.retire_articles(self.root, previous, bad_approvals)
+        self.assertEqual(self.output_bytes(), before)
+
+        flow.retire_articles(self.root, previous, approvals)
+        ledger = flow.load_ledger(self.root)
+        ledger["retired_articles"]["1"]["last_summary_sha256"] = "f" * 64
+        with self.assertRaisesRegex(ValueError, "differs from the last accepted summary"):
+            flow.replay_revisions(flow.read_json(self.root / "data/catalog.json"), ledger)
+        ledger["retired_articles"]["1"]["last_summary_sha256"] = flow.digest(self.writer["summary"])
+        with self.assertRaisesRegex(ValueError, "Retired article still appears"):
+            flow.replay_revisions(flow.read_json(previous), ledger)
+
     def test_second_revision_and_import_replay_preserve_history(self):
         flow.apply(self.root, self.work)
         self.work = self.root / "work-2"

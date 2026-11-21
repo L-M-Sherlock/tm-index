@@ -19,6 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MODEL = "gpt-6-luna"
 EFFORT = "max"
+TRANSITION_BASELINE = "previous-catalog.json"
 DATA_PATTERN = re.compile(r'(<script id="catalog-data" type="application/json">)(.*?)(</script>)', re.S)
 CHECKPOINT_ORDER_NOTE = "Checkpoint time records the first observed file bytes only; it does not prove prior blind-reading order."
 SOURCE_SPEC = importlib.util.spec_from_file_location("summary_sources", Path(__file__).with_name("summary_sources.py"))
@@ -762,13 +763,16 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
 def prepare(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000, *,
             max_body_chars=None, recovery_dir=None, reuse_audit=None, actor_prefix="long", blind_review=False,
             model=MODEL, reasoning_effort=EFFORT, require_bound_primary_review=False, article_ids=None,
-            reviewer_count=2):
+            reviewer_count=2, source_transition_from=None):
     """Prepare a fresh review run, retaining the original positional legacy interface."""
     config = model_config({"model": model, "reasoning_effort": reasoning_effort})
     _validate_reviewer_count(reviewer_count)
     require(reviewer_count == 2 or blind_review, "A custom reviewer count requires blind_review")
     require(not require_bound_primary_review or blind_review, "Bound primary review requires blind_review")
     require(article_ids is None or blind_review, "Selecting article IDs requires blind_review")
+    require(source_transition_from is None or (blind_review and require_bound_primary_review
+                                                and article_ids is not None and reuse_audit is None),
+            "Source transitions require an explicit blind-review scope, bound primary acceptance and fresh reviews")
     extended = (max_body_chars is not None or recovery_dir is not None or reuse_audit is not None
                 or actor_prefix != "long" or blind_review)
     if not extended:
@@ -839,6 +843,16 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
         prepared.append((item, chunks, prior_entry if item.get("reused_audit") else None))
     if invalidations:
         manifest["reuse_invalidations"] = invalidations
+    previous_bytes = None
+    if source_transition_from is not None:
+        previous_bytes = Path(source_transition_from).read_bytes()
+        previous_sha = hashlib.sha256(previous_bytes).hexdigest()
+        transitions = _verify_source_transition_prior(
+            manifest["articles"], json.loads(previous_bytes), previous_sha, load_ledger(root), run_id
+        )
+        manifest["source_transition_baseline_sha256"] = previous_sha
+        for item in manifest["articles"]:
+            item["source_transition"] = transitions[item["id"]]
     direct_retains = {item["id"] for item in manifest["articles"] if item["review_origin"] == "sampling_reuse_adequate"}
     manifest["assignments"] = assign_articles(manifest["articles"], actor_prefix, direct_retains,
                                               reviewer_count=reviewer_count)
@@ -854,6 +868,8 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
         write_json(work / "inputs" / item["id"] / "source.json", source_item)
         if prior_entry is not None:
             write_json(work / item["prior_review_path"], prior_entry)
+    if previous_bytes is not None:
+        (work / TRANSITION_BASELINE).write_bytes(previous_bytes)
     write_json(work / "manifest.json", manifest)
     for role, groups in manifest["assignments"].items():
         for agent, assignment in groups.items():
@@ -1297,14 +1313,97 @@ def load_ledger(root):
     return read_json(path) if path.exists() else {"schema_version": 1, "entries": []}
 
 
+def _source_pair(source):
+    return source["source_sha256"], source["content_sha256"]
+
+
+def _is_hash(value, lengths=(64,)):
+    return isinstance(value, str) and len(value) in lengths and re.fullmatch(r"[0-9a-f]+", value) is not None
+
+
+def _transition_previous_source(transition):
+    fields = ("previous_source_sha256", "previous_content_sha256", "previous_summary_sha256",
+              "previous_catalog_sha256")
+    require(isinstance(transition, dict) and set(transition) == set(fields)
+            and all(_is_hash(transition[field]) for field in fields), "Invalid summary source transition")
+    return transition["previous_source_sha256"], transition["previous_content_sha256"]
+
+
+def _verify_source_transition_prior(items, previous_catalog, previous_catalog_sha, ledger, run_id):
+    """Bind a staged source change to the old catalog and its accepted summary history."""
+    previous = catalog_rows(previous_catalog)
+    transitions = {}
+    for item in items:
+        article_id = item["id"]
+        before = previous.get(article_id)
+        require(before is not None and before["source_path"] == item["source_path"],
+                f"{article_id}: source transition requires the previous catalog article")
+        require(before["summary"].strip() and before["summary"] == item["summary"],
+                f"{article_id}: source transition must carry forward the previous summary for review")
+        transition = {"previous_source_sha256": before["source_sha256"],
+                      "previous_content_sha256": before["content_sha256"],
+                      "previous_summary_sha256": digest(before["summary"]),
+                      "previous_catalog_sha256": previous_catalog_sha}
+        old_source, old_content = _transition_previous_source(transition)
+        require(old_source != item["source_sha256"] and old_content != item["content_sha256"],
+                f"{article_id}: source transition requires changed article content")
+        require(provenance(before) == item["initial_provenance"],
+                f"{article_id}: source transition changed original summary provenance")
+        transitions[article_id] = transition
+
+    prior_events = []
+    items_by_id = {item["id"]: item for item in items}
+    for event in ledger["entries"]:
+        article_id = event["id"]
+        if article_id in items_by_id:
+            if event.get("run_id") == run_id:
+                require(event.get("source_transition") == transitions[article_id]
+                        and _source_pair(event["source"]) == _source_pair(items_by_id[article_id]),
+                        f"{article_id}: prior application used a different source transition")
+            else:
+                prior_events.append(event)
+    baseline_rows = [previous[article_id] for article_id in items_by_id]
+    replayed = replay_revisions({"articles": copy.deepcopy(baseline_rows)}, {"entries": prior_events})
+    require(replayed["articles"] == baseline_rows,
+            "Previous catalog does not contain the latest accepted summary history")
+    return transitions
+
+
+def _verify_source_transition_manifest(work, manifest, ledger, selected_ids):
+    items = manifest["articles"]
+    snapshot = work / TRANSITION_BASELINE
+    if "source_transition_baseline_sha256" not in manifest:
+        require(not snapshot.exists() and not any("source_transition" in item for item in items),
+                "Source transition has no frozen previous catalog")
+        return
+    require(manifest.get("require_bound_primary_review") is True
+            and manifest.get("selected_article_ids") == [item["id"] for item in items]
+            and set(manifest["selected_article_ids"]) == selected_ids
+            and not manifest.get("reused_audit") and all(item["review_origin"] == "fresh" for item in items),
+            "Source transitions require the full pinned scope and fresh bound review")
+    raw = snapshot.read_bytes()
+    actual = hashlib.sha256(raw).hexdigest()
+    require(actual == manifest["source_transition_baseline_sha256"], "Frozen previous catalog changed")
+    expected = _verify_source_transition_prior(items, json.loads(raw), actual, ledger, manifest["run_id"])
+    require(all(item.get("source_transition") == expected[item["id"]] for item in items),
+            "Frozen source transition differs from the previous catalog")
+
+
 def event_id(item, summary, run_id):
-    return digest("\n".join((run_id, item["id"], item["source_sha256"], item["body_sha256"], item["old_summary_sha256"], digest(summary))))
+    fingerprints = [run_id, item["id"], item["source_sha256"], item["body_sha256"],
+                    item["old_summary_sha256"], digest(summary)]
+    if "source_transition" in item:
+        fingerprints.append(canonical_hash(item["source_transition"]))
+    return digest("\n".join(fingerprints))
 
 
 def _check_legacy(root, work, allow_incomplete=False):
     manifest = read_json(work / "manifest.json")
     require("selected_article_ids" not in manifest, "Selecting article IDs requires blind_review")
     require("reviewer_count" not in manifest, "A custom reviewer count requires blind_review")
+    require("source_transition_baseline_sha256" not in manifest
+            and not any("source_transition" in item for item in manifest["articles"])
+            and not (work / TRANSITION_BASELINE).exists(), "Source transitions require blind_review")
     validate_model_config(manifest)
     date.fromisoformat(manifest["revision_date"])
     if "preserve_files" in manifest:
@@ -1478,6 +1577,7 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
         require(not any(item.get("reused_audit") for item in items.values()), "Reused item without a pinned audit")
 
     ledger = load_ledger(root)
+    _verify_source_transition_manifest(work, manifest, ledger, selected_ids)
     for event in ledger["entries"]:
         validate_history_review(event)
     existing_events = {event.get("revision_id"): event for event in ledger["entries"] if event.get("revision_id")}
@@ -1717,7 +1817,8 @@ def revision_tag(event):
 def validate_history_review(event):
     # The two pre-workflow Codex revisions have no revision_id or independent review.
     if "revision_id" not in event:
-        require(event.get("after", {}).get("reviewer") == "Codex", f"{event['id']}: unrecognized legacy revision")
+        require(event.get("after", {}).get("reviewer") == "Codex" and "source_transition" not in event,
+                f"{event['id']}: unrecognized legacy revision")
         return
     review = event.get("review")
     require(isinstance(review, dict), f"{event['id']}: historical review is missing")
@@ -1744,6 +1845,25 @@ def validate_history_review(event):
             require(isinstance(prior_points, list) and bool(prior_points),
                     f"{event['id']}: historical transfer lacks original reviewer points")
             validate_reviewer(dict(review, independent_major_points=prior_points), writer, item)
+        if "source_transition" in event:
+            transition = event["source_transition"]
+            previous_source, previous_content = _transition_previous_source(transition)
+            old_summary_sha256 = digest(event["before"]["summary"])
+            require(event.get("review_origin") == "fresh" and previous_source != source["source_sha256"]
+                    and previous_content != source["content_sha256"]
+                    and old_summary_sha256 == transition["previous_summary_sha256"],
+                    f"{event['id']}: invalid historical source transition")
+            authors = {"writer_initial": writer["writer"],
+                       "reviewer_initial": provenance["from"] if provenance is not None else review["reviewer"]}
+            for key, actor in authors.items():
+                initial = event.get(key)
+                require(isinstance(initial, dict) and initial.get("actor") == actor
+                        and initial.get("old_summary_sha256") == old_summary_sha256,
+                        f"{event['id']}: missing independent initial judgment for source transition")
+                validate_reading(initial, item)
+            transition_input = dict(item, old_summary_sha256=old_summary_sha256, source_transition=transition)
+            require(event["revision_id"] == event_id(transition_input, after["summary"], event["run_id"]),
+                    f"{event['id']}: source transition history fingerprint differs")
     except (ValueError, KeyError, TypeError) as error:
         raise ValueError(f"{event['id']}: invalid historical review: {error}") from error
 
@@ -1767,29 +1887,113 @@ def review_metadata(audit):
     return metadata
 
 
+def _retired_articles(ledger):
+    receipts = ledger.get("retired_articles", {})
+    require(isinstance(receipts, dict), "Invalid retired summary articles")
+    return receipts
+
+
+def _validate_retirement(article_id, receipt, source, summary):
+    fingerprints = ("last_source_sha256", "last_content_sha256", "last_summary_sha256", "previous_catalog_sha256")
+    require(isinstance(receipt, dict) and set(receipt) == {*fingerprints, "archive_base", "archive_tip", "reason"}
+            and all(_is_hash(receipt[key]) for key in fingerprints),
+            f"{article_id}: invalid summary retirement receipt")
+    require(all(_is_hash(receipt[key], (40, 64)) for key in ("archive_base", "archive_tip"))
+            and receipt["archive_base"] != receipt["archive_tip"],
+            f"{article_id}: retirement must identify distinct archive commits")
+    nonempty(receipt["reason"], f"{article_id}: retirement reason is missing")
+    require((receipt["last_source_sha256"], receipt["last_content_sha256"]) == source
+            and receipt["last_summary_sha256"] == digest(summary),
+            f"{article_id}: retirement differs from the last accepted summary or source")
+
+
 def replay_revisions(catalog, ledger):
     rows = catalog_rows(catalog)
     by_id = defaultdict(list)
     for event in ledger["entries"]:
         validate_history_review(event)
         by_id[event["id"]].append(event)
+    retired = _retired_articles(ledger)
+    require(set(retired) <= set(by_id), "Retired article has no summary history")
+    require(not (set(retired) & set(rows)), "Retired article still appears in the catalog")
     for article_id, events in by_id.items():
-        require(article_id in rows, f"Revision target absent from import: {article_id}")
-        row = rows[article_id]
         previous_after = None
+        previous_source = None
         known = set()
         for event in events:
-            source = event["source"]
-            require(source["source_sha256"] == row["source_sha256"] and source["content_sha256"] == row["content_sha256"], f"{article_id}: revision source conflicts with import")
+            source = _source_pair(event["source"])
+            if "source_transition" in event:
+                require(previous_source is None or previous_source == _transition_previous_source(event["source_transition"]),
+                        f"{article_id}: broken revision source transition")
+                known.clear()
+            else:
+                require(previous_source is None or previous_source == source,
+                        f"{article_id}: revision source changed without a transition")
             before, after = event["before"]["summary"], event["after"]["summary"]
             require(previous_after is None or before == previous_after, f"{article_id}: broken revision history")
             known.update((digest(before), digest(after)))
             previous_after = after
+            previous_source = source
+        if article_id in retired:
+            _validate_retirement(article_id, retired[article_id], previous_source, previous_after)
+            continue
+        require(article_id in rows, f"Revision target absent from import: {article_id}")
+        row = rows[article_id]
+        require(previous_source == _source_pair(row), f"{article_id}: revision source conflicts with import")
         require(digest(row["summary"]) in known, f"{article_id}: imported summary is outside accepted history; review required")
         # Every known version is an ancestor of the validated linear history.
         row["summary"] = events[-1]["after"]["summary"]
         row["summary_revision"] = revision_tag(events[-1])
     return catalog
+
+
+def retire_articles(root, previous_catalog, decisions):
+    """Record approved removals from a staged catalog without deleting accepted history."""
+    root = Path(root)
+    decisions = read_json(decisions)
+    require(isinstance(decisions, dict) and decisions.get("schema_version") == 1,
+            "Invalid summary retirement decisions")
+    raw = Path(previous_catalog).read_bytes()
+    previous_sha = hashlib.sha256(raw).hexdigest()
+    require(decisions.get("previous_catalog_sha256") == previous_sha, "Retirement baseline catalog changed")
+    previous = catalog_rows(json.loads(raw))
+    current = read_json(root / "data/catalog.json")
+    current_rows = catalog_rows(current)
+    ledger = load_ledger(root)
+    entries = decisions.get("entries")
+    require(isinstance(entries, list) and bool(entries)
+            and all(isinstance(entry, dict) and set(entry) == {"id", "reason"}
+                    and isinstance(entry["id"], str) for entry in entries),
+            "Retirement decisions need article IDs and reasons")
+    reasons = {entry["id"]: entry["reason"] for entry in entries}
+    require(len(reasons) == len(entries), "Duplicate summary retirement IDs")
+    require(set(reasons) <= set(previous) and not (set(reasons) & set(current_rows)),
+            "Retirement targets must be present in the previous catalog and absent from the staged catalog")
+    history = [event for event in ledger["entries"] if event["id"] in reasons]
+    require({event["id"] for event in history} == set(reasons), "Retirement target has no accepted summary history")
+    old_rows = [previous[article_id] for article_id in reasons]
+    replayed = replay_revisions({"articles": copy.deepcopy(old_rows)}, {"entries": history})
+    require(replayed["articles"] == old_rows, "Retirement baseline differs from the last accepted summary")
+
+    archived = dict(_retired_articles(ledger))
+    for article_id, reason in reasons.items():
+        row = previous[article_id]
+        source, content = _source_pair(row)
+        receipt = {"last_source_sha256": source, "last_content_sha256": content,
+                   "last_summary_sha256": digest(row["summary"]), "previous_catalog_sha256": previous_sha,
+                   "archive_base": decisions.get("archive_base"), "archive_tip": decisions.get("archive_tip"),
+                   "reason": reason}
+        require(article_id not in archived or archived[article_id] == receipt,
+                f"{article_id}: summary retirement is already recorded with different evidence")
+        archived[article_id] = receipt
+    ledger["retired_articles"] = archived
+    require(replay_revisions(copy.deepcopy(current), ledger) == current,
+            "Staged catalog differs from the remaining accepted summaries")
+    output = json_text(ledger)
+    require(not any(token in output for token in ("/Users/", "file://", "localhost")),
+            "Non-public path in retirement history")
+    staged_write({root / "data/summary-revisions.json": output})
+    return {"retired_articles": len(reasons)}
 
 
 def guarded_import(current, imported, ledger):
@@ -2069,7 +2273,8 @@ def sync_import(root, import_catalog):
     for text in outputs.values():
         require(not any(token in text for token in ("/Users/", "file://", "localhost")), "Non-public path in synchronized output")
     staged_write(outputs)
-    return {"synchronized": len(result["articles"]), "replayed_articles": len({event["id"] for event in ledger["entries"]})}
+    live_revision_ids = {event["id"] for event in ledger["entries"]} - _retired_articles(ledger).keys()
+    return {"synchronized": len(result["articles"]), "replayed_articles": len(live_revision_ids)}
 
 
 def _primary_acceptance_map(acceptance, manifest, allow_subset=False):
@@ -2276,11 +2481,15 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
     require(publication_ids is None or accepted_only,
             "publication_ids requires accepted_only=True")
     manifest = read_json(work / "manifest.json")
+    transition_run = "source_transition_baseline_sha256" in manifest
+    require(not transition_run or (not accepted_only and import_catalog is None),
+            "Source transitions must apply in full without importing another catalog")
     prior_audit_path = root / "data/summary-reviews.json"
     prior_audit = read_json(prior_audit_path) if prior_audit_path.exists() else None
     archived_runs = {run.get("run_id") for run in (prior_audit or {}).get("previous_runs", [])}
     require(manifest["run_id"] not in archived_runs, "Cannot apply an archived review run")
     prior_publication = _prior_publication_state(prior_audit, manifest)
+    require(not transition_run or prior_publication is None, "Source transitions cannot continue phased publication")
     if accepted_only:
         require(manifest.get("blind_review") is True, "accepted_only is available only for blind-review runs")
         require(import_catalog is None, "accepted_only cannot be combined with an imported catalog")
@@ -2354,12 +2563,15 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
             entry["final_old_verdict"] = (adjudication["final_old_verdict"] if adjudication is not None
                                           else prior_review["final_verdict"] if prior_review is not None
                                           else writer_initial["verdict"])
+        transition = item.get("source_transition")
+        if transition is not None:
+            entry["source_transition"] = transition
         entries.append(entry)
-        if writer is None or decision == "retain":
+        if writer is None or (decision == "retain" and transition is None):
             continue
         key = event_id(item, after_summary, manifest["run_id"])
         if key not in existing:
-            ledger["entries"].append({"revision_id": key, "run_id": manifest["run_id"], "id": item["id"], "title": item["title"],
+            event = {"revision_id": key, "run_id": manifest["run_id"], "id": item["id"], "title": item["title"],
                 "url": item["url"], "archive_url": item["archive_url"],
                 "source": {"path": item["source_path"], "source_sha256": item["source_sha256"], "content_sha256": item["content_sha256"],
                            "visible_text_sha256": item["body_sha256"], "read_chars": item["read_chars"], "chunk_count": len(item["chunks"])},
@@ -2371,7 +2583,10 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                 "decision_reason": writer["decision_reason"], "length_reason": writer["length_reason"], "review": review,
                 "review_origin": item.get("review_origin", "fresh"), "reused_audit": item.get("reused_audit"),
                 "prior_review": prior_review, "writer_initial": writer_initial,
-                "reviewer_initial": reviewer_initial, "request": request, "adjudication": adjudication})
+                "reviewer_initial": reviewer_initial, "request": request, "adjudication": adjudication}
+            if transition is not None:
+                event["source_transition"] = transition
+            ledger["entries"].append(event)
             existing.add(key)
         rows[item["id"]]["summary"] = after_summary
         event = next(event for event in ledger["entries"] if event.get("revision_id") == key)
@@ -2396,6 +2611,8 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
              "before_summary_characters": sum(len(item["summary"]) for item, _, _ in pairs),
              "after_summary_characters": sum(len(writer["summary"] if writer is not None else item["summary"])
                                              for item, writer, _ in pairs)}
+    if transition_run:
+        stats["source_transitions"] = len(pairs)
     if manifest.get("blind_review") is True:
         stats.update(reused_old_judgments=reused_old, reused_direct_retains=reused_direct,
                      new_old_judgments=new_old, new_draft_validations=counts["rewrite"],
@@ -2492,6 +2709,8 @@ def main(argv=None):
     p.add_argument("--reasoning-effort", default=EFFORT, help="actual reasoning effort used for this run")
     p.add_argument("--require-bound-primary-review", action="store_true",
                    help="require primary acceptance receipts bound to the exact review evidence")
+    p.add_argument("--source-transition-from", type=Path,
+                   help="freeze the previous catalog for a full blind re-review of explicitly selected changed articles")
     p = sub.add_parser("check")
     p.add_argument("--work-dir", type=Path, required=True)
     p.add_argument("--allow-incomplete", action="store_true")
@@ -2502,6 +2721,9 @@ def main(argv=None):
                     help="publish only selected currently accepted articles from a blind-review run")
     p.add_argument("--article-ids-file", type=Path,
                     help="JSON array of cumulative article IDs to publish with --accepted-only")
+    p = sub.add_parser("retire", help="preserve accepted history for articles removed from a staged catalog")
+    p.add_argument("--previous-catalog", type=Path, required=True)
+    p.add_argument("--decisions", type=Path, required=True)
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
@@ -2516,10 +2738,13 @@ def main(argv=None):
                              actor_prefix=args.actor_prefix, blind_review=args.blind_review,
                              model=args.model, reasoning_effort=args.reasoning_effort,
                              require_bound_primary_review=args.require_bound_primary_review, article_ids=article_ids,
-                             reviewer_count=args.reviewer_count if args.reviewer_count is not None else 2)
+                             reviewer_count=args.reviewer_count if args.reviewer_count is not None else 2,
+                             source_transition_from=args.source_transition_from)
         elif args.command == "check":
             manifest, pairs, pending = check(args.root, args.work_dir, args.allow_incomplete)
             result = {"run_id": manifest["run_id"], "passed": len(pairs), "pending_count": len(pending), "pending": pending}
+        elif args.command == "retire":
+            result = retire_articles(args.root, args.previous_catalog, args.decisions)
         else:
             require(args.work_dir is not None or args.import_catalog is not None, "apply needs --work-dir or --import-catalog")
             require(args.article_ids_file is None or args.accepted_only,
