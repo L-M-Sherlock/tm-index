@@ -1,27 +1,27 @@
 {
   "metadata": {
     "schema_version": 1,
-    "nodes": 2150,
-    "edges": 13652,
-    "link_occurrences": 28408,
-    "link_records_examined": 63088,
+    "nodes": 2187,
+    "edges": 13824,
+    "link_occurrences": 28596,
+    "link_records_examined": 63718,
     "self_links_ignored": 2380,
-    "nodes_with_outgoing": 1905,
-    "nodes_with_incoming": 1886,
+    "nodes_with_outgoing": 1929,
+    "nodes_with_incoming": 1910,
     "method_edge_counts": {
       "archive": 4,
       "original": 7629,
-      "zhihu": 13407
+      "zhihu": 13579
     },
     "method_occurrence_counts": {
       "archive": 4,
       "original": 11034,
-      "zhihu": 17370
+      "zhihu": 17558
     },
     "source_url_exact_keys": 1977,
     "source_url_collision_keys": 24,
     "ambiguous_original_links": 736,
-    "direct_links_to_nontranslations": 705,
+    "direct_links_to_nontranslations": 727,
     "missing_zhihu_reference_candidates": 243,
     "articles_with_missing_zhihu_references": 167,
     "methodology": [
@@ -48,12 +48,12 @@
       }
     ],
     "live_public_verification": {
-      "scope_articles": 2150,
+      "scope_articles": 2187,
       "verified_articles": 2119,
-      "unverified_articles": 31,
+      "unverified_articles": 68,
       "earliest_checked_at": "2026-10-27T10:31:13.387383+00:00",
       "latest_checked_at": "2026-10-28T04:00:57.374660+00:00",
-      "archive_only_articles": 31,
+      "archive_only_articles": 68,
       "updated_public_articles": 120,
       "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
     },
@@ -75,6 +75,15 @@
       "editorially_excluded": 243,
       "pending_candidates": 0,
       "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
+    },
+    "incremental_archive_scan": {
+      "archive_commit": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0",
+      "new_translations": 37,
+      "outgoing_links_examined_in_new_articles": 630,
+      "existing_translation_sources_checked_for_backlinks": 2150,
+      "direct_edges_added": 172,
+      "direct_occurrences_added": 188,
+      "scope": "仅补新增译文相关的知乎直链、存档直链和知乎原生引用注释。既有边保留历史来源；原文链接匹配及回答引用记录沿用既有版本。"
     }
   },
   "ambiguous_examples": [
@@ -261362,6 +261371,23 @@
       "occurrences": 1
     },
     {
+      "source_id": "2094066206470836669",
+      "target_id": "2098724373855204531",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子非实在论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098724373855204531"
+      ],
+      "occurrences": 1
+    },
+    {
       "source_id": "2094396716246217480",
       "target_id": "2092325608407749676",
       "via": [
@@ -262863,6 +262889,23 @@
       "occurrences": 1
     },
     {
+      "source_id": "2098066369656968761",
+      "target_id": "2098724373855204531",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子非实在论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098724373855204531"
+      ],
+      "occurrences": 1
+    },
+    {
       "source_id": "2098106223535076245",
       "target_id": "2092320644734230574",
       "via": [
@@ -263114,6 +263157,2896 @@
       ],
       "source_urls": [
         "https://zhuanlan.zhihu.com/p/2097689749066626029"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098724373855204531",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098724373855204531",
+      "target_id": "2073707395801408592",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率存在于心智之中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2073707395801408592"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098724373855204531",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2098724373855204531",
+      "target_id": "2098066369656968761",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "生活在多世界中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098066369656968761"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2009326967401498177",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "说「糟了！」的重要性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2009326967401498177"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2009954257370117148",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "疯子的邀约"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2009954257370117148"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2070084674295279996",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "永动机信念"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2070084674295279996"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2098724373855204531",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子非实在论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098724373855204531"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099168854605877628",
+      "target_id": "2099544129046947114",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "当哲学遇见科学"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099544129046947114"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2017209895406035933",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "一位陌生的神祇"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2017209895406035933"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2086966654446082033",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "还原性指代"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2086966654446082033"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2099168854605877628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "如果多世界诠释先被提出"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099168854605877628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099544129046947114",
+      "target_id": "2099960958772946062",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "汝即物理 - 知乎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099960958772946062"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2071954375023538192",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "消解问题"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2071954375023538192"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2072623513647714847",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "错误的问题"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2072623513647714847"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2073383390892537693",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "心智投射谬误"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2073383390892537693"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2074465305397572622",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "解释清楚与解释消除"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2074465305397572622"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2075547593489306122",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "还原论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2075547593489306122"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2084733379602399938",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "愤怒的原子"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2084733379602399938"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2098066369656968761",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "生活在多世界中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098066369656968761"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2099544129046947114",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "当哲学遇见科学"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099544129046947114"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2099960958772946062",
+      "target_id": "2100227945059174170",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "多个世界，一个最佳猜测"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100227945059174170"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "15807962622",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "合理化"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/15807962622"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "1943099933998690430",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "我们改变想法的次数，比我们自以为的要少"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1943099933998690430"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2067904248742932977",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率之美"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2067904248742932977"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2070084674295279996",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "永动机信念"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2070084674295279996"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2074465305397572622",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "解释清楚与解释消除"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2074465305397572622"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2094066206470836669",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子物理与多世界"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094066206470836669"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2094830441081599393",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "构型与振幅"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2094830441081599393"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2095226693917086175",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "联合构型"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095226693917086175"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2095980195484382180",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "坍缩假说"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2095980195484382180"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2096646046239683603",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是简洁的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2096646046239683603"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2098724373855204531",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "量子非实在论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098724373855204531"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2099168854605877628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "如果多世界诠释先被提出"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099168854605877628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2099960958772946062",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "汝即物理"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099960958772946062"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100227945059174170",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2064705136883245583",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "世界：导读"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064705136883245583"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2100227945059174170",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "多个世界，一个最佳猜测"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100227945059174170"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2100905602411251643",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "旧世代科学的失败"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100905602411251643"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2101247086901706984",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "困境：科学还是贝叶斯？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101247086901706984"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2102059193201058456",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "当科学无能为力时"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102059193201058456"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2102468203410735218",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学还不够严苛"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102468203410735218"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2102876085436299063",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "​科学家已经知道这些了吗？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102876085436299063"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2103127852757546926",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "没有任何防线是安全的，科学也不例外"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103127852757546926"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2103533031562789005",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "改变科学的定义"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103533031562789005"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2103877608198903500",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "比科学更快"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103877608198903500"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2104226368514946084",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的速度"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104226368514946084"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2104613351229863044",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "那条外星信息"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104613351229863044"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2104988719879033824",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "我童年的榜样"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104988719879033824"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2105410460992458807",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的超能力"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105410460992458807"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100522216823731832",
+      "target_id": "2105722277195206942",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "结课大作业"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105722277195206942"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100905602411251643",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2100905602411251643",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2100905602411251643",
+      "target_id": "2101247086901706984",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "困境：科学还是贝叶斯？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101247086901706984"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101247086901706984",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101247086901706984",
+      "target_id": "2096646046239683603",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "退相干是简洁的"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2096646046239683603"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101247086901706984",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101247086901706984",
+      "target_id": "2100905602411251643",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "旧世代科学的失败"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100905602411251643"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101247086901706984",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "1961358134401564985",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "情感死亡螺旋"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1961358134401564985"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2070630452243779970",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "寻找贝叶斯结构"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2070630452243779970"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2099168854605877628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "如果多世界诠释先被提出"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099168854605877628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2101247086901706984",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "困境：科学还是贝叶斯？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101247086901706984"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2101621172253234659",
+      "target_id": "2102059193201058456",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "当科学无能为力时"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102059193201058456"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102004452093961985",
+      "target_id": "2085870331089139192",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "一个末日论者的思想演变"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2085870331089139192"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102006200615421390",
+      "target_id": "2102004452093961985",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "没有人是一座孤岛"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102004452093961985"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102059193201058456",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102059193201058456",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102059193201058456",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2102059193201058456",
+      "target_id": "2102468203410735218",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学还不够严苛"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102468203410735218"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2067904248742932977",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "概率之美"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2067904248742932977"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2069478246668939394",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "热力学第二定律与认知引擎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2069478246668939394"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2102059193201058456",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "当科学无能为力时"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102059193201058456"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102468203410735218",
+      "target_id": "2102876085436299063",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "​科学家已经知道这些了吗？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102876085436299063"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "1961358134401564985",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "情感死亡螺旋"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1961358134401564985"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2068631832942338672",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "在实验室之外"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2068631832942338672"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2069478246668939394",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "热力学第二定律与认知引擎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2069478246668939394"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2100227945059174170",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "多个世界，一个最佳猜测"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100227945059174170"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2102468203410735218",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学还不够严苛"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102468203410735218"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2102876085436299063",
+      "target_id": "2103127852757546926",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "没有任何防线是安全的，科学也不例外"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103127852757546926"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "4958428326",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "愚蠢的反面并非智慧"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/4958428326"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "1996695383045317323",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "Asch 的从众实验"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1996695383045317323"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "1999056337015940656",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "孤勇的反抗"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1999056337015940656"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2004256642078884961",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "邪教式反邪"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2004256642078884961"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2011104623788836422",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "怀疑的正确用法"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2011104623788836422"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2100905602411251643",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "旧世代科学的失败"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100905602411251643"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2102468203410735218",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学还不够严苛"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102468203410735218"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2102876085436299063",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "​科学家已经知道这些了吗？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102876085436299063"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2103127852757546926",
+      "target_id": "2103533031562789005",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "改变科学的定义"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103533031562789005"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103533031562789005",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103533031562789005",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103533031562789005",
+      "target_id": "2103127852757546926",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "没有任何防线是安全的，科学也不例外"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103127852757546926"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103533031562789005",
+      "target_id": "2103877608198903500",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "比科学更快"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103877608198903500"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2025180672604554190",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "进化心理学"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2025180672604554190"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2069478246668939394",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "热力学第二定律与认知引擎"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2069478246668939394"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2098066369656968761",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "生活在多世界中"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2098066369656968761"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2099168854605877628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "如果多世界诠释先被提出"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099168854605877628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2103533031562789005",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "改变科学的定义"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103533031562789005"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2103877608198903500",
+      "target_id": "2104226368514946084",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的速度"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104226368514946084"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2091826482167522750",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "广义反僵尸原则"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2091826482167522750"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2099168854605877628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "如果多世界诠释先被提出"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2099168854605877628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2100227945059174170",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "多个世界，一个最佳猜测"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100227945059174170"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2100905602411251643",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "旧世代科学的失败"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100905602411251643"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2103877608198903500",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "比科学更快"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2103877608198903500"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2104226368514946084",
+      "target_id": "2104613351229863044",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "那条外星信息"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104613351229863044"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104613351229863044",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104613351229863044",
+      "target_id": "2083224426108274393",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "入会仪式"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2083224426108274393"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104613351229863044",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104613351229863044",
+      "target_id": "2104226368514946084",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的速度"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104226368514946084"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104613351229863044",
+      "target_id": "2104988719879033824",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "我童年的榜样"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104988719879033824"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "1935633364460766155",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "从虚构证据中归纳：一种逻辑谬误"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1935633364460766155"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "1993332131317970026",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "真理的卫道士"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1993332131317970026"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2017209895406035933",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "一位陌生的神祇"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2017209895406035933"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2068631832942338672",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "在实验室之外"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2068631832942338672"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2100905602411251643",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "旧世代科学的失败"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100905602411251643"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2104613351229863044",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "那条外星信息"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104613351229863044"
+      ],
+      "occurrences": 2
+    },
+    {
+      "source_id": "2104988719879033824",
+      "target_id": "2105410460992458807",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的超能力"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105410460992458807"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "3432042124",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "一致性偏见"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/3432042124"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "1927818329978013693",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "缓存思想"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1927818329978013693"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "1955423601445545825",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "超级英雄偏见"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1955423601445545825"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "1961358134401564985",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "情感死亡螺旋"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1961358134401564985"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "2104988719879033824",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "我童年的榜样"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2104988719879033824"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105410460992458807",
+      "target_id": "2105722277195206942",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "结课大作业"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105722277195206942"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105667379665572156",
+      "target_id": "2083142825110254784",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "没有人能逃脱永久的底层阶级"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2083142825110254784"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105667379665572156",
+      "target_id": "2102001928645432221",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "另一条路"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2102001928645432221"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105722277195206942",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105722277195206942",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105722277195206942",
+      "target_id": "2105410460992458807",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "爱因斯坦的超能力"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105410460992458807"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2105722277195206942",
+      "target_id": "2106089851644801112",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "「技术解释」的技术解释"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2106089851644801112"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "991286265",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "0 和 1 不是概率"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/991286265"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "1996321798212585333",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "两则关于「邪教」的公案"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/1996321798212585333"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2023118761268364628",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "进化之路，通向灭绝"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2023118761268364628"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2023475345806958868",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "群体选择主义的悲剧"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2023475345806958868"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2055264755414218095",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "压缩的谬误"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2055264755414218095"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2062903307765650455",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "插曲：贝叶斯定理的直观解释"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2062903307765650455"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2064365098970436713",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "第四卷：区区现实"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2064365098970436713"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2067225460942050315",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "现实是丑陋的吗？"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2067225460942050315"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2075547593489306122",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "还原论"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2075547593489306122"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2080666040158242594",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "已成定论的科学之美"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2080666040158242594"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2100522216823731832",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学与理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2100522216823731832"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2101621172253234659",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "科学不相信你的理性"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2101621172253234659"
+      ],
+      "occurrences": 1
+    },
+    {
+      "source_id": "2106089851644801112",
+      "target_id": "2105722277195206942",
+      "via": [
+        "zhihu"
+      ],
+      "match_quality": [
+        "direct"
+      ],
+      "link_texts": [
+        "结课大作业"
+      ],
+      "source_urls": [
+        "https://zhuanlan.zhihu.com/p/2105722277195206942"
       ],
       "occurrences": 1
     }

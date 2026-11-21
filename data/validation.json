@@ -3,25 +3,25 @@
   "annotation_date": "2026-10-26",
   "model": "gpt-6-luna",
   "reasoning_effort": "max",
-  "source_articles": 2410,
-  "annotated_articles": 2410,
-  "included_articles": 2150,
+  "source_articles": 2449,
+  "annotated_articles": 2449,
+  "included_articles": 2187,
   "decision_counts": {
-    "excluded": 260,
+    "translation": 2046,
+    "translated_excerpt": 78,
     "translated_adaptation": 63,
-    "translated_excerpt": 76,
-    "translation": 2011
+    "excluded": 262
   },
   "publisher_counts": {
-    "Thoughts Memo": 1803,
-    "Jarrett Ye": 607
+    "Thoughts Memo": 1828,
+    "Jarrett Ye": 621
   },
   "included_publisher_counts": {
-    "Thoughts Memo": 1565,
-    "Jarrett Ye": 585
+    "Thoughts Memo": 1589,
+    "Jarrett Ye": 598
   },
-  "covered_visible_text_chars": 10700596,
-  "unique_keywords": 4257,
+  "covered_visible_text_chars": 11009318,
+  "unique_keywords": 4356,
   "keyword_aliases": {
     "AGI": "通用人工智能",
     "AI 对齐": "AI对齐",
@@ -148,7 +148,7 @@
     "闪卡设计": "抽认卡设计",
     "问答卡片": "问答卡"
   },
-  "keyword_normalized_articles": 293,
+  "keyword_normalized_articles": 297,
   "keyword_alias_count": 124,
   "per_article_keyword_normalizations": 22,
   "checks": {
@@ -171,17 +171,17 @@
     "本次未刷新存档或发布网站；额外来源核对及历史版本限制记录于各复核文件。"
   ],
   "original_authors": {
-    "articles": 2150,
+    "articles": 2187,
     "status_counts": {
-      "resolved": 2150
+      "resolved": 2187
     },
     "source_counts": {
       "directory": 1446,
       "translation": 168,
-      "original_web": 465,
+      "original_web": 502,
       "user_confirmation": 71
     },
-    "distinct_credited_names": 165,
+    "distinct_credited_names": 172,
     "excluded_original_author_records": 1,
     "priority": [
       "user_confirmation",
@@ -192,27 +192,27 @@
   },
   "references": {
     "schema_version": 1,
-    "nodes": 2150,
-    "edges": 13652,
-    "link_occurrences": 28408,
-    "link_records_examined": 63088,
+    "nodes": 2187,
+    "edges": 13824,
+    "link_occurrences": 28596,
+    "link_records_examined": 63718,
     "self_links_ignored": 2380,
-    "nodes_with_outgoing": 1905,
-    "nodes_with_incoming": 1886,
+    "nodes_with_outgoing": 1929,
+    "nodes_with_incoming": 1910,
     "method_edge_counts": {
       "archive": 4,
       "original": 7629,
-      "zhihu": 13407
+      "zhihu": 13579
     },
     "method_occurrence_counts": {
       "archive": 4,
       "original": 11034,
-      "zhihu": 17370
+      "zhihu": 17558
     },
     "source_url_exact_keys": 1977,
     "source_url_collision_keys": 24,
     "ambiguous_original_links": 736,
-    "direct_links_to_nontranslations": 705,
+    "direct_links_to_nontranslations": 727,
     "missing_zhihu_reference_candidates": 243,
     "articles_with_missing_zhihu_references": 167,
     "methodology": [
@@ -239,12 +239,12 @@
       }
     ],
     "live_public_verification": {
-      "scope_articles": 2150,
+      "scope_articles": 2187,
       "verified_articles": 2119,
-      "unverified_articles": 31,
+      "unverified_articles": 68,
       "earliest_checked_at": "2026-10-27T10:31:13.387383+00:00",
       "latest_checked_at": "2026-10-28T04:00:57.374660+00:00",
-      "archive_only_articles": 31,
+      "archive_only_articles": 68,
       "updated_public_articles": 120,
       "unverified_behavior": "new articles use archive snapshot; no live reread is claimed"
     },
@@ -266,6 +266,15 @@
       "editorially_excluded": 243,
       "pending_candidates": 0,
       "scope": "Historical candidate dispositions, not a new full-source or live-Zhihu scan."
+    },
+    "incremental_archive_scan": {
+      "archive_commit": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0",
+      "new_translations": 37,
+      "outgoing_links_examined_in_new_articles": 630,
+      "existing_translation_sources_checked_for_backlinks": 2150,
+      "direct_edges_added": 172,
+      "direct_occurrences_added": 188,
+      "scope": "仅补新增译文相关的知乎直链、存档直链和知乎原生引用注释。既有边保留历史来源；原文链接匹配及回答引用记录沿用既有版本。"
     }
   },
   "answer_references": {
@@ -297,41 +306,56 @@
     "unreviewed_submitted_pairs": 0,
     "classification_limitations": "Excerpt validation and blockquote checks do not establish semantic attribution; level 2 requires contextual review of the answer author’s own paraphrase."
   },
-  "latest_incremental_annotation_date": "2026-10-28",
+  "latest_incremental_annotation_date": "2026-11-21",
   "summary_revisions": {
-    "latest_date": "2026-11-03",
-    "articles": 701,
-    "events": 703,
+    "latest_date": "2026-11-21",
+    "articles": 738,
+    "events": 740,
     "review_file": "data/summary-revisions.json",
     "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"
   },
   "summary_reviews": {
-    "run_id": "compact-full-20261103",
-    "latest_date": "2026-11-03",
-    "reviewed": 622,
-    "rewritten": 436,
-    "retained": 186,
-    "body_characters": 3128869,
-    "before_summary_characters": 89139,
-    "after_summary_characters": 174366,
-    "reused_old_judgments": 30,
-    "reused_direct_retains": 10,
-    "new_old_judgments": 592,
-    "new_draft_validations": 436,
+    "run_id": "new-translations-20261121",
+    "latest_date": "2026-11-21",
+    "reviewed": 37,
+    "rewritten": 37,
+    "retained": 0,
+    "body_characters": 303106,
+    "before_summary_characters": 0,
+    "after_summary_characters": 24932,
+    "reused_old_judgments": 0,
+    "reused_direct_retains": 0,
+    "new_old_judgments": 37,
+    "new_draft_validations": 37,
     "length_strata": [
       {
-        "lower": 3000,
-        "upper": 5000,
-        "population_count": 330
+        "lower": 8000,
+        "upper": 10000,
+        "population_count": 2
       },
       {
-        "lower": 5000,
-        "upper": 8000,
-        "population_count": 292
+        "lower": 10000,
+        "upper": 15000,
+        "population_count": 2
+      },
+      {
+        "lower": 15000,
+        "upper": 20000,
+        "population_count": 0
       }
     ],
-    "model": "gpt-6",
+    "model": "gpt-6-luna",
     "reasoning_effort": "max",
     "review_file": "data/summary-reviews.json"
+  },
+  "incremental_archive_intake": {
+    "archive_commit": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0",
+    "baseline_archive_commit": "1e3772f102444929a534bb84287d7737adccfec5",
+    "source_articles_added": 39,
+    "translations_added": 37,
+    "excluded_article_ids": [
+      "2099829372505147086",
+      "2105405675283208186"
+    ]
   }
 }

@@ -1189,12 +1189,32 @@
       "2096646046239683603",
       "2097065827761644392",
       "2097772133044826263",
-      "2098066369656968761"
+      "2098066369656968761",
+      "2098724373855204531",
+      "2099168854605877628",
+      "2099544129046947114",
+      "2099960958772946062",
+      "2100227945059174170",
+      "2100905602411251643",
+      "2101247086901706984",
+      "2101621172253234659",
+      "2102059193201058456",
+      "2102468203410735218",
+      "2102876085436299063",
+      "2103127852757546926",
+      "2103533031562789005",
+      "2103877608198903500",
+      "2104226368514946084",
+      "2104613351229863044",
+      "2104988719879033824",
+      "2105410460992458807",
+      "2105722277195206942",
+      "2106089851644801112"
     ],
-    "resolved_articles": 202,
+    "resolved_articles": 222,
     "partial_articles": 0,
     "aliases": [],
-    "article_count": 202
+    "article_count": 222
   },
   {
     "name": "Peter Gray",
@@ -1334,12 +1354,13 @@
       "2057400181230940452",
       "2058131187579802138",
       "2060661508351211081",
-      "2075516610262184101"
+      "2075516610262184101",
+      "2101702585862329376"
     ],
-    "resolved_articles": 130,
+    "resolved_articles": 131,
     "partial_articles": 0,
     "aliases": [],
-    "article_count": 130
+    "article_count": 131
   },
   {
     "name": "David Friedman",
@@ -1829,14 +1850,16 @@
       "2094799990279370013",
       "2096017865178625894",
       "2096214419600568640",
-      "2096308707458138933"
+      "2096308707458138933",
+      "2099543398021711279",
+      "2101359776634496904"
     ],
-    "resolved_articles": 50,
+    "resolved_articles": 52,
     "partial_articles": 0,
     "aliases": [
       "Gwern"
     ],
-    "article_count": 50
+    "article_count": 52
   },
   {
     "name": "Nate Soares",
@@ -2040,12 +2063,13 @@
       "2071629094639374930",
       "2077715865362085704",
       "2083996452456490783",
-      "2094066206470836669"
+      "2094066206470836669",
+      "2100522216823731832"
     ],
-    "resolved_articles": 26,
+    "resolved_articles": 27,
     "partial_articles": 0,
     "aliases": [],
-    "article_count": 26
+    "article_count": 27
   },
   {
     "name": "Andrew Huberman",
@@ -2181,6 +2205,36 @@
     "article_count": 16
   },
   {
+    "name": "Neel Nanda",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "author"
+    ],
+    "article_ids": [
+      "19422901183",
+      "1979846755966276606",
+      "2015376714889462429",
+      "2019065981343904145",
+      "2019518093127349449",
+      "2033918355795652984",
+      "2034334521475192075",
+      "2037246808632586458",
+      "2040752225060902476",
+      "2059936154183587504",
+      "2082136281266627335",
+      "2082834419400840891",
+      "2085671088642696739",
+      "2101707679865610468",
+      "2103137394409084260"
+    ],
+    "resolved_articles": 15,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 15
+  },
+  {
     "name": "Alfie Kohn",
     "entity_types": [
       "person"
@@ -2210,6 +2264,36 @@
     "article_count": 14
   },
   {
+    "name": "Fernando Borretti",
+    "entity_types": [
+      "person",
+      "unknown"
+    ],
+    "roles": [
+      "author"
+    ],
+    "article_ids": [
+      "718778050",
+      "1921171513228362430",
+      "1953099359467069881",
+      "2076357286067552264",
+      "2082155047606018206",
+      "2082158716124665181",
+      "2082418101119881430",
+      "2083142825110254784",
+      "2085870331089139192",
+      "2102001928645432221",
+      "2102004452093961985",
+      "2102006200615421390",
+      "2105667379665572156",
+      "2106032839716295575"
+    ],
+    "resolved_articles": 14,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 14
+  },
+  {
     "name": "Adam Mastroianni",
     "entity_types": [
       "person"
@@ -2231,34 +2315,6 @@
       "2095539874195562788",
       "2095552317445640342",
       "2095553153739632965"
-    ],
-    "resolved_articles": 13,
-    "partial_articles": 0,
-    "aliases": [],
-    "article_count": 13
-  },
-  {
-    "name": "Neel Nanda",
-    "entity_types": [
-      "person"
-    ],
-    "roles": [
-      "author"
-    ],
-    "article_ids": [
-      "19422901183",
-      "1979846755966276606",
-      "2015376714889462429",
-      "2019065981343904145",
-      "2019518093127349449",
-      "2033918355795652984",
-      "2034334521475192075",
-      "2037246808632586458",
-      "2040752225060902476",
-      "2059936154183587504",
-      "2082136281266627335",
-      "2082834419400840891",
-      "2085671088642696739"
     ],
     "resolved_articles": 13,
     "partial_articles": 0,
@@ -2311,31 +2367,6 @@
       "990666286",
       "1567295802",
       "1963903161430439820"
-    ],
-    "resolved_articles": 9,
-    "partial_articles": 0,
-    "aliases": [],
-    "article_count": 9
-  },
-  {
-    "name": "Fernando Borretti",
-    "entity_types": [
-      "person",
-      "unknown"
-    ],
-    "roles": [
-      "author"
-    ],
-    "article_ids": [
-      "718778050",
-      "1921171513228362430",
-      "1953099359467069881",
-      "2076357286067552264",
-      "2082155047606018206",
-      "2082158716124665181",
-      "2082418101119881430",
-      "2083142825110254784",
-      "2085870331089139192"
     ],
     "resolved_articles": 9,
     "partial_articles": 0,
@@ -2486,6 +2517,31 @@
     "article_count": 7
   },
   {
+    "name": "Robin Hanson",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "author",
+      "speaker"
+    ],
+    "article_ids": [
+      "704266916",
+      "713903603",
+      "5828225966",
+      "5830800685",
+      "6076608813",
+      "1950516755240817475",
+      "2099565433678574449"
+    ],
+    "resolved_articles": 7,
+    "partial_articles": 0,
+    "aliases": [
+      "ROBIN HANSON"
+    ],
+    "article_count": 7
+  },
+  {
     "name": "Shoui",
     "entity_types": [
       "pseudonym"
@@ -2506,29 +2562,6 @@
     "partial_articles": 0,
     "aliases": [],
     "article_count": 7
-  },
-  {
-    "name": "Robin Hanson",
-    "entity_types": [
-      "person"
-    ],
-    "roles": [
-      "author"
-    ],
-    "article_ids": [
-      "704266916",
-      "713903603",
-      "5828225966",
-      "5830800685",
-      "6076608813",
-      "1950516755240817475"
-    ],
-    "resolved_articles": 6,
-    "partial_articles": 0,
-    "aliases": [
-      "ROBIN HANSON"
-    ],
-    "article_count": 6
   },
   {
     "name": "Soren Bjornstad",
@@ -3106,6 +3139,22 @@
     "article_count": 1
   },
   {
+    "name": "Bhavay Tyagi",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103461889414120318"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
     "name": "Bill VanPatten",
     "entity_types": [
       "person"
@@ -3243,6 +3292,38 @@
     ],
     "article_ids": [
       "648583198"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
+    "name": "Curt Jaimungal",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103505363291082860"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
+    "name": "Curtis Yarvin",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "speaker"
+    ],
+    "article_ids": [
+      "2099565433678574449"
     ],
     "resolved_articles": 1,
     "partial_articles": 0,
@@ -4180,6 +4261,22 @@
     "article_count": 1
   },
   {
+    "name": "Prachi Garella",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103461889414120318"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
     "name": "R Richardson",
     "entity_types": [
       "unknown"
@@ -4269,6 +4366,22 @@
     ],
     "article_ids": [
       "712219496"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
+    "name": "Roman Yampolskiy",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103504254212297333"
     ],
     "resolved_articles": 1,
     "partial_articles": 0,
@@ -4429,6 +4542,22 @@
     ],
     "article_ids": [
       "697650592"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
+    "name": "Sophia Aryan",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103504852005536288"
     ],
     "resolved_articles": 1,
     "partial_articles": 0,
@@ -4605,6 +4734,22 @@
     ],
     "article_ids": [
       "2085795301030478053"
+    ],
+    "resolved_articles": 1,
+    "partial_articles": 0,
+    "aliases": [],
+    "article_count": 1
+  },
+  {
+    "name": "Yannick Bernard",
+    "entity_types": [
+      "person"
+    ],
+    "roles": [
+      "interviewer"
+    ],
+    "article_ids": [
+      "2103505746315031116"
     ],
     "resolved_articles": 1,
     "partial_articles": 0,

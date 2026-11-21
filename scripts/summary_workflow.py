@@ -62,6 +62,23 @@ def catalog_rows(catalog):
     return rows
 
 
+def _select_review_rows(rows, minimum, maximum, article_ids=None):
+    eligible = {article_id: row for article_id, row in rows.items()
+                if row["read_chars"] >= minimum and (maximum is None or row["read_chars"] < maximum)}
+    if article_ids is not None:
+        require(isinstance(article_ids, list) and bool(article_ids)
+                and all(isinstance(article_id, str) and article_id and article_id == article_id.strip()
+                        for article_id in article_ids), "Selected article IDs must be a nonempty JSON array of ID strings")
+        ids = set(article_ids)
+        require(len(ids) == len(article_ids), "Selected article IDs contain duplicates")
+        missing = ids - rows.keys()
+        require(not missing, f"Selected article IDs are missing from the catalog: {', '.join(sorted(missing))}")
+        outside = ids - eligible.keys()
+        require(not outside, f"Selected article IDs are outside the body length range: {', '.join(sorted(outside))}")
+        eligible = {article_id: eligible[article_id] for article_id in article_ids}
+    return sorted(eligible.values(), key=lambda row: (-row["read_chars"], row["id"]))
+
+
 def provenance(row):
     return {key: row[key] for key in ("model", "reasoning_effort", "worker_agent", "worker_shard") if key in row}
 
@@ -84,11 +101,16 @@ def validate_model_config(manifest):
     return config
 
 
-def assign_articles(items, actor_prefix="long", excluded_ids=()):
+def _validate_reviewer_count(count):
+    require(type(count) is int and 1 <= count <= 6, "Reviewer count must be an integer from 1 to 6")
+
+
+def assign_articles(items, actor_prefix="long", excluded_ids=(), *, reviewer_count=2):
+    _validate_reviewer_count(reviewer_count)
     excluded_ids = set(excluded_ids)
     eligible = [item for item in items if item["id"] not in excluded_ids]
     assignments = {}
-    for role, count in (("writer", 6), ("reviewer", 2)):
+    for role, count in (("writer", 6), ("reviewer", reviewer_count)):
         loads, groups = [0] * count, [[] for _ in range(count)]
         for item in eligible:
             index = min(range(count), key=lambda i: loads[i])
@@ -739,10 +761,14 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
 
 def prepare(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000, *,
             max_body_chars=None, recovery_dir=None, reuse_audit=None, actor_prefix="long", blind_review=False,
-            model=MODEL, reasoning_effort=EFFORT, require_bound_primary_review=False):
+            model=MODEL, reasoning_effort=EFFORT, require_bound_primary_review=False, article_ids=None,
+            reviewer_count=2):
     """Prepare a fresh review run, retaining the original positional legacy interface."""
     config = model_config({"model": model, "reasoning_effort": reasoning_effort})
+    _validate_reviewer_count(reviewer_count)
+    require(reviewer_count == 2 or blind_review, "A custom reviewer count requires blind_review")
     require(not require_bound_primary_review or blind_review, "Bound primary review requires blind_review")
+    require(article_ids is None or blind_review, "Selecting article IDs requires blind_review")
     extended = (max_body_chars is not None or recovery_dir is not None or reuse_audit is not None
                 or actor_prefix != "long" or blind_review)
     if not extended:
@@ -762,15 +788,17 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
     baseline = ({row["id"]: row for row in source_data["articles"]}
                 if isinstance(source_data, dict) and "articles" in source_data else source_data)
     require(isinstance(baseline, dict), "Invalid source manifest")
-    selected = sorted((row for row in catalog["articles"] if row["read_chars"] >= minimum
-                       and (max_body_chars is None or row["read_chars"] < max_body_chars)),
-                      key=lambda row: (-row["read_chars"], row["id"]))
+    selected = _select_review_rows(catalog_rows(catalog), minimum, max_body_chars, article_ids)
     require(selected, "No articles match the requested scope")
     reuse = _read_reuse_audit(root, reuse_audit)
     manifest = {"schema_version": 1, "run_id": run_id, "revision_date": revision_date,
                 "min_body_chars": minimum, "max_body_chars": max_body_chars, "chunk_chars": chunk_chars,
                 **config, "actor_prefix": actor_prefix,
                 "blind_review": bool(blind_review), "articles": [], "preserve_files": preserve_files(root)}
+    if article_ids is not None:
+        manifest["selected_article_ids"] = [row["id"] for row in selected]
+    if blind_review:
+        manifest["reviewer_count"] = reviewer_count
     if require_bound_primary_review:
         manifest["require_bound_primary_review"] = True
     if reuse is not None:
@@ -812,7 +840,8 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
     if invalidations:
         manifest["reuse_invalidations"] = invalidations
     direct_retains = {item["id"] for item in manifest["articles"] if item["review_origin"] == "sampling_reuse_adequate"}
-    manifest["assignments"] = assign_articles(manifest["articles"], actor_prefix, direct_retains)
+    manifest["assignments"] = assign_articles(manifest["articles"], actor_prefix, direct_retains,
+                                              reviewer_count=reviewer_count)
     # Complete all source checks before creating any work files.
     for item, chunks, prior_entry in prepared:
         for relative, part in chunks:
@@ -1185,7 +1214,7 @@ def validate_blind_reviewer(review, outline, outline_path, item, body, initial=N
 
 def validate_final_reviewer_transfer(work, transfer, owners, item, body, writer, review,
                                      prior_outline, prior_outline_path, prior_initial, prior_initial_path,
-                                     excluded_prior=(), expected_old_verdict=None):
+                                     excluded_prior=(), expected_old_verdict=None, *, reviewer_count=2):
     """Validate a genuinely new blind reader while retaining the original old-draft judgment."""
     article_id = item["id"]
     original = owners["reviewer"][article_id]
@@ -1193,7 +1222,8 @@ def validate_final_reviewer_transfer(work, transfer, owners, item, body, writer,
     require(transfer.get("id") == article_id and transfer.get("from") == original,
             f"{article_id}: invalid final reviewer transfer identity")
     reviewer_prefix = original.rsplit("_", 1)[0]
-    require(replacement in {f"{reviewer_prefix}_1", f"{reviewer_prefix}_2"} and replacement != original
+    reviewer_agents = {f"{reviewer_prefix}_{index}" for index in range(1, reviewer_count + 1)}
+    require(replacement in reviewer_agents and replacement != original
             and replacement != owners["writer"][article_id] and transfer.get("confirmed_unread") is True,
             f"{article_id}: final reviewer transfer is not independent")
     nonempty(transfer.get("reason"), f"{article_id}: reviewer transfer reason missing")
@@ -1273,6 +1303,8 @@ def event_id(item, summary, run_id):
 
 def _check_legacy(root, work, allow_incomplete=False):
     manifest = read_json(work / "manifest.json")
+    require("selected_article_ids" not in manifest, "Selecting article IDs requires blind_review")
+    require("reviewer_count" not in manifest, "A custom reviewer count requires blind_review")
     validate_model_config(manifest)
     date.fromisoformat(manifest["revision_date"])
     if "preserve_files" in manifest:
@@ -1393,10 +1425,12 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     selected_ids = set(ids) if selected_ids is None else set(selected_ids)
     require(selected_ids <= set(ids), "Selected publication IDs are outside the run scope")
     published_entries = published_entries or {}
-    selected = sorted((row for row in rows.values() if row["read_chars"] >= minimum
-                       and (maximum is None or row["read_chars"] < maximum)),
-                      key=lambda row: (-row["read_chars"], row["id"]))
+    article_ids = manifest.get("selected_article_ids")
+    require("selected_article_ids" not in manifest or article_ids is not None,
+            "Selected article IDs must be a nonempty JSON array of ID strings")
+    selected = _select_review_rows(rows, minimum, maximum, article_ids)
     require(ids == [row["id"] for row in selected], "Catalog review scope changed; prepare a new run")
+    require(article_ids is None or article_ids == ids, "Selected article IDs differ from the frozen scope")
     items = {item["id"]: item for item in manifest["articles"]}
     direct_ids = {id for id, item in items.items() if item.get("review_origin") == "sampling_reuse_adequate"}
     eligible_ids = set(ids) - direct_ids
@@ -1406,7 +1440,9 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     assignments = manifest.get("assignments")
     require(isinstance(assignments, dict) and set(assignments) == {"writer", "reviewer"}, "Missing actor assignments")
     owners = {}
-    for role, limit in (("writer", 6), ("reviewer", 2)):
+    reviewer_count = manifest.get("reviewer_count", 2)
+    _validate_reviewer_count(reviewer_count)
+    for role, limit in (("writer", 6), ("reviewer", reviewer_count)):
         groups = assignments[role]
         expected_agents = {f"{prefix}_{role}_{index}" for index in range(1, limit + 1)}
         require(isinstance(groups, dict) and set(groups) == expected_agents, f"Invalid {role} assignment groups")
@@ -1620,7 +1656,7 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
                 if transfer is not None and reviewer_outline is not None and reviewer_initial is not None:
                     validate_final_reviewer_transfer(work, transfer, owners, item, body, writer, review,
                         reviewer_outline, reviewer_outline_path, reviewer_initial, reviewer_initial_path,
-                        excluded_reviewer, expected_old_verdict)
+                        excluded_reviewer, expected_old_verdict, reviewer_count=reviewer_count)
                 elif transfer is not None:
                     add_pending(article_id, "original-reviewer-evidence")
                 elif reviewer_outline is not None:
@@ -2438,6 +2474,8 @@ def main(argv=None):
     p = sub.add_parser("prepare")
     p.add_argument("--source-dir", type=Path, required=True)
     p.add_argument("--source-manifest", type=Path, required=True)
+    p.add_argument("--select-article-ids-file", type=Path,
+                   help="prepare only the IDs in this JSON array for a blind-review run")
     p.add_argument("--work-dir", type=Path, required=True)
     p.add_argument("--run-id", required=True)
     p.add_argument("--date", required=True)
@@ -2448,6 +2486,8 @@ def main(argv=None):
     p.add_argument("--reuse-audit", type=Path)
     p.add_argument("--actor-prefix", default="long")
     p.add_argument("--blind-review", action="store_true")
+    p.add_argument("--reviewer-count", type=int, choices=range(1, 7),
+                   help="number of independent reviewer groups for a blind-review run (default: 2)")
     p.add_argument("--model", default=MODEL, help="actual model used for this run; frozen in the review inputs")
     p.add_argument("--reasoning-effort", default=EFFORT, help="actual reasoning effort used for this run")
     p.add_argument("--require-bound-primary-review", action="store_true",
@@ -2465,12 +2505,18 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
+            require(args.reviewer_count is None or args.blind_review, "--reviewer-count requires --blind-review")
+            article_ids = None
+            if args.select_article_ids_file is not None:
+                article_ids = read_json(args.select_article_ids_file)
+                require(article_ids is not None, "Selected article IDs must be a nonempty JSON array of ID strings")
             result = prepare(args.root, args.source_dir, args.source_manifest, args.work_dir, args.run_id, args.date,
                              args.min_body_chars, args.chunk_chars, max_body_chars=args.max_body_chars,
                              recovery_dir=args.recovery_dir, reuse_audit=args.reuse_audit,
                              actor_prefix=args.actor_prefix, blind_review=args.blind_review,
                              model=args.model, reasoning_effort=args.reasoning_effort,
-                             require_bound_primary_review=args.require_bound_primary_review)
+                             require_bound_primary_review=args.require_bound_primary_review, article_ids=article_ids,
+                             reviewer_count=args.reviewer_count if args.reviewer_count is not None else 2)
         elif args.command == "check":
             manifest, pairs, pending = check(args.root, args.work_dir, args.allow_incomplete)
             result = {"run_id": manifest["run_id"], "passed": len(pairs), "pending_count": len(pending), "pending": pending}

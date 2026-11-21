@@ -70,7 +70,7 @@ class WorkflowTests(unittest.TestCase):
         return work
 
     def prepare_multi_blind(self, count=3, work_name=".work/multi-blind", run="multi-blind", lengths=None,
-                            bounds=(8000, 20000)):
+                            bounds=(8000, 20000), **config):
         rows, baseline = [], {}
         for number in range(1, count + 1):
             article_id = str(number)
@@ -105,7 +105,7 @@ class WorkflowTests(unittest.TestCase):
         work = self.root / work_name
         minimum, maximum = bounds if lengths is not None else (20, len(self.body) + 1)
         flow.prepare(self.root, self.sources, self.baseline, work, run, "2026-11-01", minimum,
-                     max_body_chars=maximum, actor_prefix="mid", blind_review=True)
+                     max_body_chars=maximum, actor_prefix="mid", blind_review=True, **config)
         return work
 
     def write_blind_records(self, work, writer_old="undercovered", reviewer_old="undercovered", reused=False,
@@ -223,7 +223,7 @@ class WorkflowTests(unittest.TestCase):
                 "--source-manifest", str(self.baseline), "--work-dir", str(work), "--run-id", "configured",
                 "--date", "2026-11-03", "--min-body-chars", "20", "--max-body-chars", str(len(self.body) + 1),
                 "--blind-review", "--actor-prefix", "compact", "--model", "gpt-6", "--reasoning-effort", "max",
-                "--require-bound-primary-review"])
+                "--require-bound-primary-review", "--reviewer-count", "3"])
         self.assertEqual(result, 0)
         manifest = flow.read_json(work / "manifest.json")
         item = manifest["articles"][0]
@@ -232,6 +232,7 @@ class WorkflowTests(unittest.TestCase):
             self.assertEqual({key: record[key] for key in config}, config)
         self.assertEqual(item["initial_provenance"]["model"], flow.MODEL)
         self.assertTrue(manifest["require_bound_primary_review"])
+        self.assertEqual(manifest["reviewer_count"], 3)
         self.write_blind_records(work, writer_actor="compact_writer_1", reviewer_actor="compact_reviewer_1")
         outline = flow.read_json(work / "outlines/compact_writer_1/1.json")
         flow.validate_outline(outline, "compact_writer_1", source, self.body)
@@ -658,6 +659,94 @@ class WorkflowTests(unittest.TestCase):
             flow.prepare(self.root, self.sources, self.baseline, rejected, "empty", "2026-11-01", 20,
                          max_body_chars=length, actor_prefix="mid", blind_review=True)
         self.assertFalse(rejected.exists())
+
+    def test_explicit_blind_scope_prepares_and_applies_only_selected_ids(self):
+        self.prepare_multi_blind(lengths=[9000, 11000, 16000])
+        other_source = self.sources / "2.txt"
+        other_source.unlink()
+        baseline = flow.read_json(self.baseline)
+        baseline.pop("2")
+        flow.write_json(self.baseline, baseline)
+        catalog_path = self.root / "data/catalog.json"
+        before = flow.read_json(catalog_path)["articles"]
+        work = self.root / ".work/selected"
+        ids_file = self.root / "selected.json"
+        flow.write_json(ids_file, ["1", "3"])
+        with patch("sys.stdout", new=io.StringIO()):
+            status = flow.main(["--root", str(self.root), "prepare", "--source-dir", str(self.sources),
+                "--source-manifest", str(self.baseline), "--work-dir", str(work), "--run-id", "selected",
+                "--date", "2026-11-21", "--min-body-chars", "8000", "--max-body-chars", "20000",
+                "--blind-review", "--actor-prefix", "mid", "--select-article-ids-file", str(ids_file)])
+        self.assertEqual(status, 0)
+
+        manifest_path = work / "manifest.json"
+        manifest = flow.read_json(manifest_path)
+        self.assertEqual(manifest["selected_article_ids"], ["3", "1"])
+        self.assertEqual({path.name for path in (work / "inputs").iterdir()}, {"1", "3"})
+        self.write_blind_records(work, article_id="3")
+        self.write_blind_records(work, article_id="1", writer_actor="mid_writer_2", reviewer_actor="mid_reviewer_2")
+        for selection in (["1"], ["3", "3"], ["1", "3"], None):
+            with self.subTest(selection=selection):
+                flow.write_json(manifest_path, {**manifest, "selected_article_ids": selection})
+                with self.assertRaisesRegex(ValueError, "scope|Selected article IDs"):
+                    flow.check(self.root, work)
+        flow.write_json(manifest_path, manifest)
+
+        ids_file.unlink()
+        _, accepted, pending = flow.check(self.root, work)
+        self.assertEqual([item["id"] for item, _, _ in accepted], ["3", "1"])
+        self.assertEqual(pending, [])
+        self.assertEqual(flow.apply(self.root, work)["rewritten"], 2)
+        after = flow.read_json(catalog_path)["articles"]
+        self.assertEqual([row["id"] for row in after], ["1", "2", "3"])
+        self.assertEqual(after[1], before[1])
+        self.assertNotEqual(after[0]["summary"], before[0]["summary"])
+        self.assertNotEqual(after[2]["summary"], before[2]["summary"])
+        embedded = json.loads(flow.DATA_PATTERN.search((self.root / "index.html").read_text())[2])
+        self.assertEqual(embedded["records"], after)
+
+    def test_explicit_prepare_rejects_invalid_or_out_of_range_ids(self):
+        target = self.root / "rejected-selection"
+        cases = [([], True, None, "nonempty JSON array"),
+                 ({"id": "1"}, True, None, "nonempty JSON array"),
+                 ([1], True, None, "nonempty JSON array"),
+                 (["1", "1"], True, None, "contain duplicates"),
+                 (["2"], True, None, "missing from the catalog"),
+                 (["1"], True, len(self.body), "outside the body length range"),
+                 (["1"], False, None, "requires blind_review")]
+        for ids, blind, maximum, error in cases:
+            with self.subTest(ids=ids, blind=blind, maximum=maximum):
+                with self.assertRaisesRegex(ValueError, error):
+                    flow.prepare(self.root, self.sources, self.baseline, target, "rejected", "2026-11-21", 20,
+                                 article_ids=ids, blind_review=blind, max_body_chars=maximum)
+                self.assertFalse(target.exists())
+
+    def test_blind_review_uses_exact_configured_reviewer_groups_and_identities(self):
+        work = self.prepare_multi_blind(lengths=[9000, 11000, 16000], reviewer_count=3)
+        manifest_path = work / "manifest.json"
+        manifest = flow.read_json(manifest_path)
+        self.assertEqual(manifest["assignments"]["reviewer"], {
+            "mid_reviewer_1": ["3"], "mid_reviewer_2": ["2"], "mid_reviewer_3": ["1"]})
+        for index, article_id in enumerate(("3", "2", "1"), 1):
+            self.write_blind_records(work, article_id=article_id, writer_actor=f"mid_writer_{index}",
+                                     reviewer_actor=f"mid_reviewer_{index}")
+        _, accepted, pending = flow.check(self.root, work)
+        self.assertEqual([review["reviewer"] for _, _, review in accepted],
+                         ["mid_reviewer_1", "mid_reviewer_2", "mid_reviewer_3"])
+        self.assertEqual(pending, [])
+
+        path = work / "reviewers/1.json"
+        review = flow.read_json(path)
+        flow.write_json(path, {**review, "reviewer": "mid_reviewer_2"})
+        with self.assertRaisesRegex(ValueError, "unexpected reviewer"):
+            flow.check(self.root, work)
+        flow.write_json(path, review)
+
+        for count, error in [(2, "Invalid reviewer assignment groups"), (7, "Reviewer count")]:
+            with self.subTest(count=count):
+                flow.write_json(manifest_path, {**manifest, "reviewer_count": count})
+                with self.assertRaisesRegex(ValueError, error):
+                    flow.check(self.root, work)
 
     def test_extended_prepare_recovers_exact_raw_html(self):
         html = "<p>测试正文</p><script>hidden</script><div> 后续内容 </div>"

@@ -16,7 +16,9 @@
 
 `python3 scripts/summary_workflow.py prepare --source-dir SNAPSHOTS --source-manifest MANIFEST --work-dir WORK --run-id RUN --date YYYY-MM-DD --min-body-chars 20000` 固定清单并生成每篇 article.json 和不超过 6000 字符的正文块。SNAPSHOTS 是原工作目录的 source；MANIFEST 使用原存档的 source-manifest.json，其 articles 中每篇包含 id、source_sha256、content_sha256、text_sha256 和 text_chars（也支持 ID → 上述元数据的映射）。只有来源文件哈希的旧基线不够，必须同时校验可信清单中的正文哈希，防止等长替换快照。原始 TXT 的首行元数据、正文起止标记和原目录 read_chars 必须一致。正文哈希随清单固定，不将本机路径写入公开审阅记录。
 
-prepare 同时按正文长度均衡生成六组 writer 和两组 reviewer 的 assignment.json。各角色逐篇持久化进度；这不是自动运行模型的入口。新一轮使用新的 WORK 和 RUN，保留既有审阅目录以供追溯。
+prepare 同时按正文长度均衡生成分工文件，默认六组 writer 和两组 reviewer。代理按分工逐篇阅读并保存进度。新一轮使用新的 WORK 和 RUN，保留既有审阅目录以供追溯。
+
+为新增译文补首稿时，先在隔离副本中核验新增目录条目，暂用空摘要。用 `prepare --blind-review --min-body-chars 1 --select-article-ids-file IDS.json` 固定新增 ID 清单。`--reviewer-count` 可为盲读运行配置 1～6 名独立复核者，默认为 2 名。双方仍先独立阅读全文并保存提纲，旧稿初判记录为无既有摘要。整批验收通过后，用 `apply --work-dir WORK` 生成目录和审阅历史，再将核验过的完整结果同步到正式工作区。
 
 分配同时固定在 manifest 中，check 核对每个角色的唯一归属、分配文件和结果中报告的代理身份。实际代理实例及模型配置由主代理的编排记录保证，文件自报身份不能单独证明代理独立性。
 
