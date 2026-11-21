@@ -20,28 +20,25 @@ ROOT = Path(__file__).resolve().parents[1]
 MODEL = "gpt-6-luna"
 EFFORT = "max"
 TRANSITION_BASELINE = "previous-catalog.json"
-DATA_PATTERN = re.compile(r'(<script id="catalog-data" type="application/json">)(.*?)(</script>)', re.S)
 CHECKPOINT_ORDER_NOTE = "Checkpoint time records the first observed file bytes only; it does not prove prior blind-reading order."
 SOURCE_SPEC = importlib.util.spec_from_file_location("summary_sources", Path(__file__).with_name("summary_sources.py"))
 summary_sources = importlib.util.module_from_spec(SOURCE_SPEC)
 SOURCE_SPEC.loader.exec_module(summary_sources)
-
-
-def require(condition, message):
-    if not condition:
-        raise ValueError(message)
+HISTORY_SPEC = importlib.util.spec_from_file_location("summary_history", Path(__file__).with_name("summary_history.py"))
+summary_history = importlib.util.module_from_spec(HISTORY_SPEC)
+HISTORY_SPEC.loader.exec_module(summary_history)
+SITE_SPEC = importlib.util.spec_from_file_location("site_catalog", Path(__file__).with_name("site_catalog.py"))
+site_catalog = importlib.util.module_from_spec(SITE_SPEC)
+SITE_SPEC.loader.exec_module(site_catalog)
+DATA_PATTERN = site_catalog.DATA_PATTERN
+catalog_rows = site_catalog.catalog_rows
+json_text = site_catalog.json_text
+read_json = site_catalog.read_json
+require = site_catalog.require
 
 
 def digest(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
-
-
-def read_json(path):
-    return json.loads(Path(path).read_text(encoding="utf-8"))
-
-
-def json_text(value):
-    return json.dumps(value, ensure_ascii=False, indent=2) + "\n"
 
 
 def write_json(path, value):
@@ -54,13 +51,6 @@ def confined(work, relative):
     path = (work / relative).resolve()
     require(path.is_relative_to(work.resolve()), f"Path escapes work directory: {relative}")
     return path
-
-
-def catalog_rows(catalog):
-    require(isinstance(catalog, dict) and isinstance(catalog.get("articles"), list), "Invalid catalog")
-    rows = {row["id"]: row for row in catalog["articles"]}
-    require(len(rows) == len(catalog["articles"]), "Duplicate catalog IDs")
-    return rows
 
 
 def _select_review_rows(rows, minimum, maximum, article_ids=None):
@@ -1308,9 +1298,35 @@ def validate_final_reviewer_transfer(work, transfer, owners, item, body, writer,
                         f"{article_id}: transferred review changed a frozen blind point")
 
 
-def load_ledger(root):
+def load_review_audit(root):
+    return summary_history.load_audit(root)
+
+
+def load_ledger(root, audit=None):
     path = root / "data/summary-revisions.json"
-    return read_json(path) if path.exists() else {"schema_version": 1, "entries": []}
+    ledger = read_json(path) if path.exists() else {"schema_version": 1, "entries": []}
+    if audit is None and any(summary_history.EVIDENCE_REF in event for event in ledger["entries"]):
+        audit = load_review_audit(root)
+    return summary_history.expand_ledger(ledger, audit)
+
+
+def _ledger_text(ledger, audit):
+    compact = summary_history.compact_ledger(ledger, audit)
+    require(summary_history.expand_ledger(compact, audit) == ledger,
+            "Compacted summary revisions differ from accepted history")
+    return json_text(compact)
+
+
+def _history_outputs(root, audit, ledger):
+    outputs = summary_history.audit_payloads(root, audit) if audit is not None else {}
+    ledger_path = root / "data/summary-revisions.json"
+    text = _ledger_text(ledger, audit)
+    if not ledger_path.exists() or ledger_path.read_bytes() != text.encode("utf-8"):
+        outputs[ledger_path] = text
+    for path, contents in outputs.items():
+        require(not any(token in contents for token in ("/Users/", "file://", "localhost")),
+                f"Non-public path in summary history: {path.name}")
+    return outputs
 
 
 def _source_pair(source):
@@ -1437,12 +1453,11 @@ def _check_legacy(root, work, allow_incomplete=False):
     if global_reuse is not None:
         audit_path = Path(manifest.get("reused_audit_path") or (root / global_reuse["file"]))
         require(file_hash(audit_path) == global_reuse.get("sha256"), "Pinned reuse audit changed")
-    ledger = load_ledger(root)
+    public_audit = load_review_audit(root)
+    ledger = load_ledger(root, public_audit)
     for event in ledger["entries"]:
         validate_history_review(event)
     existing_events = {event.get("revision_id"): event for event in ledger["entries"] if event.get("revision_id")}
-    public_audit_path = root / "data/summary-reviews.json"
-    public_audit = read_json(public_audit_path) if public_audit_path.exists() else None
     archived_runs = {run.get("run_id") for run in (public_audit or {}).get("previous_runs", [])}
     archived_run = manifest["run_id"] in archived_runs
     pairs, pending = [], []
@@ -1576,13 +1591,12 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     else:
         require(not any(item.get("reused_audit") for item in items.values()), "Reused item without a pinned audit")
 
-    ledger = load_ledger(root)
+    public_audit = load_review_audit(root)
+    ledger = load_ledger(root, public_audit)
     _verify_source_transition_manifest(work, manifest, ledger, selected_ids)
     for event in ledger["entries"]:
         validate_history_review(event)
     existing_events = {event.get("revision_id"): event for event in ledger["entries"] if event.get("revision_id")}
-    public_audit_path = root / "data/summary-reviews.json"
-    public_audit = read_json(public_audit_path) if public_audit_path.exists() else None
     archived_runs = {run.get("run_id") for run in (public_audit or {}).get("previous_runs", [])}
     archived_run = manifest["run_id"] in archived_runs
     pairs, pending = [], []
@@ -1959,7 +1973,8 @@ def retire_articles(root, previous_catalog, decisions):
     previous = catalog_rows(json.loads(raw))
     current = read_json(root / "data/catalog.json")
     current_rows = catalog_rows(current)
-    ledger = load_ledger(root)
+    audit = load_review_audit(root)
+    ledger = load_ledger(root, audit)
     entries = decisions.get("entries")
     require(isinstance(entries, list) and bool(entries)
             and all(isinstance(entry, dict) and set(entry) == {"id", "reason"}
@@ -1989,11 +2004,23 @@ def retire_articles(root, previous_catalog, decisions):
     ledger["retired_articles"] = archived
     require(replay_revisions(copy.deepcopy(current), ledger) == current,
             "Staged catalog differs from the remaining accepted summaries")
-    output = json_text(ledger)
-    require(not any(token in output for token in ("/Users/", "file://", "localhost")),
-            "Non-public path in retirement history")
-    staged_write({root / "data/summary-revisions.json": output})
+    staged_write(_history_outputs(root, audit, ledger))
     return {"retired_articles": len(reasons)}
+
+
+def migrate_history(root):
+    """Split existing audits and deduplicate evidence without rewriting site data."""
+    root = Path(root).resolve()
+    audit = load_review_audit(root)
+    ledger = load_ledger(root, audit)
+    catalog = read_json(root / "data/catalog.json")
+    require(replay_revisions(copy.deepcopy(catalog), ledger) == catalog,
+            "Catalog differs from accepted summary history")
+    outputs = _history_outputs(root, audit, ledger) if audit is not None else {}
+    staged_write(outputs)
+    return {"review_batches": 1 + len(audit.get("previous_runs", [])) if audit else 0,
+            "revision_events": len(ledger["entries"]),
+            "changed_files": [str(path.relative_to(root)) for path in outputs]}
 
 
 def guarded_import(current, imported, ledger):
@@ -2252,24 +2279,15 @@ def checkpoint_records(root, work, actor=None, article_id=None):
 
 def sync_import(root, import_catalog):
     """Replay accepted public history without depending on private work files."""
-    current = read_json(root / "data/catalog.json")
-    ledger = load_ledger(root)
+    current, _, embedded, html, match = site_catalog.read_site_catalog(root)
+    audit = load_review_audit(root)
+    ledger = load_ledger(root, audit)
     require(bool(ledger["entries"]), "No accepted summary history is available")
     result = guarded_import(current, read_json(import_catalog), ledger)
-    html = (root / "index.html").read_text(encoding="utf-8")
-    match = DATA_PATTERN.search(html)
-    require(match is not None, "Catalog JSON script not found")
-    embedded = json.loads(match[2])
-    require(embedded["records"] == current["articles"], "Embedded records differ from catalog")
-    require(embedded["report"] == current["metadata"] == read_json(root / "data/validation.json"), "Metadata differs across outputs")
     result["metadata"]["summary_revisions"] = revision_metadata(ledger)
-    audit_path = root / "data/summary-reviews.json"
-    if audit_path.exists():
-        result["metadata"]["summary_reviews"] = review_metadata(read_json(audit_path))
-    embedded["records"], embedded["report"] = result["articles"], result["metadata"]
-    payload = json.dumps(embedded, ensure_ascii=False).replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    html = html[:match.start(2)] + payload + html[match.end(2):]
-    outputs = {root / "data/catalog.json": json_text(result), root / "data/validation.json": json_text(result["metadata"]), root / "index.html": html}
+    if audit is not None:
+        result["metadata"]["summary_reviews"] = review_metadata(audit)
+    outputs = {root / name: text for name, text in site_catalog.catalog_files(result, embedded, html, match).items()}
     for text in outputs.values():
         require(not any(token in text for token in ("/Users/", "file://", "localhost")), "Non-public path in synchronized output")
     staged_write(outputs)
@@ -2484,8 +2502,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
     transition_run = "source_transition_baseline_sha256" in manifest
     require(not transition_run or (not accepted_only and import_catalog is None),
             "Source transitions must apply in full without importing another catalog")
-    prior_audit_path = root / "data/summary-reviews.json"
-    prior_audit = read_json(prior_audit_path) if prior_audit_path.exists() else None
+    prior_audit = load_review_audit(root)
     archived_runs = {run.get("run_id") for run in (prior_audit or {}).get("previous_runs", [])}
     require(manifest["run_id"] not in archived_runs, "Cannot apply an archived review run")
     prior_publication = _prior_publication_state(prior_audit, manifest)
@@ -2518,14 +2535,8 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                 require(acceptance_map.get(article_id) == receipt,
                         f"{article_id}: previously published primary acceptance receipt changed")
     config = model_config(manifest)
-    current = read_json(root / "data/catalog.json")
-    html = (root / "index.html").read_text(encoding="utf-8")
-    match = DATA_PATTERN.search(html)
-    require(match is not None, "Catalog JSON script not found")
-    embedded = json.loads(match[2])
-    require(embedded["records"] == current["articles"], "Embedded records differ from catalog")
-    require(embedded["report"] == current["metadata"] == read_json(root / "data/validation.json"), "Metadata differs across outputs")
-    ledger = copy.deepcopy(load_ledger(root))
+    current, _, embedded, html, match = site_catalog.read_site_catalog(root)
+    ledger = copy.deepcopy(load_ledger(root, prior_audit))
     catalog = guarded_import(current, read_json(import_catalog), ledger) if import_catalog else copy.deepcopy(current)
     rows = catalog_rows(catalog)
     existing = {event.get("revision_id") for event in ledger["entries"] if event.get("revision_id")}
@@ -2668,11 +2679,8 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
     metadata = catalog["metadata"]
     metadata["summary_reviews"] = review_metadata(audit)
     metadata["summary_revisions"] = revision_metadata(ledger)
-    embedded["records"], embedded["report"] = catalog["articles"], metadata
-    payload = json.dumps(embedded, ensure_ascii=False).replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    html = html[:match.start(2)] + payload + html[match.end(2):]
-    outputs = {root / "data/catalog.json": json_text(catalog), root / "data/validation.json": json_text(metadata),
-               root / "data/summary-reviews.json": json_text(audit), root / "data/summary-revisions.json": json_text(ledger), root / "index.html": html}
+    outputs = _history_outputs(root, audit, ledger)
+    outputs.update({root / name: text for name, text in site_catalog.catalog_files(catalog, embedded, html, match).items()})
     for path, text in outputs.items():
         if path.suffix == ".json":
             json.loads(text)
@@ -2724,6 +2732,7 @@ def main(argv=None):
     p = sub.add_parser("retire", help="preserve accepted history for articles removed from a staged catalog")
     p.add_argument("--previous-catalog", type=Path, required=True)
     p.add_argument("--decisions", type=Path, required=True)
+    sub.add_parser("migrate-history", help="split public review history into batches with shared revision evidence")
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
@@ -2745,6 +2754,8 @@ def main(argv=None):
             result = {"run_id": manifest["run_id"], "passed": len(pairs), "pending_count": len(pending), "pending": pending}
         elif args.command == "retire":
             result = retire_articles(args.root, args.previous_catalog, args.decisions)
+        elif args.command == "migrate-history":
+            result = migrate_history(args.root)
         else:
             require(args.work_dir is not None or args.import_catalog is not None, "apply needs --work-dir or --import-catalog")
             require(args.article_ids_file is None or args.accepted_only,

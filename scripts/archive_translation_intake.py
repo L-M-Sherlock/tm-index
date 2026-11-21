@@ -5,7 +5,6 @@ import argparse
 from collections import Counter, defaultdict
 from datetime import date, datetime, timedelta, timezone
 import hashlib
-from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
@@ -15,9 +14,10 @@ import sys
 import tempfile
 from urllib.parse import urlsplit
 
-from audit_missing_zhihu_references import original_key, unwrap_url, zhihu_article_id
+from audit_missing_zhihu_references import unwrap_url, zhihu_article_id
+from site_catalog import DATA_PATTERN, catalog_files, read_site_catalog, verify_export_inventory
 from summary_workflow import (
-    DATA_PATTERN, catalog_rows, digest, file_hash, json_text, read_json, require, staged_write, write_json,
+    catalog_rows, digest, file_hash, json_text, read_json, require, staged_write, write_json,
 )
 from summary_sources import VisibleStrings
 
@@ -34,40 +34,6 @@ SHANGHAI = timezone(timedelta(hours=8))
 ARTICLE_PATH = r"article/([0-9]+)\.json"
 ARCHIVE_SITE = "https://l-m-sherlock.github.io/ZhiHuArchive"
 DISPLAY_FIELDS = ("title", "publisher", "publisher_token", "column", "date", "voteup_count")
-
-
-class DirectLinks(HTMLParser):
-    """Extract actual body anchors and native citation annotations."""
-
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.links = []
-        self.anchor = None
-        self.ignored = []
-
-    def handle_starttag(self, tag, pairs):
-        if tag in {"script", "style"}:
-            self.ignored.append(tag)
-        if self.ignored:
-            return
-        attrs = dict(pairs)
-        if tag == "a" and attrs.get("href"):
-            self.anchor = (attrs["href"], [])
-            self.links.append(self.anchor)
-        if tag == "sup" and attrs.get("data-draft-type") == "reference" and attrs.get("data-url"):
-            self.links.append((attrs["data-url"], [attrs.get("data-text") or ""]))
-
-    def handle_endtag(self, tag):
-        if self.ignored:
-            if tag == self.ignored[-1]:
-                self.ignored.pop()
-            return
-        if tag == "a":
-            self.anchor = None
-
-    def handle_data(self, text):
-        if self.anchor is not None and not self.ignored:
-            self.anchor[1].append(text)
 
 
 def article_link(raw):
@@ -276,147 +242,10 @@ def append_author_index(index, rows):
     return sorted(by_name.values(), key=lambda entry: (-entry["article_count"], entry["name"]))
 
 
-def safe_original_key(url):
-    try:
-        return original_key(url)
-    except ValueError:
-        return None
-
-
-def original_url_targets(graph, articles):
-    targets = defaultdict(set)
-    redirects = {entry["from"]: entry["to"]
-                 for entry in graph["metadata"].get("known_original_url_redirects", [])}
-    for article_id, row in articles.items():
-        for url in row.get("original_source_urls", []):
-            key = safe_original_key(redirects.get(url, url))
-            if key:
-                targets[key].add(article_id)
-    return targets, redirects
-
-
-def append_article_references(graph, articles, new, archive, pin, pinned_raw):
-    new_ids = set(new)
-    connections = {}
-    method_occurrences = Counter()
-    new_links_examined = new_self_ignored = new_nontranslations = 0
-    old_ids = [article_id for article_id in articles if article_id not in new_ids]
-
-    def record(source, html):
-        nonlocal new_links_examined, new_self_ignored, new_nontranslations
-        source_is_new = source in new_ids
-        parser = DirectLinks()
-        parser.feed(html)
-        parser.close()
-        if source_is_new:
-            new_links_examined += len(parser.links)
-        for url, label in parser.links:
-            resolved = article_link(url)
-            if resolved is None:
-                continue
-            target, method = resolved
-            if target == source:
-                if source_is_new:
-                    new_self_ignored += 1
-                continue
-            if target not in articles:
-                if source_is_new:
-                    new_nontranslations += 1
-                continue
-            if not source_is_new and target not in new_ids:
-                continue
-            edge = connections.setdefault((source, target), {
-                "source_id": source, "target_id": target, "via": [], "match_quality": ["direct"],
-                "link_texts": [], "source_urls": [], "occurrences": 0,
-            })
-            title = " ".join("".join(label).split())
-            for key, value in (("via", method), ("link_texts", title), ("source_urls", url)):
-                if value and value not in edge[key]:
-                    edge[key].append(value)
-            edge["occurrences"] += 1
-            method_occurrences[method] += 1
-
-    missing = []
-    if new_ids:
-        paths = {article_id: articles[article_id]["source_path"] for article_id in old_ids}
-        archive_paths = set(git(archive, "ls-tree", "-rz", "--name-only", pin, "--", "article").decode().split("\0"))
-        present = {article_id: path for article_id, path in paths.items() if path in archive_paths}
-        missing = sorted(set(paths) - set(present), key=int)
-        for (_, archived), article_id in zip(archived_objects(archive, pin, present.values()), present, strict=True):
-            record(article_id, archived["content"])
-        for article_id in new:
-            record(article_id, pinned_raw[article_id][1]["content"])
-    for (source, target), edge in connections.items():
-        edge["via"].sort()
-        articles[source]["references"].append({"id": target, "title": articles[target]["title"], "via": edge["via"]})
-        articles[target]["referenced_by"].append({"id": source, "title": articles[source]["title"], "via": edge["via"]})
-        articles[source]["reference_count"] += 1
-        articles[target]["referenced_by_count"] += 1
-    graph["edges"] = sorted([*graph["edges"], *connections.values()],
-                            key=lambda edge: (int(edge["source_id"]), int(edge["target_id"])))
-    final_pairs = {(edge["source_id"], edge["target_id"]) for edge in graph["edges"]}
-    require(len(final_pairs) == len(graph["edges"]) and all(a != b for a, b in final_pairs),
-            "Duplicate or self-referential translation links")
-    outgoing = {(row["id"], link["id"]) for row in articles.values() for link in row["references"]}
-    incoming = {(link["id"], row["id"]) for row in articles.values() for link in row["referenced_by"]}
-    require(outgoing == incoming == final_pairs and all(a in articles and b in articles for a, b in final_pairs),
-            "Article reference graph and reverse index do not agree")
-    metadata = graph["metadata"]
-    metadata.update(nodes=len(articles), edges=len(final_pairs),
-                    link_occurrences=sum(edge["occurrences"] for edge in graph["edges"]),
-                    nodes_with_outgoing=len({a for a, _ in final_pairs}), nodes_with_incoming=len({b for _, b in final_pairs}),
-                    method_edge_counts=dict(sorted(Counter(via for edge in graph["edges"] for via in edge["via"]).items())))
-    metadata["link_records_examined"] += new_links_examined
-    metadata["self_links_ignored"] += new_self_ignored
-    metadata["direct_links_to_nontranslations"] += new_nontranslations
-    for method, count in method_occurrences.items():
-        metadata["method_occurrence_counts"][method] = metadata["method_occurrence_counts"].get(method, 0) + count
-    metadata["incremental_archive_scan"] = {
-        "archive_commit": pin,
-        "new_translations": len(new),
-        "outgoing_links_examined_in_new_articles": new_links_examined,
-        "existing_translation_sources_checked_for_backlinks": len(old_ids) - len(missing) if new_ids else 0,
-        "missing_existing_translation_sources": missing,
-        "direct_edges_added": len(connections),
-        "direct_occurrences_added": sum(method_occurrences.values()),
-        "scope": "补录与新增译文有关的知乎直链、存档直链和原生引用注释。原文链接及其他改动由本批引用审阅处理。",
-    }
-    live = metadata.get("live_public_verification")
-    if live:
-        live["scope_articles"] = len(articles)
-        live["unverified_articles"] = sum(row.get("reference_live_status") != "verified" for row in articles.values())
-        live["archive_only_articles"] = live.get("archive_only_articles", 0) + len(new)
-    return connections, missing
-
-
-def read_site_catalog(root):
-    catalog = read_json(root / "data/catalog.json")
-    metadata = catalog["metadata"]
-    require(metadata == read_json(root / "data/validation.json"), "Catalog and validation metadata differ")
-    html = (root / "index.html").read_text(encoding="utf-8")
-    match = DATA_PATTERN.search(html)
-    require(match and len(list(DATA_PATTERN.finditer(html))) == 1, "Expected exactly one embedded catalog")
-    embedded = json.loads(match[2])
-    require(embedded["records"] == catalog["articles"] and embedded["report"] == metadata,
-            "Embedded and canonical catalogs differ")
-    articles = catalog_rows(catalog)
-    export_order = embedded["exportOrder"]
-    require(len(export_order) == len(articles) and set(export_order) == set(articles), "Invalid existing export order")
-    return catalog, articles, embedded, html, match
-
-
-def catalog_files(catalog, embedded, html, match):
-    metadata = catalog["metadata"]
-    embedded["records"] = catalog["articles"]
-    embedded["report"] = metadata
-    body = json.dumps(embedded, ensure_ascii=False).replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    return {"data/catalog.json": json_text(catalog), "data/validation.json": json_text(metadata),
-            "index.html": html[:match.start(2)] + body + html[match.end(2):]}
-
-
 def staging_outputs(root, work, archive, base_pin, pin, paths, rows, exclusions, annotation_date):
     data = root / "data"
     catalog, articles, embedded, html, match = read_site_catalog(root)
+    verify_export_inventory(articles, embedded)
     metadata = catalog["metadata"]
     pinned_raw = {Path(path).stem: record for path, record in zip(paths, archived_objects(archive, pin, paths), strict=True)}
     chars, excluded_publishers = validate_intake(work, paths, rows, exclusions, pinned_raw, articles, metadata)
@@ -426,7 +255,13 @@ def staging_outputs(root, work, archive, base_pin, pin, paths, rows, exclusions,
     articles.update(new)
     graph = read_json(data / "references.json")
     require(graph["metadata"] == metadata["references"], "Reference metadata is out of sync")
-    connections, missing = append_article_references(graph, articles, new, archive, pin, pinned_raw)
+    # The reference audit scans and applies all new links after the catalog has been staged.
+    graph["metadata"]["nodes"] = len(articles)
+    live = graph["metadata"].get("live_public_verification")
+    if live:
+        live["scope_articles"] = len(articles)
+        live["unverified_articles"] = sum(row.get("reference_live_status") != "verified" for row in articles.values())
+        live["archive_only_articles"] = live.get("archive_only_articles", 0) + len(new)
     authors = append_author_index(read_json(data / "authors.json"), rows)
     author_lines = (data / "original-authors.jsonl").read_text(encoding="utf-8")
     require(len(author_lines.splitlines()) == len(articles) - len(rows), "Incomplete existing attribution records")
@@ -482,10 +317,9 @@ def staging_outputs(root, work, archive, base_pin, pin, paths, rows, exclusions,
     }
     receipt = {
         "new_translations": len(rows), "included_articles": len(articles),
-        "new_direct_references": len(connections), "source_articles": metadata["source_articles"],
+        "source_articles": metadata["source_articles"],
         "archive_baseline": base_pin, "archive_commit": pin,
         "included_article_ids": list(new), "excluded_articles": exclusions,
-        "missing_existing_translation_sources": missing,
     }
     return outputs, receipt
 
@@ -551,6 +385,7 @@ def refresh_metadata(root, archive, commit, article_ids):
     pin = commit_id(archive, commit)
     hashes = site_hashes(root)
     catalog, articles, embedded, html, match = read_site_catalog(root)
+    verify_export_inventory(articles, embedded)
     require(set(article_ids) <= articles.keys(), "The metadata refresh includes an uncataloged article")
     known_publishers = {(row["publisher"], row["publisher_token"]) for row in articles.values()}
     paths = [articles[article_id]["source_path"] for article_id in article_ids]

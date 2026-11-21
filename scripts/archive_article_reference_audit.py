@@ -5,16 +5,19 @@ import argparse
 from collections import Counter, defaultdict
 import copy
 import hashlib
+from html.parser import HTMLParser
 import json
 from pathlib import Path
 import re
 import subprocess
 
 from archive_translation_intake import (
-    ARTICLE_PATH, PROJECT, DirectLinks, archived_objects, article_link, git, original_url_targets, safe_original_key,
+    ARTICLE_PATH, PROJECT, archived_objects, article_link, commit_id, git,
 )
+from audit_missing_zhihu_references import original_key
+from site_catalog import DATA_PATTERN, catalog_files, read_site_catalog
 from summary_workflow import (
-    DATA_PATTERN, canonical_hash, catalog_rows, digest, json_text, read_json, require, staged_write, write_json,
+    canonical_hash, digest, json_text, read_json, require, staged_write, write_json,
 )
 
 
@@ -22,12 +25,8 @@ DIRECT = {"zhihu", "archive"}
 RECEIPT = "incremental_article_reference_scan"
 
 
-def _pin(archive, ref):
-    return git(archive, "rev-parse", "--verify", "--end-of-options", f"{ref}^{{commit}}").decode().strip()
-
-
 def _pins(archive, base, tip):
-    base, tip = _pin(archive, base), _pin(archive, tip)
+    base, tip = commit_id(archive, base), commit_id(archive, tip)
     require(subprocess.run(["git", "-C", str(archive), "merge-base", "--is-ancestor", base, tip]).returncode == 0,
             "Archive baseline is not an ancestor of the target commit")
     return base, tip
@@ -44,6 +43,59 @@ def _sources(archive, commit, paths, source_ids):
     for article_id, (raw, record) in zip(source_ids, data, strict=True):
         yield article_id, ({"source_sha256": hashlib.sha256(raw).hexdigest(),
                             "content_sha256": digest(record["content"])}, record["content"])
+
+
+class DirectLinks(HTMLParser):
+    """Extract actual body anchors and native citation annotations."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.links = []
+        self.anchor = None
+        self.ignored = []
+
+    def handle_starttag(self, tag, pairs):
+        if tag in {"script", "style"}:
+            self.ignored.append(tag)
+        if self.ignored:
+            return
+        attrs = dict(pairs)
+        if tag == "a" and attrs.get("href"):
+            self.anchor = (attrs["href"], [])
+            self.links.append(self.anchor)
+        if tag == "sup" and attrs.get("data-draft-type") == "reference" and attrs.get("data-url"):
+            self.links.append((attrs["data-url"], [attrs.get("data-text") or ""]))
+
+    def handle_endtag(self, tag):
+        if self.ignored:
+            if tag == self.ignored[-1]:
+                self.ignored.pop()
+            return
+        if tag == "a":
+            self.anchor = None
+
+    def handle_data(self, text):
+        if self.anchor is not None and not self.ignored:
+            self.anchor[1].append(text)
+
+
+def safe_original_key(url):
+    try:
+        return original_key(url)
+    except ValueError:
+        return None
+
+
+def original_url_targets(graph, articles):
+    targets = defaultdict(set)
+    redirects = {entry["from"]: entry["to"]
+                 for entry in graph["metadata"].get("known_original_url_redirects", [])}
+    for article_id, row in articles.items():
+        for url in row.get("original_source_urls", []):
+            key = safe_original_key(redirects.get(url, url))
+            if key:
+                targets[key].add(article_id)
+    return targets, redirects
 
 
 def _observations(html, source_id, targets, original_targets, redirects):
@@ -85,9 +137,13 @@ def _scan(archive, base, tip, rows, graph):
     def record(article_id, old, new, all_targets):
         old_meta, old_html = old or (None, "")
         new_meta, new_html = new or (None, "")
-        old_links, old_originals = _observations(old_html, article_id, rows.keys(), originals, redirects)
         target_scope = rows.keys() if all_targets else added
         new_links, new_originals = _observations(new_html, article_id, target_scope, originals, redirects)
+        if all_targets:
+            old_links, old_originals = _observations(old_html, article_id, target_scope, originals, redirects)
+        else:
+            # Unchanged articles are read for backlinks to new targets. Both versions have the same links.
+            old_links, old_originals = new_links, new_originals
         found = set(new_links)
         if all_targets:
             found.update(old_links)
@@ -156,18 +212,9 @@ def _check_catalog_edges(rows, pairs):
 
 def _site(root):
     root = Path(root)
-    catalog = read_json(root / "data/catalog.json")
-    rows = catalog_rows(catalog)
+    catalog, rows, payload, html, match = read_site_catalog(root)
     graph = read_json(root / "data/references.json")
-    require(catalog["metadata"] == read_json(root / "data/validation.json")
-            and graph["metadata"] == catalog["metadata"]["references"], "Reference metadata differs")
-    html = (root / "index.html").read_text(encoding="utf-8")
-    matches = list(DATA_PATTERN.finditer(html))
-    require(len(matches) == 1, "Expected one embedded catalog")
-    match = matches[0]
-    payload = json.loads(match[2])
-    require(payload["records"] == catalog["articles"] and payload["report"] == catalog["metadata"],
-            "Embedded catalog differs")
+    require(graph["metadata"] == catalog["metadata"]["references"], "Reference metadata differs")
     pairs = _pairs(graph, rows)
     _check_catalog_edges(rows, pairs)
     for name, total in _edge_totals(rows, pairs).items():
@@ -413,12 +460,9 @@ def apply(root, archive, plan, reviews):
     metadata["articles_with_missing_zhihu_references"] = len({e["source_id"] for e in pairs.values()
                                                                if "original" in e["via"] and "zhihu" not in e["via"]})
     catalog["metadata"]["references"] = metadata
-    payload["records"], payload["report"] = catalog["articles"], catalog["metadata"]
-    safe_payload = json.dumps(payload, ensure_ascii=False).replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
     receipt = _check_applied(graph, pairs, plan, reviews, removals, original_items, originals)
-    staged_write({root / "data/references.json": json_text(graph), root / "data/catalog.json": json_text(catalog),
-                  root / "data/validation.json": json_text(catalog["metadata"]),
-                  root / "index.html": html[:match.start(2)] + safe_payload + html[match.end(2):]})
+    outputs = {"data/references.json": json_text(graph), **catalog_files(catalog, payload, html, match)}
+    staged_write({root / name: text for name, text in outputs.items()})
     return receipt
 
 

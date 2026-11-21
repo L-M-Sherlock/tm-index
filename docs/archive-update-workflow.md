@@ -17,7 +17,7 @@ python3 scripts/archive_update_install.py capture --output "$work/site-baseline.
 
 ## 处理译文目录
 
-- 用 `scripts/archive_translation_intake.py prepare` 固定新增文章。逐篇判断收录范围、确认原作者及归属，核对规范关键词，记录排除理由。用 `stage` 生成隔离目录、作者与关键词索引和网页数据。首份摘要按[总结工作流](summary-workflow.md)写作并独立通读复核。
+- 用 `scripts/archive_translation_intake.py prepare` 固定新增文章。逐篇判断收录范围、确认原作者及归属，核对规范关键词，记录排除理由。用 `stage` 生成隔离目录、作者与关键词索引和网页数据。首份摘要按[总结工作流](summary-workflow.md)写作并独立通读复核。新增译文的引用统一由后续译文引用审计阶段写入。
 - 对已收录译文，用 `archive_translation_intake.py refresh-metadata` 同步确认过的显示字段。需要替换正文来源时，在隔离副本中保留旧目录和摘要历史，按新版本完整复审摘要。为 `summary_workflow.py prepare` 传入显式文章清单及 `--source-transition-from` 所指定的旧目录。新版本的验收记录和旧版本历史一并保留。已有公开读回版本与备份冲突时，保留两版证据，核定采用版本后再验收。删除或下架逐篇判断，并处理对应的引用边、搜索、导出和历史记录。
 - 已有摘要修订史的译文下架后，用 `summary_workflow.py retire --previous-catalog OLD.json --decisions RETIREMENTS.json` 归档。决定文件包含 `schema_version`、旧目录字节哈希 `previous_catalog_sha256`、完整提交 `archive_base` 和 `archive_tip`，以及逐篇写明 `id` 和 `reason` 的 `entries`。仍可复验全部旧稿。
 

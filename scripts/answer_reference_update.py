@@ -12,9 +12,10 @@ import unicodedata
 
 from archive_translation_intake import archived_objects, visible_body
 from answer_archive_delta import answer_snapshot, direct_pairs, make_plan, verify_plan
+from site_catalog import catalog_files, read_site_catalog, verify_export_inventory
 from summary_sources import VisibleStrings
 from summary_workflow import (
-    DATA_PATTERN, canonical_hash, catalog_rows, digest, file_hash, json_text,
+    canonical_hash, catalog_rows, digest, file_hash, json_text,
     read_json, require, staged_write, write_json,
 )
 
@@ -102,19 +103,11 @@ def validate_index(index, catalog):
 
 
 def read_outputs(root):
-    index, catalog, validation = [read_json(root / name) for name in FILES[:3]]
-    html = (root / FILES[3]).read_text(encoding="utf-8")
-    matches = list(DATA_PATTERN.finditer(html))
-    require(len(matches) == 1, "Expected exactly one embedded catalog")
-    match = matches[0]
-    embedded = json.loads(match[2])
-    require(embedded.get("records") == catalog["articles"]
-            and embedded.get("report") == catalog["metadata"] == validation
-            and embedded.get("answerIndex") == index["answers"], "Embedded answer or catalog data differ")
-    rows, edges = validate_index(index, catalog)
-    export_order = embedded.get("exportOrder")
-    require(isinstance(export_order, list) and len(export_order) == len(rows)
-            and set(export_order) == rows.keys(), "Embedded export order differs from the catalog")
+    index = read_json(root / FILES[0])
+    catalog, rows, embedded, html, match = read_site_catalog(root)
+    require(embedded.get("answerIndex") == index["answers"], "Embedded answer index differs from answer-references.json")
+    _, edges = validate_index(index, catalog)
+    verify_export_inventory(rows, embedded)
     return index, catalog, html, match, embedded, rows, edges
 
 
@@ -472,12 +465,9 @@ def prepare_updates(root, archive, plan, bundle):
     index.update(answers=answers, edges=sorted(edges.values(), key=edge_order))
     catalog["metadata"]["answer_references"] = metadata
     validate_index(index, catalog)
-    embedded.update(records=catalog["articles"], report=catalog["metadata"], answerIndex=answers)
-    payload = json.dumps(embedded, ensure_ascii=False).replace("&", "\\u0026").replace("<", "\\u003c").replace(">", "\\u003e")
-    html = html[:match.start(2)] + payload + html[match.end(2):]
-    outputs = dict(zip((root / name for name in FILES),
-                       (json_text(index), json_text(catalog), json_text(catalog["metadata"]), html), strict=True))
-    return outputs, receipt
+    embedded["answerIndex"] = answers
+    outputs = {FILES[0]: json_text(index), **catalog_files(catalog, embedded, html, match)}
+    return {root / name: text for name, text in outputs.items()}, receipt
 
 
 def check(root, archive, plan, reviews):

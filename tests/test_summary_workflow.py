@@ -213,7 +213,7 @@ class WorkflowTests(unittest.TestCase):
         flow.write_json(self.work / "reviewers/1.json", self.review)
 
     def output_bytes(self):
-        return {str(p.relative_to(self.root)): p.read_bytes() for p in (self.root / "data").glob("*.json")} | {"index.html": (self.root / "index.html").read_bytes()}
+        return {str(p.relative_to(self.root)): p.read_bytes() for p in (self.root / "data").rglob("*.json")} | {"index.html": (self.root / "index.html").read_bytes()}
 
     def test_prepare_cli_freezes_model_in_blind_inputs_and_requires_bound_acceptance(self):
         work = self.root / ".work/configured"
@@ -340,7 +340,7 @@ class WorkflowTests(unittest.TestCase):
     def test_mixed_model_history_replay_keeps_original_provenance(self):
         flow.apply(self.root, self.work)
         original_event = copy.deepcopy(flow.load_ledger(self.root)["entries"][0])
-        original_audit = flow.read_json(self.root / "data/summary-reviews.json")
+        original_audit = flow.load_review_audit(self.root)
         self.work = self.root / "configured-legacy"
         self.prepare("configured-legacy", model="gpt-6", reasoning_effort="high")
         self.make_results("新版还说明反馈应服务于实际理解，并据结果调整学习方法。")
@@ -348,7 +348,7 @@ class WorkflowTests(unittest.TestCase):
         ledger = flow.load_ledger(self.root)
         self.assertEqual(ledger["entries"][0], original_event)
         latest = ledger["entries"][-1]
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         row = flow.read_json(self.root / "data/catalog.json")["articles"][0]
         metadata = flow.read_json(self.root / "data/validation.json")["summary_reviews"]
         for record in (latest["after"], latest["review"], audit, metadata, row["summary_revision"]):
@@ -380,7 +380,7 @@ class WorkflowTests(unittest.TestCase):
                 self.write_blind_records(work, reused=True)
             flow.check(self.root, work)
             flow.apply(self.root, work)
-            audit = flow.read_json(self.root / "data/summary-reviews.json")
+            audit = flow.load_review_audit(self.root)
             self.assertEqual(audit["model"], "gpt-6")
             self.assertEqual(audit["entries"][0]["prior_review"], prior)
             self.assertEqual(report_path.read_bytes(), report_bytes)
@@ -403,7 +403,7 @@ class WorkflowTests(unittest.TestCase):
         result = flow.apply(self.root, work)
         self.assertEqual(result["length_strata"], [{"lower": 3000, "upper": 5000, "population_count": 2},
                                                   {"lower": 5000, "upper": 8000, "population_count": 2}])
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         partial = flow._publication_statistics(audit["entries"][:1], manifest["articles"])
         self.assertEqual(partial["length_strata"], [
             {"lower": 3000, "upper": 5000, "population_count": 2, "published_count": 0},
@@ -552,7 +552,7 @@ class WorkflowTests(unittest.TestCase):
         result = flow.apply(self.root, self.work)
         self.assertEqual(result["retained"], 1)
         self.assertEqual(flow.load_ledger(self.root)["entries"], [])
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(len(audit["entries"]), 1)
 
     def stage_source_transition(self, work_name="source-transition", **options):
@@ -729,10 +729,15 @@ class WorkflowTests(unittest.TestCase):
 
     def test_second_revision_and_import_replay_preserve_history(self):
         flow.apply(self.root, self.work)
+        archived_batch = self.root / "data/summary-reviews/test-1.json"
+        first_batch_bytes = archived_batch.read_bytes()
         self.work = self.root / "work-2"
         self.prepare("test-2")
         self.make_results("新版还说明反馈应服务于实际理解，并据结果调整学习方法。")
-        flow.apply(self.root, self.work)
+        with patch.object(flow, "staged_write", wraps=flow.staged_write) as writes:
+            flow.apply(self.root, self.work)
+        self.assertNotIn(archived_batch.resolve(), writes.call_args.args[0])
+        self.assertEqual(archived_batch.read_bytes(), first_batch_bytes)
         history = flow.load_ledger(self.root)["entries"]
         self.assertEqual(len(history), 2)
         self.assertEqual(history[1]["before"]["summary"], history[0]["after"]["summary"])
@@ -741,9 +746,39 @@ class WorkflowTests(unittest.TestCase):
         flow.apply(self.root, self.work, imported)
         self.assertEqual(flow.read_json(self.root / "data/catalog.json")["articles"][0]["summary"], self.writer["summary"])
         self.assertEqual(len(flow.load_ledger(self.root)["entries"]), 2)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual([run["run_id"] for run in audit["previous_runs"]], ["test-1"])
         self.assertEqual(audit["previous_runs"][0]["entries"][0]["review"]["reviewer"], "long_reviewer_1")
+
+    def test_migrating_inline_history_preserves_evidence_and_website_bytes(self):
+        flow.apply(self.root, self.work)
+        old_audit = flow.load_review_audit(self.root)
+        old_ledger = flow.load_ledger(self.root)
+        index_path = self.root / "data/summary-reviews.json"
+        ledger_path = self.root / "data/summary-revisions.json"
+        for batch in flow.read_json(index_path)["runs"]:
+            (self.root / batch["file"]).unlink()
+        flow.write_json(index_path, old_audit)
+        flow.write_json(ledger_path, old_ledger)
+        site_paths = ("data/catalog.json", "data/validation.json", "index.html")
+        website = {name: (self.root / name).read_bytes() for name in site_paths}
+
+        with patch("sys.stdout", new=io.StringIO()) as stdout:
+            self.assertEqual(flow.main(["--root", str(self.root), "migrate-history"]), 0)
+        self.assertEqual(json.loads(stdout.getvalue())["review_batches"], 1)
+        self.assertEqual(flow.read_json(index_path)["schema_version"], 2)
+        compact_event = flow.read_json(ledger_path)["entries"][0]
+        self.assertIn("review", compact_event["evidence_ref"]["fields"])
+        self.assertNotIn("review", compact_event)
+        self.assertEqual(flow.load_review_audit(self.root), old_audit)
+        self.assertEqual(flow.load_ledger(self.root), old_ledger)
+        self.assertEqual({name: (self.root / name).read_bytes() for name in site_paths}, website)
+        self.assertEqual(flow.migrate_history(self.root)["changed_files"], [])
+
+        imported = self.root / "old-catalog-after-migration.json"
+        flow.write_json(imported, self.catalog)
+        flow.sync_import(self.root, imported)
+        self.assertEqual((self.root / "data/catalog.json").read_bytes(), website["data/catalog.json"])
 
     def test_import_cannot_change_keywords_or_citations(self):
         flow.apply(self.root, self.work)
@@ -1062,7 +1097,7 @@ class WorkflowTests(unittest.TestCase):
         result = flow.apply(self.root, work)
         self.assertEqual(result["reviewed"], 1)
         self.assertEqual(result["reused_direct_retains"], 1)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertIsNone(audit["entries"][0]["writer"])
         self.assertIsNone(audit["entries"][0]["review"])
         self.assertEqual(audit["primary_acceptance"], primary)
@@ -1235,7 +1270,7 @@ class WorkflowTests(unittest.TestCase):
         second_apply_bytes = self.output_bytes()
         flow.apply(self.root, work2)
         self.assertEqual(second_apply_bytes, self.output_bytes())
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual([run["run_id"] for run in audit["previous_runs"]], ["archive-run-1"])
         _, pairs, pending = flow.check(self.root, work1)
         self.assertEqual(pending, [])
@@ -1412,7 +1447,7 @@ class WorkflowTests(unittest.TestCase):
 
         flow.check(self.root, work)
         flow.apply(self.root, work)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(audit["format_corrections"][0]["path"], "format-corrections/mid_writer_1.json")
         self.assertTrue(audit["format_corrections"][0]["log"]["files"][0]["backup_path"].startswith("format-before/"))
 
@@ -1479,7 +1514,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(pending, [])
         self.assertEqual(len(pairs), 1)
         flow.apply(self.root, work)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(audit["input_exceptions"], manifest["input_exceptions"])
 
     def test_apply_requires_complete_current_primary_acceptance_without_partial_write(self):
@@ -1507,7 +1542,7 @@ class WorkflowTests(unittest.TestCase):
                                  "review_sha256": "not-enforced-by-design"}]}
         flow.write_json(work / "primary-acceptance.json", accepted)
         flow.apply(self.root, work)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(audit["primary_acceptance"], accepted)
 
     def test_accepted_only_publication_cumulates_idempotently_and_completes_full_scope(self):
@@ -1531,7 +1566,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(result["reviewed"], 1)
         self.assertEqual(result["publication"], {"target_scope": 3, "status": "in_progress",
                          "published_ids": [target_ids[0]], "pending_ids": target_ids[1:]})
-        audit1 = flow.read_json(self.root / "data/summary-reviews.json")
+        audit1 = flow.load_review_audit(self.root)
         first_published_entry = audit1["entries"][0]
         self.assertEqual([entry["id"] for entry in audit1["entries"]], [target_ids[0]])
         self.assertEqual(audit1["statistics"]["reviewed"], 1)
@@ -1562,7 +1597,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(code, 0)
         result = json.loads(stdout.getvalue())
         self.assertEqual(result["reviewed"], 2)
-        audit2 = flow.read_json(self.root / "data/summary-reviews.json")
+        audit2 = flow.load_review_audit(self.root)
         self.assertEqual([entry["id"] for entry in audit2["entries"]], target_ids[:2])
         self.assertEqual(audit2["entries"][0], first_published_entry)
         self.assertEqual(audit2["statistics"]["reviewed"], 2)
@@ -1578,7 +1613,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(result["publication"]["status"], "complete")
         self.assertEqual(result["publication"]["published_ids"], target_ids)
         self.assertEqual(result["publication"]["pending_ids"], [])
-        audit3 = flow.read_json(self.root / "data/summary-reviews.json")
+        audit3 = flow.load_review_audit(self.root)
         self.assertEqual([entry["id"] for entry in audit3["entries"]], target_ids)
         self.assertEqual(audit3["entries"][0], first_published_entry)
         self.assertEqual(audit3["statistics"]["reviewed"], 3)
@@ -1775,7 +1810,7 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(pending, [])
         self.assertEqual(len(pairs), 1)
         flow.apply(self.root, work)
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(audit["input_exceptions"], manifest["input_exceptions"])
 
     def test_format_correction_same_path_uses_append_only_hash_chain(self):
@@ -2006,9 +2041,9 @@ class WorkflowTests(unittest.TestCase):
         after = self.output_bytes()
         flow.apply(self.root, work)
         self.assertEqual(after, self.output_bytes())
-        audit = flow.read_json(self.root / "data/summary-reviews.json")
+        audit = flow.load_review_audit(self.root)
         self.assertEqual(audit["final_reviewer_transfers"][article_id]["to"], new_actor)
-        ledger = flow.read_json(self.root / "data/summary-revisions.json")
+        ledger = flow.load_ledger(self.root)
         flow.validate_history_review(ledger["entries"][-1])
         for kind in ("outline", "initial"):
             altered = copy.deepcopy(ledger["entries"][-1])

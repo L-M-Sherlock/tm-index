@@ -7,6 +7,7 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+import archive_article_reference_audit as reference_audit
 import archive_translation_intake as intake
 
 
@@ -87,6 +88,14 @@ class TranslationIntakeTests(unittest.TestCase):
         return intake.stage(self.live, self.preview, self.work, self.rows_file,
                             self.exclusions_file, self.archive, "2026-11-21")
 
+    def apply_references(self):
+        plan = reference_audit.make_plan(self.preview, self.archive, self.base, self.tip)
+        reviews = {"schema_version": 1, "plan_sha256": reference_audit.canonical_hash(plan),
+                   "removed_direct": [], "original_candidates": []}
+        result = reference_audit.apply(self.preview, self.archive, plan, reviews)
+        self.assertEqual(reference_audit.check(self.preview, self.archive, plan, reviews), result)
+        return result
+
     def test_stage_uses_pinned_archive_and_preserves_live_index(self):
         self.write_article("2", "<p>工作目录中的临时修改</p>")
         before = intake.site_hashes(self.live)
@@ -95,12 +104,14 @@ class TranslationIntakeTests(unittest.TestCase):
         self.assertEqual(intake.site_hashes(self.live), before)
         self.assertEqual(receipt["included_article_ids"], ["2"])
         self.assertEqual(receipt["excluded_articles"], {"3": "原创文章"})
-        self.assertEqual(receipt["new_direct_references"], 2)
         new = intake.read_json(self.preview / "data/catalog.json")
         rows = intake.catalog_rows(new)
         self.assertEqual(rows["1"]["summary"], "已复核的摘要")
-        self.assertEqual(rows["1"]["reference_count"], 1)
-        self.assertEqual(rows["2"]["referenced_by_count"], 1)
+        self.assertEqual(rows["1"]["reference_count"], 0)
+        self.assertEqual(rows["2"]["referenced_by_count"], 0)
+        graph = intake.read_json(self.preview / "data/references.json")
+        self.assertEqual(graph["metadata"]["nodes"], 2)
+        self.assertEqual(graph["edges"], [])
         self.assertEqual(rows["2"]["summary"], "")
         self.assertEqual(rows["2"]["keywords"], ["学习"])
         self.assertEqual(new["metadata"], intake.read_json(self.preview / "data/validation.json"))
@@ -110,6 +121,11 @@ class TranslationIntakeTests(unittest.TestCase):
         self.assertEqual(embedded["exportOrder"], ["1", "2"])
         self.assertEqual(intake.site_hashes(self.preview), receipt["staged_sha256"])
         self.assertEqual(before["data/summary-revisions.json"], receipt["staged_sha256"]["data/summary-revisions.json"])
+        self.assertEqual(self.apply_references()["direct_pairs_added"], 2)
+        rows = intake.catalog_rows(intake.read_json(self.preview / "data/catalog.json"))
+        self.assertEqual(rows["1"]["references"], [{"id": "2", "title": "文章 2", "via": ["zhihu"]}])
+        self.assertEqual(rows["2"]["references"], [{"id": "1", "title": "文章 1", "via": ["zhihu"]}])
+        self.assertEqual(rows["2"]["referenced_by_count"], 1)
 
     def test_missing_scope_decision_stops_staging(self):
         intake.write_json(self.exclusions_file, {})
@@ -142,6 +158,7 @@ class TranslationIntakeTests(unittest.TestCase):
 
     def test_metadata_refresh_updates_cited_title_without_rewriting_source_or_summary(self):
         self.stage()
+        self.apply_references()
         path = self.archive / "article/1.json"
         raw = intake.read_json(path)
         raw.update(title="备份中的新标题", content="<p>需要独立复核的新正文</p>", voteup_count=20)

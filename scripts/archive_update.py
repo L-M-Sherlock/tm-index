@@ -15,8 +15,9 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from archive_translation_intake import archived_objects, visible_body
+from site_catalog import read_site_catalog, verify_export_inventory
 from summary_workflow import (
-    DATA_PATTERN, ROOT, canonical_hash, catalog_rows, digest, file_hash, json_text, load_ledger,
+    ROOT, canonical_hash, digest, file_hash, json_text, load_ledger, load_review_audit,
     read_json, replay_revisions, require, staged_write,
 )
 
@@ -154,19 +155,13 @@ def unique_by(rows, key, label):
 def verify_site(root):
     from answer_reference_update import validate_index
 
-    catalog = read_json(root / "data/catalog.json")
-    rows = catalog_rows(catalog)
-    validation = read_json(root / "data/validation.json")
+    catalog, rows, embedded, _, _ = read_site_catalog(root)
+    validation = catalog["metadata"]
     references = read_json(root / "data/references.json")
     answers = read_json(root / "data/answer-references.json")
-    match = DATA_PATTERN.search((root / "index.html").read_text(encoding="utf-8"))
-    require(match is not None, "Missing embedded catalog in index.html")
-    html = json.loads(match[2])
-    require(html["records"] == catalog["articles"], "Embedded catalog differs from catalog.json")
-    require(html["report"] == catalog["metadata"] == validation, "Catalog, HTML and validation metadata disagree")
-    require(html["answerIndex"] == answers["answers"], "Embedded answer index differs from answer-references.json")
-    require(len(html["exportOrder"]) == len(rows) and set(html["exportOrder"]) == rows.keys()
-            and html["exportOrder"] == sorted(html["exportOrder"], key=lambda key: rows[key]["date"]),
+    require(embedded["answerIndex"] == answers["answers"], "Embedded answer index differs from answer-references.json")
+    export_order = verify_export_inventory(rows, embedded)
+    require(export_order == sorted(export_order, key=lambda key: rows[key]["date"]),
             "Invalid export inventory or publication date order")
     require(validation["references"] == references["metadata"], "Reference graph metadata differs from catalog")
     require(validation["answer_references"] == answers["metadata"], "Answer metadata differs from catalog")
@@ -243,7 +238,8 @@ def verify_site(root):
 
 
 def accepted_versions(root):
-    history = read_json(root / "data/summary-reviews.json")
+    history = load_review_audit(root)
+    require(history is not None, "Missing summary review history")
     versions = set()
     for run in [history, *history.get("previous_runs", [])]:
         for entry in run["entries"]:
