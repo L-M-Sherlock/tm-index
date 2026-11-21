@@ -13,6 +13,7 @@ import re
 import sys
 import tempfile
 from collections import Counter, defaultdict
+from contextlib import contextmanager
 from datetime import date, datetime, timezone
 from pathlib import Path
 
@@ -30,6 +31,10 @@ HISTORY_SPEC.loader.exec_module(summary_history)
 SITE_SPEC = importlib.util.spec_from_file_location("site_catalog", Path(__file__).with_name("site_catalog.py"))
 site_catalog = importlib.util.module_from_spec(SITE_SPEC)
 SITE_SPEC.loader.exec_module(site_catalog)
+sys.modules.setdefault("site_catalog", site_catalog)
+PUBLICATIONS_SPEC = importlib.util.spec_from_file_location("summary_publications", Path(__file__).with_name("summary_publications.py"))
+summary_publications = importlib.util.module_from_spec(PUBLICATIONS_SPEC)
+PUBLICATIONS_SPEC.loader.exec_module(summary_publications)
 DATA_PATTERN = site_catalog.DATA_PATTERN
 catalog_rows = site_catalog.catalog_rows
 json_text = site_catalog.json_text
@@ -658,21 +663,67 @@ def _audit_label(root, path):
         return path.name
 
 
-def _read_reuse_audit(root, value):
-    if value is None:
+def _read_reuse_audit(root, value, *, run_id=None, audit_file=None):
+    require(value is None or run_id is None, "Choose either a private report file or an archived sampling run")
+    if run_id is not None:
+        path = summary_history.private_audit_path(root, audit_file)
+        report = summary_history.load_private(path).get("sampling", {}).get(run_id)
+        require(report is not None, f"Missing private sampling audit: {run_id}")
+        report_hash = canonical_hash(report)
+        label = f"sampling:{run_id}"
+    elif value is not None:
+        path = summary_history.private_audit_path(root, _audit_file(root, value))
+        raw = path.read_bytes()
+        report = json.loads(raw)
+        report_hash = hashlib.sha256(raw).hexdigest()
+        label = _audit_label(root, path)
+    else:
         return None
-    path = _audit_file(root, value)
-    raw = path.read_bytes()
-    report = json.loads(raw)
     require(isinstance(report, dict) and isinstance(report.get("entries"), list), "Reuse audit must contain an entries list")
     require(isinstance(report.get("run_id"), str) and bool(report["run_id"]), "Reuse audit must contain a run_id")
+    require(run_id in (None, report["run_id"]), "Private sampling audit index differs from stored run")
     entries = {}
     for entry in report["entries"]:
         require(isinstance(entry, dict) and isinstance(entry.get("id"), str), "Reuse audit contains an invalid entry")
         require(entry["id"] not in entries, f"Reuse audit contains duplicate entry {entry['id']}")
         entries[entry["id"]] = entry
-    return {"path": path, "file": _audit_label(root, path), "sha256": hashlib.sha256(raw).hexdigest(),
+    return {"path": path, "file": label, "sha256": report_hash,
             "run_id": report["run_id"], "entries": entries}
+
+
+def _pinned_reuse_audit(root, manifest, audit_file):
+    reuse = manifest.get("reused_audit")
+    if reuse is None:
+        return None
+    require(isinstance(reuse, dict), "Invalid reused_audit")
+    run_id = reuse.get("run_id")
+    if reuse.get("file") == f"sampling:{run_id}":
+        report = _read_reuse_audit(root, None, run_id=run_id, audit_file=audit_file)
+    else:
+        report = _read_reuse_audit(root, manifest.get("reused_audit_path") or reuse["file"])
+    require(all(report[key] == reuse[key] for key in ("file", "run_id", "sha256")), "Pinned reuse audit changed")
+    return report
+
+
+def _require_private_work(root, work):
+    root, work = Path(root).resolve(), Path(work).resolve()
+    require(not work.is_relative_to(root / "data"), "Review work cannot be stored in public data")
+    if (root / ".git").exists():
+        summary_history.private_audit_path(root, work / ".summary-work.json")
+
+
+@contextmanager
+def _publication_lock(root):
+    """Serialize catalogue and receipt mutations within a checkout."""
+    private = Path(root).resolve() / ".work"
+    require(private.resolve() == private, "The publication lock requires a real private .work directory")
+    private.mkdir(mode=0o700, parents=True, exist_ok=True)
+    descriptor = os.open(private / ".summary-publication.lock", os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX)
+        yield
+    finally:
+        os.close(descriptor)
 
 
 def _prior_entry_fingerprint_errors(entry, row, body_sha256):
@@ -753,17 +804,19 @@ def _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_da
 def prepare(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars=6000, *,
             max_body_chars=None, recovery_dir=None, reuse_audit=None, actor_prefix="long", blind_review=False,
             model=MODEL, reasoning_effort=EFFORT, require_bound_primary_review=False, article_ids=None,
-            reviewer_count=2, source_transition_from=None):
+            reviewer_count=2, source_transition_from=None, audit_file=None, reuse_audit_run=None):
     """Prepare a fresh review run, retaining the original positional legacy interface."""
+    _require_private_work(root, work)
     config = model_config({"model": model, "reasoning_effort": reasoning_effort})
     _validate_reviewer_count(reviewer_count)
     require(reviewer_count == 2 or blind_review, "A custom reviewer count requires blind_review")
     require(not require_bound_primary_review or blind_review, "Bound primary review requires blind_review")
     require(article_ids is None or blind_review, "Selecting article IDs requires blind_review")
     require(source_transition_from is None or (blind_review and require_bound_primary_review
-                                                and article_ids is not None and reuse_audit is None),
+                                                and article_ids is not None and reuse_audit is None
+                                                and reuse_audit_run is None),
             "Source transitions require an explicit blind-review scope, bound primary acceptance and fresh reviews")
-    extended = (max_body_chars is not None or recovery_dir is not None or reuse_audit is not None
+    extended = (max_body_chars is not None or recovery_dir is not None or reuse_audit is not None or reuse_audit_run is not None
                 or actor_prefix != "long" or blind_review)
     if not extended:
         return _prepare_legacy(root, source_dir, source_manifest, work, run_id, revision_date, minimum, chunk_chars,
@@ -784,7 +837,7 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
     require(isinstance(baseline, dict), "Invalid source manifest")
     selected = _select_review_rows(catalog_rows(catalog), minimum, max_body_chars, article_ids)
     require(selected, "No articles match the requested scope")
-    reuse = _read_reuse_audit(root, reuse_audit)
+    reuse = _read_reuse_audit(root, reuse_audit, run_id=reuse_audit_run, audit_file=audit_file)
     manifest = {"schema_version": 1, "run_id": run_id, "revision_date": revision_date,
                 "min_body_chars": minimum, "max_body_chars": max_body_chars, "chunk_chars": chunk_chars,
                 **config, "actor_prefix": actor_prefix,
@@ -797,8 +850,9 @@ def prepare(root, source_dir, source_manifest, work, run_id, revision_date, mini
         manifest["require_bound_primary_review"] = True
     if reuse is not None:
         manifest["reused_audit"] = {"file": reuse["file"], "sha256": reuse["sha256"], "run_id": reuse["run_id"]}
-        # This path is private run state. Public reports use the root-relative label above.
-        manifest["reused_audit_path"] = str(reuse["path"])
+        if reuse_audit_run is None:
+            # Only legacy standalone reports need a persisted path in private work state.
+            manifest["reused_audit_path"] = str(reuse["path"])
     invalidations, prepared = [], []
     for row in selected:
         try:
@@ -952,7 +1006,7 @@ def validate_initial(initial, outline, outline_path, actor, item, body, allowed_
     require(initial.get("verdict") == expected_verdict, f"{item['id']}: initial verdict conflicts with point evidence")
 
 
-def _validate_reuse_inputs(work, item, manifest, root):
+def _validate_reuse_inputs(work, item, manifest, report):
     reused = item.get("reused_audit")
     require(isinstance(reused, dict), f"{item['id']}: missing reused audit reference")
     global_reuse = manifest.get("reused_audit")
@@ -960,11 +1014,11 @@ def _validate_reuse_inputs(work, item, manifest, root):
     for key in ("file", "run_id"):
         require(reused.get(key) == global_reuse.get(key), f"{item['id']}: reused audit identity changed")
     require(reused.get("report_sha256") == global_reuse.get("sha256"), f"{item['id']}: reused audit hash changed")
-    audit_path = Path(manifest.get("reused_audit_path") or (root / global_reuse["file"]))
-    require(file_hash(audit_path) == global_reuse["sha256"], "Pinned reuse audit changed")
     prior_path = confined(work, item["prior_review_path"])
     entry = read_json(prior_path)
     require(canonical_hash(entry) == reused.get("entry_sha256"), f"{item['id']}: prior audit entry changed")
+    require(report is not None and report["entries"].get(item["id"]) == entry,
+            f"{item['id']}: prior audit record differs from its private source")
     require(entry.get("id") == item["id"] and entry.get("final_verdict") == reused.get("final_verdict"),
             f"{item['id']}: prior audit decision changed")
     errors = _prior_entry_fingerprint_errors(entry, item, item["body_sha256"])
@@ -1298,35 +1352,61 @@ def validate_final_reviewer_transfer(work, transfer, owners, item, body, writer,
                         f"{article_id}: transferred review changed a frozen blind point")
 
 
-def load_review_audit(root):
-    return summary_history.load_audit(root)
+def load_review_audit(root, audit_file=None):
+    path = summary_history.private_audit_path(root, audit_file)
+    return summary_history.load_audit(root, audit_file=path)
 
 
 def load_ledger(root, audit=None):
-    path = root / "data/summary-revisions.json"
-    ledger = read_json(path) if path.exists() else {"schema_version": 1, "entries": []}
+    path = Path(root) / "data/summary-revisions.json"
+    ledger = summary_publications.read(path) if path.exists() else {"schema_version": 1, "entries": []}
+    if summary_publications.is_public(ledger):
+        summary_publications.validate(ledger)
+        return ledger
     if audit is None and any(summary_history.EVIDENCE_REF in event for event in ledger["entries"]):
-        audit = load_review_audit(root)
+        audit = summary_history.load_audit(root)
     return summary_history.expand_ledger(ledger, audit)
 
 
-def _ledger_text(ledger, audit):
-    compact = summary_history.compact_ledger(ledger, audit)
-    require(summary_history.expand_ledger(compact, audit) == ledger,
-            "Compacted summary revisions differ from accepted history")
-    return json_text(compact)
+def legacy_history(root):
+    """Load detailed legacy publications only as an input to migration."""
+    audit = summary_history.load_audit(root)
+    ledger = load_ledger(root, audit)
+    require(not summary_publications.is_public(ledger), "The ledger is already a public receipt")
+    return audit, ledger
 
 
-def _history_outputs(root, audit, ledger):
-    outputs = summary_history.audit_payloads(root, audit) if audit is not None else {}
-    ledger_path = root / "data/summary-revisions.json"
-    text = _ledger_text(ledger, audit)
-    if not ledger_path.exists() or ledger_path.read_bytes() != text.encode("utf-8"):
-        outputs[ledger_path] = text
-    for path, contents in outputs.items():
-        require(not any(token in contents for token in ("/Users/", "file://", "localhost")),
-                f"Non-public path in summary history: {path.name}")
-    return outputs
+def _revision_events(ledger):
+    if summary_publications.is_public(ledger):
+        return summary_publications.ordered_revisions(ledger)
+    return ledger["entries"]
+
+
+def _published_run_context(root, run_id, ledger, audit_file):
+    """Bind any continuation to the exact private evidence used for its public receipt."""
+    local = load_review_audit(root, audit_file)
+    archived = {run["run_id"] for run in (local or {}).get("previous_runs", [])}
+    if summary_publications.is_public(ledger):
+        archived.update(set(ledger["runs"]) - {ledger["latest_run_id"]})
+        receipt = ledger["runs"].get(run_id)
+        if receipt is not None:
+            history = [*(local or {}).get("previous_runs", []), local]
+            candidate = next((run for run in history if run is not None and run.get("run_id") == run_id), None)
+            require(candidate is not None, f"Previously published run {run_id} requires its private audit evidence")
+            require(canonical_hash({key: value for key, value in candidate.items() if key != "previous_runs"})
+                    == receipt["audit_sha256"], f"{run_id}: private audit differs from its public receipt")
+    return local, archived
+
+
+def _public_ledger(root, ledger):
+    if summary_publications.is_public(ledger):
+        return ledger
+    if not ledger["entries"] and not (root / "data/summary-reviews.json").exists():
+        return summary_publications.empty()
+    legacy = summary_history.load_audit(root)
+    for event in ledger["entries"]:
+        validate_history_review(event)
+    return summary_publications.migrate(ledger, legacy)
 
 
 def _source_pair(source):
@@ -1369,7 +1449,7 @@ def _verify_source_transition_prior(items, previous_catalog, previous_catalog_sh
 
     prior_events = []
     items_by_id = {item["id"]: item for item in items}
-    for event in ledger["entries"]:
+    for event in _revision_events(ledger):
         article_id = event["id"]
         if article_id in items_by_id:
             if event.get("run_id") == run_id:
@@ -1379,7 +1459,8 @@ def _verify_source_transition_prior(items, previous_catalog, previous_catalog_sh
             else:
                 prior_events.append(event)
     baseline_rows = [previous[article_id] for article_id in items_by_id]
-    replayed = replay_revisions({"articles": copy.deepcopy(baseline_rows)}, {"entries": prior_events})
+    replayed = _replay_revision_events({"articles": copy.deepcopy(baseline_rows)}, prior_events, {},
+                                       validate_evidence=not summary_publications.is_public(ledger))
     require(replayed["articles"] == baseline_rows,
             "Previous catalog does not contain the latest accepted summary history")
     return transitions
@@ -1413,7 +1494,7 @@ def event_id(item, summary, run_id):
     return digest("\n".join(fingerprints))
 
 
-def _check_legacy(root, work, allow_incomplete=False):
+def _check_legacy(root, work, allow_incomplete=False, *, audit_file=None):
     manifest = read_json(work / "manifest.json")
     require("selected_article_ids" not in manifest, "Selecting article IDs requires blind_review")
     require("reviewer_count" not in manifest, "A custom reviewer count requires blind_review")
@@ -1449,27 +1530,25 @@ def _check_legacy(root, work, allow_incomplete=False):
             require(agent.startswith(f"{prefix}_{role}_"), f"Invalid {role} agent identity")
             index = agent.rsplit("_", 1)[1]
             require(read_json(work / f"{role}-{index}-assignment.json") == assigned, f"{agent}: assignment file changed")
-    global_reuse = manifest.get("reused_audit")
-    if global_reuse is not None:
-        audit_path = Path(manifest.get("reused_audit_path") or (root / global_reuse["file"]))
-        require(file_hash(audit_path) == global_reuse.get("sha256"), "Pinned reuse audit changed")
-    public_audit = load_review_audit(root)
-    ledger = load_ledger(root, public_audit)
-    for event in ledger["entries"]:
-        validate_history_review(event)
-    existing_events = {event.get("revision_id"): event for event in ledger["entries"] if event.get("revision_id")}
-    archived_runs = {run.get("run_id") for run in (public_audit or {}).get("previous_runs", [])}
+    reused = _pinned_reuse_audit(root, manifest, audit_file)
+    ledger = load_ledger(root)
+    _, archived_runs = _published_run_context(root, manifest["run_id"], ledger, audit_file)
+    events = _revision_events(ledger)
+    if not summary_publications.is_public(ledger):
+        for event in events:
+            validate_history_review(event)
+    existing_events = {event["revision_id"]: event for event in events if event.get("revision_id")}
     archived_run = manifest["run_id"] in archived_runs
     pairs, pending = [], []
     for item in items:
-        body = validate_body(work, item, require_source=("max_body_chars" in manifest or global_reuse is not None))
+        body = validate_body(work, item, require_source=("max_body_chars" in manifest or reused is not None))
         current = rows[item["id"]]
         for key in ("source_sha256", "content_sha256", "read_chars", "title", "url", "archive_url", "source_path"):
             require(current[key] == item[key], f"{item['id']}: catalog source changed")
         require(provenance(current) == item["initial_provenance"], f"{item['id']}: initial provenance changed")
         prior_entry = None
         if item.get("review_origin", "fresh").startswith("sampling_reuse_"):
-            prior_entry = _validate_reuse_inputs(work, item, manifest, root)
+            prior_entry = _validate_reuse_inputs(work, item, manifest, reused)
         writer_path = work / "writers" / (item["id"] + ".json")
         review_path = work / "reviewers" / (item["id"] + ".json")
         if item.get("review_origin") == "sampling_reuse_adequate":
@@ -1524,7 +1603,7 @@ def _blind_outline_file(work, actor, item_id, role):
     return work / "outlines" / actor / (item_id + ".json")
 
 
-def _check_blind(root, work, allow_incomplete=False, selected_ids=None, published_entries=None):
+def _check_blind(root, work, allow_incomplete=False, selected_ids=None, published_entries=None, *, audit_file=None):
     root, work = Path(root), Path(work)
     manifest = read_json(work / "manifest.json")
     require(manifest.get("blind_review") is True, "Invalid blind-review manifest")
@@ -1584,20 +1663,18 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     manifest["_input_exceptions"] = _validate_input_exceptions(work, manifest, owners)
     manifest["_reviewer_reassignments"] = _validate_reviewer_reassignments(work, manifest, owners)
     _validate_checkpoint_indices(work, manifest, owners, format_hash_aliases)
-    global_reuse = manifest.get("reused_audit")
-    if global_reuse is not None:
-        audit_path = Path(manifest.get("reused_audit_path") or (root / global_reuse["file"]))
-        require(file_hash(audit_path) == global_reuse.get("sha256"), "Pinned reuse audit changed")
-    else:
+    reused = _pinned_reuse_audit(root, manifest, audit_file)
+    if reused is None:
         require(not any(item.get("reused_audit") for item in items.values()), "Reused item without a pinned audit")
 
-    public_audit = load_review_audit(root)
-    ledger = load_ledger(root, public_audit)
+    ledger = load_ledger(root)
+    _, archived_runs = _published_run_context(root, manifest["run_id"], ledger, audit_file)
     _verify_source_transition_manifest(work, manifest, ledger, selected_ids)
-    for event in ledger["entries"]:
-        validate_history_review(event)
-    existing_events = {event.get("revision_id"): event for event in ledger["entries"] if event.get("revision_id")}
-    archived_runs = {run.get("run_id") for run in (public_audit or {}).get("previous_runs", [])}
+    events = _revision_events(ledger)
+    if not summary_publications.is_public(ledger):
+        for event in events:
+            validate_history_review(event)
+    existing_events = {event["revision_id"]: event for event in events if event.get("revision_id")}
     archived_run = manifest["run_id"] in archived_runs
     pairs, pending = [], []
 
@@ -1616,7 +1693,7 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
         require(provenance(current) == item["initial_provenance"], f"{article_id}: initial provenance changed")
         origin = item["review_origin"]
         if origin.startswith("sampling_reuse_"):
-            prior_entry = _validate_reuse_inputs(work, item, manifest, root)
+            prior_entry = _validate_reuse_inputs(work, item, manifest, reused)
         else:
             require(not item.get("reused_audit") and not item.get("prior_review_path"),
                     f"{article_id}: fresh item has stale reuse metadata")
@@ -1810,11 +1887,11 @@ def _check_blind(root, work, allow_incomplete=False, selected_ids=None, publishe
     return manifest, pairs, pending
 
 
-def check(root, work, allow_incomplete=False):
+def check(root, work, allow_incomplete=False, *, audit_file=None):
     manifest = read_json(Path(work) / "manifest.json")
     if manifest.get("blind_review") is True:
-        return _check_blind(root, work, allow_incomplete)
-    return _check_legacy(root, work, allow_incomplete)
+        return _check_blind(root, work, allow_incomplete, audit_file=audit_file)
+    return _check_legacy(root, work, allow_incomplete, audit_file=audit_file)
 
 
 def revision_tag(event):
@@ -1883,15 +1960,18 @@ def validate_history_review(event):
 
 
 def revision_metadata(ledger):
-    dates = [event["after"]["revision_date"] for event in ledger["entries"]]
-    return {"latest_date": max(dates) if dates else ledger["revision_date"], "articles": len({event["id"] for event in ledger["entries"]}),
-            "events": len(ledger["entries"]), "review_file": "data/summary-revisions.json",
-            "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"}
+    events = _revision_events(ledger)
+    dates = [event["after"]["revision_date"] for event in events]
+    latest_run = ledger.get("runs", {}).get(ledger.get("latest_run_id"), {})
+    return {"latest_date": max(dates) if dates else latest_run.get("revision_date", ledger.get("revision_date", "")),
+            "articles": len({event["id"] for event in events}), "events": len(events),
+            "review_file": "data/summary-revisions.json",
+            "model_fields": "model 与 reasoning_effort 保留初始标注来源，修订来源见 summary_revision 和发布凭证。"}
 
 
 def review_metadata(audit):
     metadata = {"run_id": audit["run_id"], "latest_date": audit["revision_date"], **audit["statistics"],
-               **model_config(audit), "review_file": "data/summary-reviews.json"}
+               **model_config(audit), "review_file": "data/summary-revisions.json"}
     publication = audit.get("publication")
     if publication is not None:
         metadata["publication"] = {"status": publication["status"],
@@ -1922,12 +2002,18 @@ def _validate_retirement(article_id, receipt, source, summary):
 
 
 def replay_revisions(catalog, ledger):
+    if summary_publications.is_public(ledger):
+        return summary_publications.replay(catalog, ledger)
+    return _replay_revision_events(catalog, ledger["entries"], _retired_articles(ledger), validate_evidence=True)
+
+
+def _replay_revision_events(catalog, revisions, retired, *, validate_evidence):
     rows = catalog_rows(catalog)
     by_id = defaultdict(list)
-    for event in ledger["entries"]:
-        validate_history_review(event)
+    for event in revisions:
+        if validate_evidence:
+            validate_history_review(event)
         by_id[event["id"]].append(event)
-    retired = _retired_articles(ledger)
     require(set(retired) <= set(by_id), "Retired article has no summary history")
     require(not (set(retired) & set(rows)), "Retired article still appears in the catalog")
     for article_id, events in by_id.items():
@@ -1943,9 +2029,11 @@ def replay_revisions(catalog, ledger):
             else:
                 require(previous_source is None or previous_source == source,
                         f"{article_id}: revision source changed without a transition")
-            before, after = event["before"]["summary"], event["after"]["summary"]
-            require(previous_after is None or before == previous_after, f"{article_id}: broken revision history")
-            known.update((digest(before), digest(after)))
+            before = (digest(event["before"]["summary"]) if validate_evidence
+                      else event["before"]["summary_sha256"])
+            after = event["after"]["summary"]
+            require(previous_after is None or before == digest(previous_after), f"{article_id}: broken revision history")
+            known.update((before, digest(after)))
             previous_after = after
             previous_source = source
         if article_id in retired:
@@ -1963,7 +2051,11 @@ def replay_revisions(catalog, ledger):
 
 def retire_articles(root, previous_catalog, decisions):
     """Record approved removals from a staged catalog without deleting accepted history."""
-    root = Path(root)
+    with _publication_lock(root):
+        return _retire_articles(Path(root), previous_catalog, decisions)
+
+
+def _retire_articles(root, previous_catalog, decisions):
     decisions = read_json(decisions)
     require(isinstance(decisions, dict) and decisions.get("schema_version") == 1,
             "Invalid summary retirement decisions")
@@ -1973,8 +2065,7 @@ def retire_articles(root, previous_catalog, decisions):
     previous = catalog_rows(json.loads(raw))
     current = read_json(root / "data/catalog.json")
     current_rows = catalog_rows(current)
-    audit = load_review_audit(root)
-    ledger = load_ledger(root, audit)
+    ledger = _public_ledger(root, load_ledger(root))
     entries = decisions.get("entries")
     require(isinstance(entries, list) and bool(entries)
             and all(isinstance(entry, dict) and set(entry) == {"id", "reason"}
@@ -1984,10 +2075,10 @@ def retire_articles(root, previous_catalog, decisions):
     require(len(reasons) == len(entries), "Duplicate summary retirement IDs")
     require(set(reasons) <= set(previous) and not (set(reasons) & set(current_rows)),
             "Retirement targets must be present in the previous catalog and absent from the staged catalog")
-    history = [event for event in ledger["entries"] if event["id"] in reasons]
+    history = [event for event in _revision_events(ledger) if event["id"] in reasons]
     require({event["id"] for event in history} == set(reasons), "Retirement target has no accepted summary history")
     old_rows = [previous[article_id] for article_id in reasons]
-    replayed = replay_revisions({"articles": copy.deepcopy(old_rows)}, {"entries": history})
+    replayed = _replay_revision_events({"articles": copy.deepcopy(old_rows)}, history, {}, validate_evidence=False)
     require(replayed["articles"] == old_rows, "Retirement baseline differs from the last accepted summary")
 
     archived = dict(_retired_articles(ledger))
@@ -2001,26 +2092,11 @@ def retire_articles(root, previous_catalog, decisions):
         require(article_id not in archived or archived[article_id] == receipt,
                 f"{article_id}: summary retirement is already recorded with different evidence")
         archived[article_id] = receipt
-    ledger["retired_articles"] = archived
+    ledger = summary_publications.update(ledger, None, retired_articles=archived)
     require(replay_revisions(copy.deepcopy(current), ledger) == current,
             "Staged catalog differs from the remaining accepted summaries")
-    staged_write(_history_outputs(root, audit, ledger))
+    staged_write({root / "data/summary-revisions.json": json_text(ledger)})
     return {"retired_articles": len(reasons)}
-
-
-def migrate_history(root):
-    """Split existing audits and deduplicate evidence without rewriting site data."""
-    root = Path(root).resolve()
-    audit = load_review_audit(root)
-    ledger = load_ledger(root, audit)
-    catalog = read_json(root / "data/catalog.json")
-    require(replay_revisions(copy.deepcopy(catalog), ledger) == catalog,
-            "Catalog differs from accepted summary history")
-    outputs = _history_outputs(root, audit, ledger) if audit is not None else {}
-    staged_write(outputs)
-    return {"review_batches": 1 + len(audit.get("previous_runs", [])) if audit else 0,
-            "revision_events": len(ledger["entries"]),
-            "changed_files": [str(path.relative_to(root)) for path in outputs]}
 
 
 def guarded_import(current, imported, ledger):
@@ -2036,7 +2112,7 @@ def guarded_import(current, imported, ledger):
     for row in result["articles"]:
         row["summary"] = incoming[row["id"]]["summary"]
     # Non-revised summaries cannot be overwritten either.
-    revised = {event["id"] for event in ledger["entries"]}
+    revised = {event["id"] for event in _revision_events(ledger)}
     for row in result["articles"]:
         require(row["id"] in revised or row["summary"] == original[row["id"]]["summary"], f"{row['id']}: import contains an unreviewed summary")
     return replay_revisions(result, ledger)
@@ -2279,19 +2355,24 @@ def checkpoint_records(root, work, actor=None, article_id=None):
 
 def sync_import(root, import_catalog):
     """Replay accepted public history without depending on private work files."""
+    with _publication_lock(root):
+        return _sync_import(Path(root), import_catalog)
+
+
+def _sync_import(root, import_catalog):
     current, _, embedded, html, match = site_catalog.read_site_catalog(root)
-    audit = load_review_audit(root)
-    ledger = load_ledger(root, audit)
-    require(bool(ledger["entries"]), "No accepted summary history is available")
+    ledger = load_ledger(root)
+    events = _revision_events(ledger)
+    require(bool(events), "No accepted summary history is available")
     result = guarded_import(current, read_json(import_catalog), ledger)
     result["metadata"]["summary_revisions"] = revision_metadata(ledger)
-    if audit is not None:
-        result["metadata"]["summary_reviews"] = review_metadata(audit)
+    if "summary_reviews" in result["metadata"] and summary_publications.is_public(ledger):
+        result["metadata"]["summary_reviews"]["review_file"] = "data/summary-revisions.json"
     outputs = {root / name: text for name, text in site_catalog.catalog_files(result, embedded, html, match).items()}
     for text in outputs.values():
         require(not any(token in text for token in ("/Users/", "file://", "localhost")), "Non-public path in synchronized output")
     staged_write(outputs)
-    live_revision_ids = {event["id"] for event in ledger["entries"]} - _retired_articles(ledger).keys()
+    live_revision_ids = {event["id"] for event in events} - _retired_articles(ledger).keys()
     return {"synchronized": len(result["articles"]), "replayed_articles": len(live_revision_ids)}
 
 
@@ -2494,7 +2575,15 @@ def _publication_statistics(entries, target_items=None):
     return stats
 
 
-def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=None):
+def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=None, *, audit_file=None):
+    root, work = Path(root), Path(work)
+    _require_private_work(root, work)
+    path = summary_history.private_audit_path(root, audit_file)
+    with _publication_lock(root), summary_history.private_lock(path):
+        return _apply(root, work, import_catalog, accepted_only, publication_ids, path)
+
+
+def _apply(root, work, import_catalog, accepted_only, publication_ids, audit_file):
     root, work = Path(root), Path(work)
     require(publication_ids is None or accepted_only,
             "publication_ids requires accepted_only=True")
@@ -2502,8 +2591,8 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
     transition_run = "source_transition_baseline_sha256" in manifest
     require(not transition_run or (not accepted_only and import_catalog is None),
             "Source transitions must apply in full without importing another catalog")
-    prior_audit = load_review_audit(root)
-    archived_runs = {run.get("run_id") for run in (prior_audit or {}).get("previous_runs", [])}
+    prior_ledger = load_ledger(root)
+    prior_audit, archived_runs = _published_run_context(root, manifest["run_id"], prior_ledger, audit_file)
     require(manifest["run_id"] not in archived_runs, "Cannot apply an archived review run")
     prior_publication = _prior_publication_state(prior_audit, manifest)
     require(not transition_run or prior_publication is None, "Source transitions cannot continue phased publication")
@@ -2519,12 +2608,12 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
         selected_ids = _select_publication_ids(work, manifest, primary_acceptance, publication_ids, prior_publication)
         prior_entries = prior_publication["entries"] if prior_publication else {}
         manifest, pairs, pending = _check_blind(root, work, selected_ids=set(selected_ids),
-                                                published_entries=prior_entries)
+                                                published_entries=prior_entries, audit_file=audit_file)
         require(not pending, f"Selected publication is incomplete: {', '.join(pending)}")
         primary_acceptance = _validate_primary_acceptance(work, manifest, pairs, allow_subset=True,
                                                           required_ids=set(selected_ids))
     else:
-        manifest, pairs, pending = check(root, work)
+        manifest, pairs, pending = check(root, work, audit_file=audit_file)
         primary_acceptance = _validate_primary_acceptance(work, manifest, pairs)
         selected_ids = [item["id"] for item in manifest["articles"]]
         if prior_publication is not None:
@@ -2536,10 +2625,11 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                         f"{article_id}: previously published primary acceptance receipt changed")
     config = model_config(manifest)
     current, _, embedded, html, match = site_catalog.read_site_catalog(root)
-    ledger = copy.deepcopy(load_ledger(root, prior_audit))
+    ledger = _public_ledger(root, prior_ledger)
     catalog = guarded_import(current, read_json(import_catalog), ledger) if import_catalog else copy.deepcopy(current)
     rows = catalog_rows(catalog)
-    existing = {event.get("revision_id") for event in ledger["entries"] if event.get("revision_id")}
+    existing = {event["revision_id"]: event for event in _revision_events(ledger) if event.get("revision_id")}
+    new_events = []
     def optional_record(directory, article_id):
         path = Path(work) / directory / (article_id + ".json")
         return read_json(path) if path.exists() else None
@@ -2597,11 +2687,11 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                 "reviewer_initial": reviewer_initial, "request": request, "adjudication": adjudication}
             if transition is not None:
                 event["source_transition"] = transition
-            ledger["entries"].append(event)
-            existing.add(key)
+            validate_history_review(event)
+            new_events.append(event)
+            existing[key] = event
         rows[item["id"]]["summary"] = after_summary
-        event = next(event for event in ledger["entries"] if event.get("revision_id") == key)
-        rows[item["id"]]["summary_revision"] = revision_tag(event)
+        rows[item["id"]]["summary_revision"] = revision_tag(existing[key])
     if prior_publication is not None:
         current_entries = {entry["id"]: entry for entry in entries}
         for article_id, prior_entry in prior_publication["entries"].items():
@@ -2609,11 +2699,6 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
                     f"{article_id}: previously published audit entry changed")
         combined = {**prior_publication["entries"], **current_entries}
         entries = [combined[item["id"]] for item in manifest["articles"] if item["id"] in combined]
-    # Verify all historical edges, including the two revisions predating this run.
-    replayed = replay_revisions(copy.deepcopy(catalog), ledger)
-    require(replayed["articles"] == catalog["articles"], "Applied summaries do not match the latest accepted history")
-    ledger["revision_date"] = manifest["revision_date"]
-    ledger["reviewer"] = f"Codex orchestration; {config['model']} {config['reasoning_effort']} independent review"
     new_old = sum(item.get("review_origin", "fresh") == "fresh" for item, _, _ in pairs)
     reused_old = sum(item.get("review_origin", "fresh").startswith("sampling_reuse_") for item, _, _ in pairs)
     reused_direct = sum(item.get("review_origin") == "sampling_reuse_adequate" for item, _, _ in pairs)
@@ -2676,16 +2761,27 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
             audit["previous_runs"] = [*audit["previous_runs"], {key: value for key, value in prior_audit.items() if key != "previous_runs"}]
         elif prior_publication is None:
             require(prior_audit == audit, "Accepted results or provenance for this run changed; create a new run for further revisions")
+    ledger = summary_publications.update(ledger, audit, new_events)
+    replayed = replay_revisions(copy.deepcopy(catalog), ledger)
+    require(replayed["articles"] == catalog["articles"], "Applied summaries do not match the latest accepted history")
+    private_ledger = summary_history.load_private_ledger(audit_file)
+    if private_ledger is None:
+        private_ledger = ({"schema_version": 1, "entries": []} if summary_publications.is_public(prior_ledger)
+                          else copy.deepcopy(prior_ledger))
+    private_ledger["entries"].extend(new_events)
+    private_ledger["revision_date"] = manifest["revision_date"]
+    private_ledger["reviewer"] = f"Codex orchestration; {config['model']} {config['reasoning_effort']} independent review"
     metadata = catalog["metadata"]
     metadata["summary_reviews"] = review_metadata(audit)
     metadata["summary_revisions"] = revision_metadata(ledger)
-    outputs = _history_outputs(root, audit, ledger)
+    outputs = {root / "data/summary-revisions.json": json_text(ledger)}
     outputs.update({root / name: text for name, text in site_catalog.catalog_files(catalog, embedded, html, match).items()})
     for path, text in outputs.items():
         if path.suffix == ".json":
             json.loads(text)
         require(not any(token in text for token in ("/Users/", "file://", "localhost")), f"Non-public path in output: {path.name}")
-    staged_write(outputs)
+    private_outputs = summary_history.private_payload(audit_file, audit=audit, ledger=private_ledger)
+    staged_write({**private_outputs, **outputs})
     result = {"run_id": manifest["run_id"], **stats}
     if publication is not None:
         result["publication"] = publication
@@ -2695,6 +2791,7 @@ def apply(root, work, import_catalog=None, accepted_only=False, publication_ids=
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--audit-file", type=Path, help="private single-file audit archive (outside public data)")
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prepare")
     p.add_argument("--source-dir", type=Path, required=True)
@@ -2709,6 +2806,7 @@ def main(argv=None):
     p.add_argument("--max-body-chars", type=int)
     p.add_argument("--recovery-dir", type=Path)
     p.add_argument("--reuse-audit", type=Path)
+    p.add_argument("--reuse-audit-run", help="sampling run ID in the private audit archive")
     p.add_argument("--actor-prefix", default="long")
     p.add_argument("--blind-review", action="store_true")
     p.add_argument("--reviewer-count", type=int, choices=range(1, 7),
@@ -2732,7 +2830,6 @@ def main(argv=None):
     p = sub.add_parser("retire", help="preserve accepted history for articles removed from a staged catalog")
     p.add_argument("--previous-catalog", type=Path, required=True)
     p.add_argument("--decisions", type=Path, required=True)
-    sub.add_parser("migrate-history", help="split public review history into batches with shared revision evidence")
     args = parser.parse_args(argv)
     try:
         if args.command == "prepare":
@@ -2748,14 +2845,13 @@ def main(argv=None):
                              model=args.model, reasoning_effort=args.reasoning_effort,
                              require_bound_primary_review=args.require_bound_primary_review, article_ids=article_ids,
                              reviewer_count=args.reviewer_count if args.reviewer_count is not None else 2,
-                             source_transition_from=args.source_transition_from)
+                             source_transition_from=args.source_transition_from, audit_file=args.audit_file,
+                             reuse_audit_run=args.reuse_audit_run)
         elif args.command == "check":
-            manifest, pairs, pending = check(args.root, args.work_dir, args.allow_incomplete)
+            manifest, pairs, pending = check(args.root, args.work_dir, args.allow_incomplete, audit_file=args.audit_file)
             result = {"run_id": manifest["run_id"], "passed": len(pairs), "pending_count": len(pending), "pending": pending}
         elif args.command == "retire":
             result = retire_articles(args.root, args.previous_catalog, args.decisions)
-        elif args.command == "migrate-history":
-            result = migrate_history(args.root)
         else:
             require(args.work_dir is not None or args.import_catalog is not None, "apply needs --work-dir or --import-catalog")
             require(args.article_ids_file is None or args.accepted_only,
@@ -2765,7 +2861,7 @@ def main(argv=None):
             if args.work_dir:
                 publication_ids = read_json(args.article_ids_file) if args.article_ids_file else None
                 result = apply(args.root, args.work_dir, args.import_catalog,
-                               accepted_only=args.accepted_only, publication_ids=publication_ids)
+                               accepted_only=args.accepted_only, publication_ids=publication_ids, audit_file=args.audit_file)
             else:
                 result = sync_import(args.root, args.import_catalog)
         print(json.dumps(result, ensure_ascii=False))

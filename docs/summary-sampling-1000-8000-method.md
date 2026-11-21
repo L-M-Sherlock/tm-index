@@ -22,7 +22,7 @@
 
 各层问题率为（覆盖不足篇数＋实质失真篇数）÷15，同时报告 Wilson 95% 区间，不作有限总体修正。总体点估计按各层总体篇数/1,335 加权；不把 60 篇样本的简单混合比例作为总体估计，不据抽样结果对未抽中的单篇文章作判断。每层样本较小，区间用于体现不确定性，不作精确排名。
 
-公开结果写入新的 `data/summary-sampling-audit-1000-8000-20261103.json`，保留上一轮报告。当前总结、目录、网页和导出代码均以哈希保护。本轮仅诊断，结果不自动写回总结或发布网站。
+逐篇结果按批次 ID 保存在本地审阅档案。公开数据仅含[抽样汇总](summary-results.md)。当前总结、目录、网页和导出代码均以哈希保护。
 
 运行于 WSL Python；准备命令如下：
 
@@ -34,8 +34,7 @@ python3 scripts/summary_sampling_audit.py prepare \
   --work-dir .work/short-summary-audit-20261103 \
   --run-id short-summary-audit-20261103 --date 2026-11-03 \
   --seed 20261103 --per-stratum 15 --bounds 1000 2000 3000 5000 8000 \
-  --model gpt-6 --reasoning-effort max \
-  --report-path data/summary-sampling-audit-1000-8000-20261103.json
+  --model gpt-6 --reasoning-effort max
 ```
 
 准备只运行一次。后续用同一工作目录执行 `check` 和 `report`，不重新抽样。

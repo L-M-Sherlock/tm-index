@@ -436,7 +436,7 @@
       "articles": 738,
       "events": 740,
       "review_file": "data/summary-revisions.json",
-      "model_fields": "model 与 reasoning_effort 保留初始标注来源；修订来源见 summary_revision、逐篇审阅与修订历史。"
+      "model_fields": "model 与 reasoning_effort 保留初始标注来源，修订来源见 summary_revision 和发布凭证。"
     },
     "summary_reviews": {
       "run_id": "new-translations-20261121",
@@ -470,7 +470,7 @@
       ],
       "model": "gpt-6-luna",
       "reasoning_effort": "max",
-      "review_file": "data/summary-reviews.json"
+      "review_file": "data/summary-revisions.json"
     },
     "incremental_archive_intake": {
       "archive_commit": "61c5129d1a7807bcd4f8bd22af095b9fb0de46a0",

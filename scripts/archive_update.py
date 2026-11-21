@@ -15,9 +15,11 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from archive_translation_intake import archived_objects, visible_body
+from check_summary_publication import check as check_summary_publication
 from site_catalog import read_site_catalog, verify_export_inventory
+import summary_publications
 from summary_workflow import (
-    ROOT, canonical_hash, digest, file_hash, json_text, load_ledger, load_review_audit,
+    ROOT, canonical_hash, digest, file_hash, json_text, load_ledger,
     read_json, replay_revisions, require, staged_write,
 )
 
@@ -26,7 +28,7 @@ STATE = Path("data/archive-update-state.json")
 OUTPUT_FILES = (
     "data/catalog.json", "data/validation.json", "data/references.json", "data/answer-references.json",
     "data/authors.json", "data/original-authors.jsonl", "data/keywords.json",
-    "data/summary-reviews.json", "data/summary-revisions.json", "index.html",
+    "data/summary-revisions.json", "index.html",
 )
 RECORD_PATH = re.compile(r"(article|answer)/([0-9]+)\.json")
 SHA256 = re.compile(r"[0-9a-f]{64}")
@@ -232,26 +234,13 @@ def verify_site(root):
                     and "author_entities" in entry and "original_author_status" in entry
                     for key, entry in author_records.items()), "Per-article authorship differs from catalog")
     projected = {"articles": copy.deepcopy(catalog["articles"])}
-    require(replay_revisions(projected, load_ledger(root))["articles"] == catalog["articles"],
+    require(replay_revisions(projected, check_summary_publication(root))["articles"] == catalog["articles"],
             "Catalog does not contain the latest accepted summary revision")
     return rows, graph, answers, answer_graph
 
 
 def accepted_versions(root):
-    history = load_review_audit(root)
-    require(history is not None, "Missing summary review history")
-    versions = set()
-    for run in [history, *history.get("previous_runs", [])]:
-        for entry in run["entries"]:
-            review = entry.get("review")
-            if isinstance(review, dict) and review.get("verdict") == "pass":
-                source = entry.get("source") or {}
-                writer = entry.get("writer") or {}
-                summary = writer.get("summary")
-                if (isinstance(summary, str) and review.get("summary_sha256") == digest(summary)
-                        and source.get("source_sha256") and source.get("content_sha256")):
-                    versions.add((entry["id"], source["source_sha256"], source["content_sha256"], review["summary_sha256"]))
-    return versions
+    return summary_publications.accepted_versions(check_summary_publication(root))
 
 
 def validate_decisions(plan, decisions):

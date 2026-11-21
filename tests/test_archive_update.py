@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
 import archive_update as archive_update
 import archive_update_install
 import answer_reference_update
+import summary_publications
 from answer_archive_delta import ACCOUNT_NAMES
 from summary_workflow import canonical_hash, digest, json_text, read_json
 
@@ -81,7 +82,7 @@ class ArchiveUpdateTests(unittest.TestCase):
             "answer-references.json": answers, "authors.json": [{"name": "The author", "article_ids": ["1"],
                                                                   "article_count": 1}],
             "keywords.json": [{"keyword": "topic", "count": 1}],
-            "summary-reviews.json": {"entries": []}, "summary-revisions.json": {"entries": []},
+            "summary-revisions.json": summary_publications.empty(),
         }.items():
             self.write_json(self.root / "data" / name, value)
         self.write_site_outputs(catalog, answers)
@@ -234,6 +235,22 @@ class ArchiveUpdateTests(unittest.TestCase):
         self.write_site_outputs(catalog, answers)
         self.write_json(self.root / "data/keywords.json", [])
         with self.assertRaisesRegex(ValueError, "Keyword index differs"):
+            archive_update.verify_site(self.root)
+
+    def test_published_site_rejects_private_review_data(self):
+        self.make_site()
+        publication = self.root / "data/summary-revisions.json"
+        self.write_json(publication, {"schema_version": 1, "entries": []})
+        with self.assertRaises(ValueError):
+            archive_update.verify_site(self.root)
+        self.write_json(publication, summary_publications.empty())
+        report = self.root / "data/summary-sampling-audit-old.json"
+        self.write_json(report, {})
+        with self.assertRaisesRegex(ValueError, "Private summary evidence"):
+            archive_update.verify_site(self.root)
+        report.unlink()
+        self.write_json(self.root / "data/renamed-review.json", {"run_id": "private", "entries": [], "statistics": {}})
+        with self.assertRaisesRegex(ValueError, "renamed-review"):
             archive_update.verify_site(self.root)
 
     def test_complete_is_idempotent_and_governs_next_explicit_base(self):

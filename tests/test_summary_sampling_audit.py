@@ -1,10 +1,12 @@
 """Sampling integrity, diagnostic gates, weights, and read-only reporting."""
 import copy
+from contextlib import contextmanager
 import importlib.util
 import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 SPEC = importlib.util.spec_from_file_location("sampling_audit", Path(__file__).resolve().parents[1] / "scripts/summary_sampling_audit.py")
 audit = importlib.util.module_from_spec(SPEC)
@@ -20,6 +22,7 @@ class SamplingAuditTests(unittest.TestCase):
         self.source = self.root / "sources"
         self.source.mkdir()
         self.work = self.root / "work"
+        self.audit_path = self.root / ".work" / "summary-audit.json"
         self.summary = "作者主张理解核心机制，并依据及时反馈调整学习路径。"
         self.rows, source_rows = [], []
         for number, length in enumerate([5100, 6100, 7100, 8100, 10100, 11100, 15100], 1):
@@ -40,7 +43,8 @@ class SamplingAuditTests(unittest.TestCase):
         (self.root / "archive-export.js").write_text("// protected export")
         self.trusted = self.root / "trusted.json"
         base.write_json(self.trusted, {"articles": source_rows})
-        audit.prepare(self.root, self.source, self.trusted, None, self.work, "sample-test", "2026-11-01", per_stratum=1)
+        audit.prepare(self.root, self.source, self.trusted, None, self.work, "sample-test", "2026-11-01",
+                      per_stratum=1, audit_file=self.audit_path)
         self.manifest = base.read_json(self.work / "manifest.json")
         self.owners = {role: {id: actor for actor, ids in groups.items() for id in ids} for role, groups in self.manifest["assignments"].items()}
         for item in self.manifest["articles"]:
@@ -107,25 +111,32 @@ class SamplingAuditTests(unittest.TestCase):
                 audit.sampled_population(self.rows, 1, 1, bounds)
 
     def test_legacy_manifest_keeps_historical_defaults(self):
-        for key in ("bounds", "included_decisions", "report_path"):
+        for key in ("bounds", "included_decisions", "audit_file"):
             self.manifest.pop(key)
+        legacy_path = self.root / "data/summary-sampling-audit.json"
+        base.write_json(legacy_path, {"kind": "sampling_audit", "run_id": "prior"})
+        old_hash = audit.file_hash(legacy_path)
+        self.manifest["report_path"] = str(legacy_path.relative_to(self.root))
         base.write_json(self.work / "manifest.json", self.manifest)
         audit.check(self.root, self.work)
-        audit.report(self.root, self.work)
-        result = base.read_json(self.root / audit.REPORT_PATH)
+        audit.report(self.root, self.work, audit_file=self.audit_path)
+        result = base.summary_history.load_private(self.audit_path)["sampling"]["sample-test"]
         self.assertEqual(result["sampling"]["bounds_left_closed_right_open"], list(audit.BOUNDS))
         self.assertNotIn("included_decisions", result["sampling"])
+        self.assertEqual(audit.file_hash(legacy_path), old_hash)
 
     def test_cli_custom_config_prepare_check_report(self):
-        original_report = self.root / audit.REPORT_PATH
+        original_report = self.root / "data/summary-sampling-audit.json"
+        export = self.root / ".work/custom-audit.json"
         base.write_json(original_report, {"kind": "sampling_audit", "run_id": "prior"})
         original_hash = audit.file_hash(original_report)
         self.work = self.root / "custom-work"
-        result = audit.main(["--root", str(self.root), "prepare", "--source-dir", str(self.source),
+        result = audit.main(["--root", str(self.root), "--audit-file", str(self.audit_path),
+                             "prepare", "--source-dir", str(self.source),
                              "--source-manifest", str(self.trusted), "--work-dir", str(self.work),
                              "--run-id", "short-summary-audit-20261103", "--date", "2026-11-03",
                              "--seed", "20261103", "--per-stratum", "1", "--bounds", "5000", "8000",
-                             "--model", "gpt-6", "--reasoning-effort", "max", "--report-path", "data/custom-audit.json"])
+                             "--model", "gpt-6", "--reasoning-effort", "max", "--report-path", str(export)])
         self.assertEqual(result, 0)
         self.manifest = base.read_json(self.work / "manifest.json")
         self.assertEqual(self.manifest["bounds"], [5000, 8000])
@@ -151,16 +162,54 @@ class SamplingAuditTests(unittest.TestCase):
         audit.check(self.root, self.work)
         audit.report(self.root, self.work)
         audit.report(self.root, self.work)
-        report = base.read_json(self.root / "data/custom-audit.json")
+        report = base.read_json(export)
+        archived = base.summary_history.load_private(self.audit_path)["sampling"][report["run_id"]]
+        self.assertEqual(archived, report)
         self.assertEqual(report["model"], "gpt-6")
         self.assertEqual(report["sampling"]["bounds_left_closed_right_open"], [5000, 8000])
         self.assertEqual(audit.file_hash(original_report), original_hash)
 
-    def test_report_path_cannot_overwrite_catalog_or_escape_root(self):
-        for target in ("data/catalog.json", "../outside.json", "data/summary-revisions.json"):
+    def test_report_paths_must_be_private(self):
+        for target in ("data/catalog.json", "data/summary-revisions.json", "data/custom-audit.json", "top-level.json"):
             with self.subTest(target=target), self.assertRaises(ValueError):
                 audit.prepare(self.root, self.source, self.trusted, None, self.root / "invalid-work",
-                              "invalid", "2026-11-03", per_stratum=1, report_path=target)
+                              "invalid", "2026-11-03", per_stratum=1, report_path=target, audit_file=self.audit_path)
+        with self.assertRaises(ValueError):
+            audit.prepare(self.root, self.source, self.trusted, None, self.root / "invalid-work",
+                          "invalid", "2026-11-03", per_stratum=1, audit_file="data/custom-audit.json")
+
+    def test_public_work_directory_is_rejected_without_git_metadata(self):
+        public_work = self.root / "data/sampling-work"
+        self.assertFalse((self.root / ".git").exists())
+        with self.assertRaisesRegex(ValueError, "Review work cannot be stored in public data"):
+            audit.prepare(self.root, self.source, self.trusted, None, public_work,
+                          "invalid", "2026-11-03", per_stratum=1, audit_file=self.audit_path)
+        self.assertFalse(public_work.exists())
+        for operation in (audit.check, audit.report):
+            with self.subTest(operation=operation.__name__), self.assertRaisesRegex(
+                    ValueError, "Review work cannot be stored in public data"):
+                operation(self.root, public_work)
+        self.assertFalse(self.audit_path.exists())
+
+    def test_report_rejects_manifest_redirect_to_nonprivate_path(self):
+        target = self.root / "data/custom-audit.json"
+        self.manifest["private_report_path"] = str(target)
+        base.write_json(self.work / "manifest.json", self.manifest)
+        with self.assertRaises(ValueError):
+            audit.report(self.root, self.work)
+        self.assertFalse(target.exists())
+        self.assertFalse(self.audit_path.exists())
+
+    def test_report_revalidates_frozen_files_after_acquiring_archive_lock(self):
+        @contextmanager
+        def concurrent_publication(_):
+            (self.root / "index.html").write_text("Published while the sampling report waited")
+            yield
+
+        with patch.object(audit.history, "private_lock", concurrent_publication):
+            with self.assertRaisesRegex(ValueError, "Protected file changed"):
+                audit.report(self.root, self.work)
+        self.assertFalse(self.audit_path.exists())
 
     def test_sample_replacement_is_rejected(self):
         manifest = copy.deepcopy(self.manifest)
@@ -336,11 +385,25 @@ class SamplingAuditTests(unittest.TestCase):
     def test_report_is_read_only_and_idempotent(self):
         before = {path: audit.file_hash(self.root / path) for path in self.manifest["protected_files"]}
         stats = audit.report(self.root, self.work)
-        output = (self.root / audit.REPORT_PATH).read_bytes()
+        output = self.audit_path.read_bytes()
         audit.report(self.root, self.work)
-        self.assertEqual(output, (self.root / audit.REPORT_PATH).read_bytes())
+        self.assertEqual(output, self.audit_path.read_bytes())
+        self.assertEqual(set(base.summary_history.load_private(self.audit_path)["sampling"]), {"sample-test"})
+        self.assertFalse((self.root / "data/summary-sampling-audit.json").exists())
         self.assertEqual(before, {path: audit.file_hash(self.root / path) for path in before})
         self.assertEqual(stats["counts"], {"adequate": 4})
+
+    def test_report_preserves_other_runs_and_refuses_to_replace_an_accepted_run(self):
+        prior = {"kind": "sampling_audit", "run_id": "prior", "entries": []}
+        base.staged_write(audit.history.private_payload(self.audit_path, sampling={"prior": prior}))
+        audit.report(self.root, self.work)
+        output = self.audit_path.read_bytes()
+        self.assertEqual(audit.history.load_private(self.audit_path)["sampling"]["prior"], prior)
+        self.manifest["date"] = "2026-11-02"
+        base.write_json(self.work / "manifest.json", self.manifest)
+        with self.assertRaisesRegex(ValueError, "Accepted private sampling record changed"):
+            audit.report(self.root, self.work)
+        self.assertEqual(output, self.audit_path.read_bytes())
 
 
 if __name__ == "__main__":

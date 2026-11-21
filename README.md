@@ -35,16 +35,15 @@ TXT 和 Markdown 的导出文件名均附带导出时间戳（UTC，精确到毫
 - `missing-zhihu-reference-recheck.json`：基于更新后的本地备份，对既有候选逐对复核的结果、链接证据与来源哈希；独立于历史候选清单和页面计数
 - `validation.json`：最终覆盖与完整性检查
 - `user-corrections.json`：人工确认的范围和作者更正
-- `summary-revisions.json`：摘要首稿及修订前后稿、来源哈希与审阅证据引用
-- `summary-reviews.json`：审阅批次索引。逐篇主要观点、处理理由和独立全文复核记录保存在 `summary-reviews/<批次>.json`
+- `summary-revisions.json`：摘要发布凭证、回放所需的已发布稿、来源与稿件哈希
 
 页面当前收录 2,187 篇译文，原作者均已确认。初版摘要和初始关键词由 `gpt-6-luna`（max）逐篇生成，后续经过范围、作者和标签复核。总结的原始模型标注保留，后续修订及独立复核来源另记于 `summary_revision` 和审阅、修订记录。
 
-2026-11-21 从知乎备份新增收录 37 篇译文。首份摘要均经独立全文复核，逐篇依据见 [本批审阅记录](data/summary-reviews/new-translations-20261121.json)。
+2026-11-21 从知乎备份新增收录 37 篇译文。首份摘要均经独立全文复核，逐篇发布状态见[发布凭证](data/summary-revisions.json)。
 
 2026-11-01 完整复核正文至少 20,000 字符的 60 篇译文（合计 2,150,982 字符），均发现主要观点、证据或限定覆盖不足并完成修订。写作与独立全文复核均使用 `gpt-6-luna`（max）。本轮总结平均长度由 207.4 增至 886.6 字符，中位数由 172 增至 855；修订后范围为 234–1,558 字符，按体裁与复杂度调整。此前两篇 Codex 修订稿保留在历史中，本轮也接受了独立复核和再次修订。
 
-正文 8,000～20,000 字符译文的 259 篇全量复核已完成：205 篇重写、54 篇保留，总结平均长度从 157.0 增至 492.1 字符。分层统计、逐篇理由和前后稿见[全量复核报告](docs/summary-midlength-results.md)。此前首批 92 篇（70 篇重写、22 篇保留）的发布情况见[阶段报告](docs/summary-midlength-progress.md)。
+正文 8,000～20,000 字符译文的 259 篇全量复核已完成：205 篇重写、54 篇保留，总结平均长度从 157.0 增至 492.1 字符。首批 92 篇及整批结果见[摘要复核汇总](docs/summary-results.md)。
 
 文章间引用关系使用已核验的公开版及新增文章的备份快照；核验范围和时间记录在 `references.json` 的元数据中。数据不会随知乎文章更新自动变化。
 
@@ -70,11 +69,11 @@ python3 scripts/apply_reference_recheck.py --archive ../ZhiHuArchive --audit dat
 
 ## 总结工作流
 
-正文 3,000～8,000 字符的 622 篇译文已完成本地全量复核：436 篇重写、186 篇保留，总结平均长度从 143.3 增至 280.3 字符。分层统计、逐篇理由与过程异常说明见[复核报告](docs/summary-compact-results.md)，文章列表见 [CSV](docs/summary-compact-articles.csv)。本轮不自动提交或发布。
+正文 3,000～8,000 字符的 622 篇译文已完成全量复核：436 篇重写、186 篇保留，总结平均长度从 143.3 增至 280.3 字符。[摘要复核汇总](docs/summary-results.md)
 
 写作、独立复核和主代理验收规范见 [总结工作流](docs/summary-workflow.md)。先阅读全文并建立主要观点清单，按体裁、正文长度和内容复杂度决定篇幅，不设置 260 字的长文上限。结构、哈希和阅读区间校验不能代替语义复核。
 
-`scripts/summary_workflow.py` 提供 `prepare`、`check`、`apply` 三个入口，不生成总结或调用模型 API。正文快照只读，工作文件存于忽略的 `.work/` 中；全部结果通过独立复核后才应用。导入旧目录须使用 `apply --import-catalog`，重放已验收的修订历史；未知总结或来源冲突会停止同步。
+`scripts/summary_workflow.py` 提供 `prepare`、`check`、`apply` 三个入口，不生成总结或调用模型 API。正文快照只读，完整审阅和抽样结果存于本地单文件档案。默认路径为 `~/.local/share/tm-index/summary-audit.json`。发布须通过独立复核。导入旧目录时，`apply --import-catalog` 使用公开发布凭证重放已验收版本。未知摘要或来源冲突会停止同步。
 
 工具回归检查：`python3 -m unittest discover -s tests -v`。
 

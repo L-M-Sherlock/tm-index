@@ -40,26 +40,28 @@ class SummaryHistoryTests(unittest.TestCase):
     def shard_path(self, run_id):
         return self.index_path.with_suffix("") / (run_id + ".json")
 
+    def install_legacy_shards(self, *runs):
+        descriptors = []
+        for run in runs:
+            run_id = run["run_id"]
+            path = self.shard_path(run_id)
+            text = json.dumps(run, ensure_ascii=False)
+            self.write_payloads({path: text})
+            descriptors.append({"run_id": run_id, "file": str(path.relative_to(self.root)),
+                                "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest()})
+        index = {"schema_version": 2, "latest_run_id": runs[-1]["run_id"], "runs": descriptors}
+        self.write_payloads({self.index_path: json.dumps(index)})
+        return index
+
     def test_legacy_migration_round_trips_and_checks_exact_shard_bytes(self):
-        audit = dict(audit_run("second", "2"), previous_runs=[audit_run("first", "1")])
+        first, second = audit_run("first", "1"), audit_run("second", "2")
+        audit = dict(second, previous_runs=[first])
         self.assertIsNone(history.load_audit(self.root))
         self.write_payloads({self.index_path: json.dumps(audit, ensure_ascii=False)})
         self.assertEqual(history.load_audit(self.root), audit)
 
-        payloads = history.audit_payloads(self.root, audit)
-        self.assertEqual(set(payloads), {self.index_path, self.shard_path("first"), self.shard_path("second")})
-        self.write_payloads(payloads)
-        index = json.loads(self.index_path.read_text(encoding="utf-8"))
-        self.assertEqual(index["schema_version"], 2)
-        self.assertEqual(index["latest_run_id"], "second")
-        self.assertEqual([record["run_id"] for record in index["runs"]], ["first", "second"])
-        for record in index["runs"]:
-            path = self.shard_path(record["run_id"])
-            self.assertEqual(record["file"], str(path.relative_to(self.root)))
-            self.assertEqual(record["sha256"], hashlib.sha256(path.read_bytes()).hexdigest())
-            self.assertNotIn("previous_runs", json.loads(path.read_text(encoding="utf-8")))
+        self.install_legacy_shards(first, second)
         self.assertEqual(history.load_audit(self.root), audit)
-        self.assertEqual(history.audit_payloads(self.root, audit), {})
 
         old_shard = self.shard_path("first")
         previous = old_shard.read_bytes()
@@ -70,55 +72,13 @@ class SummaryHistoryTests(unittest.TestCase):
         with self.assertRaises((ValueError, OSError)):
             history.load_audit(self.root)
 
-    def test_append_run_keeps_archived_shards_immutable(self):
-        first = dict(audit_run("first", "1"), previous_runs=[])
-        self.write_payloads(history.audit_payloads(self.root, first))
-        first_bytes = self.shard_path("first").read_bytes()
-
-        new_audit = dict(audit_run("second", "2"), previous_runs=[audit_run("first", "1")])
-        payloads = history.audit_payloads(self.root, new_audit)
-        self.assertEqual(set(payloads), {self.index_path, self.shard_path("second")})
-        self.write_payloads(payloads)
-        self.assertEqual(self.shard_path("first").read_bytes(), first_bytes)
-
-        tampered = copy.deepcopy(new_audit)
-        tampered["previous_runs"][0]["entries"][0]["review"]["verdict"] = "revise"
-        with self.assertRaises(ValueError):
-            history.audit_payloads(self.root, tampered)
-
-    def test_phased_update_can_extend_current_run_without_rewriting_archives(self):
-        previous = audit_run("first", "1")
-        original = dict(audit_run("second", "2"), previous_runs=[previous])
-        original["publication"] = {"status": "in_progress", "published_ids": ["2"], "pending_ids": ["3"]}
-        original["publication_history"] = [{"status": "in_progress", "published_ids": ["2"]}]
-        self.write_payloads(history.audit_payloads(self.root, original))
-        older_bytes = self.shard_path("first").read_bytes()
-        updated = copy.deepcopy(original)
-        updated["entries"].append(review_entry("3"))
-        updated["publication"] = {"status": "complete", "published_ids": ["2", "3"], "pending_ids": []}
-        updated["publication_history"].append(dict(updated["publication"]))
-
-        altered = copy.deepcopy(updated)
-        altered["entries"][0]["review"]["verdict"] = "revise"
-        with self.assertRaises(ValueError):
-            history.audit_payloads(self.root, altered)
-
-        payloads = history.audit_payloads(self.root, updated)
-        self.assertEqual(set(payloads), {self.index_path, self.shard_path("second")})
-        self.write_payloads(payloads)
-        self.assertEqual(self.shard_path("first").read_bytes(), older_bytes)
-        self.assertEqual(history.load_audit(self.root), updated)
-        self.assertEqual(history.audit_payloads(self.root, updated), {})
-
     def test_rejects_unsafe_run_name_and_forged_shard_path(self):
+        index = self.install_legacy_shards(audit_run("safe", "1"))
+        forged = copy.deepcopy(index)
+        forged["runs"][0]["run_id"] = "../outside"
+        self.write_payloads({self.index_path: json.dumps(forged)})
         with self.assertRaises(ValueError):
-            history.audit_payloads(self.root, dict(audit_run("../outside", "1"), previous_runs=[]))
-        with self.assertRaises(ValueError):
-            history.audit_payloads(self.root, dict(audit_run("safe", "1"), previous_runs=[audit_run("SAFE", "2")]))
-
-        audit = dict(audit_run("safe", "1"), previous_runs=[])
-        self.write_payloads(history.audit_payloads(self.root, audit))
-        index = json.loads(self.index_path.read_text(encoding="utf-8"))
+            history.load_audit(self.root)
         index["runs"][0]["file"] = "../outside.json"
         self.write_payloads({self.index_path: json.dumps(index)})
         with self.assertRaises(ValueError):

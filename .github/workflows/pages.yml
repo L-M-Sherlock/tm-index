@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Verify public summary receipts
+        run: python3 scripts/check_summary_publication.py
       - uses: actions/configure-pages@v5
       - name: Prepare static site
         run: |

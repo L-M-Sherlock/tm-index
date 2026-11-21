@@ -2,4 +2,13 @@
 public/
 .work/
 __pycache__/
+/data/summary-audit.json
+/data/summary-reviews.json
+/data/summary-reviews/
+/data/summary-sampling-audit*.json
+/docs/summary-compact-articles.csv
+/docs/summary-compact-results.md
+/docs/summary-midlength-progress.md
+/docs/summary-midlength-results.md
+/docs/summary-sampling-1000-8000-results.md
 

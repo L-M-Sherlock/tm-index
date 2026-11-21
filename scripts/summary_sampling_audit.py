@@ -16,10 +16,10 @@ SPEC = importlib.util.spec_from_file_location("summary_audit_base", Path(__file_
 base = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(base)
 source_body = base.summary_sources.source_body
+history = base.summary_history
 ROOT = Path(__file__).resolve().parents[1]
 BOUNDS = (5000, 8000, 10000, 15000, 20000)
 VERDICTS = {"adequate", "undercovered", "distorted"}
-REPORT_PATH = "data/summary-sampling-audit.json"
 INCLUDED_DECISIONS = ("translation", "translated_excerpt", "translated_adaptation")
 
 
@@ -29,15 +29,6 @@ def validate_config(bounds, model, effort):
                  and all(lower < upper for lower, upper in zip(bounds, bounds[1:])), "Invalid sampling bounds")
     base.nonempty(model, "Missing audit model")
     base.nonempty(effort, "Missing reasoning effort (use unknown if unavailable)")
-
-
-def report_target(root, relative):
-    base.nonempty(relative, "Missing report path")
-    path = base.confined(root, relative)
-    base.require(path.suffix == ".json" and path != (root / "data/catalog.json").resolve(), "Invalid report path")
-    if path.exists():
-        base.require(base.read_json(path).get("kind") == "sampling_audit", "Report path is not an audit report")
-    return path
 
 
 def file_hash(path):
@@ -77,18 +68,26 @@ def assign(items):
     return result
 
 
-def protected_files(root, report_path=REPORT_PATH):
-    result = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted((root / "data").iterdir())
-              if p.is_file() and p.resolve() != (root / report_path).resolve()}
+def protected_files(root):
+    result = {p.relative_to(root).as_posix(): file_hash(p) for p in sorted((root / "data").rglob("*"))
+              if p.is_file()}
     for name in ("index.html", "archive-export.js"):
         result[name] = file_hash(root / name)
     return result
 
 
+def verify_protected_files(root, manifest):
+    for relative, expected in manifest["protected_files"].items():
+        base.require(file_hash(base.confined(root, relative)) == expected, f"Protected file changed: {relative}")
+
+
 def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit_date, seed=20261101, per_stratum=15,
-            bounds=BOUNDS, model=base.MODEL, reasoning_effort=base.EFFORT, report_path=REPORT_PATH):
+            bounds=BOUNDS, model=base.MODEL, reasoning_effort=base.EFFORT, report_path=None, *, audit_file=None):
+    base._require_private_work(root, work)
     validate_config(bounds, model, reasoning_effort)
-    report_path = report_target(root, report_path).relative_to(root.resolve()).as_posix()
+    archive_path = history.private_audit_path(root, audit_file)
+    export_path = history.private_audit_path(root, report_path) if report_path is not None else None
+    base.require(export_path != archive_path, "Standalone report must be separate from the local audit archive")
     base.require(not (work / "manifest.json").exists(), "Work directory already contains a frozen run")
     base.require(not work.exists() or not any(work.iterdir()), "Prepare requires a fresh empty work directory; old judgments must not be reused")
     base.date.fromisoformat(audit_date)
@@ -98,8 +97,12 @@ def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit
     trusted = {r["id"]: r for r in trusted_data["articles"]} if "articles" in trusted_data else trusted_data
     manifest = {"schema_version": 1, "kind": "sampling_audit", "run_id": run_id, "date": audit_date,
                 "seed": seed, "per_stratum": per_stratum, "model": model, "reasoning_effort": reasoning_effort,
-                "bounds": list(bounds), "included_decisions": list(INCLUDED_DECISIONS), "report_path": report_path,
+                "bounds": list(bounds), "included_decisions": list(INCLUDED_DECISIONS),
                 "chunk_chars": 6000, "strata": strata, "population": population, "articles": [], "source_errors": []}
+    if audit_file is not None:
+        manifest["audit_file"] = str(archive_path)
+    if export_path is not None:
+        manifest["private_report_path"] = str(export_path)
     for index, row in selected:
         item = {key: row[key] for key in ("id", "title", "url", "archive_url", "source_path", "source_sha256", "content_sha256", "read_chars")}
         item.update(stratum=index, summary_sha256=base.digest(row["summary"]), summary_path=f"summaries/{row['id']}.json", chunks=[])
@@ -121,7 +124,7 @@ def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit
         base.write_json(work / item["summary_path"], {"id": row["id"], "summary": row["summary"], "summary_sha256": item["summary_sha256"]})
         manifest["articles"].append(item)
     manifest["assignments"] = assign(manifest["articles"])
-    manifest["protected_files"] = protected_files(root, report_path)
+    manifest["protected_files"] = protected_files(root)
     base.write_json(work / "manifest.json", manifest)
     for role, groups in manifest["assignments"].items():
         for actor, ids in groups.items():
@@ -130,14 +133,12 @@ def prepare(root, source_dir, source_manifest, recovery_dir, work, run_id, audit
 
 
 def validate_manifest(root, work):
+    base._require_private_work(root, work)
     manifest = base.read_json(work / "manifest.json")
     base.require(manifest.get("kind") == "sampling_audit", "Not an audit manifest")
     validate_config(manifest.get("bounds", BOUNDS), manifest.get("model"), manifest.get("reasoning_effort"))
-    target = report_target(root, manifest.get("report_path", REPORT_PATH))
-    base.require(all(base.confined(root, relative) != target for relative in manifest["protected_files"]), "Report overlaps protected file")
     base.date.fromisoformat(manifest["date"])
-    for relative, expected in manifest["protected_files"].items():
-        base.require(file_hash(base.confined(root, relative)) == expected, f"Protected file changed: {relative}")
+    verify_protected_files(root, manifest)
     catalog = base.read_json(root / "data/catalog.json")
     population, strata, sample = sampled_population(catalog["articles"], manifest["seed"], manifest["per_stratum"],
                                                    manifest.get("bounds", BOUNDS), manifest.get("included_decisions"))
@@ -342,7 +343,7 @@ def statistics(manifest, records):
             "interpretation": "总体只给按层总体篇数加权的点估计；不能将样本混合比例作为总体估计，也不能给未抽中的单篇文章贴标签。"}
 
 
-def report(root, work, allow_unavailable=False):
+def report(root, work, allow_unavailable=False, *, audit_file=None):
     manifest, records, _, gaps = check(root, work, allow_unavailable=allow_unavailable)
     result = {"schema_version": 1, "kind": "sampling_audit", "run_id": manifest["run_id"], "date": manifest["date"],
               "sampling": {"seed": manifest["seed"], "per_stratum": manifest["per_stratum"], "bounds_left_closed_right_open": list(manifest.get("bounds", BOUNDS)),
@@ -354,27 +355,28 @@ def report(root, work, allow_unavailable=False):
               "validation_note": "来源与结构检查不能证明阅读或语义质量；结论来自两次独立全文审阅及必要的主代理裁定。现有总结未修改。"}
     if "included_decisions" in manifest:
         result["sampling"]["included_decisions"] = manifest["included_decisions"]
-    path = report_target(root, manifest.get("report_path", REPORT_PATH))
-    result["previous_runs"] = []
-    if path.exists():
-        prior = base.read_json(path)
-        result["previous_runs"] = prior.get("previous_runs", [])
-        if prior["run_id"] == result["run_id"]:
-            base.require(prior == result, "Accepted audit changed; create a new run rather than overwriting initial judgments")
-        else:
-            result["previous_runs"] = [*result["previous_runs"], {k: v for k, v in prior.items() if k != "previous_runs"}]
-    text = base.json_text(result)
-    base.require(not any(token in text for token in ("/Users/", "file://", "localhost")), "Non-public local path in audit report")
-    base.staged_write({path: text})
-    # Reports only have one designated output. All original data stays fixed.
-    for relative, expected in manifest["protected_files"].items():
-        base.require(file_hash(root / relative) == expected, f"Protected file changed during reporting: {relative}")
+    path = history.private_audit_path(root, audit_file or manifest.get("audit_file"))
+    # Earlier work manifests named a public output. Only a new, explicitly private export is used here.
+    export = manifest.get("private_report_path")
+    target = history.private_audit_path(root, export) if export is not None else None
+    base.require(target != path, "Standalone report must be separate from the local audit archive")
+    with history.private_lock(path):
+        verify_protected_files(root, manifest)
+        outputs = history.private_payload(path, sampling={result["run_id"]: result})
+        if target is not None:
+            if target.exists():
+                base.require(base.read_json(target) == result, "Standalone private report already exists with different content")
+            else:
+                outputs[target] = base.json_text(result)
+        base.staged_write(outputs)
+    verify_protected_files(root, manifest)
     return result["statistics"]
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--audit-file", type=Path, help="private single-file audit archive")
     sub = parser.add_subparsers(dest="command", required=True)
     p = sub.add_parser("prepare")
     for flag in ("source-dir", "source-manifest", "work-dir"):
@@ -387,7 +389,7 @@ def main(argv=None):
     p.add_argument("--bounds", type=int, nargs="+", default=BOUNDS)
     p.add_argument("--model", default=base.MODEL)
     p.add_argument("--reasoning-effort", default=base.EFFORT)
-    p.add_argument("--report-path", default=REPORT_PATH)
+    p.add_argument("--report-path", type=Path, help="also export a standalone report to an explicitly private path")
     for command in ("check", "report"):
         p = sub.add_parser(command)
         p.add_argument("--work-dir", type=Path, required=True)
@@ -398,12 +400,12 @@ def main(argv=None):
     try:
         if args.command == "prepare":
             result = prepare(args.root, args.source_dir, args.source_manifest, args.recovery_dir, args.work_dir, args.run_id, args.date, args.seed, args.per_stratum,
-                             args.bounds, args.model, args.reasoning_effort, args.report_path)
+                             args.bounds, args.model, args.reasoning_effort, args.report_path, audit_file=args.audit_file)
         elif args.command == "check":
             m, records, pending, gaps = check(args.root, args.work_dir, args.allow_pending, args.allow_unavailable)
             result = {"run_id": m["run_id"], "checked": len(records), "pending": len(pending), "source_gaps": len(gaps)}
         else:
-            result = report(args.root, args.work_dir, args.allow_unavailable)
+            result = report(args.root, args.work_dir, args.allow_unavailable, audit_file=args.audit_file)
         print(json.dumps(result, ensure_ascii=False))
         return 0
     except (ValueError, KeyError, TypeError, OSError) as error:
